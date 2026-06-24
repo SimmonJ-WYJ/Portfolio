@@ -1,5 +1,14 @@
-.hs { position: relative; }
-.hs-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+.hs {
+  position: relative;
+  /* dark theme — scoped variable overrides flip text/lines/button to suit black */
+  background: #000000;
+  color: #ffffff;
+  --ink: #ffffff;
+  --bg: #000000;
+  --ink-soft: rgba(255, 255, 255, 0.6);
+  --line: rgba(255, 255, 255, 0.16);
+}
+.hs-sticky { position: sticky; top: 0; height: 100vh; box-sizing: border-box; overflow: hidden; display: flex; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .hs-track { display: flex; align-items: center; gap: clamp(28px, 4vw, 72px); padding: 0 var(--pad); will-change: transform; }
 
 /* intro panel (first in the row) — fills the left half, divided from the
@@ -17,7 +26,7 @@
   background: var(--ink); color: var(--bg); padding: 13px 24px; border-radius: 999px;
   font-family: var(--font-display); font-weight: 600; font-size: 15px; transition: background .25s;
 }
-.hs-btn:hover { background: #2c2a24; }
+.hs-btn:hover { background: rgba(255, 255, 255, 0.82); }
 .hs-arrow { transition: transform .3s; }
 .hs-btn:hover .hs-arrow { transform: translateX(4px); }
 
