@@ -1,0 +1,19 @@
+<svg width="90.29" height="90.29" viewBox="-3.15 12.9 90.29 90.29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Freeleaps">
+<g id="Frame 2087328428">
+<g id="Frame 2087328420">
+<g id="icon">
+<rect id="Rectangle 40706" x="30.8643" y="28.3955" width="22.2222" height="11.1111" rx="2.46914" fill="#1748F8"/>
+<foreignObject x="9.87665" y="23.4569" width="64.1975" height="69.1361"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(3.7px);clip-path:url(#bgblur_0_199_14460_clip_path);height:100%;width:100%"></div></foreignObject><g id="Rectangle 40705" data-figma-bg-blur-radius="7.40741">
+<rect x="17.2841" y="30.8643" width="49.3827" height="54.321" rx="3.7037" fill="#0C6DFF" fill-opacity="0.45"/>
+<rect x="17.9013" y="31.4815" width="48.1481" height="53.0864" rx="3.08642" stroke="#1748F8" stroke-opacity="0.16" stroke-width="1.23457"/>
+</g>
+<path id="Vector 2584" d="M33.333 58.6422L39.5058 65.4323L51.2342 54.9385" stroke="white" stroke-width="4.93827" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="bgblur_0_199_14460_clip_path" transform="translate(-9.87665 -23.4569)"><rect x="17.2841" y="30.8643" width="49.3827" height="54.321" rx="3.7037"/>
+</clipPath></defs>
+</svg>

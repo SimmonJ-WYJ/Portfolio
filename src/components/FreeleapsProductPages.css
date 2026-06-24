@@ -1,0 +1,84 @@
+/* Contract / Issues product pages — full-bleed dark navy */
+.fl-productpages {
+  background: #0d1637;
+  padding: clamp(56px, 8vw, 130px) 0 clamp(64px, 9vw, 150px);
+}
+.pp-inner {
+  max-width: var(--maxw, 1480px);
+  margin: 0 auto;
+  padding: 0 var(--pad, clamp(20px, 4vw, 64px));
+  color: #fff;
+}
+.pp-h {
+  margin: 0 0 clamp(28px, 4vw, 56px);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pp-h--issues { margin-top: clamp(80px, 11vw, 180px); }
+
+.pp-row {
+  display: flex;
+  gap: clamp(32px, 5vw, 90px);
+  align-items: center;
+}
+.pp-mock {
+  flex: 1 1 62%;
+  width: 62%;
+  height: auto;
+  border-radius: clamp(8px, 1vw, 14px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+.pp-col { flex: 1 1 30%; display: flex; flex-direction: column; gap: clamp(28px, 4vw, 56px); }
+.pp-col--narrow { flex: 1 1 26%; }
+
+.pp-info-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: clamp(18px, 1.7vw, 24px);
+  font-weight: 600;
+}
+.pp-dot { width: 11px; height: 11px; border-radius: 999px; background: #2f6bff; flex-shrink: 0; }
+.pp-info-body { margin-top: 18px; padding-left: 27px; }
+.pp-info-body p {
+  margin: 0 0 12px;
+  font-size: clamp(14px, 1.25vw, 17px);
+  font-weight: 300;
+  line-height: 1.55;
+  color: #9aa3c4;
+}
+
+/* trend chart */
+.pp-chart-row {
+  display: flex;
+  gap: clamp(30px, 4vw, 70px);
+  align-items: center;
+  margin-top: clamp(70px, 10vw, 150px);
+}
+.pp-chart { flex: 1 1 64%; width: 64%; height: auto; }
+.pp-chart-text {
+  flex: 1 1 30%;
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 50px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: #4f7bf5;
+}
+.pp-chart-sliver {
+  display: block;
+  width: 42%;
+  height: auto;
+  margin-left: 50%;
+  margin-top: clamp(20px, 3vw, 48px);
+}
+
+@media (max-width: 900px) {
+  .pp-row { flex-direction: column; align-items: stretch; }
+  .pp-mock, .pp-mock--issues { width: 100%; flex-basis: auto; order: -1; }
+  .pp-col, .pp-col--narrow { flex-basis: auto; }
+  .pp-chart-row { flex-direction: column; align-items: stretch; }
+  .pp-chart { width: 100%; }
+  .pp-chart-sliver { width: 100%; margin-left: 0; }
+}

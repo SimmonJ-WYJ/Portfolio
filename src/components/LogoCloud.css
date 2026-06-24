@@ -1,0 +1,117 @@
+/* heading above the carousel */
+.logo-cloud-head {
+  text-align: center;
+  margin-bottom: clamp(18px, 2.5vw, 32px);
+  line-height: 1.15;
+}
+.logo-cloud-eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 24px);
+  color: rgba(255, 255, 255, 0.5);
+}
+.logo-cloud-title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(22px, 2.6vw, 30px);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* the bordered box that holds the slider */
+/* same inner width as .container (the content above) */
+.logo-cloud {
+  position: relative;
+  width: calc(100% - 2 * var(--pad));
+  max-width: calc(var(--maxw) - 2 * var(--pad));
+  margin: 0 auto;
+  padding: 24px 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* hairlines extend full-viewport width, beyond the box (matches the reference) */
+.logo-cloud-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+.logo-cloud-line-top { top: 0; }
+.logo-cloud-line-bottom { bottom: 0; }
+
+.logo-cloud-viewport {
+  overflow: hidden;
+}
+.logo-cloud-track {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--logo-gap, 56px);
+  white-space: nowrap;
+  will-change: transform;
+}
+.logo-cloud-logo {
+  flex: 0 0 auto;
+  height: 20px;
+  width: auto;
+  user-select: none;
+  /* force every logo to solid white on the dark footer (demo's dark:brightness-0 dark:invert) */
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+/* icon + name item (e.g. Figma, which has no wordmark SVG) */
+.logo-cloud-named {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: #fff;
+  opacity: 0.8;
+}
+/* opacity:1 so it isn't dimmed twice (named wrapper is already 0.8) — matches the text */
+.logo-cloud-icon { height: 22px; opacity: 1; }
+
+.logo-cloud-word {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* blurred + faded edges (replaces the 8-layer backdrop-filter ProgressiveBlur) */
+.logo-cloud-fade {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  width: 150px;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.logo-cloud-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--ink) 10%, transparent);
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 35%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 35%, transparent 100%);
+}
+.logo-cloud-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--ink) 10%, transparent);
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 35%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 0%, #000 35%, transparent 100%);
+}
+
+/* footer spacing */
+.footer-logos {
+  margin-top: clamp(48px, 7vw, 110px);
+}

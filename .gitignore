@@ -1,0 +1,19 @@
+# dependencies
+node_modules
+
+# build output (Vercel rebuilds this from source)
+dist
+
+# vercel
+.vercel
+
+# logs
+*.log
+npm-debug.log*
+
+# env
+.env
+.env.*
+
+# os
+.DS_Store

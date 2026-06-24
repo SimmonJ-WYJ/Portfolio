@@ -1,0 +1,36 @@
+/* Display On Other Pages — full-bleed light gallery */
+.fl-otherpages {
+  background: #eeeeee;
+  padding: clamp(56px, 8vw, 130px) 0 clamp(56px, 8vw, 120px);
+}
+.op-inner {
+  max-width: var(--maxw, 1480px);
+  margin: 0 auto;
+  padding: 0 var(--pad, clamp(20px, 4vw, 64px));
+}
+.op-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.5vw, 40px);
+  margin-top: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.op-col { display: flex; flex-direction: column; gap: clamp(20px, 2.5vw, 40px); }
+.op-shot {
+  margin: 0;
+  border-radius: clamp(8px, 1vw, 14px);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+}
+.op-shot img { display: block; width: 100%; height: auto; }
+.op-caption {
+  margin: clamp(36px, 5vw, 64px) 0 0;
+  text-align: center;
+  font-size: clamp(13px, 1.3vw, 16px);
+  color: #9aa0ab;
+}
+
+@media (max-width: 760px) {
+  .op-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,41 @@
+.tgs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 0;
+  gap: 0.42em 0.32em;
+  font: inherit;
+  color: inherit;
+}
+
+.tgs-word {
+  position: relative;
+  display: inline-flex;
+}
+
+.tgs-lit {
+  opacity: 1;
+}
+
+.tgs-char {
+  position: relative;
+}
+
+.tgs-dim {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.tgs-dim-0 {
+  opacity: 0;
+}
+
+.tgs-dim-10 {
+  opacity: 0.12;
+}
+
+.tgs-dim-30 {
+  opacity: 0.3;
+}

@@ -1,0 +1,136 @@
+/* Page Display — full-bleed blue showcase band */
+.fl-pagedisp {
+  background: #2353f8;
+  margin-top: clamp(80px, 12vw, 200px);
+  padding: clamp(40px, 6vw, 96px) 0 clamp(48px, 7vw, 110px);
+  overflow-x: hidden;
+}
+.pd-inner {
+  max-width: var(--maxw, 1480px);
+  margin: 0 auto;
+  padding: 0 var(--pad, clamp(20px, 4vw, 64px));
+  position: relative;
+}
+.pd-scroll {
+  display: grid; place-items: center;
+  width: 44px; height: 44px; margin: 0 auto clamp(20px, 4vw, 56px);
+  border-radius: 999px; background: #16140f; color: #fff;
+}
+
+/* header on blue */
+.pd-head { border-bottom-color: rgba(255, 255, 255, 0.5); }
+.fl-pagedisp .fl-font-title,
+.fl-pagedisp .fl-font-tag { color: #fff; }
+
+/* product mockup + peeking role cards (cards overflow off the right edge) */
+.pd-stage {
+  position: relative;
+  margin-top: clamp(36px, 5vw, 72px);
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 40px);
+}
+.pd-mockup {
+  display: block;
+  flex: 0 0 auto;
+  width: min(70%, 1010px);
+  height: auto;
+  border-radius: clamp(10px, 1.4vw, 18px);
+}
+.pd-roles {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  transform: translateY(clamp(-65px, -5.2vw, -8px));
+  display: flex;
+  gap: clamp(16px, 2vw, 40px);
+}
+.pd-roles img { display: block; width: clamp(110px, 11vw, 165px); height: auto; }
+
+@media (max-width: 980px) {
+  .pd-stage { display: block; }
+  .pd-mockup { width: 100%; }
+  .pd-roles { display: none; }
+}
+
+/* heading */
+.pd-stories {
+  margin: clamp(60px, 9vw, 130px) 0 clamp(40px, 6vw, 80px);
+  text-align: center;
+  font-size: clamp(34px, 6vw, 86px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.pd-stories span { font-weight: 700; }
+
+/* testimonial wall */
+.pd-wall {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2.6vw, 40px);
+  align-items: start;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.pd-card {
+  border-radius: 16px;
+  padding: clamp(22px, 2.4vw, 34px);
+  display: flex;
+  flex-direction: column;
+}
+.pd-card--white { background: #fff; color: #0d1637; }
+.pd-card--blue { background: #1846f0; color: #fff; }
+.pd-card-head { display: flex; align-items: center; gap: 14px; }
+.pd-avatar { width: clamp(48px, 4vw, 64px); height: clamp(48px, 4vw, 64px); border-radius: 12px; object-fit: cover; }
+.pd-id { display: flex; flex-direction: column; gap: 7px; align-items: flex-start; }
+.pd-name { font-size: clamp(16px, 1.5vw, 22px); font-weight: 600; }
+.pd-role {
+  font-size: 13px; line-height: 1; padding: 5px 12px; border-radius: 999px;
+}
+.pd-card--white .pd-role { background: #eef3ff; color: #1748f8; }
+.pd-card--blue .pd-role { background: rgba(255, 255, 255, 0.18); color: #fff; }
+.pd-quote {
+  margin: clamp(18px, 2vw, 28px) 0 0;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.pd-card--white .pd-quote { color: #3d455f; }
+.pd-divider { height: 1px; margin: clamp(20px, 2.4vw, 32px) 0 18px; background: currentColor; opacity: 0.14; }
+.pd-metric { display: flex; align-items: flex-end; justify-content: space-between; }
+.pd-metric-label { font-size: clamp(14px, 1.3vw, 17px); opacity: 0.7; }
+.pd-metric-value { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(22px, 2.4vw, 34px); font-weight: 700; }
+.pd-card--white .pd-metric-value { color: #1748f8; }
+.pd-metric-arrow { display: inline-flex; }
+
+@media (max-width: 720px) {
+  .pd-wall { grid-template-columns: 1fr; }
+}
+
+/* CTA banner */
+.pd-cta {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(48px, 7vw, 96px);
+  background: #fff;
+  border-radius: clamp(14px, 1.6vw, 22px);
+  padding: clamp(28px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.pd-cta-title { margin: 0; font-size: clamp(20px, 2.4vw, 34px); font-weight: 600; line-height: 1.25; color: #0d1637; }
+.pd-cta-btn {
+  margin-top: clamp(16px, 2vw, 26px);
+  background: #1748f8; color: #fff; border: 0; cursor: pointer;
+  border-radius: 8px; padding: 11px 22px; font: 600 15px/1 inherit;
+}
+.pd-cta-img { width: clamp(140px, 18vw, 240px); height: auto; flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .pd-cta { flex-direction: column-reverse; align-items: flex-start; }
+  .pd-cta-img { align-self: center; }
+}

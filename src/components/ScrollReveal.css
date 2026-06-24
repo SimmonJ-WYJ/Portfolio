@@ -1,0 +1,19 @@
+.sr {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.sr-text {
+  margin: 0;
+  font-family: inherit;
+  color: inherit;
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.sr-word {
+  display: inline-block;
+  will-change: opacity, filter;
+}

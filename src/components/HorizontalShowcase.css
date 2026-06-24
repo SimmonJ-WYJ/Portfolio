@@ -1,0 +1,51 @@
+.hs { position: relative; }
+.hs-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+.hs-track { display: flex; align-items: center; gap: clamp(28px, 4vw, 72px); padding: 0 var(--pad); will-change: transform; }
+
+/* intro panel (first in the row) — fills the left half, divided from the
+   first cover by a full-height vertical stroke */
+.hs-intro {
+  flex: 0 0 auto; width: calc(50vw - var(--pad)); height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-right: clamp(28px, 4vw, 80px);
+  border-right: 1px solid var(--line);
+}
+.hs-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; font-size: clamp(40px, 5.5vw, 80px); line-height: 1.02; margin-bottom: 20px; }
+.hs-sub { color: var(--ink-soft); font-size: clamp(15px, 1.4vw, 19px); line-height: 1.6; max-width: 42ch; margin-bottom: 32px; }
+.hs-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--ink); color: var(--bg); padding: 13px 24px; border-radius: 999px;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px; transition: background .25s;
+}
+.hs-btn:hover { background: #2c2a24; }
+.hs-arrow { transition: transform .3s; }
+.hs-btn:hover .hs-arrow { transform: translateX(4px); }
+
+/* full-height vertical divider between projects (matches the intro border) */
+.hs-divider { flex: 0 0 auto; align-self: stretch; width: 1px; background: var(--line); }
+
+/* project cards — image on top, title + description + explore button below */
+.hs-card { flex: 0 0 auto; display: flex; flex-direction: column; will-change: transform; }
+.hs-card-media {
+  position: relative; height: 56vh; aspect-ratio: 658 / 492;
+  border-radius: 6px; overflow: hidden; background: #0f0f12; display: block;
+}
+.hs-card-media img, .hs-card-fill { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(0.22,1,0.36,1); }
+.hs-card-media:hover img { transform: scale(1.04); }
+
+.hs-card-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 22px; }
+.hs-card-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -0.01em; }
+/* reserve 2 lines so every card is the same height → media tops stay aligned */
+.hs-card-desc { color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; margin-top: 6px; max-width: 34ch; min-height: 3em; }
+.hs-card-link {
+  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+  font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+  white-space: nowrap; padding-bottom: 4px; border-bottom: 1px solid var(--line);
+}
+.hs-card-link svg { transition: transform .3s; }
+.hs-card-link:hover svg { transform: translateX(4px); }
+
+@media (max-width: 640px) {
+  .hs-intro { width: 78vw; }
+  .hs-card-media { height: 46vh; }
+}

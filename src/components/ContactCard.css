@@ -1,0 +1,48 @@
+/* centered overlay hosting the ProfileCard */
+.profile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(10, 9, 7, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.profile-overlay-inner {
+  position: relative;
+}
+
+.profile-glow {
+  position: absolute;
+  inset: -60px;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(150, 200, 255, 0.8) 24%,
+    rgba(125, 190, 255, 0.4) 46%,
+    transparent 70%
+  );
+  filter: blur(36px);
+  mix-blend-mode: screen;
+}
+
+.profile-overlay-close {
+  position: absolute;
+  top: -42px;
+  right: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+.profile-overlay-close:hover { color: #fff; }

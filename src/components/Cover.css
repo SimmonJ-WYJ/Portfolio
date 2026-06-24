@@ -1,0 +1,9 @@
+.cover { padding: clamp(20px, 4vw, 56px) var(--pad) clamp(40px, 7vw, 100px); display: flex; flex-direction: column; gap: clamp(16px, 2vw, 32px); }
+.cover-img { width: 100%; height: auto; display: block; border-radius: 12px; }
+.cover-placeholder {
+  width: 100%; min-height: clamp(220px, 32vw, 460px);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  border: 1.5px dashed var(--line); border-radius: 12px;
+  color: var(--ink-faint); font-family: var(--font-display); font-size: 15px; padding: 24px;
+}
+.cover-placeholder code { font-family: monospace; color: var(--ink-soft); }

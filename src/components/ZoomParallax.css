@@ -1,0 +1,91 @@
+.zoom-parallax {
+  position: relative;
+  /* sticky 100vh + zoom ~350vh + scrub ~1200vh */
+  height: 1650vh;
+  background: #000000;
+}
+
+.zoom-parallax-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Full-bleed stage: media sizes/offsets are measured against the viewport via
+   container-query units, so at full zoom the center fills the entire screen
+   (100cqw x 100cqh = 100vw x 100vh). */
+.zp-stage {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  container-type: size;
+}
+
+.zp-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.zp-inner {
+  position: relative;
+  height: 25cqh;
+  width: 25cqw;
+}
+
+.zp-inner img,
+.zp-inner video {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Per-image placement (offset from the centered default). Mirrors the
+   original component's per-index Tailwind overrides. */
+.zp-item-1 .zp-inner {
+  top: -30cqh;
+  left: 5cqw;
+  height: 30cqh;
+  width: 35cqw;
+}
+
+.zp-item-2 .zp-inner {
+  top: -10cqh;
+  left: -25cqw;
+  height: 45cqh;
+  width: 20cqw;
+}
+
+.zp-item-3 .zp-inner {
+  left: 27.5cqw;
+  height: 25cqh;
+  width: 25cqw;
+}
+
+.zp-item-4 .zp-inner {
+  top: 27.5cqh;
+  left: 5cqw;
+  height: 25cqh;
+  width: 20cqw;
+}
+
+.zp-item-5 .zp-inner {
+  top: 27.5cqh;
+  left: -22.5cqw;
+  height: 25cqh;
+  width: 30cqw;
+}
+
+.zp-item-6 .zp-inner {
+  top: 22.5cqh;
+  left: 25cqw;
+  height: 15cqh;
+  width: 15cqw;
+}

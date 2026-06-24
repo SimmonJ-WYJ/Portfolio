@@ -1,0 +1,254 @@
+.asci {
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* ---------- Hero: one scene, camera pulls back to reveal the iMac ---------- */
+.asci-hero {
+  position: relative;
+  height: 240vh;
+  width: 100%;
+  background: #b9b6b1;
+}
+
+.asci-hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #b9b6b1;
+}
+
+.asci-device {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.asci-imac {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.asci-device-screen {
+  position: absolute;
+  left: 15.4%;
+  top: 14.92%;
+  width: 69.27%;
+  height: 53.31%;
+  z-index: 1;
+  overflow: hidden;
+  background: #efefef;
+  border-radius: 0.45% / 0.7%;
+}
+
+/* 真实着色器背景(shaders/pixi.js):Swirl + ChromaFlow + FlutedGlass + FilmGrain */
+.asci-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #efefef;
+}
+.asci-hero-bg canvas { display: block; width: 100% !important; height: 100% !important; }
+
+.asci-hero-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.asci-product-nav {
+  position: absolute;
+  top: 3.2%;
+  left: 5%;
+  right: 5%;
+  height: 7.4%;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #111827;
+  opacity: 0;
+  animation: asciHeroFade 3s ease 0.1s forwards;
+}
+.asci-product-logo {
+  display: block;
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+.asci-product-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+}
+.asci-product-download,
+.asci-hero-download {
+  border: 0;
+  border-radius: 0;
+  background: #101827;
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+}
+.asci-product-download {
+  width: 72px;
+  height: 28px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.asci-product-download i,
+.asci-hero-download i {
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: #101827;
+  font-style: normal;
+  line-height: 1;
+}
+.asci-hero-inner {
+  position: absolute;
+  left: 5%;
+  bottom: 7%;
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  opacity: 0;
+  animation: asciHeroFade 3s ease 0.35s forwards;
+}
+.asci-hero-brand {
+  display: inline-flex;
+  align-items: center;
+  color: #111827;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+.asci-hero-title {
+  margin: 0;
+  max-width: 16em;
+  color: #111827;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+.asci-hero-download {
+  width: 106px;
+  height: 30px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.asci-product-download:active,
+.asci-hero-download:active { transform: translateY(1px); }
+
+@keyframes asciHeroFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .asci-hero { height: 100vh; }
+  .asci-product-nav,
+  .asci-hero-inner { animation: none; opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  .asci-hero { height: 190vh; }
+}
+
+/* ---------- Chapter two: pinned curtain + scroll-linked statements ---------- */
+.asci-story {
+  position: relative;
+  z-index: 4;
+  height: 320vh;
+  margin-top: -100vh;
+  background: transparent;
+}
+.asci-story-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+}
+.asci-story-curtain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000000;
+  transform: translate3d(0, 100%, 0);
+  will-change: transform;
+}
+.asci-story-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.asci-story-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.34);
+}
+.asci-story-copy {
+  position: absolute;
+  left: clamp(24px, 6vw, 90px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(90vw, 1040px);
+  max-width: 1040px;
+  margin: 0;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asci-story {
+    height: auto;
+    margin-top: 0;
+    background: #000000;
+  }
+  .asci-story-sticky { position: relative; height: auto; overflow: visible; }
+  .asci-story-curtain { position: relative; min-height: 100vh; transform: none; }
+}
+
+.asci-back { position: fixed; }

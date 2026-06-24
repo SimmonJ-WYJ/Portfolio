@@ -1,0 +1,77 @@
+/* converted from Tailwind: relative h-px w-[70vw] */
+.wave-path {
+  position: relative;
+  height: 1px;
+  width: 70vw;
+}
+
+/* demo layout: wave on top, then a right-aligned label + paragraph
+   (converted from the Tailwind demo: w-[70vw] flex-col items-end, etc.) */
+/* same inner width as .container (the content above) */
+.footer-art {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: clamp(64px, 8vw, 130px) auto clamp(20px, 3vw, 40px);
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.footer-art-wave {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 40px;
+}
+.footer-art-text {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 32px;
+}
+.footer-art-label {
+  flex-shrink: 0;
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.footer-art-desc {
+  width: 75%;
+  font-size: clamp(15px, 1.55vw, 22px);
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.82);
+}
+@media (max-width: 640px) {
+  .footer-art-text { flex-direction: column; gap: 8px; }
+  .footer-art-desc { width: 100%; }
+}
+
+/* relative -top-5 z-10 h-10 w-full hover:-top-[150px] hover:h-[300px]
+   — the (invisible) hit area; it grows on hover so you can pull the line far */
+.wave-path-hit {
+  position: relative;
+  top: -20px;
+  z-index: 10;
+  height: 40px;
+  width: 100%;
+}
+.wave-path-hit:hover {
+  top: -150px;
+  height: 300px;
+}
+
+/* absolute -top-[100px] h-[300px] w-full */
+.wave-path-svg {
+  position: absolute;
+  top: -100px;
+  height: 300px;
+  width: 100%;
+  overflow: visible;
+}
+
+/* fill-none stroke-current */
+.wave-path-svg path {
+  fill: none;
+  stroke: currentColor;
+}
