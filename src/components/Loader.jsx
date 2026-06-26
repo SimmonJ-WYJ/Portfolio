@@ -44,7 +44,7 @@ export default function Loader({ onDone }) {
       }}
     >
       <div className="loader-word">
-        {'PORTFOLIO'.split('').map((c, i) => (
+        {'SimmonJ'.split('').map((c, i) => (
           <span
             key={i}
             style={{
