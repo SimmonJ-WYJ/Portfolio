@@ -5,7 +5,6 @@ import Loader from './components/Loader.jsx'
 import Grainient from './components/Grainient.jsx'
 import { FallingPattern } from './components/FallingPattern.jsx'
 import CircularText from './components/CircularText.jsx'
-import TextPressure from './components/TextPressure.jsx'
 import { HorizontalShowcase } from './components/HorizontalShowcase.jsx'
 import FlowingMenu from './components/FlowingMenu.jsx'
 import WavePath from './components/WavePath.jsx'
@@ -17,6 +16,7 @@ import WawawriterPage from './components/WawawriterPage.jsx'
 import WindpopPage from './components/WindpopPage.jsx'
 import AsciPage from './components/AsciPage.jsx'
 import StudioManifesto from './components/StudioManifesto.jsx'
+import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
 import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
 import logoSupabase from './assets/logos/supabase_wordmark_light.svg'
 import logoOpenai from './assets/logos/openai_wordmark_light.svg'
@@ -218,25 +218,23 @@ function Hero({ ready, onReel }) {
       <div className="hero-grainient" aria-hidden="true">
         <FallingPattern color="#ffffff" backgroundColor="#000000" duration={150} density={1} blurIntensity="16px" brightness={2.4} />
       </div>
+      <motion.div
+        className="hero-intro"
+        initial={{ opacity: 0, y: 50 }}
+        animate={ready ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+      >
+        <h1 className="hero-cycle-headline">
+          Hello, I'm{' '}
+          <span className="hero-cycle-word">Product&nbsp;</span>
+          <AnimatedTextCycle
+            words={['Engineer', 'Manager', 'Designer']}
+            interval={2200}
+            className="hero-cycle-word"
+          />
+        </h1>
+      </motion.div>
       <div className="container hero-content">
-        <div className="hero-pressure" aria-hidden="true">
-          <motion.div
-            className="tp-line tp-line1"
-            initial={{ opacity: 0, y: 80, clipPath: 'inset(0 0 100% 0)' }}
-            animate={ready ? { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' } : {}}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          >
-            <TextPressure text="Hello" flex width weight italic alpha={false} stroke={false} textColor="#ffffff" strokeColor="#ff0000" minFontSize={48} />
-          </motion.div>
-          <motion.div
-            className="tp-line tp-line2"
-            initial={{ opacity: 0, y: 80, clipPath: 'inset(0 0 100% 0)' }}
-            animate={ready ? { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' } : {}}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.38 }}
-          >
-            <TextPressure text="I'm SimmonJ" flex width weight italic alpha={false} stroke={false} textColor="#ffffff" strokeColor="#ff0000" minFontSize={48} />
-          </motion.div>
-        </div>
         <motion.div
           className="hero-bottom"
           initial={{ opacity: 0 }}
