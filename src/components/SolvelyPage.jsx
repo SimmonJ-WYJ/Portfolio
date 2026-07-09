@@ -8,7 +8,6 @@ import icNote from '../assets/solvely/icons/note.svg'
 import avKevin from '../assets/solvely/pain/kevin.png'
 import avEmma from '../assets/solvely/pain/emma.png'
 import avJane from '../assets/solvely/pain/jane.png'
-import extStep2 from '../assets/solvely/solution/ext-step2.png'
 import cmCheight from '../assets/solvely/comments/cheight.jpg'
 import cmTheyloveeety from '../assets/solvely/comments/theyloveeety.jpg'
 import cmEthan from '../assets/solvely/comments/ethan.jpg'
@@ -296,7 +295,16 @@ export default function SolvelyPage() {
           </p>
         </div>
         <div className="sv-sol-shots">
-          <img className="sv-sol-shot" src={extStep2} alt="Solvely extension — select your question area" loading="lazy" />
+          <video
+            className="sv-sol-shot"
+            src="/solvely/ext-demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Solvely extension — select your question area"
+          />
         </div>
       </section>
 
