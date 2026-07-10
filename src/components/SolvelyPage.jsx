@@ -99,14 +99,12 @@ const PAIN_QUOTES = [
 
 // process timeline pills (positioned as % of the 1220×666 chart box)
 const FLOW_PILLS = [
-  { label: 'Research & User Analysis', solid: false, left: '11.3%', top: '34.8%', width: '25.4%' },
-  { label: 'Strategy', solid: true, left: '45.2%', top: '34.8%', width: '13.3%' },
-  { label: 'Wireframing', solid: true, left: '61.3%', top: '34.8%', width: '14.7%' },
-  { label: 'Information Architecture', solid: true, left: '19.9%', top: '45.9%', width: '24.3%' },
-  { label: 'Branding', solid: false, left: '45.2%', top: '45.9%', width: '13.3%' },
-  { label: 'UX/UI', solid: false, left: '61.3%', top: '45.9%', width: '22.1%' },
-  { label: 'Testing MVP flow', solid: true, left: '61.3%', top: '57.1%', width: '22.1%' },
-  { label: 'App Development', solid: false, left: '67.5%', top: '68.2%', width: '21.6%' },
+  { label: 'Data Analysis', solid: false, left: '11%', top: '36%', width: '18%' },
+  { label: 'User Insight', solid: true, left: '15%', top: '49%', width: '17%' },
+  { label: 'UX Design', solid: true, left: '42%', top: '36%', width: '14%' },
+  { label: 'Dify Validation', solid: false, left: '40%', top: '49%', width: '20%' },
+  { label: 'Design Output', solid: true, left: '61%', top: '36%', width: '18%' },
+  { label: 'Dev Handoff', solid: false, left: '63%', top: '49%', width: '16%' },
 ]
 
 const COLOR_CARDS = [
@@ -249,9 +247,11 @@ export default function SolvelyPage() {
       </section>
 
       <section className="sv-flow container">
+        <h2 className="sv-flow-title">How I work</h2>
+        <p className="sv-flow-intro">I read the data, shape the UX around it, validate the flow in Dify, then ship the spec to development.</p>
         <div className="sv-flow-box">
           <div className="sv-flow-heads">
-            <span>Discovery</span>
+            <span>Data</span>
             <span>Design</span>
             <span>Delivery</span>
           </div>

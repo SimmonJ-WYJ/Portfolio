@@ -264,6 +264,8 @@
 
 /* process timeline (Discovery / Design / Delivery) */
 .sv-flow { padding-top: clamp(28px, 3.5vw, 56px); padding-bottom: clamp(28px, 3.5vw, 56px); }
+.sv-flow-title { max-width: 1340px; margin: 0 auto 8px; font-size: clamp(28px, 3.4vw, 48px); font-weight: 500; color: #0a0d13; }
+.sv-flow-intro { max-width: 760px; margin: 0 auto clamp(28px, 3vw, 44px); font-size: clamp(15px, 1.4vw, 19px); line-height: 1.6; color: #5b6270; }
 .sv-flow-box {
   position: relative;
   container-type: inline-size;
