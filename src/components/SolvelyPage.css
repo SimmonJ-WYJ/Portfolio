@@ -303,6 +303,7 @@
   height: 8.1%;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 2.6cqw;
   border-radius: 2.3cqw;
   font-size: 1.64cqw;
