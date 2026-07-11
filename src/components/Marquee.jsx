@@ -13,7 +13,8 @@ export default function Marquee({ items, speed = 0.6, separator = '✦' }) {
     const half = track.scrollWidth / 2
 
     let raf = 0
-    let visible = true
+    let intersecting = true
+    let visible = !document.hidden
     const loop = () => {
       offset.current -= speed * dir.current
       if (offset.current <= -half) offset.current += half
@@ -22,6 +23,7 @@ export default function Marquee({ items, speed = 0.6, separator = '✦' }) {
       raf = visible ? requestAnimationFrame(loop) : 0
     }
     const start = () => { if (raf === 0 && visible) raf = requestAnimationFrame(loop) }
+    const stop = () => { if (raf) cancelAnimationFrame(raf); raf = 0 }
     start()
 
     const onScroll = () => {
@@ -33,14 +35,23 @@ export default function Marquee({ items, speed = 0.6, separator = '✦' }) {
 
     // Pause the rAF while the marquee is off-screen.
     const io = new IntersectionObserver(([e]) => {
-      visible = e.isIntersecting && !document.hidden
+      intersecting = e.isIntersecting
+      visible = intersecting && !document.hidden
       if (visible) start()
+      else stop()
     }, { threshold: 0 })
     io.observe(track.parentElement || track)
+    const onVisibility = () => {
+      visible = intersecting && !document.hidden
+      if (visible) start()
+      else stop()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
 
     return () => {
-      if (raf) cancelAnimationFrame(raf)
+      stop()
       window.removeEventListener('scroll', onScroll)
+      document.removeEventListener('visibilitychange', onVisibility)
       io.disconnect()
     }
   }, [speed])

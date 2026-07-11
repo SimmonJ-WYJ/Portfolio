@@ -17,12 +17,26 @@ export function useLenis(enabled, resetKey) {
       touchMultiplier: 1.6,
     })
 
-    let raf
+    let raf = 0
+    let pageVisible = !document.hidden
     const loop = (time) => {
       lenis.raf(time)
-      raf = requestAnimationFrame(loop)
+      raf = pageVisible ? requestAnimationFrame(loop) : 0
     }
-    raf = requestAnimationFrame(loop)
+    const start = () => {
+      if (raf === 0 && pageVisible) raf = requestAnimationFrame(loop)
+    }
+    const stop = () => {
+      if (raf !== 0) cancelAnimationFrame(raf)
+      raf = 0
+    }
+    const onVisibility = () => {
+      pageVisible = !document.hidden
+      if (pageVisible) start()
+      else stop()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    start()
 
     // anchor links go through Lenis
     const onClick = (e) => {
@@ -37,7 +51,8 @@ export function useLenis(enabled, resetKey) {
     document.addEventListener('click', onClick)
 
     return () => {
-      cancelAnimationFrame(raf)
+      stop()
+      document.removeEventListener('visibilitychange', onVisibility)
       document.removeEventListener('click', onClick)
       lenis.destroy()
     }

@@ -80,27 +80,40 @@ const menuItems = [
 ]
 
 /* ---------- Scroll reveal (IntersectionObserver) ---------- */
-function useReveal() {
+function useReveal(route) {
   useEffect(() => {
-    // rAF loop reads layout each frame and reveals elements as they enter the
-    // viewport. Independent of scroll events / IntersectionObserver, so it works
-    // reliably across all environments. Stops itself once everything is revealed.
-    let raf = 0
-    const loop = () => {
-      const trigger = window.innerHeight * 0.9
-      const remaining = document.querySelectorAll('.reveal:not(.in)')
-      remaining.forEach((el) => {
-        if (el.getBoundingClientRect().top < trigger) el.classList.add('in')
-      })
-      if (document.querySelectorAll('.reveal:not(.in)').length > 0) {
-        raf = requestAnimationFrame(loop)
-      } else {
-        raf = 0
-      }
+    const reveal = (root = document) => {
+      root.querySelectorAll?.('.reveal:not(.in)').forEach((element) => observer.observe(element))
     }
-    raf = requestAnimationFrame(loop)
-    return () => { if (raf) cancelAnimationFrame(raf) }
-  }, [])
+
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal:not(.in)').forEach((element) => element.classList.add('in'))
+      return undefined
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('in')
+        observer.unobserve(entry.target)
+      })
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 })
+
+    reveal()
+    const mutations = new MutationObserver((records) => {
+      records.forEach((record) => record.addedNodes.forEach((node) => {
+        if (node.nodeType !== Node.ELEMENT_NODE) return
+        if (node.matches?.('.reveal:not(.in)')) observer.observe(node)
+        reveal(node)
+      }))
+    })
+    mutations.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      mutations.disconnect()
+      observer.disconnect()
+    }
+  }, [route])
 }
 
 /* ---------- Magnetic wrapper ---------- */
@@ -328,7 +341,7 @@ export default function App() {
   const [route, setRoute] = useState(() => (typeof window !== 'undefined' ? window.location.pathname : '/'))
 
   useLenis(loaded || route !== '/', route)
-  useReveal()
+  useReveal(route)
 
   // Route changes replace the page in-place. Reset after React commits the new
   // page so every project detail opens at its actual top, including popstate.

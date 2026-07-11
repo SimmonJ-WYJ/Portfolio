@@ -19,7 +19,8 @@ export default function LogoCloud({ items = [], speed = 0.5, gap = 56, className
     if (!track) return
     const setWidth = track.scrollWidth / COPIES // width of one copy of `items`
     let raf = 0
-    let visible = true
+    let intersecting = true
+    let visible = !document.hidden
     const loop = () => {
       offset.current -= speed
       if (offset.current <= -setWidth) offset.current += setWidth
@@ -27,13 +28,29 @@ export default function LogoCloud({ items = [], speed = 0.5, gap = 56, className
       raf = visible ? requestAnimationFrame(loop) : 0
     }
     const start = () => { if (raf === 0 && visible) raf = requestAnimationFrame(loop) }
+    const stop = () => { if (raf) cancelAnimationFrame(raf); raf = 0 }
     start()
     const io = new IntersectionObserver(
-      ([e]) => { visible = e.isIntersecting && !document.hidden; if (visible) start() },
+      ([e]) => {
+        intersecting = e.isIntersecting
+        visible = intersecting && !document.hidden
+        if (visible) start()
+        else stop()
+      },
       { threshold: 0 }
     )
     io.observe(track.parentElement || track)
-    return () => { if (raf) cancelAnimationFrame(raf); io.disconnect() }
+    const onVisibility = () => {
+      visible = intersecting && !document.hidden
+      if (visible) start()
+      else stop()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      stop()
+      document.removeEventListener('visibilitychange', onVisibility)
+      io.disconnect()
+    }
   }, [speed, items])
 
   const repeated = Array.from({ length: COPIES }).flatMap(() => items)
