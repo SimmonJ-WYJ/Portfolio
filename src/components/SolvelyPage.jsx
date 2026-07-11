@@ -28,9 +28,7 @@ import bffCamera from '../assets/solvely/bff/p-camera.png'
 import bffAnswer from '../assets/solvely/bff/p-answer.png'
 import bffThinking from '../assets/solvely/bff/p-thinking.png'
 import bffAnswer3 from '../assets/solvely/bff/p-answer3.png'
-import onbSolver from '../assets/solvely/onboarding/solver.png'
 import onbInstalled from '../assets/solvely/solution/ext-installed.png'
-import onbStep2 from '../assets/solvely/solution/ext-step2.png'
 import sampleQ from '../assets/solvely/p2/sample-q.png'
 import tcIcon from '../assets/solvely/p2/tc.png'
 import p5Quiz from '../assets/solvely/p5/quiz.png'
@@ -365,14 +363,20 @@ export default function SolvelyPage() {
           </div>
           <div className="sv-onb-arrow" aria-hidden="true">▼</div>
           <div className="sv-onb-step">
-            <img className="sv-onb-mock" src={onbSolver} alt="Onboarding — step 1" loading="lazy" />
+            <video
+              className="sv-onb-mock sv-onb-video"
+              src="/solvely/onboarding.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Onboarding interaction demo"
+            />
             <div className="sv-onb-note">
-              <span className="sv-onb-pill sv-onb-pill--blue">←&nbsp;Before</span>
+              <span className="sv-onb-pill sv-onb-pill--blue">←&nbsp;After</span>
               <p>We adopted an interactive onboarding approach and started the design after multiple rounds of feasibility checks with the frontend team, which helped effectively reduce implementation costs.</p>
             </div>
-          </div>
-          <div className="sv-onb-step3">
-            <img className="sv-onb-mock" src={onbStep2} alt="Onboarding — step 2" loading="lazy" />
           </div>
 
           <div className="sv-onb-block sv-onb-block--strategy">
