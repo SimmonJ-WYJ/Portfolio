@@ -163,6 +163,7 @@
 .sv-onb-step { display: flex; gap: clamp(24px, 4vw, 64px); align-items: center; margin-top: clamp(40px, 6vw, 80px); }
 .sv-onb-mock { width: 100%; height: auto; border-radius: clamp(10px, 1.3vw, 20px); display: block; }
 .sv-onb-step > .sv-onb-mock { flex: 0 0 64%; max-width: 64%; }
+.sv-onb-video { aspect-ratio: 1778 / 860; object-fit: cover; background: #111827; }
 .sv-onb-note { flex: 1 1 0; min-width: 0; }
 .sv-onb-pill {
   display: inline-flex; align-items: center; margin-bottom: clamp(18px, 3vw, 50px);
