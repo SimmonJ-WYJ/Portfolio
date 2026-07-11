@@ -208,7 +208,7 @@ export default function SolvelyPage() {
       </a>
 
       <section className="sv-hero">
-        <img src={heroImg} alt="Solvely — take a picture and get instant homework help" />
+        <img src={heroImg} alt="Solvely — take a picture and get instant homework help" loading="eager" decoding="async" fetchpriority="high" />
       </section>
 
       <section className="sv-intro">
@@ -319,32 +319,32 @@ export default function SolvelyPage() {
           <div className="wc">
             <div className="wr wr--s">
               <div className="cell cell--lg tc"><span className="tc-user">@Joshua Blackburn</span><p className="tc-quote">Easily solves and explains college level calculus. Gives all the steps and explanations for free.</p></div>
-              <div className="cell cell--sm"><img src={cmCheight} alt="" loading="lazy" /></div>
+              <div className="cell cell--sm"><img src={cmCheight} alt="" loading="lazy" decoding="async" /></div>
             </div>
             <div className="wr wr--t">
               <div className="stack">
-                <div className="cell"><img src={cmTheyloveeety} alt="" loading="lazy" /></div>
-                <div className="cell"><img src={cmEthan} alt="" loading="lazy" /></div>
+                <div className="cell"><img src={cmTheyloveeety} alt="" loading="lazy" decoding="async" /></div>
+                <div className="cell"><img src={cmEthan} alt="" loading="lazy" decoding="async" /></div>
               </div>
-              <div className="cell cell--lg"><img src={cmJacob} alt="" loading="lazy" /></div>
+              <div className="cell cell--lg"><img src={cmJacob} alt="" loading="lazy" decoding="async" /></div>
             </div>
             <div className="wr wr--s">
-              <div className="cell cell--sm"><img src={cmEffie} alt="" loading="lazy" /></div>
+              <div className="cell cell--sm"><img src={cmEffie} alt="" loading="lazy" decoding="async" /></div>
               <div className="cell cell--lg tc"><span className="tc-user">@Slimshadddy</span><p className="tc-quote">It is exactly the way my professor is teaching it and I might actually pass pre-calc!</p></div>
             </div>
           </div>
           <div className="wc">
             <div className="wr wr--s">
-              <div className="cell cell--lg"><img src={cmAidan} alt="" loading="lazy" /></div>
-              <div className="cell cell--sm"><img src={cmMichael} alt="" loading="lazy" /></div>
+              <div className="cell cell--lg"><img src={cmAidan} alt="" loading="lazy" decoding="async" /></div>
+              <div className="cell cell--sm"><img src={cmMichael} alt="" loading="lazy" decoding="async" /></div>
             </div>
             <div className="wr wr--s">
-              <div className="cell cell--sm"><img src={cmJordan} alt="" loading="lazy" /></div>
+              <div className="cell cell--sm"><img src={cmJordan} alt="" loading="lazy" decoding="async" /></div>
               <div className="cell cell--lg tc"><span className="tc-user">@AlexOnCamous</span><p className="tc-quote">I’ve never been good at math so this helps me check behind my son.</p></div>
             </div>
             <div className="wr wr--t">
-              <div className="cell cell--sm"><img src={cmSophia} alt="" loading="lazy" /></div>
-              <div className="cell cell--lg"><img src={cmDeandre} alt="" loading="lazy" /></div>
+              <div className="cell cell--sm"><img src={cmSophia} alt="" loading="lazy" decoding="async" /></div>
+              <div className="cell cell--lg"><img src={cmDeandre} alt="" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </div>
@@ -362,7 +362,7 @@ export default function SolvelyPage() {
           </div>
 
           <div className="sv-onb-step">
-            <img className="sv-onb-mock" src={onbInstalled} alt="Onboarding — before" loading="lazy" />
+            <img className="sv-onb-mock" src={onbInstalled} alt="Onboarding — before" loading="lazy" decoding="async" />
             <div className="sv-onb-note">
               <span className="sv-onb-pill">←&nbsp;Before</span>
               <p>The onboarding uses animation effects, but it fails to motivate users to complete the entire onboarding flow.</p>
@@ -442,7 +442,7 @@ export default function SolvelyPage() {
                 <span className="sv-col-hex">{c.hex}</span>
                 <span className="sv-col-name" style={{ color: c.sub }}>{c.name}</span>
               </div>
-              <img className="sv-col-ramp" src={c.ramp} alt="" loading="lazy" />
+              <img className="sv-col-ramp" src={c.ramp} alt="" loading="lazy" decoding="async" />
               <span className="sv-col-label" style={{ color: c.label }}>{c.title}</span>
             </div>
           ))}
@@ -467,7 +467,7 @@ export default function SolvelyPage() {
           <div className="sv-cards-col">
             <div className="sv-card">
               <div className="sv-card-head">{IcBook}<span>Generate quiz</span></div>
-              <div className="sv-card-img"><img src={sampleQ} alt="" loading="lazy" /></div>
+              <div className="sv-card-img"><img src={sampleQ} alt="" loading="lazy" decoding="async" /></div>
             </div>
             <div className="sv-card">
               <div className="sv-card-head">{IcBook}<span>Generate quiz</span></div>
@@ -494,7 +494,7 @@ export default function SolvelyPage() {
             <div className="sv-card">
               <div className="sv-card-head">{IcBook}<span>Generate quiz</span></div>
               <p className="sv-card-line">Use the figure shown. ABLBC and BD bisects &lt;ABC. Use the figure shown. ABLBC and BD bi…</p>
-              <div className="sv-card-img"><img src={sampleQ} alt="" loading="lazy" /></div>
+              <div className="sv-card-img"><img src={sampleQ} alt="" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </div>
@@ -504,7 +504,7 @@ export default function SolvelyPage() {
       <section className="sv-member container">
         <h2 className="sv-member-title">Member Page</h2>
         <div className="sv-member-panel">
-          <img className="sv-member-phone" src={memberPhone} alt="Solvely membership paywall" loading="lazy" />
+          <img className="sv-member-phone" src={memberPhone} alt="Solvely membership paywall" loading="lazy" decoding="async" />
           <div className="sv-member-text">
             <div className="sv-mb-block">
               <span className="sv-mb-label">Background</span>
@@ -534,13 +534,13 @@ export default function SolvelyPage() {
           <p className="sv-bff-body1"><span className="sv-bff-hl">Stuck on a problem?</span> Snap a picture or type it in—no judgment here-and let Solvely break it down step by step so you actually understand.</p>
         </div>
         <div className="sv-bff-main">
-          <img className="sv-bff-camera" src={bffCamera} alt="Solvely capture" loading="lazy" />
+          <img className="sv-bff-camera" src={bffCamera} alt="Solvely capture" loading="lazy" decoding="async" />
           <div className="sv-bff-right">
             <p className="sv-bff-body2">Perfect for any level, from Baby Math 101 to those advanced courses you pretend don’t exist. Ditch the stress, level up your grades, and get more time for, well... everything else.</p>
             <div className="sv-bff-sols">
-              <img src={bffThinking} alt="Solvely thinking" loading="lazy" />
-              <img src={bffAnswer} alt="Solvely answer" loading="lazy" />
-              <img src={bffAnswer3} alt="Solvely answers" loading="lazy" />
+              <img src={bffThinking} alt="Solvely thinking" loading="lazy" decoding="async" />
+              <img src={bffAnswer} alt="Solvely answer" loading="lazy" decoding="async" />
+              <img src={bffAnswer3} alt="Solvely answers" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -557,7 +557,7 @@ export default function SolvelyPage() {
                 <h3 className="sv-more-name">{f.title}</h3>
                 <p className="sv-more-desc">{f.text}</p>
               </div>
-              <div className="sv-more-shot"><img src={f.img} alt={f.title} loading="lazy" /></div>
+              <div className="sv-more-shot"><img src={f.img} alt={f.title} loading="lazy" decoding="async" /></div>
             </div>
           ))}
         </div>
@@ -566,7 +566,7 @@ export default function SolvelyPage() {
       <section className="sv-adapts container">
         <h2 className="sv-adapts-title">Adapts to Your Own<br /><span>Study Schedule</span></h2>
         <div className="sv-adapts-card">
-          <img className="sv-adapts-shot" src={adaptsShot} alt="Solvely — light and dark mode AI homework helper" loading="lazy" />
+          <img className="sv-adapts-shot" src={adaptsShot} alt="Solvely — light and dark mode AI homework helper" loading="lazy" decoding="async" />
         </div>
       </section>
 
@@ -574,25 +574,25 @@ export default function SolvelyPage() {
         <div className="sv-logic-inner">
           <h2 className="sv-logic-title">Logic Flow Design</h2>
           <p className="sv-logic-body">Based on the existing workflow analysis, I found a large number of if/else conditions. From a design perspective, the logic identifies user inputs through different prompts, then the backend generates the corresponding essay format. The design layer was structured around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
-          <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" />
+          <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
         </div>
-        <img className="sv-logic-collage" src={logicCollage} alt="Essay generation flow — Let's write and Full Essay screens" loading="lazy" />
+        <img className="sv-logic-collage" src={logicCollage} alt="Essay generation flow — Let's write and Full Essay screens" loading="lazy" decoding="async" />
       </section>
 
       <section className="sv-writer">
-        <img className="sv-writer-laptop" src={wLaptop} alt="Solvely Writer in a laptop" loading="lazy" />
+        <img className="sv-writer-laptop" src={wLaptop} alt="Solvely Writer in a laptop" loading="lazy" decoding="async" />
         <div className="sv-writer-inner">
           <div className="sv-writer-head">
             <h2 className="sv-writer-title">Writer</h2>
             <p className="sv-writer-sub">Providing writing support<br />for university students across the world</p>
             <p className="sv-writer-body">By analyzing the AI workflow and prompt logic, users can simply input a title and format to generate high-quality, professional essays. The workflow and interaction design were refined to ensure a smooth and intuitive writing experience.</p>
           </div>
-          <img className="sv-writer-toolbar" src={wToolbar} alt="Writer editor toolbar" loading="lazy" />
+          <img className="sv-writer-toolbar" src={wToolbar} alt="Writer editor toolbar" loading="lazy" decoding="async" />
           <div className="sv-writer-timeline">
             {WRITER_FEATURES.map((f) => (
               <div className={`sv-wt-row sv-wt-row--${f.side}`} key={f.title}>
                 <span className="sv-wt-dot" aria-hidden="true" />
-                <div className="sv-wt-media"><img src={f.img} alt={f.title} loading="lazy" /></div>
+                <div className="sv-wt-media"><img src={f.img} alt={f.title} loading="lazy" decoding="async" /></div>
                 <div className="sv-wt-text">
                   <h3>{f.title}</h3>
                   <p>{f.body}</p>
@@ -605,18 +605,18 @@ export default function SolvelyPage() {
 
       <section className="sv-ainote">
         <div className="sv-ainote-stage">
-          <img className="sv-ainote-scene" src={aiScene} alt="" loading="lazy" />
+          <img className="sv-ainote-scene" src={aiScene} alt="" loading="lazy" decoding="async" />
           <div className="sv-ainote-head">
             <h2 className="sv-ainote-title">AI note</h2>
             <p className="sv-ainote-sub">Best AI Note Taker for Students</p>
             <p className="sv-ainote-body">From recording and transcription to intelligent summarization and insight generation, every lecture and piece of course content is transformed into concise, structured, and easy-to-read notes, enabling you to quickly review key concepts, organize information effortlessly, strengthen long-term retention, and study more effectively with the support of AI-powered learning assistance.</p>
           </div>
-          <img className="sv-ainote-window" src={aiWindow} alt="Generate AI notes from your live lectures" loading="lazy" />
+          <img className="sv-ainote-window" src={aiWindow} alt="Generate AI notes from your live lectures" loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="sv-lecture">
-        <img className="sv-lecture-img" src={lecturePhones} alt="Your AI Lecture Assistant — mobile app screens" loading="lazy" />
+        <img className="sv-lecture-img" src={lecturePhones} alt="Your AI Lecture Assistant — mobile app screens" loading="lazy" decoding="async" />
       </section>
 
       <section className="sv-quiz container">
@@ -625,9 +625,9 @@ export default function SolvelyPage() {
           <p className="sv-quiz-sub">Personalized learning made easy by AI Quiz Generator</p>
           <p className="sv-quiz-body">Use Solvely AI to transform text into a comprehensive quiz in seconds, filled with answers and explanations</p>
         </div>
-        <img className="sv-quiz-decks" src={quizDecks} alt="Solvely quiz decks and study modes" loading="lazy" />
+        <img className="sv-quiz-decks" src={quizDecks} alt="Solvely quiz decks and study modes" loading="lazy" decoding="async" />
         <div className="sv-quiz-vibe">
-          <img className="sv-qv-phone" src={qvPhone} alt="Pick your quiz vibe" loading="lazy" />
+          <img className="sv-qv-phone" src={qvPhone} alt="Pick your quiz vibe" loading="lazy" decoding="async" />
           <div className="sv-qv-text">
             <h3>Quiz Vibe Selector</h3>
             <p>Goal: Make quiz setup more engaging and intuitive.<br />Design Logic:</p>
@@ -638,7 +638,7 @@ export default function SolvelyPage() {
           </div>
           <div className="sv-qv-cards">
             {VIBE_CARDS.map((c, i) => (
-              <img key={i} src={c} alt="" loading="lazy" />
+              <img key={i} src={c} alt="" loading="lazy" decoding="async" />
             ))}
           </div>
         </div>

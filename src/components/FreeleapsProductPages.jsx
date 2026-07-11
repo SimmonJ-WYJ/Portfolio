@@ -19,7 +19,7 @@ export default function ProductPages() {
       {/* Contract Page */}
       <h2 className="pp-h">Contract Page</h2>
       <div className="pp-row">
-        <img className="pp-mock" src={contractPage} alt="Contract page" />
+        <img className="pp-mock" src={contractPage} alt="Contract page" loading="lazy" decoding="async" />
         <div className="pp-col">
           <Info title="Key Information">
             <p>Display core contract details, including publisher, contractor, and acceptance date.</p>
@@ -40,15 +40,15 @@ export default function ProductPages() {
             <p>Collaboration integration: issues can be linked to project group chat to improve communication efficiency.</p>
           </Info>
         </div>
-        <img className="pp-mock pp-mock--issues" src={issuesPage} alt="Issues page" />
+        <img className="pp-mock pp-mock--issues" src={issuesPage} alt="Issues page" loading="lazy" decoding="async" />
       </div>
 
       {/* trend chart */}
       <div className="pp-chart-row">
-        <img className="pp-chart" src={chartBig} alt="Issue trends chart" />
+        <img className="pp-chart" src={chartBig} alt="Issue trends chart" loading="lazy" decoding="async" />
         <p className="pp-chart-text">clearly show issue trends</p>
       </div>
-      <img className="pp-chart-sliver" src={chartSliver} alt="" />
+      <img className="pp-chart-sliver" src={chartSliver} alt="" loading="lazy" decoding="async" />
     </div>
   )
 }

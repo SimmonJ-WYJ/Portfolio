@@ -154,7 +154,7 @@ export default function FreeleapsPage() {
 
       <section className="fl-hero container">
         <div className="fl-hero-frame">
-          <img className="fl-hero-img" src={heroImg} alt="Freeleaps product hero" />
+          <img className="fl-hero-img" src={heroImg} alt="Freeleaps product hero" loading="eager" decoding="async" fetchpriority="high" />
           <div className="fl-hero-bar">
             <img className="fl-logo" src={freeleapsLogo} alt="Freeleaps" />
             <div className="fl-meta">
@@ -200,10 +200,10 @@ export default function FreeleapsPage() {
           <div className="fl-ch-row">
             <StatCard pill="Over 90%" title="Freelancers" big="90%"
               text="Struggle to find quality clients, often underpaid for workloads far beyond their expectations." />
-            <figure className="fl-ch-photo"><img src={challenge1} alt="A freelancer overwhelmed at work" loading="lazy" /></figure>
+            <figure className="fl-ch-photo"><img src={challenge1} alt="A freelancer overwhelmed at work" loading="lazy" decoding="async" /></figure>
           </div>
           <div className="fl-ch-row">
-            <figure className="fl-ch-photo"><img src={challenge2} alt="A client frustrated at work" loading="lazy" /></figure>
+            <figure className="fl-ch-photo"><img src={challenge2} alt="A client frustrated at work" loading="lazy" decoding="async" /></figure>
             <StatCard pill="About 1/2" title="Clients" big="1/2"
               text="Want access to top developers at fair prices to bring their technical visions to life." />
           </div>
@@ -211,7 +211,7 @@ export default function FreeleapsPage() {
       </section>
 
       <section className="fl-value container">
-        <img className="fl-value-img" src={coreValue} alt="Core Platform Value — Freeleaps connects Freelancers, Clients and Developers" />
+        <img className="fl-value-img" src={coreValue} alt="Core Platform Value — Freeleaps connects Freelancers, Clients and Developers" loading="lazy" decoding="async" />
       </section>
 
       <section className="fl-impact container">
@@ -302,12 +302,12 @@ export default function FreeleapsPage() {
 
         <div className="fl-icons-3d">
           <div className="fl-3d-featured">
-            <img src={icon3dFeatured} alt="Freeleaps 3D icon" loading="lazy" />
+            <img src={icon3dFeatured} alt="Freeleaps 3D icon" loading="lazy" decoding="async" />
           </div>
           <div className="fl-3d-grid">
             {ICONS_3D.map((src, i) => (
               <div className="fl-3d-tile" key={i}>
-                <img src={src} alt="" loading="lazy" />
+                <img src={src} alt="" loading="lazy" decoding="async" />
               </div>
             ))}
           </div>
@@ -335,12 +335,12 @@ export default function FreeleapsPage() {
       </section>
 
       <section className="fl-vi">
-        <img src={viBrand} alt="Freeleaps brand identity mockup" loading="lazy" />
+        <img src={viBrand} alt="Freeleaps brand identity mockup" loading="lazy" decoding="async" />
       </section>
 
       <section className="fl-ending">
-        <img src={endingOffice} alt="Freeleaps team at work" loading="lazy" />
-        <img src={endingPhone} alt="Freeleaps mobile app" loading="lazy" />
+        <img src={endingOffice} alt="Freeleaps team at work" loading="lazy" decoding="async" />
+        <img src={endingPhone} alt="Freeleaps mobile app" loading="lazy" decoding="async" />
       </section>
     </main>
   )

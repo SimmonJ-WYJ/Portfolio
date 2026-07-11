@@ -66,7 +66,7 @@ export default function WindpopPage() {
       </a>
 
       <section className="wp-hero">
-        <img src={wpHero} alt="Windpop — Explore Ideas Early · Redefine Experience · Tech for Everyone" />
+        <img src={wpHero} alt="Windpop — Explore Ideas Early · Redefine Experience · Tech for Everyone" loading="eager" decoding="async" fetchpriority="high" />
       </section>
 
       <section className="wp-proc">
@@ -119,7 +119,7 @@ export default function WindpopPage() {
               </div>
             </div>
             <div className="wp-logo-right">
-              <img src={wpLogoDiagram} alt="Windpop 标志构成 — 蒲公英放射几何" loading="lazy" />
+              <img src={wpLogoDiagram} alt="Windpop 标志构成 — 蒲公英放射几何" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -129,24 +129,24 @@ export default function WindpopPage() {
         <div className="wp-type-inner">
           <span className="wp-sec-label"><i className="wp-sec-dot" />TYPEFACE DESIGN</span>
           <p className="wp-type-body">Using trapezoidal negative space at the corners of the letters creates a distinctive texture, enhances brand recognition, and aligns seamlessly with the logo.</p>
-          <img className="wp-type-spec" src={wpTypeSpec} alt="Windpop 字体规范 — Ascender / X-Height / Baseline / Descender" loading="lazy" />
+          <img className="wp-type-spec" src={wpTypeSpec} alt="Windpop 字体规范 — Ascender / X-Height / Baseline / Descender" loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLogoUsage} alt="Windpop 标志用法 — 垂直/单独/水平排列与正误示例" loading="lazy" />
+        <img className="wp-grad-img" src={wpLogoUsage} alt="Windpop 标志用法 — 垂直/单独/水平排列与正误示例" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpGradient} alt="Windpop 渐变色板 — Light / Dark Gradient" loading="lazy" />
+        <img className="wp-grad-img" src={wpGradient} alt="Windpop 渐变色板 — Light / Dark Gradient" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpColorUse} alt="Windpop 标志配色应用 — 白底/深底/蓝底/渐变底" loading="lazy" />
+        <img className="wp-grad-img" src={wpColorUse} alt="Windpop 标志配色应用 — 白底/深底/蓝底/渐变底" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLogoBlue} alt="Windpop 标志 — 蓝色渐变背景" loading="lazy" />
+        <img className="wp-grad-img" src={wpLogoBlue} alt="Windpop 标志 — 蓝色渐变背景" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-font">
@@ -159,32 +159,32 @@ export default function WindpopPage() {
             <p className="wp-font-body">Inter is a modern, highly readable sans-serif with flexible weights and global language support, making it ideal for consistent use across all brand touchpoints. Its neutral yet approachable style aligns with Windpop’s vision of redefining experiences and making technology accessible to everyone.</p>
             <p className="wp-font-glyphs">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789!</p>
           </div>
-          <img className="wp-font-weights" src={wpFontWeights} alt="Inter 字重 400 / 500 / 600 / 700" loading="lazy" />
+          <img className="wp-font-weights" src={wpFontWeights} alt="Inter 字重 400 / 500 / 600 / 700" loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpFavicon} alt="Windpop favicon 应用 — 通知卡片与浏览器标签" loading="lazy" />
+        <img className="wp-grad-img" src={wpFavicon} alt="Windpop favicon 应用 — 通知卡片与浏览器标签" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLaptop} alt="Windpop Capital — 笔记本网站样机" loading="lazy" />
+        <img className="wp-grad-img" src={wpLaptop} alt="Windpop Capital — 笔记本网站样机" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLogoBlue2} alt="Windpop 标志 — 蓝色渐变背景" loading="lazy" />
+        <img className="wp-grad-img" src={wpLogoBlue2} alt="Windpop 标志 — 蓝色渐变背景" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpStationery} alt="Windpop 品牌物料 — 信纸 / 名片 / 信封" loading="lazy" />
+        <img className="wp-grad-img" src={wpStationery} alt="Windpop 品牌物料 — 信纸 / 名片 / 信封" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpIdCard} alt="Windpop 工牌 — ID Card" loading="lazy" />
+        <img className="wp-grad-img" src={wpIdCard} alt="Windpop 工牌 — ID Card" loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpBillboard} alt="Windpop 广告牌 — Invest in Tomorrow’s Ideas, Today." loading="lazy" />
+        <img className="wp-grad-img" src={wpBillboard} alt="Windpop 广告牌 — Invest in Tomorrow’s Ideas, Today." loading="lazy" decoding="async" />
       </section>
     </main>
   )

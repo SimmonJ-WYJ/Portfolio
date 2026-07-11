@@ -17,7 +17,7 @@ function Testimonial({ variant, avatar, name, role, quote, metricLabel, metricVa
   return (
     <div className={`pd-card pd-card--${variant}`}>
       <div className="pd-card-head">
-        <img className="pd-avatar" src={avatar} alt={name} />
+        <img className="pd-avatar" src={avatar} alt={name} loading="lazy" decoding="async" />
         <div className="pd-id">
           <span className="pd-name">{name}</span>
           <span className="pd-role">{role}</span>
@@ -46,10 +46,10 @@ export default function PageDisplay() {
       </div>
 
       <div className="pd-stage">
-        <img className="pd-mockup" src={mockup} alt="Freeleaps public page" />
+        <img className="pd-mockup" src={mockup} alt="Freeleaps public page" loading="lazy" decoding="async" />
         <div className="pd-roles" aria-hidden="true">
-          <img src={rolePatent} alt="" />
-          <img src={roleRecruiter} alt="" />
+          <img src={rolePatent} alt="" loading="lazy" decoding="async" />
+          <img src={roleRecruiter} alt="" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default function PageDisplay() {
           <p className="pd-cta-title">Sign Up Today<br />Get 3 Free Proposal Credits.</p>
           <button className="pd-cta-btn">Register Now</button>
         </div>
-        <img className="pd-cta-img" src={cta3d} alt="" />
+        <img className="pd-cta-img" src={cta3d} alt="" loading="lazy" decoding="async" />
       </div>
     </div>
   )

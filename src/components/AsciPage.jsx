@@ -199,7 +199,7 @@ export default function AsciPage() {
       <section className="asci-hero" ref={heroRef}>
         <div className="asci-hero-sticky">
           <div className="asci-device" ref={deviceRef}>
-          <img className="asci-imac" src={imacScene} alt="ASCI 在 iMac 上的展示" />
+          <img className="asci-imac" src={imacScene} alt="ASCI 在 iMac 上的展示" loading="eager" decoding="async" fetchpriority="high" />
             <div className="asci-device-screen">
               <div className="asci-hero-bg" aria-hidden="true">
                 <Shader style={{ width: '100%', height: '100%' }}>

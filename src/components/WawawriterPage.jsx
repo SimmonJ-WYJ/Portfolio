@@ -71,7 +71,7 @@ export default function WawawriterPage() {
       </a>
 
       <section className="ww-hero">
-        <img src={heroLaptop} alt="蛙蛙写作 — 首页样机" />
+        <img src={heroLaptop} alt="蛙蛙写作 — 首页样机" loading="eager" decoding="async" fetchpriority="high" />
       </section>
 
       <section className="ww-meta">
@@ -90,7 +90,7 @@ export default function WawawriterPage() {
         <div className="ww-s01-stage">
           <h2 className="ww-s01-head">首页改版<br />项目背景</h2>
           <p className="ww-s01-text">在过去的一年时间里，页面上有很多为了解决当时问题的设计细节调整，并没有系统的设计规划，导致很多体验细节设计不合理且未能彻底解决存在的问题。</p>
-          <img className="ww-s01-comp" src={s01Comp} alt="改版前后对比" loading="lazy" />
+          <img className="ww-s01-comp" src={s01Comp} alt="改版前后对比" loading="lazy" decoding="async" />
         </div>
       </section>
 
@@ -142,11 +142,11 @@ export default function WawawriterPage() {
           <div className="ww-s5-shots">
             <div className="ww-s5-shot ww-s5-shot--before">
               <span className="ww-pill ww-pill--gray">Before</span>
-              <img src={s5Before} alt="改版前营销模块" loading="lazy" />
+              <img src={s5Before} alt="改版前营销模块" loading="lazy" decoding="async" />
             </div>
             <div className="ww-s5-shot ww-s5-shot--after">
               <span className="ww-pill ww-pill--green">After</span>
-              <img src={s5After} alt="改版后营销模块" loading="lazy" />
+              <img src={s5After} alt="改版后营销模块" loading="lazy" decoding="async" />
             </div>
           </div>
           <div className="ww-s5-opt">
@@ -161,7 +161,7 @@ export default function WawawriterPage() {
             <span className="ww-s5-cap">功能点击率从 6.3% → 12.5%</span>
           </div>
         </div>
-        <img className="ww-s5-bars" src={s5Stats} alt="转化数据：注册转化率 +35%，营销页点击率 +40%，订阅付费转化率 +63%" loading="lazy" />
+        <img className="ww-s5-bars" src={s5Stats} alt="转化数据：注册转化率 +35%，营销页点击率 +40%，订阅付费转化率 +63%" loading="lazy" decoding="async" />
       </section>
 
       <section className="ww-s6 ww-board">
@@ -180,11 +180,11 @@ export default function WawawriterPage() {
           <div className="ww-s6-shots">
             <div className="ww-s6-shot ww-s6-shot--before">
               <span className="ww-pill ww-pill--gray">Before</span>
-              <img src={s6Before} alt="改版前编辑器" loading="lazy" />
+              <img src={s6Before} alt="改版前编辑器" loading="lazy" decoding="async" />
             </div>
             <div className="ww-s6-shot ww-s6-shot--after">
               <span className="ww-pill ww-pill--green">After</span>
-              <img src={s6After} alt="改版后编辑器" loading="lazy" />
+              <img src={s6After} alt="改版后编辑器" loading="lazy" decoding="async" />
             </div>
           </div>
           <div className="ww-s6-sol">
@@ -196,14 +196,14 @@ export default function WawawriterPage() {
             </ul>
           </div>
           <div className="ww-s6-charts">
-            <img src={s6Chart1} alt="改版前后对比：模版使用率 35%→80%，写作时间节省 15%→38%" loading="lazy" />
-            <img src={s6Chart2} alt="人均生成字数 +72.9%" loading="lazy" />
+            <img src={s6Chart1} alt="改版前后对比：模版使用率 35%→80%，写作时间节省 15%→38%" loading="lazy" decoding="async" />
+            <img src={s6Chart2} alt="人均生成字数 +72.9%" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
 
       <section className="ww-s7 ww-board">
-        <img className="ww-s7-ipad" src={endIpad} alt="蛙蛙写作 iPad 端" loading="lazy" />
+        <img className="ww-s7-ipad" src={endIpad} alt="蛙蛙写作 iPad 端" loading="lazy" decoding="async" />
       </section>
     </main>
   )

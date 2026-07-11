@@ -57,7 +57,7 @@ function CaseCard({ study, index }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <img src={study.image} alt={study.title} className="ap-card-img" />
+      <img src={study.image} alt={study.title} className="ap-card-img" loading="lazy" decoding="async" />
 
       <PixelOverlay hovered={hovered} />
 
