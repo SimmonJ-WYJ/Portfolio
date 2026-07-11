@@ -5,13 +5,8 @@ import Loader from './components/Loader.jsx'
 import Grainient from './components/Grainient.jsx'
 import { FallingPattern } from './components/FallingPattern.jsx'
 import CircularText from './components/CircularText.jsx'
-import { HorizontalShowcase } from './components/HorizontalShowcase.jsx'
 import FlowingMenu from './components/FlowingMenu.jsx'
-import WavePath from './components/WavePath.jsx'
-import LogoCloud from './components/LogoCloud.jsx'
-import ContactCard from './components/ContactCard.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
-import StudioManifesto from './components/StudioManifesto.jsx'
 import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
 import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
 import logoSupabase from './assets/logos/supabase_wordmark_light.svg'
@@ -39,13 +34,13 @@ const LOGO_ITEMS = [
 ]
 import { TextHoverEffect } from './components/TextHoverEffect.jsx'
 import { useLenis } from './components/useLenis.js'
-import { cases, clients } from './data.js'
 
 const FreeleapsPage = lazy(() => import('./components/FreeleapsPage.jsx'))
 const SolvelyPage = lazy(() => import('./components/SolvelyPage.jsx'))
 const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
 const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
 const AsciPage = lazy(() => import('./components/AsciPage.jsx'))
+const HomeContent = lazy(() => import('./components/HomeContent.jsx'))
 
 const detailRoutes = {
   '/freeleaps': FreeleapsPage,
@@ -269,55 +264,6 @@ function Hero({ ready, onReel }) {
   )
 }
 
-/* ---------- Work ---------- */
-function Work() {
-  return (
-    <HorizontalShowcase
-      title="My Creative Projects"
-      subtitle="A collection of ideas, interfaces, and product experiences shaped through design thinking."
-      items={coverItems.length ? coverItems : cases}
-    />
-  )
-}
-
-
-/* ---------- Footer ---------- */
-function Footer() {
-  const [contact, setContact] = useState(false)
-  return (
-    <footer className="footer" id="contact">
-      <ContactCard open={contact} onClose={() => setContact(false)} />
-      <div className="container">
-        <h2 className="cta-big reveal">
-          <a
-            href="#contact"
-            data-cursor="link"
-            data-cursor-label="Contact"
-            onClick={(e) => { e.preventDefault(); setContact((o) => !o) }}
-          >
-            Work together
-            <span className="cta-arrow">
-              <svg width="0.7em" height="0.7em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17 17 7M9 7h8v8" /></svg>
-            </span>
-          </a>
-        </h2>
-      </div>
-      <div className="footer-art">
-        <WavePath className="footer-art-wave" />
-        <div className="footer-art-text">
-          <p className="footer-art-label">Creative Approach</p>
-          <p className="footer-art-desc">
-            Exploring the space between creativity and technology. Creating thoughtful experiences through design, AI, and modern digital craftsmanship.
-          </p>
-        </div>
-      </div>
-      <div className="footer-logos">
-        <LogoCloud items={LOGO_ITEMS} />
-      </div>
-    </footer>
-  )
-}
-
 /* ---------- Showreel modal ---------- */
 function Reel({ open, onClose }) {
   const videoRef = useRef(null)
@@ -457,11 +403,9 @@ export default function App() {
       <Nav onMenu={() => setMenu(true)} />
       <main>
         <Hero ready={loaded} onReel={() => setReel(true)} />
-        <div className="after-hero">
-          <StudioManifesto covers={coverItems} />
-          <Work />
-          <Footer />
-        </div>
+        <Suspense fallback={<div className="home-content-fallback" aria-hidden="true" />}>
+          <HomeContent coverItems={coverItems} logoItems={LOGO_ITEMS} />
+        </Suspense>
       </main>
 
       <Reel open={reel} onClose={() => setReel(false)} />
