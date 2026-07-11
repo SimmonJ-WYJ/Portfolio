@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
@@ -10,11 +10,7 @@ import FlowingMenu from './components/FlowingMenu.jsx'
 import WavePath from './components/WavePath.jsx'
 import LogoCloud from './components/LogoCloud.jsx'
 import ContactCard from './components/ContactCard.jsx'
-import FreeleapsPage from './components/FreeleapsPage.jsx'
-import SolvelyPage from './components/SolvelyPage.jsx'
-import WawawriterPage from './components/WawawriterPage.jsx'
-import WindpopPage from './components/WindpopPage.jsx'
-import AsciPage from './components/AsciPage.jsx'
+import RouteFallback from './components/RouteFallback.jsx'
 import StudioManifesto from './components/StudioManifesto.jsx'
 import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
 import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
@@ -44,6 +40,20 @@ const LOGO_ITEMS = [
 import { TextHoverEffect } from './components/TextHoverEffect.jsx'
 import { useLenis } from './components/useLenis.js'
 import { cases, clients } from './data.js'
+
+const FreeleapsPage = lazy(() => import('./components/FreeleapsPage.jsx'))
+const SolvelyPage = lazy(() => import('./components/SolvelyPage.jsx'))
+const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
+const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
+const AsciPage = lazy(() => import('./components/AsciPage.jsx'))
+
+const detailRoutes = {
+  '/freeleaps': FreeleapsPage,
+  '/solvely': SolvelyPage,
+  '/wawawriter': WawawriterPage,
+  '/windpop': WindpopPage,
+  '/asci': AsciPage,
+}
 
 // Project cover images (used as the showcase cards).
 const coverModules = import.meta.glob('./assets/covers/*.{png,jpg,jpeg,webp,avif,PNG,JPG,JPEG,WEBP}', {
@@ -427,47 +437,14 @@ export default function App() {
     window.scrollTo(0, 0)
   }
 
-  if (route === '/freeleaps') {
+  const DetailPage = detailRoutes[route]
+  if (DetailPage) {
     return (
       <>
         <Cursor />
-        <FreeleapsPage />
-      </>
-    )
-  }
-
-  if (route === '/solvely') {
-    return (
-      <>
-        <Cursor />
-        <SolvelyPage />
-      </>
-    )
-  }
-
-  if (route === '/wawawriter') {
-    return (
-      <>
-        <Cursor />
-        <WawawriterPage />
-      </>
-    )
-  }
-
-  if (route === '/windpop') {
-    return (
-      <>
-        <Cursor />
-        <WindpopPage />
-      </>
-    )
-  }
-
-  if (route === '/asci') {
-    return (
-      <>
-        <Cursor />
-        <AsciPage />
+        <Suspense fallback={<RouteFallback />}>
+          <DetailPage />
+        </Suspense>
       </>
     )
   }
