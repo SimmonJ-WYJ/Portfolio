@@ -350,6 +350,52 @@ export default function SolvelyPage() {
         </div>
       </section>
 
+      <section className="sv-logic">
+        <div className="sv-logic-inner">
+          <h2 className="sv-logic-title">Logic Flow Design</h2>
+          <p className="sv-logic-body">Based on the existing workflow analysis, I found a large number of if/else conditions. From a design perspective, the logic identifies user inputs through different prompts, then the backend generates the corresponding essay format. The design layer was structured around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
+          <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
+        </div>
+        <img className="sv-logic-collage" src={logicCollage} alt="Essay generation flow — Let's write and Full Essay screens" loading="lazy" decoding="async" />
+      </section>
+
+      <section className="sv-font container">
+        <div className="sv-font-grid">
+          <div className="sv-font-left">
+            <h2 className="sv-font-title">Font Specification</h2>
+            <span className="sv-font-pill">Typography</span>
+            <h3 className="sv-font-web">Website Typography</h3>
+            <p className="sv-font-glyphs">{'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@€£$&*})({§?'}</p>
+          </div>
+          <div className="sv-font-aa">
+            <span className="sv-aa-guide sv-aa-guide--top" />
+            <span className="sv-aa-guide sv-aa-guide--bottom" />
+            <span className="sv-aa-guide sv-aa-guide--left" />
+            <span className="sv-aa-letters">Aa</span>
+          </div>
+        </div>
+        <div className="sv-font-bar">
+          <span className="sv-font-inter">Inter</span>
+          <span className="sv-font-weights">Light&nbsp;&nbsp;&nbsp;Regular&nbsp;&nbsp;Medium&nbsp;&nbsp;Semibold</span>
+        </div>
+      </section>
+
+      <section className="sv-colors container">
+        <h2 className="sv-colors-title">Colors Specification</h2>
+        <div className="sv-colors-grid">
+          {COLOR_CARDS.map((c) => (
+            <div className="sv-col-card" key={c.name} style={{ background: c.bg, color: c.text }}>
+              <div className="sv-col-meta">
+                <span className="sv-col-hex">{c.hex}</span>
+                <span className="sv-col-name" style={{ color: c.sub }}>{c.name}</span>
+              </div>
+              <img className="sv-col-ramp" src={c.ramp} alt="" loading="lazy" decoding="async" />
+              <span className="sv-col-label" style={{ color: c.label }}>{c.title}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="sv-onb">
         <div className="sv-onb-inner">
           <h2 className="sv-onb-title">Onboarding Iteration Design</h2>
@@ -409,43 +455,6 @@ export default function SolvelyPage() {
               <div className="sv-leg"><span className="sv-dot sv-dot--3" />Development efficiency increased<b>22%<i>↑</i></b></div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="sv-font container">
-        <div className="sv-font-grid">
-          <div className="sv-font-left">
-            <h2 className="sv-font-title">Font Specification</h2>
-            <span className="sv-font-pill">Typography</span>
-            <h3 className="sv-font-web">Website Typography</h3>
-            <p className="sv-font-glyphs">{'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@€£$&*})({§?'}</p>
-          </div>
-          <div className="sv-font-aa">
-            <span className="sv-aa-guide sv-aa-guide--top" />
-            <span className="sv-aa-guide sv-aa-guide--bottom" />
-            <span className="sv-aa-guide sv-aa-guide--left" />
-            <span className="sv-aa-letters">Aa</span>
-          </div>
-        </div>
-        <div className="sv-font-bar">
-          <span className="sv-font-inter">Inter</span>
-          <span className="sv-font-weights">Light&nbsp;&nbsp;&nbsp;Regular&nbsp;&nbsp;Medium&nbsp;&nbsp;Semibold</span>
-        </div>
-      </section>
-
-      <section className="sv-colors container">
-        <h2 className="sv-colors-title">Colors Specification</h2>
-        <div className="sv-colors-grid">
-          {COLOR_CARDS.map((c) => (
-            <div className="sv-col-card" key={c.name} style={{ background: c.bg, color: c.text }}>
-              <div className="sv-col-meta">
-                <span className="sv-col-hex">{c.hex}</span>
-                <span className="sv-col-name" style={{ color: c.sub }}>{c.name}</span>
-              </div>
-              <img className="sv-col-ramp" src={c.ramp} alt="" loading="lazy" decoding="async" />
-              <span className="sv-col-label" style={{ color: c.label }}>{c.title}</span>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -568,15 +577,6 @@ export default function SolvelyPage() {
         <div className="sv-adapts-card">
           <img className="sv-adapts-shot" src={adaptsShot} alt="Solvely — light and dark mode AI homework helper" loading="lazy" decoding="async" />
         </div>
-      </section>
-
-      <section className="sv-logic">
-        <div className="sv-logic-inner">
-          <h2 className="sv-logic-title">Logic Flow Design</h2>
-          <p className="sv-logic-body">Based on the existing workflow analysis, I found a large number of if/else conditions. From a design perspective, the logic identifies user inputs through different prompts, then the backend generates the corresponding essay format. The design layer was structured around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
-          <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
-        </div>
-        <img className="sv-logic-collage" src={logicCollage} alt="Essay generation flow — Let's write and Full Essay screens" loading="lazy" decoding="async" />
       </section>
 
       <section className="sv-writer">
