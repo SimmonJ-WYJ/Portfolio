@@ -268,7 +268,7 @@ export default function AsciPage() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               aria-hidden="true"
             />
             <div className="asci-story-scrim" aria-hidden="true" />

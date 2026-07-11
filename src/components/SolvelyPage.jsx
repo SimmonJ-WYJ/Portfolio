@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './SolvelyPage.css'
+import { useMediaVisibility } from './useMediaVisibility.js'
 import heroImg from '../assets/solvely/hero.jpg'
 import icHomework from '../assets/solvely/icons/homework.svg'
 import icQuiz from '../assets/solvely/icons/quiz.svg'
@@ -132,6 +133,11 @@ const FEATURES = [
 ]
 
 export default function SolvelyPage() {
+  const extensionVideoRef = useRef(null)
+  const onboardingVideoRef = useRef(null)
+  useMediaVisibility(extensionVideoRef, { autoplay: true })
+  useMediaVisibility(onboardingVideoRef, { autoplay: true })
+
   // scroll-reveal: fade/slide modules, images and text blocks in with a stagger
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -294,6 +300,7 @@ export default function SolvelyPage() {
         </div>
         <div className="sv-sol-shots">
           <video
+            ref={extensionVideoRef}
             className="sv-sol-shot"
             src="/solvely/ext-demo.mp4"
             autoPlay
@@ -364,6 +371,7 @@ export default function SolvelyPage() {
           <div className="sv-onb-arrow" aria-hidden="true">▼</div>
           <div className="sv-onb-step">
             <video
+              ref={onboardingVideoRef}
               className="sv-onb-mock sv-onb-video"
               src="/solvely/onboarding.mp4"
               autoPlay

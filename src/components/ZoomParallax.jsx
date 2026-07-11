@@ -78,7 +78,7 @@ export function ZoomParallax({ media }) {
                     src={src}
                     muted
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     aria-label={alt || `Parallax video ${index + 1}`}
                   />
                 ) : (
