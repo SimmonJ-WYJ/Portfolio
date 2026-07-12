@@ -290,29 +290,6 @@ export default function SolvelyPage() {
         </div>
       </section>
 
-      <section className="sv-solution container">
-        <div className="sv-sol-head">
-          <h2 className="sv-sol-title">Solution</h2>
-          <p className="sv-sol-body">
-            Solvely Extension is your smart learning companion built into the browser.<br />
-            <b>It helps you stay focused</b> — no more switching tabs or losing momentum.
-          </p>
-        </div>
-        <div className="sv-sol-shots">
-          <video
-            ref={extensionVideoRef}
-            className="sv-sol-shot"
-            src="/solvely/ext-demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="Solvely extension — select your question area"
-          />
-        </div>
-      </section>
-
       <section className="sv-comments container">
         <h2 className="sv-comments-title">Real Comments from<br /><span>Students and Parents</span></h2>
         <div className="sv-wall">
@@ -356,7 +333,6 @@ export default function SolvelyPage() {
           <p className="sv-logic-body">Based on the existing workflow analysis, I found a large number of if/else conditions. From a design perspective, the logic identifies user inputs through different prompts, then the backend generates the corresponding essay format. The design layer was structured around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
           <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
         </div>
-        <img className="sv-logic-collage" src={logicCollage} alt="Essay generation flow — Let's write and Full Essay screens" loading="lazy" decoding="async" />
       </section>
 
       <section className="sv-font container">
@@ -393,6 +369,29 @@ export default function SolvelyPage() {
               <span className="sv-col-label" style={{ color: c.label }}>{c.title}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="sv-solution container">
+        <div className="sv-sol-head">
+          <h2 className="sv-sol-title">Slovely Extension</h2>
+          <p className="sv-sol-body">
+            The browser Extension is your smart learning companion built into the browser.<br />
+            <b>It helps you stay focused</b> — no more switching tabs or losing momentum.
+          </p>
+        </div>
+        <div className="sv-sol-shots">
+          <video
+            ref={extensionVideoRef}
+            className="sv-sol-shot"
+            src="/solvely/ext-demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Solvely extension — select your question area"
+          />
         </div>
       </section>
 
@@ -600,6 +599,13 @@ export default function SolvelyPage() {
               </div>
             ))}
           </div>
+          <img
+            className="sv-writer-collage"
+            src={logicCollage}
+            alt="Solvely Writer workflow screens"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 
