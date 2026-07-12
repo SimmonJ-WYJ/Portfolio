@@ -230,7 +230,7 @@ export default function SolvelyPage() {
           <p className="sv-quote">
             <span className="sv-q">“</span>Solvely is an all-in-one AI study platform,{' '}
             <span className="sv-muted">offering everything from homework explanations to AI-powered note-taking and YouTube summaries,</span>{' '}
-            all in one place.”
+            every feature you need.”
           </p>
           <div className="sv-features">
             {FEATURES.map((f) => (
