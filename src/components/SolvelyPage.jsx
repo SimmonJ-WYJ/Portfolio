@@ -164,21 +164,34 @@ export default function SolvelyPage() {
     )
     items.forEach((el) => io.observe(el))
 
-    // puzzle-assemble: each comment card slides into place from a varied direction
+    // Reveal comment cards from the center outward, entering from their nearest edge.
     let wio
     const wall = document.querySelector('.sv-wall')
     if (wall) {
       const cells = Array.from(wall.querySelectorAll('.cell'))
-      const dirs = [
-        'translate(-90px, 0)', 'translate(90px, 0)', 'translate(0, -70px)', 'translate(0, 70px)',
-        'translate(-70px, -50px)', 'translate(70px, 60px)', 'scale(0.82)', 'translate(60px, -50px)',
-        'translate(-60px, 50px)', 'translate(0, 90px)',
-      ]
-      cells.forEach((c, i) => {
+      const wallRect = wall.getBoundingClientRect()
+      const wallCenter = {
+        x: wallRect.left + wallRect.width / 2,
+        y: wallRect.top + wallRect.height / 2,
+      }
+      const positionedCells = cells
+        .map((cell) => {
+          const rect = cell.getBoundingClientRect()
+          const dx = rect.left + rect.width / 2 - wallCenter.x
+          const dy = rect.top + rect.height / 2 - wallCenter.y
+          return { cell, dx, dy, distance: Math.hypot(dx, dy) }
+        })
+        .sort((a, b) => a.distance - b.distance)
+
+      positionedCells.forEach(({ cell: c, dx, dy }, i) => {
+        const horizontal = Math.abs(dx) >= Math.abs(dy)
+        const transform = horizontal
+          ? `translateX(${dx < 0 ? -72 : 72}px)`
+          : `translateY(${dy < 0 ? -64 : 64}px)`
         c.style.opacity = '0'
-        c.style.transform = dirs[i % dirs.length]
-        c.style.transition = 'opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1)'
-        c.style.transitionDelay = Math.min(i, 12) * 90 + 'ms'
+        c.style.transform = transform
+        c.style.transition = 'opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1)'
+        c.style.transitionDelay = i * 55 + 'ms'
         c.style.willChange = 'opacity, transform'
       })
       wio = new IntersectionObserver(
@@ -287,43 +300,6 @@ export default function SolvelyPage() {
               <div className="sv-chip"><img src={q.avatar} alt={q.name} /><span><b>{q.name}</b><i>{q.role}</i></span></div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="sv-comments container">
-        <h2 className="sv-comments-title">Real Comments from<br /><span>Students and Parents</span></h2>
-        <div className="sv-wall">
-          <div className="wc">
-            <div className="wr wr--s">
-              <div className="cell cell--lg tc"><span className="tc-user">@Joshua Blackburn</span><p className="tc-quote">Easily solves and explains college level calculus. Gives all the steps and explanations for free.</p></div>
-              <div className="cell cell--sm"><img src={cmCheight} alt="" loading="lazy" decoding="async" /></div>
-            </div>
-            <div className="wr wr--t">
-              <div className="stack">
-                <div className="cell"><img src={cmTheyloveeety} alt="" loading="lazy" decoding="async" /></div>
-                <div className="cell"><img src={cmEthan} alt="" loading="lazy" decoding="async" /></div>
-              </div>
-              <div className="cell cell--lg"><img src={cmJacob} alt="" loading="lazy" decoding="async" /></div>
-            </div>
-            <div className="wr wr--s">
-              <div className="cell cell--sm"><img src={cmEffie} alt="" loading="lazy" decoding="async" /></div>
-              <div className="cell cell--lg tc"><span className="tc-user">@Slimshadddy</span><p className="tc-quote">It is exactly the way my professor is teaching it and I might actually pass pre-calc!</p></div>
-            </div>
-          </div>
-          <div className="wc">
-            <div className="wr wr--s">
-              <div className="cell cell--lg"><img src={cmAidan} alt="" loading="lazy" decoding="async" /></div>
-              <div className="cell cell--sm"><img src={cmMichael} alt="" loading="lazy" decoding="async" /></div>
-            </div>
-            <div className="wr wr--s">
-              <div className="cell cell--sm"><img src={cmJordan} alt="" loading="lazy" decoding="async" /></div>
-              <div className="cell cell--lg tc"><span className="tc-user">@AlexOnCamous</span><p className="tc-quote">I’ve never been good at math so this helps me check behind my son.</p></div>
-            </div>
-            <div className="wr wr--t">
-              <div className="cell cell--sm"><img src={cmSophia} alt="" loading="lazy" decoding="async" /></div>
-              <div className="cell cell--lg"><img src={cmDeandre} alt="" loading="lazy" decoding="async" /></div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -646,6 +622,43 @@ export default function SolvelyPage() {
             {VIBE_CARDS.map((c, i) => (
               <img key={i} src={c} alt="" loading="lazy" decoding="async" />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="sv-comments container">
+        <h2 className="sv-comments-title">Real Comments from<br /><span>Students and Parents</span></h2>
+        <div className="sv-wall">
+          <div className="wc">
+            <div className="wr wr--s">
+              <div className="cell cell--lg tc"><span className="tc-user">@Joshua Blackburn</span><p className="tc-quote">Easily solves and explains college level calculus. Gives all the steps and explanations for free.</p></div>
+              <div className="cell cell--sm"><img src={cmCheight} alt="" loading="lazy" decoding="async" /></div>
+            </div>
+            <div className="wr wr--t">
+              <div className="stack">
+                <div className="cell"><img src={cmTheyloveeety} alt="" loading="lazy" decoding="async" /></div>
+                <div className="cell"><img src={cmEthan} alt="" loading="lazy" decoding="async" /></div>
+              </div>
+              <div className="cell cell--lg"><img src={cmJacob} alt="" loading="lazy" decoding="async" /></div>
+            </div>
+            <div className="wr wr--s">
+              <div className="cell cell--sm"><img src={cmEffie} alt="" loading="lazy" decoding="async" /></div>
+              <div className="cell cell--lg tc"><span className="tc-user">@Slimshadddy</span><p className="tc-quote">It is exactly the way my professor is teaching it and I might actually pass pre-calc!</p></div>
+            </div>
+          </div>
+          <div className="wc">
+            <div className="wr wr--s">
+              <div className="cell cell--lg"><img src={cmAidan} alt="" loading="lazy" decoding="async" /></div>
+              <div className="cell cell--sm"><img src={cmMichael} alt="" loading="lazy" decoding="async" /></div>
+            </div>
+            <div className="wr wr--s">
+              <div className="cell cell--sm"><img src={cmJordan} alt="" loading="lazy" decoding="async" /></div>
+              <div className="cell cell--lg tc"><span className="tc-user">@AlexOnCamous</span><p className="tc-quote">I’ve never been good at math so this helps me check behind my son.</p></div>
+            </div>
+            <div className="wr wr--t">
+              <div className="cell cell--sm"><img src={cmSophia} alt="" loading="lazy" decoding="async" /></div>
+              <div className="cell cell--lg"><img src={cmDeandre} alt="" loading="lazy" decoding="async" /></div>
+            </div>
           </div>
         </div>
       </section>
