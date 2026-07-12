@@ -108,28 +108,28 @@ const FLOW_PILLS = [
 
 const COLOR_CARDS = [
   { bg: '#007AFF', text: '#fbfcfc', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: '007AFF', name: 'Blue 1', title: 'Main Foundation', ramp: colorRamp1 },
-  { bg: '#655AFF', text: '#efedff', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: 'CBDCDB', name: 'Purple', title: 'Complemwntary Colors', ramp: colorRamp2 },
+  { bg: '#655AFF', text: '#efedff', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: 'CBDCDB', name: 'Purple', title: 'Complementary Colors', ramp: colorRamp2 },
   { bg: '#F0F2F4', text: '#111', sub: '#848484', label: '#141821', hex: 'F0F2F4', name: 'White', title: 'Neutral Colors', ramp: colorRamp3 },
   { bg: '#141821', text: '#fbfcfc', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: '141821', name: 'Black', title: 'Gray Colors', ramp: colorRamp4 },
 ]
 
 const WRITER_FEATURES = [
   { side: 'left-media', img: wAutocomplete, title: 'AI Autocomplete', body: "Starting from a blank page, smart autocomplete helps you overcome writer's block and effortlessly enhances your writing process." },
-  { side: 'right-media', img: wLibrary, title: 'In-text Citations', body: 'Accurately cite in APA, MLA, Harvard, Chicago, or IEEE style.' },
+  { side: 'right-media', img: wLibrary, title: 'In-text Citations', body: 'Create accurate citations in APA, MLA, Harvard, Chicago, or IEEE style.' },
   { side: 'left-media', img: wRewrite, title: 'Paraphrase and Rewrite', body: 'Solvely allows you to rewrite a paragraph with just one click. Our editing feature is designed to be lightweight and intelligent, helping you save time.' },
 ]
 
 const MORE_FEATURES = [
-  { num: '01', title: 'Quiz Maker', text: 'Turn your learning materials or goals into quizzes: auto-graded, instant feedback, ideal for test prep', img: p5Quiz, rev: false },
-  { num: '02', title: 'Essay Writer', text: 'Get fully-developed essays with real citations', img: p5Essay, rev: true },
-  { num: '03', title: 'AI note', text: 'Transcribe class audio to text and notes, with AI Q&A support based on notes', img: p5Note, rev: false },
+  { num: '01', title: 'Quiz Maker', text: 'Turn your learning materials or goals into auto-graded quizzes with instant feedback, ideal for test preparation.', img: p5Quiz, rev: false },
+  { num: '02', title: 'Essay Writer', text: 'Create fully developed essays with real citations.', img: p5Essay, rev: true },
+  { num: '03', title: 'AI Note', text: 'Transcribe class audio into structured notes, with AI-powered Q&A based on your content.', img: p5Note, rev: false },
 ]
 
 const FEATURES = [
   { icon: icHomework, border: 'rgba(20,132,255,0.16)', title: 'Homework Help', text: 'Accurately solve any homework problem, from K-12 to graduate level' },
   { icon: icQuiz, border: 'rgba(253,131,35,0.16)', title: 'Quiz Maker', text: 'Transform text into a helpful and fully customized online quiz in just a few minutes' },
-  { icon: icEssay, border: 'rgba(0,175,0,0.16)', title: 'Essay Writer', text: "Work with you to create an essay with accurate information, easing writer's block" },
-  { icon: icNote, border: 'rgba(135,101,255,0.16)', title: 'AI Note Taker', text: 'Transcribe class audio to text and notes, with AI Q&A support based on notes' },
+  { icon: icEssay, border: 'rgba(0,175,0,0.16)', title: 'Essay Writer', text: 'Works with you to create well-researched essays and overcome writer’s block' },
+  { icon: icNote, border: 'rgba(135,101,255,0.16)', title: 'AI Note Taker', text: 'Transcribe class audio into structured notes, with AI-powered Q&A based on your content' },
 ]
 
 export default function SolvelyPage() {
@@ -225,12 +225,12 @@ export default function SolvelyPage() {
       </section>
 
       <section className="sv-intro">
-        <span className="sv-year">2024</span>
+        <span className="sv-year">2025</span>
         <div className="sv-intro-inner">
           <p className="sv-quote">
-            <span className="sv-q">“</span>Solvely is a all-in-one AI study platform,{' '}
-            <span className="sv-muted">homework explanation until AI note summary, Youtube Summary,</span>{' '}
-            everything function do you want.”
+            <span className="sv-q">“</span>Solvely is an all-in-one AI study platform,{' '}
+            <span className="sv-muted">offering everything from homework explanations to AI-powered note-taking and YouTube summaries,</span>{' '}
+            all in one place.”
           </p>
           <div className="sv-features">
             {FEATURES.map((f) => (
@@ -251,7 +251,7 @@ export default function SolvelyPage() {
             </div>
             <div className="sv-meta-line" />
             <div className="sv-meta-grid sv-meta-body">
-              <p>The platform enhances study efficiency through personalized AI tools, auto-summarized materials, and real-time Q&amp;A. It adapts to each student’s learning pace, making studying more interactive, efficient, and enjoyable.</p>
+              <p>The platform enhances study efficiency through personalized AI tools, automatically summarized materials, and real-time Q&amp;A. It adapts to each student’s learning pace, making studying more interactive, efficient, and enjoyable.</p>
               <p>
                 Project / Solvely<br />
                 Category / AI Study Platform, EdTech<br />
@@ -306,7 +306,7 @@ export default function SolvelyPage() {
       <section className="sv-logic">
         <div className="sv-logic-inner">
           <h2 className="sv-logic-title">Logic Flow Design</h2>
-          <p className="sv-logic-body">Based on the existing workflow analysis, I found a large number of if/else conditions. From a design perspective, the logic identifies user inputs through different prompts, then the backend generates the corresponding essay format. The design layer was structured around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
+          <p className="sv-logic-body">While analyzing the existing workflow, I found a large number of if/else conditions. The system uses different prompts to identify user inputs, and the backend then generates the appropriate essay format. I structured the design around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
           <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
         </div>
       </section>
@@ -333,7 +333,7 @@ export default function SolvelyPage() {
       </section>
 
       <section className="sv-colors container">
-        <h2 className="sv-colors-title">Colors Specification</h2>
+        <h2 className="sv-colors-title">Color Specification</h2>
         <div className="sv-colors-grid">
           {COLOR_CARDS.map((c) => (
             <div className="sv-col-card" key={c.name} style={{ background: c.bg, color: c.text }}>
@@ -350,9 +350,9 @@ export default function SolvelyPage() {
 
       <section className="sv-solution container">
         <div className="sv-sol-head">
-          <h2 className="sv-sol-title">Slovely Extension</h2>
+          <h2 className="sv-sol-title">Solvely Extension</h2>
           <p className="sv-sol-body">
-            The browser Extension is your smart learning companion built into the browser.<br />
+            The Solvely browser extension is your smart learning companion, available wherever you study online.<br />
             <b>It helps you stay focused</b> — no more switching tabs or losing momentum.
           </p>
         </div>
@@ -404,7 +404,7 @@ export default function SolvelyPage() {
             />
             <div className="sv-onb-note">
               <span className="sv-onb-pill sv-onb-pill--blue">←&nbsp;After</span>
-              <p>We adopted an interactive onboarding approach and started the design after multiple rounds of feasibility checks with the frontend team, which helped effectively reduce implementation costs.</p>
+              <p>We adopted an interactive onboarding approach after conducting multiple rounds of feasibility testing with the frontend team, effectively reducing implementation costs.</p>
             </div>
           </div>
 
@@ -437,7 +437,7 @@ export default function SolvelyPage() {
         <div className="sv-source-inner">
         <div className="sv-source-text">
           <p className="sv-muted">
-            The input feature supports multiple sources — web pages, PDFs, and text.<br />
+            The input feature accepts content from multiple sources — web pages, PDFs, and text.<br />
             The system automatically detects the content type and generates the most relevant learning actions, such as:
           </p>
           <ul className="sv-source-list">
@@ -492,14 +492,14 @@ export default function SolvelyPage() {
           <div className="sv-member-text">
             <div className="sv-mb-block">
               <span className="sv-mb-label">Background</span>
-              <p>Users lost interest in the membership page after multiple question generations, leading to low conversion</p>
+              <p>Users lost interest in the membership page after generating multiple answers, leading to a low conversion rate.</p>
             </div>
             <div className="sv-mb-block">
               <span className="sv-mb-label">Solution</span>
               <ul>
                 <li>Triggered membership popup after 5+ generations.</li>
                 <li>Used Gaussian blur to highlight the paywall.</li>
-                <li>Added “blurred preview” to boost curiosity and clicks.</li>
+                <li>Added a blurred preview to encourage curiosity and clicks.</li>
               </ul>
             </div>
             <div className="sv-member-stat">
@@ -515,7 +515,7 @@ export default function SolvelyPage() {
         <div className="sv-bff-inner">
         <div className="sv-bff-head">
           <h2 className="sv-bff-title">Solvely<br /><span>Your AI Study BFF</span></h2>
-          <p className="sv-bff-body1"><span className="sv-bff-hl">Stuck on a problem?</span> Snap a picture or type it in—no judgment here-and let Solvely break it down step by step so you actually understand.</p>
+          <p className="sv-bff-body1"><span className="sv-bff-hl">Stuck on a problem?</span> Snap a picture or type it in—no judgment here—and let Solvely break it down step by step so you can fully understand it.</p>
         </div>
         <div className="sv-bff-main">
           <img className="sv-bff-camera" src={bffCamera} alt="Solvely capture" loading="lazy" decoding="async" />
@@ -589,7 +589,7 @@ export default function SolvelyPage() {
         <div className="sv-ainote-stage">
           <img className="sv-ainote-scene" src={aiScene} alt="" loading="lazy" decoding="async" />
           <div className="sv-ainote-head">
-            <h2 className="sv-ainote-title">AI note</h2>
+            <h2 className="sv-ainote-title">AI Note</h2>
             <p className="sv-ainote-sub">Best AI Note Taker for Students</p>
             <p className="sv-ainote-body">From recording and transcription to intelligent summarization and insight generation, every lecture and piece of course content is transformed into concise, structured, and easy-to-read notes, enabling you to quickly review key concepts, organize information effortlessly, strengthen long-term retention, and study more effectively with the support of AI-powered learning assistance.</p>
           </div>
@@ -604,8 +604,8 @@ export default function SolvelyPage() {
       <section className="sv-quiz container">
         <div className="sv-quiz-head">
           <h2 className="sv-quiz-title">AI Quiz Generator</h2>
-          <p className="sv-quiz-sub">Personalized learning made easy by AI Quiz Generator</p>
-          <p className="sv-quiz-body">Use Solvely AI to transform text into a comprehensive quiz in seconds, filled with answers and explanations</p>
+          <p className="sv-quiz-sub">Personalized learning made easy with an AI quiz generator.</p>
+          <p className="sv-quiz-body">Use Solvely AI to transform text into a comprehensive quiz in seconds, complete with answers and explanations.</p>
         </div>
         <img className="sv-quiz-decks" src={quizDecks} alt="Solvely quiz decks and study modes" loading="lazy" decoding="async" />
         <div className="sv-quiz-vibe">
@@ -631,7 +631,7 @@ export default function SolvelyPage() {
         <div className="sv-wall">
           <div className="wc">
             <div className="wr wr--s">
-              <div className="cell cell--lg tc"><span className="tc-user">@Joshua Blackburn</span><p className="tc-quote">Easily solves and explains college level calculus. Gives all the steps and explanations for free.</p></div>
+              <div className="cell cell--lg tc"><span className="tc-user">@Joshua Blackburn</span><p className="tc-quote">Easily solves and explains college-level calculus. Gives all the steps and explanations for free.</p></div>
               <div className="cell cell--sm"><img src={cmCheight} alt="" loading="lazy" decoding="async" /></div>
             </div>
             <div className="wr wr--t">
