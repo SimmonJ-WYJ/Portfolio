@@ -31,17 +31,6 @@ const SECTIONS = [
   { alt: 'Objective 3 — 组件库分类体系', tone: 'light' },
   { alt: 'Objective 3 — 组件库涵盖场景达 83%', tone: 'light' },
   { alt: '用户反馈验证和提升 — 业务效率数据', tone: 'light' },
-  { alt: '数据大脑决策平台 Redesign Program 主视觉', tone: 'blue' },
-  { alt: '数据大脑 — 旧版问题', tone: 'light' },
-  { alt: '数据大脑 — 根据问题得出设计目标', tone: 'light' },
-  { alt: '数据大脑 — 重塑首页模块 before/now', tone: 'light' },
-  { alt: '数据大脑 — 使用合适的图表', tone: 'light' },
-  { alt: '数据大脑 — 24 栅格化与分辨率适配', tone: 'light' },
-  { alt: '数据大脑 — 栅格化布局应用', tone: 'light' },
-  { alt: '数据大脑 — 统一颜色标准', tone: 'light' },
-  { alt: '数据大脑 — 用户路径分析', tone: 'light' },
-  { alt: '验证及组件库展示', tone: 'dark' },
-  { alt: '验证及组件库展示 — 成员测试数据', tone: 'dark' },
 ]
 
 export default function OvermindPage() {
