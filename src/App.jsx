@@ -62,6 +62,7 @@ const PROJECT_META = {
   Solvely: { title: 'Solvely AI', description: 'AI education tools, ranked top-10 on the US App Store.', link: '/solvely' },
   Wawawriter: { title: 'Wawa Writer', description: 'AI long-form writing studio built for creators.', link: '/wawawriter' },
   Windpop: { title: 'Windpop', description: 'AI creative-writing product — end-to-end UX & growth.', link: '/windpop' },
+  overmind: { title: 'OVERMIND', description: 'The All-in-One Platform for Enterprise Product Development.' },
   数云: { title: '数云 Shuyun', description: 'Consumer-centric commercial intelligence platform.' },
 }
 const coverItems = Object.keys(coverModules)
