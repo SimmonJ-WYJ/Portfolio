@@ -56,6 +56,8 @@ import qvQ5 from '../assets/solvely/quiz/cards/q5.png'
 import qvQ10 from '../assets/solvely/quiz/cards/q10.png'
 import qvQ15 from '../assets/solvely/quiz/cards/q15.png'
 import qvQ20 from '../assets/solvely/quiz/cards/q20.png'
+import specFont from '../assets/solvely/spec-font.webp'
+import specColor from '../assets/solvely/spec-color.webp'
 
 const VIBE_CARDS = [qvChill, qvSolid, qvSpicy, qvSavage, qvQ5, qvQ10, qvQ15, qvQ20]
 
@@ -141,7 +143,7 @@ export default function SolvelyPage() {
   // scroll-reveal: fade/slide modules, images and text blocks in with a stagger
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const SELECTOR = ['.sv-hero img', '.sv-quote', '.sv-feat', '.sv-meta', '.sv-flow-box', '.sv-pain-title', '.sv-pain-q', '.sv-sol-head', '.sv-sol-shot', '.sv-comments-title', '.sv-onb-title', '.sv-onb-block', '.sv-onb-step', '.sv-onb-step3', '.sv-results-title', '.sv-bubbles', '.sv-leg', '.sv-font-left', '.sv-font-aa', '.sv-font-bar', '.sv-colors-title', '.sv-col-card', '.sv-bff-head', '.sv-bff-main', '.sv-source-text', '.sv-card', '.sv-member-title', '.sv-member-panel', '.sv-more-title', '.sv-more-row', '.sv-adapts-title', '.sv-adapts-card', '.sv-logic-title', '.sv-logic-body', '.sv-logic-flow', '.sv-logic-collage', '.sv-writer-laptop', '.sv-writer-head', '.sv-writer-toolbar', '.sv-wt-row', '.sv-ainote-head', '.sv-ainote-window', '.sv-lecture-img', '.sv-quiz-head', '.sv-quiz-decks', '.sv-quiz-vibe'].join(', ')
+    const SELECTOR = ['.sv-hero img', '.sv-quote', '.sv-feat', '.sv-meta', '.sv-flow-box', '.sv-pain-title', '.sv-pain-q', '.sv-sol-head', '.sv-sol-shot', '.sv-comments-title', '.sv-onb-title', '.sv-onb-block', '.sv-onb-step', '.sv-onb-step3', '.sv-results-title', '.sv-bubbles', '.sv-leg', '.sv-font-left', '.sv-font-aa', '.sv-font-bar', '.sv-colors-title', '.sv-col-card', '.sv-bff-head', '.sv-bff-main', '.sv-source-text', '.sv-card', '.sv-member-title', '.sv-member-panel', '.sv-more-title', '.sv-more-row', '.sv-adapts-title', '.sv-adapts-card', '.sv-logic-title', '.sv-logic-body', '.sv-logic-flow', '.sv-logic-collage', '.sv-writer-laptop', '.sv-writer-head', '.sv-writer-toolbar', '.sv-wt-row', '.sv-ainote-head', '.sv-ainote-window', '.sv-lecture-img', '.sv-quiz-head', '.sv-quiz-decks', '.sv-quiz-vibe', '.sv-spec-img'].join(', ')
     const items = Array.from(document.querySelectorAll(SELECTOR))
     const counts = new Map()
     items.forEach((el) => {
@@ -661,6 +663,11 @@ export default function SolvelyPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="sv-spec">
+        <img className="sv-spec-img" src={specFont} alt="Font Specification — Website Typography" loading="lazy" decoding="async" />
+        <img className="sv-spec-img" src={specColor} alt="Color Specification" loading="lazy" decoding="async" />
       </section>
     </main>
   )

@@ -635,3 +635,7 @@
 @media (prefers-reduced-motion: reduce) {
   .sv-anim, .sv-anim-in { opacity: 1; transform: none; transition: none; }
 }
+
+/* font & color specification boards */
+.sv-spec { background: #f0f2f4; }
+.sv-spec-img { display: block; width: 100%; height: auto; }
