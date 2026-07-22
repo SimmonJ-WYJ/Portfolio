@@ -31,6 +31,8 @@ const SECTIONS = [
   { alt: 'Objective 3 — 组件库分类体系', tone: 'light' },
   { alt: 'Objective 3 — 组件库涵盖场景达 83%', tone: 'light' },
   { alt: '用户反馈验证和提升 — 业务效率数据', tone: 'light' },
+  { alt: 'Font Specification — Website Typography 字体规范', tone: 'light' },
+  { alt: 'Color Specification — 颜色规范', tone: 'light' },
 ]
 
 export default function OvermindPage() {
