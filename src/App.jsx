@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 're
 import { AnimatePresence, motion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
-import heroBg from './assets/hero/bg.webp'
 import heroPortrait from './assets/hero/portrait.webp'
 import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
@@ -234,7 +233,6 @@ function MenuOverlay({ open, onClose }) {
 function Hero({ ready }) {
   return (
     <section className="hero hero-pd" id="top">
-      <img className="pd-bg" src={heroBg} alt="" aria-hidden="true" />
       <div className="pd-inner">
         <div className="pd-left">
           <motion.h1

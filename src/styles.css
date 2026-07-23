@@ -98,8 +98,7 @@ section { position: relative; }
 .hero { height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(32px, 5vw, 64px); position: sticky; top: 0; z-index: 0; overflow: hidden; background: #0a0a0f; }
 
 /* ---------- Hero — product designer ---------- */
-.hero-pd { justify-content: center; padding-bottom: 0; background: #0b111c; }
-.pd-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.hero-pd { justify-content: center; padding-bottom: 0; background: #111a24; }
 .pd-inner {
   position: relative; z-index: 2;
   display: flex; align-items: center; justify-content: space-between;
