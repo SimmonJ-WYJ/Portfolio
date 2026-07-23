@@ -19,10 +19,6 @@ import cmMichael from '../assets/solvely/comments/michael.jpg'
 import cmJordan from '../assets/solvely/comments/jordan.jpg'
 import cmSophia from '../assets/solvely/comments/sophia.jpg'
 import cmDeandre from '../assets/solvely/comments/deandre.jpg'
-import colorRamp1 from '../assets/solvely/colors/ramp1.png'
-import colorRamp2 from '../assets/solvely/colors/ramp2.png'
-import colorRamp3 from '../assets/solvely/colors/ramp3.png'
-import colorRamp4 from '../assets/solvely/colors/ramp4.png'
 import memberPhone from '../assets/solvely/member/phone.png'
 import bffDeco from '../assets/solvely/bff/deco-left.png'
 import bffCamera from '../assets/solvely/bff/p-camera.png'
@@ -108,13 +104,6 @@ const FLOW_PILLS = [
   { label: 'Dev Handoff', solid: false, left: '68%', top: '56%', width: '16%' },
 ]
 
-const COLOR_CARDS = [
-  { bg: '#007AFF', text: '#fbfcfc', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: '007AFF', name: 'Blue 1', title: 'Main Foundation', ramp: colorRamp1 },
-  { bg: '#655AFF', text: '#efedff', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: 'CBDCDB', name: 'Purple', title: 'Complementary Colors', ramp: colorRamp2 },
-  { bg: '#F0F2F4', text: '#111', sub: '#848484', label: '#141821', hex: 'F0F2F4', name: 'White', title: 'Neutral Colors', ramp: colorRamp3 },
-  { bg: '#141821', text: '#fbfcfc', sub: 'rgba(255,255,255,0.7)', label: '#fff', hex: '141821', name: 'Black', title: 'Gray Colors', ramp: colorRamp4 },
-]
-
 const WRITER_FEATURES = [
   { side: 'left-media', img: wAutocomplete, title: 'AI Autocomplete', body: "Starting from a blank page, smart autocomplete helps you overcome writer's block and effortlessly enhances your writing process." },
   { side: 'right-media', img: wLibrary, title: 'In-text Citations', body: 'Create accurate citations in APA, MLA, Harvard, Chicago, or IEEE style.' },
@@ -143,7 +132,7 @@ export default function SolvelyPage() {
   // scroll-reveal: fade/slide modules, images and text blocks in with a stagger
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const SELECTOR = ['.sv-hero img', '.sv-quote', '.sv-feat', '.sv-meta', '.sv-flow-box', '.sv-pain-title', '.sv-pain-q', '.sv-sol-head', '.sv-sol-shot', '.sv-comments-title', '.sv-onb-title', '.sv-onb-block', '.sv-onb-step', '.sv-onb-step3', '.sv-results-title', '.sv-bubbles', '.sv-leg', '.sv-font-left', '.sv-font-aa', '.sv-font-bar', '.sv-colors-title', '.sv-col-card', '.sv-bff-head', '.sv-bff-main', '.sv-source-text', '.sv-card', '.sv-member-title', '.sv-member-panel', '.sv-more-title', '.sv-more-row', '.sv-adapts-title', '.sv-adapts-card', '.sv-logic-title', '.sv-logic-body', '.sv-logic-flow', '.sv-logic-collage', '.sv-writer-laptop', '.sv-writer-head', '.sv-writer-toolbar', '.sv-wt-row', '.sv-ainote-head', '.sv-ainote-window', '.sv-lecture-img', '.sv-quiz-head', '.sv-quiz-decks', '.sv-quiz-vibe', '.sv-spec-img'].join(', ')
+    const SELECTOR = ['.sv-hero img', '.sv-quote', '.sv-feat', '.sv-meta', '.sv-flow-box', '.sv-pain-title', '.sv-pain-q', '.sv-sol-head', '.sv-sol-shot', '.sv-comments-title', '.sv-onb-title', '.sv-onb-block', '.sv-onb-step', '.sv-onb-step3', '.sv-results-title', '.sv-bubbles', '.sv-leg', '.sv-bff-head', '.sv-bff-main', '.sv-source-text', '.sv-card', '.sv-member-title', '.sv-member-panel', '.sv-more-title', '.sv-more-row', '.sv-adapts-title', '.sv-adapts-card', '.sv-logic-title', '.sv-logic-body', '.sv-logic-flow', '.sv-logic-collage', '.sv-writer-laptop', '.sv-writer-head', '.sv-writer-toolbar', '.sv-wt-row', '.sv-ainote-head', '.sv-ainote-window', '.sv-lecture-img', '.sv-quiz-head', '.sv-quiz-decks', '.sv-quiz-vibe', '.sv-spec-img'].join(', ')
     const items = Array.from(document.querySelectorAll(SELECTOR))
     const counts = new Map()
     items.forEach((el) => {
@@ -310,43 +299,6 @@ export default function SolvelyPage() {
           <h2 className="sv-logic-title">Logic Flow Design</h2>
           <p className="sv-logic-body">While analyzing the existing workflow, I found a large number of if/else conditions. The system uses different prompts to identify user inputs, and the backend then generates the appropriate essay format. I structured the design around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
           <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
-        </div>
-      </section>
-
-      <section className="sv-font container">
-        <div className="sv-font-grid">
-          <div className="sv-font-left">
-            <h2 className="sv-font-title">Font Specification</h2>
-            <span className="sv-font-pill">Typography</span>
-            <h3 className="sv-font-web">Website Typography</h3>
-            <p className="sv-font-glyphs">{'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@€£$&*})({§?'}</p>
-          </div>
-          <div className="sv-font-aa">
-            <span className="sv-aa-guide sv-aa-guide--top" />
-            <span className="sv-aa-guide sv-aa-guide--bottom" />
-            <span className="sv-aa-guide sv-aa-guide--left" />
-            <span className="sv-aa-letters">Aa</span>
-          </div>
-        </div>
-        <div className="sv-font-bar">
-          <span className="sv-font-inter">Inter</span>
-          <span className="sv-font-weights">Light&nbsp;&nbsp;&nbsp;Regular&nbsp;&nbsp;Medium&nbsp;&nbsp;Semibold</span>
-        </div>
-      </section>
-
-      <section className="sv-colors container">
-        <h2 className="sv-colors-title">Color Specification</h2>
-        <div className="sv-colors-grid">
-          {COLOR_CARDS.map((c) => (
-            <div className="sv-col-card" key={c.name} style={{ background: c.bg, color: c.text }}>
-              <div className="sv-col-meta">
-                <span className="sv-col-hex">{c.hex}</span>
-                <span className="sv-col-name" style={{ color: c.sub }}>{c.name}</span>
-              </div>
-              <img className="sv-col-ramp" src={c.ramp} alt="" loading="lazy" decoding="async" />
-              <span className="sv-col-label" style={{ color: c.label }}>{c.title}</span>
-            </div>
-          ))}
         </div>
       </section>
 
