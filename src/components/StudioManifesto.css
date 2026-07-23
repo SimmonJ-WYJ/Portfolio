@@ -24,7 +24,7 @@
   padding: 0 6vw;
   font-family: 'Inter', -apple-system, sans-serif;
   font-weight: 300;
-  font-size: clamp(20px, 2.7vw, 42px);
+  font-size: clamp(17px, 2.3vw, 36px);
   line-height: 1.16;
   letter-spacing: -0.01em;
   text-align: justify;

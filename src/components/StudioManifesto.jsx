@@ -6,27 +6,37 @@ import './StudioManifesto.css'
 // scroll, while the red service keywords migrate (FLIP translate + scale) into
 // a centered vertical stack. Labeled project tiles float upward behind it.
 
-const KEYWORDS = ['STRATEGY', 'BRAND', 'DESIGN', 'DEVELOPMENT', 'MOTION', 'GROWTH']
+const KEYWORDS = ['PRODUCT THINKING', 'AI-NATIVE', 'DATA-DRIVEN', 'END-TO-END', 'USER-CENTERED', 'SCALABLE']
 
 const PARAGRAPH =
-  "I'M SIMMONJ — A MULTIDISCIPLINARY PRODUCT DESIGNER BUILDING AI-NATIVE EXPERIENCES FROM FIRST IDEA TO LAUNCH. " +
-  'STRATEGY IS WHERE I BEGIN, TURNING FUZZY PROBLEMS INTO A CLEAR PRODUCT DIRECTION. ' +
-  'I SHAPE EVERY BRAND WITH PURPOSE, CRAFTING IDENTITIES THAT FEEL HONEST AND BUILT TO LAST. ' +
-  'DESIGN IS MY HEARTBEAT, BREATHING LIFE INTO EVERY PIXEL AND SHAPING EXPERIENCES THAT SCALE AND INSPIRE. ' +
-  'WORKING CLOSE TO DEVELOPMENT, I TURN IDEAS INTO SEAMLESS, IMMERSIVE INTERFACES. ' +
-  'WITH MOTION I ADD ESSENCE AND EMOTION, GIVING EACH PRODUCT RHYTHM AND LIFE. ' +
-  'AND I BUILD FOR GROWTH, HELPING PRODUCTS REACH, RESONATE, AND THRIVE AT SCALE.'
+  "I'M SIMMON — A PRODUCT DESIGNER WITH 8 YEARS OF EXPERIENCE BUILDING PRODUCTS FROM STRATEGY TO LAUNCH. " +
+  "I BELIEVE GREAT DESIGN ISN'T ABOUT CREATING BEAUTIFUL INTERFACES — IT'S ABOUT SOLVING THE RIGHT PROBLEMS. " +
+  'EVERY PROJECT STAYS USER-CENTERED: UNDERSTANDING PEOPLE, DEFINING THE PRODUCT DIRECTION, AND VALIDATING IDEAS BEFORE A SINGLE SCREEN IS DESIGNED. ' +
+  'MY APPROACH COMBINES PRODUCT THINKING, DATA-DRIVEN DECISION MAKING, AI-NATIVE WORKFLOWS, AND END-TO-END DESIGN EXECUTION. ' +
+  'FROM INFORMATION ARCHITECTURE AND INTERACTION DESIGN TO POLISHED INTERFACES AND DEVELOPER COLLABORATION, I TRANSFORM COMPLEX SYSTEMS INTO INTUITIVE EXPERIENCES — SIMPLE TO USE, SCALABLE TO GROW, AND MEANINGFUL FOR BOTH USERS AND BUSINESSES. ' +
+  "TO ME, DESIGN DOESN'T END AT LAUNCH. THE BEST PRODUCTS ARE SHAPED THROUGH CONTINUOUS LEARNING, ITERATION, AND MEASURABLE OUTCOMES."
 
-// Tokenize once: mark the first occurrence of each keyword.
+// Tokenize once: greedily mark the first occurrence of each keyword.
+// Phrase keywords (e.g. "PRODUCT THINKING") span several words and stay one node.
 const TOKENS = (() => {
+  const core = (s) => s.replace(/[^A-Za-z-]/g, '').toUpperCase()
+  const words = PARAGRAPH.split(' ')
   const used = new Set()
-  return PARAGRAPH.split(' ').map((text) => {
-    const core = text.replace(/[^A-Za-z-]/g, '').toUpperCase()
-    const ki = KEYWORDS.indexOf(core)
-    const isKeyword = ki !== -1 && !used.has(core)
-    if (isKeyword) used.add(core)
-    return { text, core, isKeyword, ki }
-  })
+  const tokens = []
+  for (let i = 0; i < words.length; i += 1) {
+    const ki = KEYWORDS.findIndex(
+      (kw, k) => !used.has(k) && kw.split(' ').every((part, j) => core(words[i + j] || '') === part),
+    )
+    if (ki !== -1) {
+      const parts = KEYWORDS[ki].split(' ')
+      used.add(ki)
+      tokens.push({ text: words.slice(i, i + parts.length).join(' '), core: KEYWORDS[ki], isKeyword: true, ki })
+      i += parts.length - 1
+    } else {
+      tokens.push({ text: words[i], core: core(words[i]), isKeyword: false, ki: -1 })
+    }
+  }
+  return tokens
 })()
 
 // Floating tiles: alternating left / right sides, evenly spaced vertically
