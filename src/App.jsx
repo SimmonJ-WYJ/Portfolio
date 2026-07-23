@@ -2,12 +2,10 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 're
 import { AnimatePresence, motion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
-import Grainient from './components/Grainient.jsx'
-import { FallingPattern } from './components/FallingPattern.jsx'
-import CircularText from './components/CircularText.jsx'
+import heroBg from './assets/hero/bg.webp'
+import heroPortrait from './assets/hero/portrait.webp'
 import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
-import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
 import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
 import logoSupabase from './assets/logos/supabase_wordmark_light.svg'
 import logoOpenai from './assets/logos/openai_wordmark_light.svg'
@@ -233,47 +231,36 @@ function MenuOverlay({ open, onClose }) {
 }
 
 /* ---------- Hero ---------- */
-function Hero({ ready, onReel }) {
+function Hero({ ready }) {
   return (
-    <section className="hero" id="top">
-      <div className="hero-grainient" aria-hidden="true">
-        <FallingPattern color="#ffffff" backgroundColor="#000000" duration={150} density={1} blurIntensity="16px" brightness={2.4} />
-      </div>
-      <motion.div
-        className="hero-intro"
-        initial={{ opacity: 0, y: 50 }}
-        animate={ready ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      >
-        <h1 className="hero-cycle-headline">
-          Hello, I'm{' '}
-          <span className="hero-cycle-word">Product&nbsp;</span>
-          <AnimatedTextCycle
-            words={['Engineer', 'Manager', 'Designer']}
-            interval={2200}
-            className="hero-cycle-word"
-          />
-        </h1>
-      </motion.div>
-      <div className="container hero-content">
+    <section className="hero hero-pd" id="top">
+      <img className="pd-bg" src={heroBg} alt="" aria-hidden="true" />
+      <div className="pd-inner">
+        <div className="pd-left">
+          <motion.h1
+            className="pd-title"
+            initial={{ opacity: 0, y: 50 }}
+            animate={ready ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          >
+            Product<br />designer
+          </motion.h1>
+          <motion.p
+            className="pd-copy"
+            initial={{ opacity: 0, y: 40 }}
+            animate={ready ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
+          >
+            I believe great design isn't about creating interfaces—it's about solving the right problems. Every design decision should begin with understanding users, be validated by data, and ultimately create value for both people and the business.
+          </motion.p>
+        </div>
         <motion.div
-          className="hero-bottom"
-          initial={{ opacity: 0 }}
-          animate={ready ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          className="pd-right"
+          initial={{ opacity: 0, y: 60 }}
+          animate={ready ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
         >
-          <div className="hero-reel">
-            <Magnetic strength={0.4}>
-              <div className="reel-wrap">
-                <div className="reel-ring-pos">
-                  <CircularText className="reel-ring" text="RECENT*WORK*SHOWREEL*" spinDuration={18} onHover="speedUp" />
-                </div>
-                <button className="reel-btn" data-cursor="media" data-cursor-label="Watch" onClick={onReel}>
-                  recent
-                </button>
-              </div>
-            </Magnetic>
-          </div>
+          <img src={heroPortrait} alt="Simmon Jay Max — product designer" loading="eager" decoding="async" fetchpriority="high" />
         </motion.div>
       </div>
     </section>
@@ -418,7 +405,7 @@ export default function App() {
 
       <Nav onMenu={() => setMenu(true)} />
       <main>
-        <Hero ready={loaded} onReel={() => setReel(true)} />
+        <Hero ready={loaded} />
         <Suspense fallback={<div className="home-content-fallback" aria-hidden="true" />}>
           <HomeContent coverItems={coverItems} logoItems={LOGO_ITEMS} />
         </Suspense>

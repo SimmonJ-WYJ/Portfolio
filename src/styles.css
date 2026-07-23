@@ -96,6 +96,37 @@ section { position: relative; }
 
 /* ---------- Hero ---------- */
 .hero { height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(32px, 5vw, 64px); position: sticky; top: 0; z-index: 0; overflow: hidden; background: #0a0a0f; }
+
+/* ---------- Hero — product designer ---------- */
+.hero-pd { justify-content: center; padding-bottom: 0; background: #0b111c; }
+.pd-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.pd-inner {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: clamp(28px, 4vw, 72px);
+  padding: clamp(84px, 12vh, 140px) clamp(24px, 7.4vw, 148px) clamp(40px, 6vh, 80px);
+}
+.pd-left { flex: 1 1 auto; min-width: 0; }
+.pd-title {
+  font-family: var(--font-body); font-weight: 500;
+  font-size: clamp(52px, 7.5vw, 150px);
+  line-height: 1.15; letter-spacing: -0.015em; color: #fff;
+}
+.pd-copy {
+  margin-top: clamp(32px, 6.5vh, 92px);
+  max-width: clamp(320px, 44vw, 880px);
+  font-size: clamp(15px, 1.5vw, 30px);
+  line-height: 1.72; font-weight: 400; color: rgba(255, 255, 255, 0.88);
+}
+.pd-right { flex: 0 0 auto; width: clamp(240px, 38.5vw, 770px); }
+.pd-right img { width: 100%; height: auto; max-height: 84svh; object-fit: contain; }
+
+@media (max-width: 860px) {
+  .pd-inner { flex-direction: column; align-items: flex-start; justify-content: center; padding-top: 96px; gap: 36px; }
+  .pd-title { font-size: clamp(48px, 13vw, 84px); }
+  .pd-copy { margin-top: 20px; max-width: 100%; font-size: 16px; }
+  .pd-right { width: min(76vw, 400px); align-self: center; }
+}
 /* Sections below scroll up and cover the pinned hero for a smooth overlap */
 .after-hero { position: relative; z-index: 1; background: var(--bg); }
 
