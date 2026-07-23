@@ -628,6 +628,11 @@ export default function SolvelyPage() {
         </div>
       </section>
 
+      <section className="sv-spec">
+        <img className="sv-spec-img" src={specFont} alt="Font Specification — Website Typography" loading="lazy" decoding="async" />
+        <img className="sv-spec-img" src={specColor} alt="Color Specification" loading="lazy" decoding="async" />
+      </section>
+
       <section className="sv-comments container">
         <h2 className="sv-comments-title">Real Comments from<br /><span>Students and Parents</span></h2>
         <div className="sv-wall">
@@ -663,11 +668,6 @@ export default function SolvelyPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="sv-spec">
-        <img className="sv-spec-img" src={specFont} alt="Font Specification — Website Typography" loading="lazy" decoding="async" />
-        <img className="sv-spec-img" src={specColor} alt="Color Specification" loading="lazy" decoding="async" />
       </section>
     </main>
   )
