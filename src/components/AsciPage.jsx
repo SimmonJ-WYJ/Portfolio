@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
-import Hls from 'hls.js'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { useMotionValue } from 'framer-motion'
-import { Shader, Swirl, ChromaFlow, FlutedGlass, FilmGrain } from 'shaders/react'
+
+// WebGL shader stack (bundles a full renderer) loads on demand.
+const AsciHeroShader = lazy(() => import('./AsciHeroShader.jsx'))
 import ScrollReveal from './ScrollReveal'
 import AsciProjects from './AsciProjects'
 import { ZoomParallax } from './ZoomParallax'
@@ -42,14 +43,18 @@ export default function AsciPage() {
     const video = videoRef.current
     if (!video) return
     let hls
-    if (Hls.isSupported()) {
-      hls = new Hls({ enableWorker: true })
-      hls.loadSource(STORY_VIDEO_SRC)
-      hls.attachMedia(video)
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    let cancelled = false
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = STORY_VIDEO_SRC
+    } else {
+      import('hls.js').then(({ default: Hls }) => {
+        if (cancelled || !Hls.isSupported()) return
+        hls = new Hls({ enableWorker: true })
+        hls.loadSource(STORY_VIDEO_SRC)
+        hls.attachMedia(video)
+      })
     }
-    return () => { if (hls) hls.destroy() }
+    return () => { cancelled = true; if (hls) hls.destroy() }
   }, [])
 
   // Camera pull-back: start inside the display, then reveal the complete iMac.
@@ -202,31 +207,9 @@ export default function AsciPage() {
           <img className="asci-imac" src={imacScene} alt="ASCI 在 iMac 上的展示" loading="eager" decoding="async" fetchpriority="high" />
             <div className="asci-device-screen">
               <div className="asci-hero-bg" aria-hidden="true">
-                <Shader style={{ width: '100%', height: '100%' }}>
-                  <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
-                  <ChromaFlow
-                    baseColor="#ffffff"
-                    downColor="#9ca3af"
-                    leftColor="#9ca3af"
-                    rightColor="#9ca3af"
-                    upColor="#9ca3af"
-                    momentum={13}
-                    radius={3.5}
-                  />
-                  <FlutedGlass
-                    aberration={0.61}
-                    angle={31}
-                    frequency={8}
-                    highlight={0.12}
-                    highlightSoftness={0}
-                    lightAngle={-90}
-                    refraction={4}
-                    shape="rounded"
-                    softness={1}
-                    speed={0.15}
-                  />
-                  <FilmGrain strength={0.05} />
-                </Shader>
+                <Suspense fallback={null}>
+                  <AsciHeroShader />
+                </Suspense>
               </div>
               <div className="asci-hero-stage">
                 <nav className="asci-product-nav" aria-label="ASCI product navigation">
