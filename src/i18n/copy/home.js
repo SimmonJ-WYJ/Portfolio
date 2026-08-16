@@ -6,6 +6,9 @@
 // tokenizer marks the first occurrence of each and migrates it into the stack.
 const home = {
   en: {
+    heroTitleTop: 'Product',
+    heroTitleBottom: 'designer',
+    heroCopy: 'I believe great design isn\'t about creating interfaces—it\'s about solving the right problems. Every design decision should begin with understanding users, be validated by data, and ultimately create value for both people and the business.',
     heroEyebrow: 'PRODUCT DESIGNER',
     heroName: 'SIMMON',
     heroLede:
@@ -39,6 +42,9 @@ const home = {
     footerRights: 'All rights reserved.',
   },
   zh: {
+    heroTitleTop: 'Product',
+    heroTitleBottom: 'designer',
+    heroCopy: '我相信优秀的设计不在于创建界面，而在于解决正确的问题。每个设计决策都应该从理解用户开始，通过数据验证，最终为用户和企业创造价值。',
     heroEyebrow: '产品设计师',
     heroName: 'SIMMON',
     heroLede: '一名从策略到上线全程参与的产品设计师，把复杂系统变成人人看得懂的界面。',
