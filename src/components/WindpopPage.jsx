@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
+import { useCopy } from '../i18n/LanguageContext.jsx'
+import LangToggle from './LangToggle.jsx'
 import './WindpopPage.css'
 import wpHero from '../assets/windpop/hero/hero.jpg'
 import wpMissionWm from '../assets/windpop/mission/watermark.png'
@@ -30,20 +32,15 @@ const IcShapes = (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111" strokeWidth="1.4"><path d="M8 3.5l3 5H5l3-5Z" /><circle cx="17" cy="6" r="2.6" /><rect x="13.6" y="13.4" width="6" height="6" rx="1" /><rect x="4.6" y="13.4" width="6" height="6" rx="1" /></svg>
 )
 
-const WP_LOGO_FEATS = [
-  { icon: wpLic1, title: 'Smallest unit', sub: 'Early exploration' },
-  { icon: wpLic2, title: 'Wind scatters seeds', sub: 'Spreading inclusive technology' },
-  { icon: wpLic3, title: 'Redefine', sub: 'Break down and restructure' },
-  { icon: wpLic4, title: 'Dandelion imagery', sub: 'A vision of shared technology' },
-]
-
-const WP_PROCESS = [
-  { icon: IcSearch, hours: '24 hours', title: 'Research', tags: ['Industry', 'User research', 'Brand positioning'] },
-  { icon: IcAtom, hours: '48 hours', title: 'Discovery', tags: ['Moodboard', 'Keywords', 'Logo Sketches'] },
-  { icon: IcShapes, hours: '87 hours', title: 'Solution', tags: ['Applications', 'Refinement', 'Finalized VI System'] },
-]
+// Positional icon lists; the matching text lives in src/i18n/copy/windpop.js.
+const WP_FEAT_ICONS = [wpLic1, wpLic2, wpLic3, wpLic4]
+const WP_PROCESS_ICONS = [IcSearch, IcAtom, IcShapes]
 
 export default function WindpopPage() {
+  const c = useCopy('common')
+  const t = useCopy('windpop')
+  const alts = t.alts || {}
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const SELECTOR = ['.wp-hero img', '.wp-pcol', '.wp-m-title', '.wp-m-body', '.wp-m-tags', '.wp-sec-label', '.wp-logo-body', '.wp-feat', '.wp-logo-right', '.wp-type-body', '.wp-type-spec', '.wp-grad-img', '.wp-font-left', '.wp-font-weights'].join(', ')
@@ -58,28 +55,29 @@ export default function WindpopPage() {
 
   return (
     <main className="wp">
-      <a href="/" className="case-back" data-cursor="link" data-cursor-label="Home">
+      <LangToggle variant="float" />
+      <a href="/" className="case-back" data-cursor="link" data-cursor-label={c.home}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M19 12H5M11 18l-6-6 6-6" />
         </svg>
-        <span>Back</span>
+        <span>{c.back}</span>
       </a>
 
       <section className="wp-hero">
-        <img src={wpHero} alt="Windpop — Explore Ideas Early · Redefine Experience · Tech for Everyone" loading="eager" decoding="async" fetchpriority="high" />
+        <img src={wpHero} alt={alts.hero} loading="eager" decoding="async" fetchpriority="high" />
       </section>
 
       <section className="wp-proc">
         <div className="wp-proc-inner">
-          {WP_PROCESS.map((c) => (
-            <div className="wp-pcol" key={c.title}>
+          {(t.process || []).map((col, i) => (
+            <div className="wp-pcol" key={i}>
               <div className="wp-pc-top">
-                <span className="wp-pc-ic">{c.icon}</span>
-                <span className="wp-pc-hours">{c.hours}</span>
+                <span className="wp-pc-ic">{WP_PROCESS_ICONS[i]}</span>
+                <span className="wp-pc-hours">{col.hours}</span>
               </div>
-              <h2 className="wp-pc-title">{c.title}</h2>
+              <h2 className="wp-pc-title">{col.title}</h2>
               <div className="wp-pc-tags">
-                {c.tags.map((t) => <span className="wp-pc-tag" key={t}>{t}</span>)}
+                {col.tags.map((tag) => <span className="wp-pc-tag" key={tag}>{tag}</span>)}
               </div>
             </div>
           ))}
@@ -89,37 +87,41 @@ export default function WindpopPage() {
       <section className="wp-mission">
         <div className="wp-mission-stage">
           <img className="wp-m-wm" src={wpMissionWm} alt="" aria-hidden="true" />
-          <h2 className="wp-m-title">WINDPOP<br />MISSION</h2>
+          <h2 className="wp-m-title">
+            {(t.missionTitle || []).map((line, i) => (
+              <Fragment key={i}>{i > 0 && <br />}{line}</Fragment>
+            ))}
+          </h2>
           <p className="wp-m-body">
-            Windpop is an investing firm focusing on <span className="wp-bl">exploring early ideas and incubating them to be an operatable product prototype</span> which can be further invested in by other investors. We are particularly looking for ideas that <span className="wp-bl">redefine the user experiences of the existing product</span> run by big companies with simplification and reduction in a way that the product becomes accessible for more people. We do this because we believe technology should not be monopolized by a few entities who use it to make profit for their stakeholders primarily. Instead, technology should be open to all people and accessible to everyone. Windpop’s mission is to <span className="wp-bl">make technology accessible to more people.</span>
+            {(t.missionBody || []).map((seg, i) =>
+              seg.bl ? <span className="wp-bl" key={i}>{seg.text}</span> : seg.text,
+            )}
           </p>
           <div className="wp-m-tags">
-            <span>Explore Ideas Early</span>
-            <i />
-            <span>Redefine Experience</span>
-            <i />
-            <span>Tech for Everyone</span>
+            {(t.missionTags || []).map((tag, i) => (
+              <Fragment key={tag}>{i > 0 && <i />}<span>{tag}</span></Fragment>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="wp-logo">
         <div className="wp-logo-inner">
-          <span className="wp-sec-label"><i className="wp-sec-dot" />LOGO DESIGN</span>
+          <span className="wp-sec-label"><i className="wp-sec-dot" />{t.sectionLabels?.logo}</span>
           <div className="wp-logo-grid">
             <div className="wp-logo-left">
-              <p className="wp-logo-body">Windpop’s vision is expressed through a mix of abstract and concrete forms: using small units like seeds to symbolize early ideas, reshaping them into new forms to redefine products, and letting them spread outward to represent inclusive technology, just like dandelion seeds drifting in the wind and carrying our vision of openness and sharing.</p>
+              <p className="wp-logo-body">{t.logoBody}</p>
               <div className="wp-logo-feats">
-                {WP_LOGO_FEATS.map((f) => (
+                {(t.logoFeats || []).map((f, i) => (
                   <div className="wp-feat" key={f.title}>
-                    <img src={f.icon} alt="" />
+                    <img src={WP_FEAT_ICONS[i]} alt="" />
                     <span className="wp-feat-tx"><b>{f.title} /</b><span>{f.sub}</span></span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="wp-logo-right">
-              <img src={wpLogoDiagram} alt="Windpop 标志构成 — 蒲公英放射几何" loading="lazy" decoding="async" />
+              <img src={wpLogoDiagram} alt={alts.logoDiagram} loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -127,64 +129,64 @@ export default function WindpopPage() {
 
       <section className="wp-type">
         <div className="wp-type-inner">
-          <span className="wp-sec-label"><i className="wp-sec-dot" />TYPEFACE DESIGN</span>
-          <p className="wp-type-body">Using trapezoidal negative space at the corners of the letters creates a distinctive texture, enhances brand recognition, and aligns seamlessly with the logo.</p>
-          <img className="wp-type-spec" src={wpTypeSpec} alt="Windpop 字体规范 — Ascender / X-Height / Baseline / Descender" loading="lazy" decoding="async" />
+          <span className="wp-sec-label"><i className="wp-sec-dot" />{t.sectionLabels?.type}</span>
+          <p className="wp-type-body">{t.typeBody}</p>
+          <img className="wp-type-spec" src={wpTypeSpec} alt={alts.typeSpec} loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLogoUsage} alt="Windpop 标志用法 — 垂直/单独/水平排列与正误示例" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpLogoUsage} alt={alts.logoUsage} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpGradient} alt="Windpop 渐变色板 — Light / Dark Gradient" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpGradient} alt={alts.gradient} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpColorUse} alt="Windpop 标志配色应用 — 白底/深底/蓝底/渐变底" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpColorUse} alt={alts.colorUse} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLogoBlue} alt="Windpop 标志 — 蓝色渐变背景" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpLogoBlue} alt={alts.logoBlue} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-font">
         <div className="wp-font-grid">
           <div className="wp-font-left">
-            <span className="wp-sec-label"><i className="wp-sec-dot" />FONT</span>
-            <h2 className="wp-font-title">Inter family</h2>
+            <span className="wp-sec-label"><i className="wp-sec-dot" />{t.sectionLabels?.font}</span>
+            <h2 className="wp-font-title">{t.fontTitle}</h2>
             <hr className="wp-font-rule" />
-            <p className="wp-font-sub">Headings + Subheadings + Body Copy</p>
-            <p className="wp-font-body">Inter is a modern, highly readable sans-serif with flexible weights and global language support, making it ideal for consistent use across all brand touchpoints. Its neutral yet approachable style aligns with Windpop’s vision of redefining experiences and making technology accessible to everyone.</p>
-            <p className="wp-font-glyphs">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789!</p>
+            <p className="wp-font-sub">{t.fontSub}</p>
+            <p className="wp-font-body">{t.fontBody}</p>
+            <p className="wp-font-glyphs">{t.fontGlyphs}</p>
           </div>
-          <img className="wp-font-weights" src={wpFontWeights} alt="Inter 字重 400 / 500 / 600 / 700" loading="lazy" decoding="async" />
+          <img className="wp-font-weights" src={wpFontWeights} alt={alts.fontWeights} loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpFavicon} alt="Windpop favicon 应用 — 通知卡片与浏览器标签" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpFavicon} alt={alts.favicon} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLaptop} alt="Windpop Capital — 笔记本网站样机" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpLaptop} alt={alts.laptop} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpLogoBlue2} alt="Windpop 标志 — 蓝色渐变背景" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpLogoBlue2} alt={alts.logoBlue2} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpStationery} alt="Windpop 品牌物料 — 信纸 / 名片 / 信封" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpStationery} alt={alts.stationery} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpIdCard} alt="Windpop 工牌 — ID Card" loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpIdCard} alt={alts.idCard} loading="lazy" decoding="async" />
       </section>
 
       <section className="wp-grad">
-        <img className="wp-grad-img" src={wpBillboard} alt="Windpop 广告牌 — Invest in Tomorrow’s Ideas, Today." loading="lazy" decoding="async" />
+        <img className="wp-grad-img" src={wpBillboard} alt={alts.billboard} loading="lazy" decoding="async" />
       </section>
     </main>
   )

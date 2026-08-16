@@ -5,6 +5,8 @@ import Loader from './components/Loader.jsx'
 import heroPortrait from './assets/hero/portrait.webp'
 import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
+import LangToggle from './components/LangToggle.jsx'
+import { useCopy } from './i18n/LanguageContext.jsx'
 import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
 import logoSupabase from './assets/logos/supabase_wordmark_light.svg'
 import logoOpenai from './assets/logos/openai_wordmark_light.svg'
@@ -54,29 +56,30 @@ const coverModules = import.meta.glob('./assets/covers/*.{png,jpg,jpeg,webp,avif
   eager: true,
   import: 'default',
 })
-// Per-project metadata, keyed by the cover filename slug.
+// Per-project metadata, keyed by the cover filename slug. Product names stay in
+// their original form in both languages; descriptions come from src/i18n/copy.
 const PROJECT_META = {
-  ASCI: { title: 'ASCI', description: 'AI-native platform for scientists — multi-agent workflows from literature to review.', link: '/asci' },
-  Freeleaps: { title: 'Freeleaps', description: 'Global talent platform connecting developers with opportunities.', link: '/freeleaps' },
-  Solvely: { title: 'Solvely AI', description: 'AI education tools, ranked top-10 on the US App Store.', link: '/solvely' },
-  Wawawriter: { title: 'Wawa Writer', description: 'AI long-form writing studio built for creators.', link: '/wawawriter' },
-  Windpop: { title: 'Windpop', description: 'AI creative-writing product — end-to-end UX & growth.', link: '/windpop' },
-  overmind: { title: 'OVERMIND', description: 'The All-in-One Platform for Enterprise Product Development.', link: '/overmind' },
-  数云: { title: '数云 Shuyun', description: 'Consumer-centric commercial intelligence platform.' },
+  ASCI: { title: 'ASCI', link: '/asci' },
+  Freeleaps: { title: 'Freeleaps', link: '/freeleaps' },
+  Solvely: { title: 'Solvely AI', link: '/solvely' },
+  Wawawriter: { title: 'Wawa Writer', link: '/wawawriter' },
+  Windpop: { title: 'Windpop', link: '/windpop' },
+  overmind: { title: 'OVERMIND', link: '/overmind' },
+  数云: { title: '数云 Shuyun' },
 }
 const coverItems = Object.keys(coverModules)
   .sort()
   .map((k) => {
     const slug = k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
     const meta = PROJECT_META[slug] || {}
-    return { src: coverModules[k], title: meta.title || slug, description: meta.description, link: meta.link || '#work' }
+    return { src: coverModules[k], slug, title: meta.title || slug, link: meta.link || '#work' }
   })
 
 // Full-screen flowing-menu entries. Images reuse the project covers for the marquee.
-const menuItems = [
-  { link: '#top', text: 'Hero', image: coverItems[0]?.src },
-  { link: '#work', text: 'Work', image: coverItems[1]?.src },
-  { link: '#contact', text: 'Contact', image: coverItems[3]?.src },
+const MENU_SECTIONS = [
+  { link: '#top', key: 'hero', image: coverItems[0]?.src },
+  { link: '#work', key: 'work', image: coverItems[1]?.src },
+  { link: '#contact', key: 'contact', image: coverItems[3]?.src },
 ]
 
 /* ---------- Scroll reveal (IntersectionObserver) ---------- */
@@ -145,14 +148,16 @@ function Magnetic({ children, strength = 0.35, className = '', ...rest }) {
 
 /* ---------- Nav ---------- */
 function Nav({ onMenu }) {
+  const c = useCopy('common')
   return (
     <nav className="nav">
-      <a href="#top" className="brand" data-cursor="link" data-cursor-label="Home" aria-label="Home">
-        <img src="/logo.png" alt="Logo" className="brand-logo" />
+      <a href="#top" className="brand" data-cursor="link" data-cursor-label={c.home} aria-label={c.home}>
+        <img src="/logo.png" alt={c.logoAlt} className="brand-logo" />
       </a>
       <div className="nav-actions">
-        <button className="menu-btn" data-cursor="link" onClick={onMenu} aria-label="Open menu">
-          Menu
+        <LangToggle variant="nav" />
+        <button className="menu-btn" data-cursor="link" onClick={onMenu} aria-label={c.openMenu}>
+          {c.menu}
           <span className="bars"><span /><span /></span>
         </button>
       </div>
@@ -162,6 +167,13 @@ function Nav({ onMenu }) {
 
 /* ---------- Full-screen flowing menu ---------- */
 function MenuOverlay({ open, onClose }) {
+  const c = useCopy('common')
+  const menuItems = MENU_SECTIONS.map((section) => ({
+    link: section.link,
+    image: section.image,
+    text: c.menuItems?.[section.key] || section.key,
+  }))
+
   useEffect(() => {
     if (!open) return
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
@@ -220,7 +232,7 @@ function MenuOverlay({ open, onClose }) {
             marqueeTextColor="#0a0a0f"
             borderColor="rgba(255,255,255,0.18)"
             onItemClick={handleMenuItemClick}
-            closeLabel="Close"
+            closeLabel={c.close}
             onClose={onClose}
           />
         </motion.div>
@@ -231,6 +243,7 @@ function MenuOverlay({ open, onClose }) {
 
 /* ---------- Hero ---------- */
 function Hero({ ready }) {
+  const t = useCopy('home')
   return (
     <section className="hero hero-pd" id="top">
       <div className="pd-inner">
@@ -241,7 +254,7 @@ function Hero({ ready }) {
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           >
-            Product<br />designer
+            {t.heroTitleTop}<br />{t.heroTitleBottom}
           </motion.h1>
           <motion.p
             className="pd-copy"
@@ -249,7 +262,7 @@ function Hero({ ready }) {
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
           >
-            I believe great design isn't about creating interfaces—it's about solving the right problems. Every design decision should begin with understanding users, be validated by data, and ultimately create value for both people and the business.
+            {t.heroCopy}
           </motion.p>
         </div>
         <motion.div
@@ -258,7 +271,7 @@ function Hero({ ready }) {
           animate={ready ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
         >
-          <img src={heroPortrait} alt="Simmon Jay Max — product designer" loading="eager" decoding="async" fetchpriority="high" />
+          <img src={heroPortrait} alt={t.heroPortraitAlt} loading="eager" decoding="async" fetchpriority="high" />
         </motion.div>
       </div>
     </section>
@@ -267,6 +280,7 @@ function Hero({ ready }) {
 
 /* ---------- Showreel modal ---------- */
 function Reel({ open, onClose }) {
+  const c = useCopy('common')
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
 
@@ -296,7 +310,7 @@ function Reel({ open, onClose }) {
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose}
-          data-cursor="link" data-cursor-label="Close"
+          data-cursor="link" data-cursor-label={c.close}
           style={{ position: 'fixed', inset: 0, zIndex: 8000, background: 'rgba(10,9,7,0.92)', display: 'grid', placeItems: 'center', padding: 'var(--pad)' }}
         >
           <motion.div
@@ -304,7 +318,7 @@ function Reel({ open, onClose }) {
             transition={{ duration: 0.5, ease: [0.62, 0.05, 0.01, 0.99] }}
             onClick={togglePlay}
             data-cursor="media"
-            data-cursor-label={playing ? 'Pause' : 'Play'}
+            data-cursor-label={playing ? c.pause : c.play}
             style={{ position: 'relative', width: 'min(1100px, 100%)', aspectRatio: '16/9', borderRadius: 10, overflow: 'hidden',
               background: '#000', display: 'grid', placeItems: 'center' }}
           >
@@ -389,6 +403,7 @@ export default function App() {
     return (
       <>
         <Cursor />
+        <LangToggle variant="float" />
         <Suspense fallback={<RouteFallback />}>
           <DetailPage />
         </Suspense>

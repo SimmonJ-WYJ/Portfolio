@@ -1,0 +1,66 @@
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.lang-toggle-opt {
+  background: none;
+  border: 0;
+  padding: 2px 1px;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s var(--ease, ease);
+}
+
+.lang-toggle-opt:hover { opacity: 0.85; }
+.lang-toggle-opt.is-active { opacity: 1; }
+
+.lang-toggle-opt:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.lang-toggle-sep {
+  width: 1px;
+  height: 12px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+/* ---------- nav variant (homepage) ---------- */
+.lang-toggle--nav {
+  /* sits left of the Menu button inside .nav-actions */
+  font-size: 15px;
+}
+
+/* ---------- float variant (project detail pages) ---------- */
+.lang-toggle--float {
+  position: fixed;
+  top: clamp(16px, 2.5vw, 28px);
+  right: clamp(16px, 2.5vw, 28px);
+  z-index: 60;
+  gap: 9px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(17, 16, 14, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+
+.lang-toggle--float:hover { background: rgba(17, 16, 14, 1); }
+
+@media (max-width: 640px) {
+  .lang-toggle--float { padding: 8px 13px; font-size: 12px; }
+}

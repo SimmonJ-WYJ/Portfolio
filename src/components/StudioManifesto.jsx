@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
+import { useCopy, useLang } from '../i18n/LanguageContext.jsx'
 import './StudioManifesto.css'
 
 // Replica of svz.io's second-screen scroll interaction:
@@ -6,38 +7,30 @@ import './StudioManifesto.css'
 // scroll, while the red service keywords migrate (FLIP translate + scale) into
 // a centered vertical stack. Labeled project tiles float upward behind it.
 
-const KEYWORDS = ['PRODUCT THINKING', 'AI-NATIVE', 'DATA-DRIVEN', 'END-TO-END', 'USER-CENTERED', 'SCALABLE']
-
-const PARAGRAPH =
-  "I'M SIMMON — A PRODUCT DESIGNER WITH 8 YEARS OF EXPERIENCE BUILDING PRODUCTS FROM STRATEGY TO LAUNCH. " +
-  "I BELIEVE GREAT DESIGN ISN'T ABOUT CREATING BEAUTIFUL INTERFACES — IT'S ABOUT SOLVING THE RIGHT PROBLEMS. " +
-  'EVERY PROJECT STAYS USER-CENTERED: UNDERSTANDING PEOPLE, DEFINING THE PRODUCT DIRECTION, AND VALIDATING IDEAS BEFORE A SINGLE SCREEN IS DESIGNED. ' +
-  'MY APPROACH COMBINES PRODUCT THINKING, DATA-DRIVEN DECISION MAKING, AI-NATIVE WORKFLOWS, AND END-TO-END DESIGN EXECUTION. ' +
-  'FROM INFORMATION ARCHITECTURE AND INTERACTION DESIGN TO POLISHED INTERFACES AND DEVELOPER COLLABORATION, I TRANSFORM COMPLEX SYSTEMS INTO INTUITIVE EXPERIENCES — SIMPLE TO USE, SCALABLE TO GROW, AND MEANINGFUL FOR BOTH USERS AND BUSINESSES. ' +
-  "TO ME, DESIGN DOESN'T END AT LAUNCH. THE BEST PRODUCTS ARE SHAPED THROUGH CONTINUOUS LEARNING, ITERATION, AND MEASURABLE OUTCOMES."
-
-// Tokenize once: greedily mark the first occurrence of each keyword.
+// Tokenize: greedily mark the first occurrence of each keyword.
 // Phrase keywords (e.g. "PRODUCT THINKING") span several words and stay one node.
-const TOKENS = (() => {
-  const core = (s) => s.replace(/[^A-Za-z-]/g, '').toUpperCase()
-  const words = PARAGRAPH.split(' ')
+// The Chinese paragraph is authored with spaces between phrases so it tokenizes
+// through the same path; `core` therefore keeps CJK codepoints as well as latin.
+function buildTokens(paragraph, keywords) {
+  const core = (s) => s.replace(/[^A-Za-z一-鿿-]/g, '').toUpperCase()
+  const words = paragraph.split(' ')
   const used = new Set()
   const tokens = []
   for (let i = 0; i < words.length; i += 1) {
-    const ki = KEYWORDS.findIndex(
+    const ki = keywords.findIndex(
       (kw, k) => !used.has(k) && kw.split(' ').every((part, j) => core(words[i + j] || '') === part),
     )
     if (ki !== -1) {
-      const parts = KEYWORDS[ki].split(' ')
+      const parts = keywords[ki].split(' ')
       used.add(ki)
-      tokens.push({ text: words.slice(i, i + parts.length).join(' '), core: KEYWORDS[ki], isKeyword: true, ki })
+      tokens.push({ text: words.slice(i, i + parts.length).join(' '), core: keywords[ki], isKeyword: true, ki })
       i += parts.length - 1
     } else {
       tokens.push({ text: words[i], core: core(words[i]), isKeyword: false, ki: -1 })
     }
   }
   return tokens
-})()
+}
 
 // Floating tiles: alternating left / right sides, evenly spaced vertically
 // (wide gaps so they stay separated while drifting). Speeds kept close to 1
@@ -54,6 +47,10 @@ const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v))
 const smooth = (v) => v * v * (3 - 2 * v)
 
 export default function StudioManifesto({ covers = [] }) {
+  const { lang } = useLang()
+  const t = useCopy('home')
+  const KEYWORDS = t.manifestoKeywords
+  const TOKENS = useMemo(() => buildTokens(t.manifesto, KEYWORDS), [t.manifesto, KEYWORDS])
   const tiles = covers.slice(0, TILE_POS.length).map((c, i) => ({ ...c, pos: TILE_POS[i] }))
   const sectionRef = useRef(null)
   const stageRef = useRef(null)
@@ -64,7 +61,11 @@ export default function StudioManifesto({ covers = [] }) {
   const deltas = useRef([]) // {dx, dy, scale} per keyword
 
   // Measure FLIP deltas from each paragraph keyword to its stacked target.
+  // Re-runs on language change: the paragraph is re-tokenized, so both the node
+  // count and every measured delta change.
   useLayoutEffect(() => {
+    wordRefs.current.length = TOKENS.length
+    deltas.current = []
     const measure = () => {
       keywordRefs.current.forEach((kw, ki) => {
         const target = stackRefs.current[ki]
@@ -81,13 +82,13 @@ export default function StudioManifesto({ covers = [] }) {
     }
     measure()
     if (document.fonts?.ready) document.fonts.ready.then(measure)
-    const t = setTimeout(measure, 600)
+    const timer = setTimeout(measure, 600)
     window.addEventListener('resize', measure)
     return () => {
-      clearTimeout(t)
+      clearTimeout(timer)
       window.removeEventListener('resize', measure)
     }
-  }, [])
+  }, [TOKENS])
 
   // Scroll-linked choreography.
   useEffect(() => {
@@ -141,12 +142,12 @@ export default function StudioManifesto({ covers = [] }) {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
     }
-  }, [])
+  }, [TOKENS])
 
   let wordCounter = -1
 
   return (
-    <section className="studio-manifesto" ref={sectionRef} aria-label="Studio manifesto">
+    <section className="studio-manifesto" ref={sectionRef} aria-label={t.manifestoLabel}>
       <div className="sm-stage" ref={stageRef}>
         {/* floating project tiles */}
         <div className="sm-tiles" aria-hidden="true">
@@ -167,8 +168,8 @@ export default function StudioManifesto({ covers = [] }) {
           ))}
         </div>
 
-        {/* manifesto paragraph */}
-        <p className="sm-para">
+        {/* manifesto paragraph — keyed by language so ref arrays rebuild cleanly */}
+        <p className="sm-para" key={lang} data-lang={lang}>
           {TOKENS.map((tok, i) => {
             if (tok.isKeyword) {
               const suffix = tok.text.slice(tok.core.length) // trailing punctuation
@@ -198,7 +199,7 @@ export default function StudioManifesto({ covers = [] }) {
         </p>
 
         {/* hidden target stack (measured for FLIP) */}
-        <div className="sm-stack" aria-hidden="true">
+        <div className="sm-stack" aria-hidden="true" data-lang={lang}>
           {KEYWORDS.map((w, ki) => (
             <span key={w} ref={(n) => (stackRefs.current[ki] = n)}>
               {w}

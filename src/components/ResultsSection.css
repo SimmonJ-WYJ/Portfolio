@@ -1,0 +1,148 @@
+.results-section {
+  padding: 120px 0;
+  background: #111827;
+  color: #ffffff;
+}
+
+.results-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.results-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.results-metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+.results-metric {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.results-metric:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.results-metric-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.results-metric-category {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.results-metric-value {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.results-metric-detail {
+  font-size: 16px;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+.results-business {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 48px;
+}
+
+.results-business-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.results-business-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.results-business-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+.results-business-bullet {
+  flex-shrink: 0;
+  color: #60a5fa;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .results-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .results-section {
+    padding: 160px 0;
+  }
+
+  .results-metrics {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .results-metric {
+    padding: 40px 24px;
+  }
+
+  .results-metric-value {
+    font-size: 56px;
+  }
+
+  .results-business {
+    padding: 64px;
+  }
+
+  .results-business-item {
+    font-size: 19px;
+  }
+}

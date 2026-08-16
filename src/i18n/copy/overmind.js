@@ -1,0 +1,63 @@
+// OVERMIND case study: the page is a stack of exported design boards, so the
+// only copy is the alt text for each section image. `alts` is positional — entry
+// i describes section image i, and both languages must keep the same length.
+const overmind = {
+  en: {
+    alts: [
+      'OVERMIND project management platform — product key visual',
+      'Project background — managing granular project workflows',
+      'Experience maps',
+      'Design goals — three objectives and their key results',
+      'Objective 1, simplify paths to increase efficiency — KR1 shorten the operation path: personal workspace',
+      'Objective 1 — KR1 efficient operation path, before/now, with frequent actions surfaced',
+      'Objective 1 — KR2 improve container efficiency: consolidated table hierarchy, bullet charts',
+      'Objective 1 — KR2 drawer and modal refinements for reviewing records',
+      'Objective 1 — KR2 visual noise reduction: Hick’s law and a collapsed action bar',
+      'Objective 1 — KR2 milestone rating bullet chart, before/now',
+      'Objective 2, tiered content for faster reading — refined table framework',
+      'Objective 2 — custom filter conditions',
+      'Objective 2 — reallocating the high-frequency visual path, before/now',
+      'Objective 2 — restrained design to reduce distraction: information de-noising',
+      'Objective 2 — type size, line height and spacing specification',
+      'Objective 2 — button styles, three approaches compared',
+      'Objective 2 — restrained design for the staffing schedule module, before/now',
+      'Objective 3, raise collaboration efficiency — 24-column workspace grid',
+      'Objective 3 — four-layer XYZ page structure',
+      'Icon design specification — tab navigation and functional icons',
+      'Objective 3 — adaptive modal height specification',
+      'Objective 3 — component library taxonomy',
+      'Objective 3 — component library covers 83% of scenarios',
+      'User feedback validation and improvement — business efficiency data',
+    ],
+  },
+  zh: {
+    alts: [
+      'OVERMIND 项目管理平台 — 产品主视觉',
+      'Project background 项目背景 — 管理细化项目流程',
+      'Experience maps 用户体验地图',
+      'Design purpose 设计目标 — 三大 Objective 与关键结果',
+      'Objective 1 路径简化增加效率 — KR1 缩短操作路径:个人工作台',
+      'Objective 1 — KR1 高效的操作路径 before/now 与常用功能前置',
+      'Objective 1 — KR2 提升容器效率:整合表格信息层级、选用子弹图',
+      'Objective 1 — KR2 抽屉弹窗优化查看方式',
+      'Objective 1 — KR2 视觉降噪阅读减负:希克定律与操作栏缩纳',
+      'Objective 1 — KR2 里程碑评级子弹图 before/now',
+      'Objective 2 内容分级让阅读更高效 — 优化表格框架',
+      'Objective 2 — 自定义筛选条件',
+      'Objective 2 — 调拨高频视觉动线 before/now',
+      'Objective 2 — 克制设计降低干扰:信息降噪',
+      'Objective 2 — 文字字号、行高与间距规范',
+      'Objective 2 — 按钮样式三风格对比',
+      'Objective 2 — 人员排期模块克制设计 before/now',
+      'Objective 3 提升合作效率 — 24 栅格化工作台',
+      'Objective 3 — 页面 XYZ 四层级划分',
+      '图标设计规范 — TAB 导航与功能图标',
+      'Objective 3 — 弹窗自适应高度规范',
+      'Objective 3 — 组件库分类体系',
+      'Objective 3 — 组件库涵盖场景达 83%',
+      '用户反馈验证和提升 — 业务效率数据',
+    ],
+  },
+}
+
+export default overmind

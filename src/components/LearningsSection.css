@@ -1,0 +1,140 @@
+.learnings-section {
+  padding: 120px 0;
+  background: #ffffff;
+}
+
+.learnings-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.learnings-block {
+}
+
+.learnings-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #868e96;
+  margin-bottom: 48px;
+}
+
+.learnings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.learning-card {
+  position: relative;
+  padding: 32px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #1971c2;
+}
+
+.learning-number {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  font-size: 48px;
+  font-weight: 800;
+  color: #e9ecef;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.learning-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.learning-text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #495057;
+  margin: 0;
+  position: relative;
+}
+
+.nextsteps-block {
+  background: linear-gradient(135deg, #1971c2 0%, #1864ab 100%);
+  border-radius: 16px;
+  padding: 48px;
+  color: #ffffff;
+}
+
+.nextsteps-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 32px;
+}
+
+.nextsteps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nextsteps-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.nextsteps-bullet {
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (min-width: 768px) {
+  .learnings-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .learning-card {
+    padding: 40px 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .learnings-section {
+    padding: 160px 0;
+  }
+
+  .learning-title {
+    font-size: 22px;
+  }
+
+  .learning-text {
+    font-size: 17px;
+  }
+
+  .nextsteps-block {
+    padding: 64px;
+  }
+
+  .nextsteps-item {
+    font-size: 19px;
+  }
+}
