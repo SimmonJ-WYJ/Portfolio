@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import './SolvelyPage.css'
 import { useMediaVisibility } from './useMediaVisibility.js'
 import LangToggle from './LangToggle.jsx'
+import PluginsShowcase from './PluginsShowcase.jsx'
 import heroImg from '../assets/solvely/hero.jpg'
 import icHomework from '../assets/solvely/icons/homework.svg'
 import icQuiz from '../assets/solvely/icons/quiz.svg'
@@ -216,6 +217,9 @@ export default function SolvelyPage() {
       <section className="sv-hero">
         <img src={heroImg} alt="Solvely — take a picture and get instant homework help" loading="eager" decoding="async" fetchpriority="high" />
       </section>
+
+      {/* Plugins Showcase - Complete product design ownership */}
+      <PluginsShowcase />
 
       <section className="sv-intro">
         <span className="sv-year">2025</span>

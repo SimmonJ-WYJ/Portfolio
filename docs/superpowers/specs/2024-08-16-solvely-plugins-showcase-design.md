@@ -854,35 +854,31 @@ const t = useCopy('solvely')  // Existing i18n hook
 
 ### Before Implementation
 
-1. **Matrix wall interaction:**
+1. **Matrix wall interaction:** ✅ **CONFIRMED**
    - Q: Should thumbnails open a lightbox with full-size image?
-   - Options:
-     a) Yes, with left/right arrows to browse (more interactive)
-     b) No, thumbnails are decorative proof of coverage (simpler)
-   - **Recommendation:** Start with (b), add (a) later if user feedback requests it
+   - **Decision:** Yes, with left/right arrows to browse (more interactive)
+   - User can click any thumbnail → opens lightbox with full-size image
+   - Arrow keys / on-screen arrows to navigate between images in same category
+   - ESC key / close button to exit
 
-2. **Flow deep-dive format:**
+2. **Flow deep-dive format:** ✅ **CONFIRMED**
    - Q: Show Light/Dark side-by-side or as tabs/toggle?
-   - Options:
-     a) Side-by-side (better for comparison)
-     b) Toggle switch (saves vertical space)
-   - **Recommendation:** Side-by-side for Flow 1 and 3, where Light/Dark is the point
+   - **Decision:** Side-by-side (better for comparison)
+   - Applies to Flow 1 (Onboarding) and Flow 3 (Dark Mode) where comparison is the point
 
-3. **Matrix wall thumbnail sources:**
-   - Q: Confirm asset generation strategy (Option A/B/C)?
-   - **Recommendation:** Option C (hybrid) as detailed in Section 6
+3. **Matrix wall thumbnail sources:** ✅ **CONFIRMED**
+   - **Decision:** Option C (hybrid approach)
+   - Key flows: High-quality individual screenshots
+   - Matrix wall: Crop from full page screenshot for speed
 
-4. **Placement in page:**
-   - Q: After OverviewSection or after existing intro section?
-   - **Recommendation:** After OverviewSection, before intro (rationale in Section 4)
+4. **Placement in page:** ✅ **CONFIRMED**
+   - **Decision:** After OverviewSection, before existing intro section
+   - Rationale: User understands product context, then sees design breadth
 
-5. **Mobile experience:**
-   - Q: How should matrix wall adapt on mobile?
-   - Options:
-     a) Show all categories collapsed, expand on tap
-     b) Show all, reduce columns to 2-3
-     c) Show only key flows on mobile, link to matrix on desktop
-   - **Recommendation:** Option (b) - show all with reduced columns. It's scrollable but provides proof of coverage.
+5. **Mobile experience:** ✅ **CONFIRMED**
+   - **Decision:** Show all categories, reduce columns to 2-3
+   - Lightbox still works on mobile (swipe to navigate)
+   - Scrollable but provides full proof of coverage
 
 ---
 
