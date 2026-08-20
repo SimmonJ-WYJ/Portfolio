@@ -239,27 +239,6 @@ export default {
       'Voice input for hands-free learning',
     ],
 
-    // Plugins showcase
-    pluginsOwnershipTitle: 'Browser Extension - Complete Product Design',
-    pluginsOwnershipStatement: 'As the lead product designer for the Solvely browser extension, I owned the complete design lifecycle from concept to delivery. This included information architecture, user flows, interaction design, visual design for 70+ feature modules, and developer handoff specifications. The work spans the entire product journey: first-time installation, core problem-solving workflows, edge cases, accessibility, dark mode, and cross-platform adaptation.',
-
-    pluginsFlowsTitle: 'Key Design Flows',
-
-    pluginsFlow1Title: 'Onboarding Experience',
-    pluginsFlow1Subtitle: 'First-touch user experience and progressive trust-building',
-    pluginsFlow1Decision: 'Progressive Permission Requests',
-    pluginsFlow1Rationale: 'Users are anxious about giving browser extensions broad permissions. By requesting permissions contextually (e.g., "Allow screenshot capture when you click \'Solve\'"), we reduce friction and build trust incrementally.',
-
-    pluginsFlow2Title: 'Core Problem-Solving Workflow',
-    pluginsFlow2Subtitle: 'Multi-modal input and AI-powered solution display',
-    pluginsFlow2Decision: 'Screenshot-first Input',
-    pluginsFlow2Rationale: 'User research showed students often encounter problems while reading online content. Making screenshot the primary input method (vs. typing) reduces friction by 67% and matches the natural workflow of "see problem → get help."',
-
-    pluginsFlow3Title: 'Dark Mode System',
-    pluginsFlow3Subtitle: 'Semantic color system and accessibility compliance',
-    pluginsFlow3Decision: 'Semantic color system, not just "invert"',
-    pluginsFlow3Rationale: 'True dark mode requires rethinking contrast, not just flipping colors. We use a semantic token system (bg-primary, text-primary, accent-info) that maps to different absolute values in light/dark, ensuring WCAG AAA compliance in both themes.',
-
     // Alt text for images
     alts: {
       hero: 'Solvely AI product showcase',
@@ -530,27 +509,6 @@ export default {
       '集成主流 LMS 平台（Canvas、Blackboard）',
       '语音输入实现免手操作学习',
     ],
-
-    // Plugins showcase
-    pluginsOwnershipTitle: '浏览器插件 - 完整产品设计',
-    pluginsOwnershipStatement: '作为 Solvely 浏览器插件的首席产品设计师，我负责从概念到交付的完整设计生命周期。包括信息架构、用户流程、交互设计、70+ 个功能模块的视觉设计以及开发交付规格。工作涵盖完整的产品旅程：首次安装、核心解题流程、边界状态、无障碍设计、暗黑模式和跨平台适配。',
-
-    pluginsFlowsTitle: '关键设计流程',
-
-    pluginsFlow1Title: '首次安装体验',
-    pluginsFlow1Subtitle: '首次接触的用户体验和渐进式信任建立',
-    pluginsFlow1Decision: '渐进式权限请求',
-    pluginsFlow1Rationale: '用户对授予浏览器插件广泛权限感到焦虑。通过上下文式请求权限（例如"当你点击\'解题\'时允许截图捕获"），我们减少摩擦并逐步建立信任。',
-
-    pluginsFlow2Title: '核心解题工作流',
-    pluginsFlow2Subtitle: '多模态输入和 AI 驱动的解决方案展示',
-    pluginsFlow2Decision: '截图优先输入',
-    pluginsFlow2Rationale: '用户研究表明，学生经常在阅读在线内容时遇到问题。将截图作为主要输入方式（而非打字）减少了 67% 的摩擦，符合"看到问题 → 获得帮助"的自然工作流。',
-
-    pluginsFlow3Title: '暗黑模式系统',
-    pluginsFlow3Subtitle: '语义化颜色系统和无障碍合规性',
-    pluginsFlow3Decision: '语义化颜色系统，而非简单"反转"',
-    pluginsFlow3Rationale: '真正的暗黑模式需要重新思考对比度，而不仅仅是翻转颜色。我们使用语义化令牌系统（bg-primary、text-primary、accent-info），在亮色和暗色模式下映射到不同的绝对值，确保两种主题都符合 WCAG AAA 标准。',
 
     alts: {
       hero: 'Solvely AI 产品展示',
