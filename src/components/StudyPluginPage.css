@@ -1,0 +1,109 @@
+.study-plugin {
+  min-height: 100dvh;
+  background: #eef1f5;
+  color: #141a21;
+  font-family: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.study-plugin-back {
+  position: fixed;
+  top: clamp(16px, 2.5vw, 28px);
+  left: clamp(16px, 2.5vw, 28px);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px 10px 14px;
+  border-radius: 999px;
+  background: rgba(17, 16, 14, 0.85);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.study-plugin-back:hover {
+  background: #11100e;
+}
+
+.study-plugin-back:active {
+  transform: translateY(1px);
+}
+
+.study-plugin-back svg {
+  transition: transform 0.3s ease;
+}
+
+.study-plugin-back:hover svg {
+  transform: translateX(-3px);
+}
+
+.study-plugin-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1440 / 739;
+  overflow: hidden;
+  background: #eef1f5;
+}
+
+.study-plugin-hero-image {
+  position: absolute;
+  top: 21.65088%;
+  left: 15.694444%;
+  display: block;
+  width: 68.611111%;
+  height: auto;
+  animation: study-plugin-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes study-plugin-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .study-plugin-hero {
+    min-height: 100dvh;
+    aspect-ratio: auto;
+  }
+
+  .study-plugin-hero-image {
+    top: 18%;
+    left: 50%;
+    width: min(150vw, 900px);
+    max-width: none;
+    transform: translateX(-50%);
+  }
+
+  @keyframes study-plugin-enter {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-plugin-hero-image {
+    animation: none;
+  }
+
+  .study-plugin-back,
+  .study-plugin-back svg {
+    transition: none;
+  }
+}

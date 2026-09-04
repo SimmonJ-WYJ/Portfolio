@@ -31,7 +31,7 @@
 - Consumes: the existing `coverModules`, `PROJECT_META`, `detailRoutes`, and `HorizontalShowcase` item contract `{ src, title, description, link }`.
 - Produces: a first `coverItems` entry with `title: 'Study Plugin'`, `link: '/study-plugin'`, plus a lazy route component registered at `/study-plugin`.
 
-- [ ] **Step 1: Write the failing source contract check**
+- [x] **Step 1: Write the failing source contract check**
 
 Create `scripts/check-study-plugin.mjs` with Node assertions that read `src/App.jsx` and verify the lazy import, route, metadata, and explicit first-position ordering. It must also confirm that `/solvely` remains present and that both committed image assets exist.
 
@@ -52,13 +52,13 @@ assert.ok(existsSync(new URL('../src/assets/study-plugin/hero.png', import.meta.
 console.log('Study Plugin source contract OK')
 ```
 
-- [ ] **Step 2: Run the check to verify it fails**
+- [x] **Step 2: Run the check to verify it fails**
 
 Run: `node scripts/check-study-plugin.mjs`
 
 Expected: FAIL because Study Plugin is not yet registered and its assets do not exist.
 
-- [ ] **Step 3: Add the cover asset and App wiring**
+- [x] **Step 3: Add the cover asset and App wiring**
 
 Convert the supplied wide PNG to high-quality JPEG at `src/assets/covers/StudyPlugin.jpg`. In `src/App.jsx`, add:
 
@@ -92,7 +92,7 @@ const coverItems = Object.keys(coverModules)
   })
 ```
 
-- [ ] **Step 4: Run the contract check**
+- [x] **Step 4: Run the contract check**
 
 Run: `node scripts/check-study-plugin.mjs`
 
@@ -110,7 +110,7 @@ Expected: it may still fail only on the missing hero page/asset until Task 2 is 
 - Consumes: `/study-plugin` from `detailRoutes` and the local `hero.png` asset.
 - Produces: default React component `StudyPluginPage`, containing `.study-plugin`, `.study-plugin-back`, `.study-plugin-hero`, and `.study-plugin-hero-image`.
 
-- [ ] **Step 1: Extend the failing contract check for page semantics**
+- [x] **Step 1: Extend the failing contract check for page semantics**
 
 Append assertions that confirm the page imports the hero asset and CSS, exposes a homepage Back link, has descriptive image alt text, and that CSS contains the Figma reference geometry plus a mobile breakpoint.
 
@@ -129,13 +129,13 @@ assert.match(css, /top:\s*21\.65088%/)
 assert.match(css, /@media \(max-width: 700px\)/)
 ```
 
-- [ ] **Step 2: Run the check to verify the page contract fails**
+- [x] **Step 2: Run the check to verify the page contract fails**
 
 Run: `node scripts/check-study-plugin.mjs`
 
 Expected: FAIL because the page component and CSS are not present yet.
 
-- [ ] **Step 3: Add the source hero and component**
+- [x] **Step 3: Add the source hero and component**
 
 Copy the supplied complete PNG unchanged to `src/assets/study-plugin/hero.png`. Create `StudyPluginPage.jsx`:
 
@@ -237,13 +237,13 @@ Create `StudyPluginPage.css` with the Figma-derived geometry and responsive beha
 }
 ```
 
-- [ ] **Step 4: Run source and production verification**
+- [x] **Step 4: Run source and production verification**
 
 Run: `node scripts/check-study-plugin.mjs && npm run build && npm run check:bundle && git diff --check`
 
 Expected: source contract prints `Study Plugin source contract OK`; both Vite builds complete successfully; bundle check passes; no whitespace errors.
 
-- [ ] **Step 5: Verify routes visually**
+- [x] **Step 5: Verify routes visually**
 
 Run `npm run dev -- --host 127.0.0.1` and inspect desktop 1440px and a narrow mobile viewport:
 
@@ -252,7 +252,7 @@ Run `npm run dev -- --host 127.0.0.1` and inspect desktop 1440px and a narrow mo
 - `/solvely` still renders its original case study.
 - Browser console contains no route, asset, or React errors.
 
-- [ ] **Step 6: Commit implementation**
+- [x] **Step 6: Commit implementation**
 
 ```bash
 git add src/App.jsx src/components/StudyPluginPage.jsx src/components/StudyPluginPage.css src/assets/covers/StudyPlugin.jpg src/assets/study-plugin/hero.png scripts/check-study-plugin.mjs

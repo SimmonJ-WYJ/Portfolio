@@ -36,6 +36,7 @@ import { useLenis } from './components/useLenis.js'
 
 const FreeleapsPage = lazy(() => import('./components/FreeleapsPage.jsx'))
 const SolvelyPage = lazy(() => import('./components/SolvelyPage.jsx'))
+const StudyPluginPage = lazy(() => import('./components/StudyPluginPage.jsx'))
 const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
 const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
 const AsciPage = lazy(() => import('./components/AsciPage.jsx'))
@@ -43,6 +44,7 @@ const OvermindPage = lazy(() => import('./components/OvermindPage.jsx'))
 const HomeContent = lazy(() => import('./components/HomeContent.jsx'))
 
 const detailRoutes = {
+  '/study-plugin': StudyPluginPage,
   '/freeleaps': FreeleapsPage,
   '/solvely': SolvelyPage,
   '/wawawriter': WawawriterPage,
@@ -59,6 +61,7 @@ const coverModules = import.meta.glob('./assets/covers/*.{png,jpg,jpeg,webp,avif
 // Per-project metadata, keyed by the cover filename slug. Product names stay in
 // their original form in both languages; descriptions come from src/i18n/copy.
 const PROJECT_META = {
+  StudyPlugin: { title: 'Study Plugin', link: '/study-plugin' },
   ASCI: { title: 'ASCI', link: '/asci' },
   Freeleaps: { title: 'Freeleaps', link: '/freeleaps' },
   Solvely: { title: 'Solvely AI', link: '/solvely' },
@@ -68,7 +71,7 @@ const PROJECT_META = {
   数云: { title: '数云 Shuyun' },
 }
 const coverItems = Object.keys(coverModules)
-  .sort()
+  .sort((a, b) => Number(b.includes('StudyPlugin')) - Number(a.includes('StudyPlugin')) || a.localeCompare(b))
   .map((k) => {
     const slug = k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
     const meta = PROJECT_META[slug] || {}
