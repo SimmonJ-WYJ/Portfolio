@@ -14,7 +14,7 @@ function HsCard({ item, i, x, offset, vw, width }) {
 
   return (
     <motion.div className="hs-card" style={{ y }}>
-      <a className="hs-card-media" href={item.link || '#work'} data-cursor="media" data-cursor-label="View">
+      <a className={`hs-card-media hs-card-media--${item.fit || 'cover'}`} href={item.link || '#work'} data-cursor="media" data-cursor-label="View">
         {item.src ? (
           <img src={item.src} alt={item.title || `Project ${i + 1}`} loading="lazy" decoding="async" />
         ) : (

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
 import heroPortrait from './assets/hero/portrait.webp'
+import studyPluginCover from './assets/study-plugin/hero.png'
 import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
 import LangToggle from './components/LangToggle.jsx'
@@ -75,7 +76,13 @@ const coverItems = Object.keys(coverModules)
   .map((k) => {
     const slug = k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
     const meta = PROJECT_META[slug] || {}
-    return { src: coverModules[k], slug, title: meta.title || slug, link: meta.link || '#work' }
+    return {
+      src: slug === 'StudyPlugin' ? studyPluginCover : coverModules[k],
+      fit: slug === 'StudyPlugin' ? 'contain' : 'cover',
+      slug,
+      title: meta.title || slug,
+      link: meta.link || '#work',
+    }
   })
 
 // Full-screen flowing-menu entries. Images reuse the project covers for the marquee.
