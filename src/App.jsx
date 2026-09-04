@@ -38,6 +38,7 @@ import { useLenis } from './components/useLenis.js'
 const FreeleapsPage = lazy(() => import('./components/FreeleapsPage.jsx'))
 const SolvelyPage = lazy(() => import('./components/SolvelyPage.jsx'))
 const StudyPluginPage = lazy(() => import('./components/StudyPluginPage.jsx'))
+const SolvelyPluginsPage = lazy(() => import('./components/SolvelyPluginsPage.jsx'))
 const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
 const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
 const AsciPage = lazy(() => import('./components/AsciPage.jsx'))
@@ -48,6 +49,7 @@ const detailRoutes = {
   '/study-plugin': StudyPluginPage,
   '/freeleaps': FreeleapsPage,
   '/solvely': SolvelyPage,
+  '/solvely-plugins': SolvelyPluginsPage,
   '/wawawriter': WawawriterPage,
   '/windpop': WindpopPage,
   '/asci': AsciPage,
@@ -66,6 +68,7 @@ const PROJECT_META = {
   ASCI: { title: 'ASCI', link: '/asci' },
   Freeleaps: { title: 'Freeleaps', link: '/freeleaps' },
   Solvely: { title: 'Solvely AI', link: '/solvely' },
+  'solvely-plugins': { title: 'Solvely Plugin', link: '/solvely-plugins' },
   Wawawriter: { title: 'Wawa Writer', link: '/wawawriter' },
   Windpop: { title: 'Windpop', link: '/windpop' },
   overmind: { title: 'OVERMIND', link: '/overmind' },
@@ -413,7 +416,6 @@ export default function App() {
     return (
       <>
         <Cursor />
-        <LangToggle variant="float" />
         <Suspense fallback={<RouteFallback />}>
           <DetailPage />
         </Suspense>
