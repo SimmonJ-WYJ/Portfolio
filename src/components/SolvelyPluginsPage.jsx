@@ -19,12 +19,14 @@ import solvelyIpGif from '../assets/solvely-plugins/Solvely ip.gif'
 
 export default function SolvelyPluginsPage() {
   const firstUseVideoRef = useRef(null)
+  const canvasEntryVideoRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   useMediaVisibility(firstUseVideoRef, { autoplay: true })
+  useMediaVisibility(canvasEntryVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -114,6 +116,29 @@ export default function SolvelyPluginsPage() {
           <div className="sp-onboarding-copy">
             <h2 className="sp-onboarding-title">核心功能引导</h2>
             <p>用户第一次接触插件时，并不熟悉产品入口和操作方式。首次体验的目标不是一次介绍所有功能，而是帮助用户完成安装、打开插件，并顺利进入第一次核心操作让用户尽快建立产品认知。我们将首次路径设计为：安装插件 → 打开侧边栏 → 进入 Onboarding → 理解核心操作 → 准备完成。第一次任务将安装、打开插件和首次引导连接成一条连续路径，减少用户安装完成后不知道下一步该做什么的问题</p>
+          </div>
+        </section>
+
+        {/* Canvas entry — Figma feature showcase */}
+        <section className="sp-canvas-entry">
+          <div className="sp-canvas-entry-stage">
+            <img src={firstUseLaptopShell} alt="" className="sp-canvas-entry-shell" />
+            <div className="sp-canvas-entry-video-window">
+              <video
+                ref={canvasEntryVideoRef}
+                src={seamlessLogin}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely Canvas entry flow"
+              />
+            </div>
+          </div>
+          <div className="sp-canvas-entry-copy">
+            <h2 className="sp-canvas-entry-title">将首次体验自然带入真实学习场景</h2>
+            <p>页面嗅探功能会识别用户已经访问过的 Canvas 页面，并在 Onboarding 最后一步生成快捷入口。插件通过嗅探功能自动识别课程环境，一键链接Canvas学习平台，让用户从功能演示自然进入真实任务。</p>
           </div>
         </section>
 

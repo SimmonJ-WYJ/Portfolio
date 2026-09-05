@@ -29,4 +29,19 @@ assert.match(styles, /\.sp-onboarding-video-window\s*\{[\s\S]*left:\s*16\.803%[\
 assert.match(styles, /\.sp-onboarding-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
   'The video must preserve its full width and crop only its source black top band.')
 
+assert.match(page, /useMediaVisibility\(canvasEntryVideoRef, \{ autoplay: true \}\)/,
+  'Canvas-entry video must use visibility-aware autoplay.')
+assert.match(page, /<section className="sp-canvas-entry">[\s\S]*<img src=\{firstUseLaptopShell\} alt="" className="sp-canvas-entry-shell" \/>[\s\S]*<video[\s\S]*ref=\{canvasEntryVideoRef\}[\s\S]*src=\{seamlessLogin\}[\s\S]*autoPlay[\s\S]*muted[\s\S]*loop[\s\S]*playsInline[\s\S]*preload="metadata"/,
+  'Canvas entry must render the supplied MP4 inside its Figma laptop screen window.')
+assert.match(page, /将首次体验自然带入真实学习场景/,
+  'Canvas-entry title must preserve the Figma copy.')
+assert.match(page, /页面嗅探功能会识别用户已经访问过的 Canvas 页面，并在 Onboarding 最后一步生成快捷入口。插件通过嗅探功能自动识别课程环境，一键链接Canvas学习平台，让用户从功能演示自然进入真实任务。/,
+  'Canvas-entry body copy must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-canvas-entry-stage\s*\{[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Canvas-entry stage must preserve the Figma canvas color and corner radius.')
+assert.match(styles, /\.sp-canvas-entry-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*493/,
+  'Canvas-entry video window must match Figma’s 810×493 screen region.')
+assert.match(styles, /\.sp-canvas-entry-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
+  'Canvas-entry video must retain its full width while cropping only the source top black band.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

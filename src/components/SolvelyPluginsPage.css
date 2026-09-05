@@ -252,6 +252,69 @@
   line-height: 1.8;
 }
 
+/* ==================== Canvas Entry ==================== */
+
+.sp-canvas-entry {
+  margin-bottom: 56px;
+}
+
+.sp-canvas-entry-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 574;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-canvas-entry-shell {
+  position: absolute;
+  z-index: 0;
+  left: 9.508%;
+  top: 8.188%;
+  width: 80.984%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sp-canvas-entry-video-window {
+  position: absolute;
+  z-index: 1;
+  left: 16.803%;
+  top: 13.589%;
+  width: 66.393%;
+  aspect-ratio: 810 / 493;
+  overflow: hidden;
+}
+
+.sp-canvas-entry-video-window video {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-3.35%);
+}
+
+.sp-canvas-entry-copy {
+  margin-top: 24px;
+}
+
+.sp-canvas-entry-title {
+  margin: 0 0 4px;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.sp-canvas-entry-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -397,16 +460,24 @@
     margin-bottom: 80px;
   }
 
-  .sp-onboarding-stage {
+  .sp-canvas-entry {
+    margin-bottom: 80px;
+  }
+
+  .sp-onboarding-stage,
+  .sp-canvas-entry-stage {
     border-radius: 20px;
   }
 
-  .sp-onboarding-copy {
+  .sp-onboarding-copy,
+  .sp-canvas-entry-copy {
     margin-top: 16px;
   }
 
   .sp-onboarding-title,
-  .sp-onboarding-copy p {
+  .sp-onboarding-copy p,
+  .sp-canvas-entry-title,
+  .sp-canvas-entry-copy p {
     font-size: 16px;
   }
 
