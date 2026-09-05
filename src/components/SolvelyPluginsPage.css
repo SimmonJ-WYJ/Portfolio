@@ -189,6 +189,49 @@
   color: #111827;
 }
 
+/* ==================== Core Onboarding ==================== */
+
+.sp-onboarding {
+  margin-bottom: 56px;
+}
+
+.sp-onboarding-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 574;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-onboarding-stage video {
+  display: block;
+  width: min(810px, 66.4%);
+  max-height: calc(100% - 40px);
+  object-fit: contain;
+}
+
+.sp-onboarding-copy {
+  margin-top: 24px;
+}
+
+.sp-onboarding-title {
+  margin: 0 0 4px;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.sp-onboarding-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -283,6 +326,10 @@
   .sp-video-grid {
     grid-template-columns: 1fr;
   }
+
+  .sp-onboarding-stage video {
+    width: min(810px, 72%);
+  }
 }
 
 @media (max-width: 768px) {
@@ -327,6 +374,28 @@
   .sp-section-title {
     font-size: 24px;
     margin-bottom: 24px;
+  }
+
+  .sp-onboarding {
+    margin-bottom: 80px;
+  }
+
+  .sp-onboarding-stage {
+    border-radius: 20px;
+  }
+
+  .sp-onboarding-stage video {
+    width: 82%;
+    max-height: calc(100% - 24px);
+  }
+
+  .sp-onboarding-copy {
+    margin-top: 16px;
+  }
+
+  .sp-onboarding-title,
+  .sp-onboarding-copy p {
+    font-size: 16px;
   }
 
   .sp-cta {

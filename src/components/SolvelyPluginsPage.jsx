@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './SolvelyPluginsPage.css'
+import { useMediaVisibility } from './useMediaVisibility.js'
 
 // Import hero image
 import heroImage from '../assets/solvely-plugins/feature-hero.png'
@@ -16,9 +17,13 @@ import commercial from '../assets/solvely-plugins/Commercial.mp4'
 import solvelyIpGif from '../assets/solvely-plugins/Solvely ip.gif'
 
 export default function SolvelyPluginsPage() {
+  const firstUseVideoRef = useRef(null)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  useMediaVisibility(firstUseVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -85,6 +90,26 @@ export default function SolvelyPluginsPage() {
           <div className="sp-section-text">
             <p>我们将 Solvely 从独立的 Web 工具转化为能够理解当前页面的浏览器学习助手。插件自动识别页面来源与内容，并明确展示 AI 正在读取的上下文，再根据 <strong>Canvas</strong>、<strong>YouTube</strong>、<strong>Gmail</strong> 或 <strong>PDF</strong> 等场景提供对应操作。用户可以在当前页面直接完成解题、总结或提问，结果以答案、要点与分步解析进行组织，并保留上下文支持继续追问。整个过程无需反复切换页面或重新描述问题，使"<strong>识别内容—发起任务—理解结果—继续追问</strong>"在同一学习场景中完成。</p>
             <p>因此，这次设计的核心并不是增加更多 AI 功能，而是缩短学生从<strong>"看到学习内容"</strong>到<strong>"获得 AI 帮助"</strong>的路径，并让这套体验能够自然融入不同学习场景。</p>
+          </div>
+        </section>
+
+        {/* Core onboarding — Figma's second-screen module */}
+        <section className="sp-onboarding">
+          <div className="sp-onboarding-stage">
+            <video
+              ref={firstUseVideoRef}
+              src={firstUse}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Solvely first-use onboarding flow"
+            />
+          </div>
+          <div className="sp-onboarding-copy">
+            <h2 className="sp-onboarding-title">核心功能引导</h2>
+            <p>用户第一次接触插件时，并不熟悉产品入口和操作方式。首次体验的目标不是一次介绍所有功能，而是帮助用户完成安装、打开插件，并顺利进入第一次核心操作让用户尽快建立产品认知。我们将首次路径设计为：安装插件 → 打开侧边栏 → 进入 Onboarding → 理解核心操作 → 准备完成。第一次任务将安装、打开插件和首次引导连接成一条连续路径，减少用户安装完成后不知道下一步该做什么的问题</p>
           </div>
         </section>
 
