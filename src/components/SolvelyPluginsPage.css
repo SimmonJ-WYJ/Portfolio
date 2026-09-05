@@ -198,18 +198,38 @@
 .sp-onboarding-stage {
   width: 100%;
   aspect-ratio: 1220 / 574;
-  display: grid;
-  place-items: center;
+  position: relative;
   overflow: hidden;
   background: #eef1f5;
   border-radius: 32px;
 }
 
-.sp-onboarding-stage video {
+.sp-onboarding-shell {
+  position: absolute;
+  z-index: 0;
+  left: 9.508%;
+  top: 8.188%;
+  width: 80.984%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sp-onboarding-video-window {
+  position: absolute;
+  z-index: 1;
+  left: 16.803%;
+  top: 13.589%;
+  width: 66.393%;
+  aspect-ratio: 810 / 536;
+  overflow: hidden;
+}
+
+.sp-onboarding-video-window video {
   display: block;
-  width: min(810px, 66.4%);
-  max-height: calc(100% - 40px);
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sp-onboarding-copy {
@@ -327,9 +347,6 @@
     grid-template-columns: 1fr;
   }
 
-  .sp-onboarding-stage video {
-    width: min(810px, 72%);
-  }
 }
 
 @media (max-width: 768px) {
@@ -382,11 +399,6 @@
 
   .sp-onboarding-stage {
     border-radius: 20px;
-  }
-
-  .sp-onboarding-stage video {
-    width: 82%;
-    max-height: calc(100% - 24px);
   }
 
   .sp-onboarding-copy {

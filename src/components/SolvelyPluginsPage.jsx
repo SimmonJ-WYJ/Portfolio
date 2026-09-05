@@ -5,6 +5,7 @@ import { useMediaVisibility } from './useMediaVisibility.js'
 // Import hero image
 import heroImage from '../assets/solvely-plugins/feature-hero.png'
 import targetIcon from '../assets/solvely-plugins/target-icon.svg'
+import firstUseLaptopShell from '../assets/solvely-plugins/first-use-laptop-shell.png'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -96,16 +97,19 @@ export default function SolvelyPluginsPage() {
         {/* Core onboarding — Figma's second-screen module */}
         <section className="sp-onboarding">
           <div className="sp-onboarding-stage">
-            <video
-              ref={firstUseVideoRef}
-              src={firstUse}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="Solvely first-use onboarding flow"
-            />
+            <img src={firstUseLaptopShell} alt="" className="sp-onboarding-shell" />
+            <div className="sp-onboarding-video-window">
+              <video
+                ref={firstUseVideoRef}
+                src={firstUse}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely first-use onboarding flow"
+              />
+            </div>
           </div>
           <div className="sp-onboarding-copy">
             <h2 className="sp-onboarding-title">核心功能引导</h2>
