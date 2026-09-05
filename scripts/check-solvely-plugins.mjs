@@ -24,7 +24,9 @@ assert.match(styles, /\.sp-onboarding-stage\s*\{[\s\S]*position:\s*relative[\s\S
   'The stage must crop the laptop shell at its lower edge.')
 assert.match(styles, /\.sp-onboarding-shell\s*\{[\s\S]*left:\s*9\.508%[\s\S]*top:\s*8\.188%[\s\S]*width:\s*80\.984%/,
   'The laptop shell must retain its Figma placement.')
-assert.match(styles, /\.sp-onboarding-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*536/,
+assert.match(styles, /\.sp-onboarding-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*518/,
   'The video window must align to the Figma laptop screen.')
+assert.match(styles, /\.sp-onboarding-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
+  'The video must preserve its full width and crop only its source black top band.')
 
 console.log('Solvely Plugins onboarding-video checks passed.')

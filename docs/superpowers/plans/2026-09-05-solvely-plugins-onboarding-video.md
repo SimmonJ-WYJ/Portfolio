@@ -13,7 +13,8 @@
 - Keep the title and Chinese body copy verbatim.
 - Keep the stage at a 1220 × 574 ratio, `#eef1f5`, and 32px radius on desktop.
 - Place the laptop shell at 116/1220 left, 47/574 top, 988/1220 wide, and 659/574 high.
-- Place the video window at 205/1220 left, 78/574 top, 810/1220 wide, and 536/574 high.
+- Place the video window at 205/1220 left, 78/574 top, 810/1220 wide, and 518/574 high.
+- Preserve the MP4 width with `height: auto`; shift it upward by 3.35% to remove only its source black top band.
 - The video remains muted, looping, inline, metadata-preloaded, and visibility-autoplayed.
 
 ---
@@ -37,7 +38,7 @@ assert.match(page, /import firstUseLaptopShell from '.\/\.\/assets\/solvely-plug
 assert.match(page, /<img src=\{firstUseLaptopShell\} alt="" className="sp-onboarding-shell" \/>/)
 assert.match(page, /<div className="sp-onboarding-video-window">[\s\S]*<video/)
 assert.match(styles, /\.sp-onboarding-shell\s*\{[\s\S]*left:\s*9\.508%[\s\S]*top:\s*8\.188%/)
-assert.match(styles, /\.sp-onboarding-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%/)
+assert.match(styles, /\.sp-onboarding-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*aspect-ratio:\s*810\s*\/\s*518/)
 ```
 
 - [ ] **Step 2: Run the check and confirm it fails**
@@ -60,8 +61,8 @@ Expected: `AssertionError` because the shell asset and nested video window do no
 ```css
 .sp-onboarding-stage { position: relative; overflow: hidden; }
 .sp-onboarding-shell { left: 9.508%; top: 8.188%; width: 80.984%; }
-.sp-onboarding-video-window { left: 16.803%; top: 13.589%; width: 66.393%; aspect-ratio: 810 / 536; overflow: hidden; }
-.sp-onboarding-video-window video { width: 100%; height: 100%; object-fit: cover; }
+.sp-onboarding-video-window { left: 16.803%; top: 13.589%; width: 66.393%; aspect-ratio: 810 / 518; overflow: hidden; }
+.sp-onboarding-video-window video { width: 100%; height: auto; transform: translateY(-3.35%); }
 ```
 
 - [ ] **Step 4: Run focused and production verification**
