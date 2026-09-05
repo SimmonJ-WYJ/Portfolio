@@ -6,6 +6,11 @@ const [page, styles] = await Promise.all([
   readFile(new URL('../src/components/SolvelyPluginsPage.css', import.meta.url), 'utf8'),
 ])
 
+assert.match(styles, /\.sp-hero-content\s*\{[\s\S]*max-width:\s*1640px[\s\S]*margin:\s*0\s+auto[\s\S]*padding:\s*0\s+110px/,
+  'Desktop hero must use the approved 1640px centred canvas.')
+assert.match(styles, /\.sp-hero-img\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto/,
+  'Hero laptop must preserve its full image proportion without cropping.')
+
 assert.match(page, /useMediaVisibility\(firstUseVideoRef, \{ autoplay: true \}\)/,
   'First-use video must use visibility-aware autoplay.')
 assert.match(page, /import firstUseLaptopShell from '\.\.\/assets\/solvely-plugins\/first-use-laptop-shell\.png'/,
