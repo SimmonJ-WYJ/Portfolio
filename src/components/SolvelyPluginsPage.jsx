@@ -11,6 +11,7 @@ import stableAnswer from '../assets/solvely-plugins/stable-structure-answer.png'
 import stableSummary from '../assets/solvely-plugins/stable-structure-summary.png'
 import stableFlowArrow from '../assets/solvely-plugins/stable-structure-flow.svg'
 import stableShortArrow from '../assets/solvely-plugins/stable-structure-short-arrow.svg'
+import commercialTimingStill from '../assets/solvely-plugins/commercial-timing-static.png'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -241,6 +242,20 @@ export default function SolvelyPluginsPage() {
           <div className="sp-stable-structure-copy">
             <h2 className="sp-stable-structure-title">建立稳定的信息结构</h2>
             <p>随着功能和场景不断增加，我将插件保持为稳定的三层结构：顶部承载全局控制，中间根据当前页面动态呈现任务和 AI 结果，底部保持输入与持续交互。这样无论用户处在 Canvas、YouTube 还是 PDF 中，内容虽然变化，但核心操作位置与信息层级始终一致。</p>
+          </div>
+        </section>
+
+        {/* Commercial timing — Figma static feature showcase */}
+        <section className="sp-commercial-timing">
+          <div className="sp-commercial-timing-stage">
+            <img src={firstUseLaptopShell} alt="" className="sp-commercial-timing-shell" />
+            <div className="sp-commercial-timing-image-window">
+              <img src={commercialTimingStill} alt="" className="sp-commercial-timing-still" />
+            </div>
+          </div>
+          <div className="sp-commercial-timing-copy">
+            <h2 className="sp-commercial-timing-title">先体验核心价值，再触发付费转化</h2>
+            <p>首次体验阶段如果过早出现付费墙，会在用户还没有理解产品价值之前打断任务。因此我将商业化节点放在核心体验之后，让用户先真正完成解题、总结或追问，在持续需求形成后再进入订阅流程。</p>
           </div>
         </section>
 

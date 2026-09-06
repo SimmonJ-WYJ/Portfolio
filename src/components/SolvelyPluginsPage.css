@@ -583,6 +583,69 @@
   line-height: 1.8;
 }
 
+/* ==================== Commercial Timing ==================== */
+
+.sp-commercial-timing {
+  margin-bottom: 56px;
+}
+
+.sp-commercial-timing-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 580;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-commercial-timing-shell {
+  position: absolute;
+  z-index: 0;
+  left: 9.508%;
+  top: 8.103%;
+  width: 80.984%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sp-commercial-timing-image-window {
+  position: absolute;
+  z-index: 1;
+  left: 16.803%;
+  top: 13.448%;
+  width: 66.393%;
+  aspect-ratio: 810 / 502;
+  overflow: hidden;
+}
+
+.sp-commercial-timing-still {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-3.35%);
+}
+
+.sp-commercial-timing-copy {
+  margin-top: 24px;
+}
+
+.sp-commercial-timing-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.sp-commercial-timing-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -748,6 +811,10 @@
     margin-bottom: 80px;
   }
 
+  .sp-commercial-timing {
+    margin-bottom: 80px;
+  }
+
   .sp-onboarding-stage,
   .sp-canvas-entry-stage,
   .sp-task-first-stage {
@@ -763,6 +830,10 @@
   }
 
   .sp-stable-structure-stage {
+    border-radius: 20px;
+  }
+
+  .sp-commercial-timing-stage {
     border-radius: 20px;
   }
 
@@ -784,6 +855,10 @@
     margin-top: 16px;
   }
 
+  .sp-commercial-timing-copy {
+    margin-top: 16px;
+  }
+
   .sp-onboarding-title,
   .sp-onboarding-copy p,
   .sp-canvas-entry-title,
@@ -796,7 +871,9 @@
   .sp-core-process-copy h3,
   .sp-core-process-copy p,
   .sp-stable-structure-title,
-  .sp-stable-structure-copy p {
+  .sp-stable-structure-copy p,
+  .sp-commercial-timing-title,
+  .sp-commercial-timing-copy p {
     font-size: 16px;
   }
 
