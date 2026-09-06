@@ -81,4 +81,21 @@ assert.match(styles, /\.sp-screenshot-solve-video-window\s*\{[\s\S]*left:\s*16\.
 assert.match(styles, /\.sp-screenshot-solve-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
   'Screenshot-solve video must retain its full width while cropping only the source top black band.')
 
+assert.match(page, /useMediaVisibility\(coreProcessVideoRef, \{ autoplay: true \}\)/,
+  'Core-process video must use visibility-aware autoplay.')
+assert.match(page, /<section className="sp-core-process">[\s\S]*<img src=\{firstUseLaptopShell\} alt="" className="sp-core-process-shell" \/>[\s\S]*<video[\s\S]*ref=\{coreProcessVideoRef\}[\s\S]*src=\{coreProcess\}[\s\S]*autoPlay[\s\S]*muted[\s\S]*loop[\s\S]*playsInline[\s\S]*preload="metadata"/,
+  'Core-process showcase must play the supplied MP4 inside the Figma laptop screen.')
+assert.match(page, /从答案到题目理解和追问/,
+  'Core-process main title must preserve the Figma copy.')
+assert.match(page, /学习任务中，用户得到答案后往往还需要确认结果、理解过程或进一步追问。因此我没有把结果设计成一次性的输出，而是围绕「结果 → 解释 → 继续探索」组织后续交互，让用户可以在当前上下文中继续完成整个学习过程。/,
+  'Core-process main body must preserve the Figma copy verbatim.')
+assert.match(page, /快速获得核心结果[\s\S]*优先展示当前任务最重要的信息，让用户第一时间确认结果。[\s\S]*比较结果并继续追问[\s\S]*用户可以直接围绕当前题目继续提问或切换模型比较结果，不需要重新提交内容与建立上下文。[\s\S]*进一步理解过程[\s\S]*需要深入理解时，再展开 Explanation 与详细分析，避免所有信息同时出现造成阅读负担。/,
+  'Core-process supporting Figma copy must preserve its four text blocks and order.')
+assert.match(styles, /\.sp-core-process-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*580[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Core-process stage must preserve Figma’s 1220×580 canvas, color, and corner radius.')
+assert.match(styles, /\.sp-core-process-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.448%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*508/,
+  'Core-process video window must match Figma’s 810×508 screen region.')
+assert.match(styles, /\.sp-core-process-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
+  'Core-process video must retain its full width while cropping only the source top black band.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

@@ -23,6 +23,7 @@ export default function SolvelyPluginsPage() {
   const canvasEntryVideoRef = useRef(null)
   const taskFirstVideoRef = useRef(null)
   const screenshotSolveVideoRef = useRef(null)
+  const coreProcessVideoRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -32,6 +33,7 @@ export default function SolvelyPluginsPage() {
   useMediaVisibility(canvasEntryVideoRef, { autoplay: true })
   useMediaVisibility(taskFirstVideoRef, { autoplay: true })
   useMediaVisibility(screenshotSolveVideoRef, { autoplay: true })
+  useMediaVisibility(coreProcessVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -190,6 +192,35 @@ export default function SolvelyPluginsPage() {
           <div className="sp-screenshot-solve-copy">
             <h2 className="sp-screenshot-solve-title">灵活处理临时问题</h2>
             <p>除了结构化的 Canvas Quiz，用户也经常只需要解决页面中的某一道题。因此保留了更加灵活的截图解题方式：用户只需框选当前内容，即可直接在侧边栏获得答案，让非结构化问题也能保持低成本的操作路径。</p>
+          </div>
+        </section>
+
+        {/* Answer understanding — Figma feature showcase */}
+        <section className="sp-core-process">
+          <div className="sp-core-process-stage">
+            <img src={firstUseLaptopShell} alt="" className="sp-core-process-shell" />
+            <div className="sp-core-process-video-window">
+              <video
+                ref={coreProcessVideoRef}
+                src={coreProcess}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely answer understanding flow"
+              />
+            </div>
+          </div>
+          <div className="sp-core-process-copy">
+            <h2 className="sp-core-process-title">从答案到题目理解和追问</h2>
+            <p>学习任务中，用户得到答案后往往还需要确认结果、理解过程或进一步追问。因此我没有把结果设计成一次性的输出，而是围绕「结果 → 解释 → 继续探索」组织后续交互，让用户可以在当前上下文中继续完成整个学习过程。</p>
+            <h3>快速获得核心结果</h3>
+            <p>优先展示当前任务最重要的信息，让用户第一时间确认结果。</p>
+            <h3>比较结果并继续追问</h3>
+            <p>用户可以直接围绕当前题目继续提问或切换模型比较结果，不需要重新提交内容与建立上下文。</p>
+            <h3>进一步理解过程</h3>
+            <p>需要深入理解时，再展开 Explanation 与详细分析，避免所有信息同时出现造成阅读负担。</p>
           </div>
         </section>
 

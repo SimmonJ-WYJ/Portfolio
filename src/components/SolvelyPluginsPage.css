@@ -441,6 +441,70 @@
   line-height: 1.8;
 }
 
+/* ==================== Answer Understanding ==================== */
+
+.sp-core-process {
+  margin-bottom: 56px;
+}
+
+.sp-core-process-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 580;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-core-process-shell {
+  position: absolute;
+  z-index: 0;
+  left: 9.508%;
+  top: 8.103%;
+  width: 80.984%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sp-core-process-video-window {
+  position: absolute;
+  z-index: 1;
+  left: 16.803%;
+  top: 13.448%;
+  width: 66.393%;
+  aspect-ratio: 810 / 508;
+  overflow: hidden;
+}
+
+.sp-core-process-video-window video {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-3.35%);
+}
+
+.sp-core-process-copy {
+  margin-top: 24px;
+}
+
+.sp-core-process-title,
+.sp-core-process-copy h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.sp-core-process-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -598,6 +662,10 @@
     margin-bottom: 80px;
   }
 
+  .sp-core-process {
+    margin-bottom: 80px;
+  }
+
   .sp-onboarding-stage,
   .sp-canvas-entry-stage,
   .sp-task-first-stage {
@@ -605,6 +673,10 @@
   }
 
   .sp-screenshot-solve-stage {
+    border-radius: 20px;
+  }
+
+  .sp-core-process-stage {
     border-radius: 20px;
   }
 
@@ -618,6 +690,10 @@
     margin-top: 16px;
   }
 
+  .sp-core-process-copy {
+    margin-top: 16px;
+  }
+
   .sp-onboarding-title,
   .sp-onboarding-copy p,
   .sp-canvas-entry-title,
@@ -625,7 +701,10 @@
   .sp-task-first-title,
   .sp-task-first-copy p,
   .sp-screenshot-solve-title,
-  .sp-screenshot-solve-copy p {
+  .sp-screenshot-solve-copy p,
+  .sp-core-process-title,
+  .sp-core-process-copy h3,
+  .sp-core-process-copy p {
     font-size: 16px;
   }
 
