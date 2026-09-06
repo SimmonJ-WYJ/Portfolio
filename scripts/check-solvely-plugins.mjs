@@ -125,10 +125,10 @@ assert.match(styles, /\.sp-stable-structure-flow-arrow\s*\{[\s\S]*left:\s*18\.70
 assert.match(styles, /\.sp-stable-structure-short-arrow\s*\{[\s\S]*left:\s*28\.852%[\s\S]*top:\s*44\.31%[\s\S]*width:\s*10\.492%[\s\S]*height:\s*0\.995%/,
   'Stable-structure short arrow must retain Figma’s original SVG placement.')
 
-assert.match(page, /import commercialTimingStill from '\.\.\/assets\/solvely-plugins\/commercial-timing-static\.png'/,
-  'Commercial-timing showcase must import the original Figma static product image.')
-assert.match(page, /<section className="sp-commercial-timing">[\s\S]*<img src=\{firstUseLaptopShell\} alt="" className="sp-commercial-timing-shell" \/>[\s\S]*<img src=\{commercialTimingStill\} alt="" className="sp-commercial-timing-still" \/>/,
-  'Commercial-timing showcase must compose the original still inside the Figma laptop shell.')
+assert.match(page, /useMediaVisibility\(commercialVideoRef, \{ autoplay: true \}\)/,
+  'Commercial-timing video must use visibility-aware autoplay.')
+assert.match(page, /<section className="sp-commercial-timing">[\s\S]*<img src=\{firstUseLaptopShell\} alt="" className="sp-commercial-timing-shell" \/>[\s\S]*<video[\s\S]*ref=\{commercialVideoRef\}[\s\S]*src=\{commercial\}[\s\S]*autoPlay[\s\S]*muted[\s\S]*loop[\s\S]*playsInline[\s\S]*preload="metadata"/,
+  'Commercial-timing showcase must play the supplied MP4 inside the Figma laptop shell.')
 assert.match(page, /先体验核心价值，再触发付费转化/,
   'Commercial-timing title must preserve the Figma copy.')
 assert.match(page, /首次体验阶段如果过早出现付费墙，会在用户还没有理解产品价值之前打断任务。因此我将商业化节点放在核心体验之后，让用户先真正完成解题、总结或追问，在持续需求形成后再进入订阅流程。/,
@@ -137,9 +137,9 @@ assert.match(styles, /\.sp-commercial-timing-stage\s*\{[\s\S]*aspect-ratio:\s*12
   'Commercial-timing stage must preserve Figma’s 1220×580 canvas, color, and corner radius.')
 assert.match(styles, /\.sp-commercial-timing-shell\s*\{[\s\S]*left:\s*9\.508%[\s\S]*top:\s*8\.103%[\s\S]*width:\s*80\.984%/,
   'Commercial-timing laptop shell must preserve Figma placement.')
-assert.match(styles, /\.sp-commercial-timing-image-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.448%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*502/,
-  'Commercial-timing still window must match Figma’s 810×502 screen region.')
-assert.match(styles, /\.sp-commercial-timing-still\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
-  'Commercial-timing still must retain its full width while cropping only the source black header.')
+assert.match(styles, /\.sp-commercial-timing-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.448%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*502/,
+  'Commercial-timing video window must match Figma’s 810×502 screen region.')
+assert.match(styles, /\.sp-commercial-timing-video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
+  'Commercial-timing video must retain its full width while cropping only the source black header.')
 
 console.log('Solvely Plugins onboarding-video checks passed.')

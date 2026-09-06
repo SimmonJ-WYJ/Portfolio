@@ -609,7 +609,7 @@
   user-select: none;
 }
 
-.sp-commercial-timing-image-window {
+.sp-commercial-timing-video-window {
   position: absolute;
   z-index: 1;
   left: 16.803%;
@@ -619,7 +619,7 @@
   overflow: hidden;
 }
 
-.sp-commercial-timing-still {
+.sp-commercial-timing-video {
   display: block;
   width: 100%;
   height: auto;

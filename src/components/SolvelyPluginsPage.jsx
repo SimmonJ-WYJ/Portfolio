@@ -11,7 +11,6 @@ import stableAnswer from '../assets/solvely-plugins/stable-structure-answer.png'
 import stableSummary from '../assets/solvely-plugins/stable-structure-summary.png'
 import stableFlowArrow from '../assets/solvely-plugins/stable-structure-flow.svg'
 import stableShortArrow from '../assets/solvely-plugins/stable-structure-short-arrow.svg'
-import commercialTimingStill from '../assets/solvely-plugins/commercial-timing-static.png'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -30,6 +29,7 @@ export default function SolvelyPluginsPage() {
   const taskFirstVideoRef = useRef(null)
   const screenshotSolveVideoRef = useRef(null)
   const coreProcessVideoRef = useRef(null)
+  const commercialVideoRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -40,6 +40,7 @@ export default function SolvelyPluginsPage() {
   useMediaVisibility(taskFirstVideoRef, { autoplay: true })
   useMediaVisibility(screenshotSolveVideoRef, { autoplay: true })
   useMediaVisibility(coreProcessVideoRef, { autoplay: true })
+  useMediaVisibility(commercialVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -245,12 +246,22 @@ export default function SolvelyPluginsPage() {
           </div>
         </section>
 
-        {/* Commercial timing — Figma static feature showcase */}
+        {/* Commercial timing — Figma feature showcase */}
         <section className="sp-commercial-timing">
           <div className="sp-commercial-timing-stage">
             <img src={firstUseLaptopShell} alt="" className="sp-commercial-timing-shell" />
-            <div className="sp-commercial-timing-image-window">
-              <img src={commercialTimingStill} alt="" className="sp-commercial-timing-still" />
+            <div className="sp-commercial-timing-video-window">
+              <video
+                ref={commercialVideoRef}
+                src={commercial}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely commercial conversion flow"
+                className="sp-commercial-timing-video"
+              />
             </div>
           </div>
           <div className="sp-commercial-timing-copy">
