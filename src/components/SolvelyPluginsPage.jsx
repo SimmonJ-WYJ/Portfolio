@@ -22,6 +22,7 @@ export default function SolvelyPluginsPage() {
   const firstUseVideoRef = useRef(null)
   const canvasEntryVideoRef = useRef(null)
   const taskFirstVideoRef = useRef(null)
+  const screenshotSolveVideoRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -30,6 +31,7 @@ export default function SolvelyPluginsPage() {
   useMediaVisibility(firstUseVideoRef, { autoplay: true })
   useMediaVisibility(canvasEntryVideoRef, { autoplay: true })
   useMediaVisibility(taskFirstVideoRef, { autoplay: true })
+  useMediaVisibility(screenshotSolveVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -165,6 +167,29 @@ export default function SolvelyPluginsPage() {
           <div className="sp-task-first-copy">
             <h2 className="sp-task-first-title">让操作跟随用户任务，而不是让用户适应 AI</h2>
             <p>当用户进入 Canvas quiz 后，我基于当前页面上下文直接提供任务入口，避免用户再经历打开插件、选择功能、输入 Prompt 的额外步骤；同时将逐题重复提交整合为一次连续的批量处理，并通过侧边栏保留原始题目上下文，减少页面切换和重复操作，让 AI 更自然地成为当前任务的一部分。</p>
+          </div>
+        </section>
+
+        {/* Screenshot solve — Figma feature showcase */}
+        <section className="sp-screenshot-solve">
+          <div className="sp-screenshot-solve-stage">
+            <img src={firstUseLaptopShell} alt="" className="sp-screenshot-solve-shell" />
+            <div className="sp-screenshot-solve-video-window">
+              <video
+                ref={screenshotSolveVideoRef}
+                src={screenshot}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely screenshot solve flow"
+              />
+            </div>
+          </div>
+          <div className="sp-screenshot-solve-copy">
+            <h2 className="sp-screenshot-solve-title">灵活处理临时问题</h2>
+            <p>除了结构化的 Canvas Quiz，用户也经常只需要解决页面中的某一道题。因此保留了更加灵活的截图解题方式：用户只需框选当前内容，即可直接在侧边栏获得答案，让非结构化问题也能保持低成本的操作路径。</p>
           </div>
         </section>
 

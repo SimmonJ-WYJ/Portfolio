@@ -66,4 +66,19 @@ assert.match(styles, /\.sp-task-first-video-window\s*\{[\s\S]*left:\s*16\.803%[\
 assert.match(styles, /\.sp-task-first-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
   'Task-first video must retain its full width while cropping only the source top black band.')
 
+assert.match(page, /useMediaVisibility\(screenshotSolveVideoRef, \{ autoplay: true \}\)/,
+  'Screenshot-solve video must use visibility-aware autoplay.')
+assert.match(page, /<section className="sp-screenshot-solve">[\s\S]*<img src=\{firstUseLaptopShell\} alt="" className="sp-screenshot-solve-shell" \/>[\s\S]*<video[\s\S]*ref=\{screenshotSolveVideoRef\}[\s\S]*src=\{screenshot\}[\s\S]*autoPlay[\s\S]*muted[\s\S]*loop[\s\S]*playsInline[\s\S]*preload="metadata"/,
+  'Screenshot-solve showcase must play the supplied MP4 inside the Figma laptop screen.')
+assert.match(page, /灵活处理临时问题/,
+  'Screenshot-solve title must preserve the Figma copy.')
+assert.match(page, /除了结构化的 Canvas Quiz，用户也经常只需要解决页面中的某一道题。因此保留了更加灵活的截图解题方式：用户只需框选当前内容，即可直接在侧边栏获得答案，让非结构化问题也能保持低成本的操作路径。/,
+  'Screenshot-solve body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-screenshot-solve-stage\s*\{[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Screenshot-solve stage must preserve the Figma canvas color and corner radius.')
+assert.match(styles, /\.sp-screenshot-solve-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*492/,
+  'Screenshot-solve video window must match Figma’s 810×492 screen region.')
+assert.match(styles, /\.sp-screenshot-solve-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
+  'Screenshot-solve video must retain its full width while cropping only the source top black band.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')
