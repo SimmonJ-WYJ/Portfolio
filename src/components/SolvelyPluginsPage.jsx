@@ -6,6 +6,11 @@ import { useMediaVisibility } from './useMediaVisibility.js'
 import heroImage from '../assets/solvely-plugins/feature-hero.png'
 import targetIcon from '../assets/solvely-plugins/target-icon.svg'
 import firstUseLaptopShell from '../assets/solvely-plugins/first-use-laptop-shell.png'
+import stableEntry from '../assets/solvely-plugins/stable-structure-entry.png'
+import stableAnswer from '../assets/solvely-plugins/stable-structure-answer.png'
+import stableSummary from '../assets/solvely-plugins/stable-structure-summary.png'
+import stableFlowArrow from '../assets/solvely-plugins/stable-structure-flow.svg'
+import stableShortArrow from '../assets/solvely-plugins/stable-structure-short-arrow.svg'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -221,6 +226,21 @@ export default function SolvelyPluginsPage() {
             <p>用户可以直接围绕当前题目继续提问或切换模型比较结果，不需要重新提交内容与建立上下文。</p>
             <h3>进一步理解过程</h3>
             <p>需要深入理解时，再展开 Explanation 与详细分析，避免所有信息同时出现造成阅读负担。</p>
+          </div>
+        </section>
+
+        {/* Stable information structure — Figma feature showcase */}
+        <section className="sp-stable-structure">
+          <div className="sp-stable-structure-stage">
+            <img src={stableEntry} alt="Solvely entry actions" className="sp-stable-structure-panel sp-stable-structure-entry" />
+            <img src={stableAnswer} alt="Solvely answer and explanation" className="sp-stable-structure-panel sp-stable-structure-answer" />
+            <img src={stableSummary} alt="Solvely summary result" className="sp-stable-structure-panel sp-stable-structure-summary" />
+            <img src={stableFlowArrow} alt="" className="sp-stable-structure-flow-arrow" />
+            <img src={stableShortArrow} alt="" className="sp-stable-structure-short-arrow" />
+          </div>
+          <div className="sp-stable-structure-copy">
+            <h2 className="sp-stable-structure-title">建立稳定的信息结构</h2>
+            <p>随着功能和场景不断增加，我将插件保持为稳定的三层结构：顶部承载全局控制，中间根据当前页面动态呈现任务和 AI 结果，底部保持输入与持续交互。这样无论用户处在 Canvas、YouTube 还是 PDF 中，内容虽然变化，但核心操作位置与信息层级始终一致。</p>
           </div>
         </section>
 

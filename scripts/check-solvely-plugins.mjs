@@ -98,4 +98,31 @@ assert.match(styles, /\.sp-core-process-video-window\s*\{[\s\S]*left:\s*16\.803%
 assert.match(styles, /\.sp-core-process-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
   'Core-process video must retain its full width while cropping only the source top black band.')
 
+assert.match(page, /import stableEntry from '\.\.\/assets\/solvely-plugins\/stable-structure-entry\.png'/,
+  'Stable-structure showcase must import the original Figma entry image.')
+assert.match(page, /import stableAnswer from '\.\.\/assets\/solvely-plugins\/stable-structure-answer\.png'/,
+  'Stable-structure showcase must import the original Figma answer image.')
+assert.match(page, /import stableSummary from '\.\.\/assets\/solvely-plugins\/stable-structure-summary\.png'/,
+  'Stable-structure showcase must import the original Figma summary image.')
+assert.match(page, /import stableFlowArrow from '\.\.\/assets\/solvely-plugins\/stable-structure-flow\.svg'/,
+  'Stable-structure showcase must import the original long Figma SVG arrow.')
+assert.match(page, /import stableShortArrow from '\.\.\/assets\/solvely-plugins\/stable-structure-short-arrow\.svg'/,
+  'Stable-structure showcase must import the original short Figma SVG arrow.')
+assert.match(page, /<section className="sp-stable-structure">[\s\S]*src=\{stableEntry\}[\s\S]*src=\{stableAnswer\}[\s\S]*src=\{stableSummary\}[\s\S]*src=\{stableFlowArrow\}[\s\S]*src=\{stableShortArrow\}/,
+  'Stable-structure showcase must render all Figma panels and both source SVG arrows.')
+assert.match(page, /建立稳定的信息结构/,
+  'Stable-structure title must preserve the Figma copy.')
+assert.match(page, /随着功能和场景不断增加，我将插件保持为稳定的三层结构：顶部承载全局控制，中间根据当前页面动态呈现任务和 AI 结果，底部保持输入与持续交互。这样无论用户处在 Canvas、YouTube 还是 PDF 中，内容虽然变化，但核心操作位置与信息层级始终一致。/,
+  'Stable-structure body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-stable-structure-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*580[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Stable-structure stage must preserve Figma’s 1220×580 canvas, color, and corner radius.')
+assert.match(styles, /\.sp-stable-structure-panel\s*\{[\s\S]*top:\s*10%[\s\S]*width:\s*20\.902%[\s\S]*height:\s*83\.448%[\s\S]*border-radius:\s*10px/,
+  'Stable-structure panels must retain Figma’s 255×484 geometry and radius.')
+assert.match(styles, /\.sp-stable-structure-entry\s*\{[\s\S]*left:\s*14\.344%[\s\S]*\.sp-stable-structure-answer\s*\{[\s\S]*left:\s*39\.508%[\s\S]*\.sp-stable-structure-summary\s*\{[\s\S]*left:\s*64\.672%/,
+  'Stable-structure panels must preserve Figma’s left-to-right positions.')
+assert.match(styles, /\.sp-stable-structure-flow-arrow\s*\{[\s\S]*left:\s*18\.702%[\s\S]*top:\s*3\.276%[\s\S]*width:\s*56\.953%[\s\S]*height:\s*44\.397%/,
+  'Stable-structure flow arrow must retain Figma’s original SVG placement.')
+assert.match(styles, /\.sp-stable-structure-short-arrow\s*\{[\s\S]*left:\s*28\.852%[\s\S]*top:\s*44\.31%[\s\S]*width:\s*10\.492%[\s\S]*height:\s*0\.995%/,
+  'Stable-structure short arrow must retain Figma’s original SVG placement.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

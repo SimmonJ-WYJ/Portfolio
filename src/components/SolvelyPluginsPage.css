@@ -505,6 +505,84 @@
   line-height: 1.8;
 }
 
+/* ==================== Stable Information Structure ==================== */
+
+.sp-stable-structure {
+  margin-bottom: 56px;
+}
+
+.sp-stable-structure-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 580;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-stable-structure-panel {
+  position: absolute;
+  z-index: 1;
+  top: 10%;
+  width: 20.902%;
+  height: 83.448%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.sp-stable-structure-entry {
+  left: 14.344%;
+}
+
+.sp-stable-structure-answer {
+  left: 39.508%;
+}
+
+.sp-stable-structure-summary {
+  left: 64.672%;
+}
+
+.sp-stable-structure-flow-arrow,
+.sp-stable-structure-short-arrow {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sp-stable-structure-flow-arrow {
+  left: 18.702%;
+  top: 3.276%;
+  width: 56.953%;
+  height: 44.397%;
+}
+
+.sp-stable-structure-short-arrow {
+  left: 28.852%;
+  top: 44.31%;
+  width: 10.492%;
+  height: 0.995%;
+}
+
+.sp-stable-structure-copy {
+  margin-top: 24px;
+}
+
+.sp-stable-structure-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.sp-stable-structure-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -666,6 +744,10 @@
     margin-bottom: 80px;
   }
 
+  .sp-stable-structure {
+    margin-bottom: 80px;
+  }
+
   .sp-onboarding-stage,
   .sp-canvas-entry-stage,
   .sp-task-first-stage {
@@ -677,6 +759,10 @@
   }
 
   .sp-core-process-stage {
+    border-radius: 20px;
+  }
+
+  .sp-stable-structure-stage {
     border-radius: 20px;
   }
 
@@ -694,6 +780,10 @@
     margin-top: 16px;
   }
 
+  .sp-stable-structure-copy {
+    margin-top: 16px;
+  }
+
   .sp-onboarding-title,
   .sp-onboarding-copy p,
   .sp-canvas-entry-title,
@@ -704,7 +794,9 @@
   .sp-screenshot-solve-copy p,
   .sp-core-process-title,
   .sp-core-process-copy h3,
-  .sp-core-process-copy p {
+  .sp-core-process-copy p,
+  .sp-stable-structure-title,
+  .sp-stable-structure-copy p {
     font-size: 16px;
   }
 
