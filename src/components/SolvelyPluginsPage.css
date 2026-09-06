@@ -284,15 +284,15 @@
   left: 16.803%;
   top: 13.589%;
   width: 66.393%;
-  aspect-ratio: 810 / 493;
+  aspect-ratio: 810 / 496;
   overflow: hidden;
 }
 
 .sp-canvas-entry-video-window video {
   display: block;
   width: 100%;
-  height: auto;
-  transform: translateY(-3.35%);
+  height: 108.87%;
+  transform: translateY(-3.43%);
 }
 
 .sp-canvas-entry-copy {

@@ -44,10 +44,10 @@ assert.match(page, /页面嗅探功能会识别用户已经访问过的 Canvas �
   'Canvas-entry body copy must preserve the Figma copy verbatim.')
 assert.match(styles, /\.sp-canvas-entry-stage\s*\{[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
   'Canvas-entry stage must preserve the Figma canvas color and corner radius.')
-assert.match(styles, /\.sp-canvas-entry-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*493/,
-  'Canvas-entry video window must match Figma’s 810×493 screen region.')
-assert.match(styles, /\.sp-canvas-entry-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
-  'Canvas-entry video must retain its full width while cropping only the source top black band.')
+assert.match(styles, /\.sp-canvas-entry-video-window\s*\{[\s\S]*left:\s*16\.803%[\s\S]*top:\s*13\.589%[\s\S]*width:\s*66\.393%[\s\S]*aspect-ratio:\s*810\s*\/\s*496/,
+  'Canvas-entry video window must match Figma’s current 810×496 screen region.')
+assert.match(styles, /\.sp-canvas-entry-video-window video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*108\.87%[\s\S]*transform:\s*translateY\(-3\.43%\)/,
+  'Canvas-entry video must remove both its source black header and white footer without side cropping.')
 
 assert.match(page, /import taskFirst from '\.\.\/assets\/solvely-plugins\/嗅探一键解题\.mp4'/,
   'Task-first showcase must import the supplied screen recording.')
