@@ -14,12 +14,14 @@ import screenshot from '../assets/solvely-plugins/截屏解题.mp4'
 import wordSelect from '../assets/solvely-plugins/滑词.mp4'
 import firstUse from '../assets/solvely-plugins/用户首次进入核心功能使用.mp4'
 import seamlessLogin from '../assets/solvely-plugins/登录后无缝继续流程.mp4'
+import taskFirst from '../assets/solvely-plugins/嗅探一键解题.mp4'
 import commercial from '../assets/solvely-plugins/Commercial.mp4'
 import solvelyIpGif from '../assets/solvely-plugins/Solvely ip.gif'
 
 export default function SolvelyPluginsPage() {
   const firstUseVideoRef = useRef(null)
   const canvasEntryVideoRef = useRef(null)
+  const taskFirstVideoRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -27,6 +29,7 @@ export default function SolvelyPluginsPage() {
 
   useMediaVisibility(firstUseVideoRef, { autoplay: true })
   useMediaVisibility(canvasEntryVideoRef, { autoplay: true })
+  useMediaVisibility(taskFirstVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -139,6 +142,29 @@ export default function SolvelyPluginsPage() {
           <div className="sp-canvas-entry-copy">
             <h2 className="sp-canvas-entry-title">将首次体验自然带入真实学习场景</h2>
             <p>页面嗅探功能会识别用户已经访问过的 Canvas 页面，并在 Onboarding 最后一步生成快捷入口。插件通过嗅探功能自动识别课程环境，一键链接Canvas学习平台，让用户从功能演示自然进入真实任务。</p>
+          </div>
+        </section>
+
+        {/* Task-first Canvas quiz handling — Figma feature showcase */}
+        <section className="sp-task-first">
+          <div className="sp-task-first-stage">
+            <img src={firstUseLaptopShell} alt="" className="sp-task-first-shell" />
+            <div className="sp-task-first-video-window">
+              <video
+                ref={taskFirstVideoRef}
+                src={taskFirst}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely task-first Canvas quiz flow"
+              />
+            </div>
+          </div>
+          <div className="sp-task-first-copy">
+            <h2 className="sp-task-first-title">让操作跟随用户任务，而不是让用户适应 AI</h2>
+            <p>当用户进入 Canvas quiz 后，我基于当前页面上下文直接提供任务入口，避免用户再经历打开插件、选择功能、输入 Prompt 的额外步骤；同时将逐题重复提交整合为一次连续的批量处理，并通过侧边栏保留原始题目上下文，减少页面切换和重复操作，让 AI 更自然地成为当前任务的一部分。</p>
           </div>
         </section>
 
