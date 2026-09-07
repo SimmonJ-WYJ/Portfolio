@@ -228,4 +228,86 @@ assert.match(styles, /\.sp-selected-text-video-window\s*\{[\s\S]*left:\s*16\.885
 assert.match(styles, /\.sp-selected-text-video\s*\{[\s\S]*transform:\s*translateY\(-3\.35%\)/,
   'Selected-text video must crop the source black header.')
 
+assert.match(page, /import gmailReplyMain from '\.\.\/assets\/solvely-plugins\/gmail-reply-main\.png'/,
+  'Gmail reply showcase must import the supplied high-resolution Gmail surface.')
+assert.match(page, /<section className="sp-gmail-reply">[\s\S]*<img[\s\S]*src=\{gmailReplyMain\}[\s\S]*className="sp-gmail-reply-main"/,
+  'Gmail reply stage must render the supplied Gmail surface as its base layer.')
+assert.match(page, /<svg\s+className="sp-gmail-reply-flow"[\s\S]*viewBox="0 0 66 5\.7735"[\s\S]*preserveAspectRatio="none"[\s\S]*fill="#FF9292"[\s\S]*<\/svg>/,
+  'Connector arrow must stay an inline vector, never a raster asset.')
+assert.match(page, /Gmail 邮件一键回复，读懂上下文再起草/,
+  'Gmail reply title must preserve the Figma copy.')
+assert.match(page, /在邮件场景中，插件读取当前邮件内容与对话上下文后生成回复草稿，用户可以编辑并确认后再写入邮件。/,
+  'Gmail reply body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-gmail-reply-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*525[\s\S]*overflow:\s*hidden[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Gmail reply stage must preserve Figma’s 1220×525 canvas, crop, color, and corner radius.')
+assert.match(styles, /\.sp-gmail-reply-main\s*\{[\s\S]*left:\s*13\.852%[\s\S]*top:\s*8%[\s\S]*width:\s*72\.295%[\s\S]*height:\s*92%/,
+  'Gmail surface must sit at its Figma placement, flush with the stage’s cropped lower edge.')
+assert.match(styles, /\.sp-gmail-reply-flow\s*\{[\s\S]*left:\s*47\.049%[\s\S]*top:\s*68\.784%[\s\S]*width:\s*5\.41%[\s\S]*height:\s*1\.1%/,
+  'Connector arrow must centre on the Figma y=364 baseline between both cards.')
+
+assert.match(page, /import dialogDetailCrop from '\.\.\/assets\/solvely-plugins\/dialog-detail-crop\.png'/,
+  'Dialog-detail showcase must import the crop card.')
+assert.match(page, /import dialogDetailPdf from '\.\.\/assets\/solvely-plugins\/dialog-detail-pdf\.png'/,
+  'Dialog-detail showcase must import the PDF card.')
+assert.match(page, /import dialogDetailSummarize from '\.\.\/assets\/solvely-plugins\/dialog-detail-summarize\.png'/,
+  'Dialog-detail showcase must import the summarize card.')
+assert.match(page, /import dialogDetailQuiz from '\.\.\/assets\/solvely-plugins\/dialog-detail-quiz\.png'/,
+  'Dialog-detail showcase must import the generate-quiz card.')
+assert.match(page, /<section className="sp-dialog-detail">[\s\S]*src=\{dialogDetailCrop\}[\s\S]*src=\{dialogDetailPdf\}[\s\S]*src=\{dialogDetailSummarize\}[\s\S]*src=\{dialogDetailQuiz\}/,
+  'Dialog-detail stage must render the four cards in Figma’s left-to-right order.')
+assert.match(page, /其他关于AI对话流的一些细节优化/,
+  'Dialog-detail title must preserve the Figma copy.')
+assert.match(page, /内容区进一步解决AI 结果应该如何被理解。我们围绕信息获取、过程理解和结果判断，重新组织不同类型的生成内容。/,
+  'Dialog-detail body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-dialog-detail-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*580[\s\S]*overflow:\s*hidden[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Dialog-detail stage must use Figma’s taller 1220×580 canvas with the shared colour and radius.')
+assert.match(styles, /\.sp-dialog-detail-crop\s*\{[\s\S]*left:\s*3\.852%[\s\S]*top:\s*6\.034%[\s\S]*width:\s*22\.377%[\s\S]*height:\s*88\.276%/,
+  'Crop card must preserve its Figma placement.')
+assert.match(styles, /\.sp-dialog-detail-pdf\s*\{[\s\S]*left:\s*27\.049%[\s\S]*top:\s*6\.034%[\s\S]*width:\s*22\.459%[\s\S]*height:\s*88\.276%/,
+  'PDF card must preserve its Figma placement.')
+assert.match(styles, /\.sp-dialog-detail-summarize\s*\{[\s\S]*left:\s*50\.328%[\s\S]*top:\s*5\.862%[\s\S]*width:\s*22\.459%[\s\S]*height:\s*88\.276%/,
+  'Summarize card must keep Figma’s one-pixel-higher top offset.')
+assert.match(styles, /\.sp-dialog-detail-quiz\s*\{[\s\S]*left:\s*73\.607%[\s\S]*top:\s*6\.034%[\s\S]*width:\s*22\.459%[\s\S]*height:\s*88\.276%/,
+  'Generate-quiz card must preserve its Figma placement.')
+
+assert.match(page, /<section className="sp-section sp-review">[\s\S]*<h2 className="sp-section-title">项目复盘<\/h2>/,
+  'Review section must reuse the shared section typography with the Figma title.')
+assert.match(page, /<strong>Onboarding 的目标并不是让用户完整了解产品<\/strong>/,
+  'Review must keep Figma’s first inline emphasis.')
+assert.match(page, /<strong>初创公司中设计流程是灵活的<\/strong>/,
+  'Review must keep Figma’s second inline emphasis.')
+assert.match(page, /<strong>核心任务建立最短价值路径<\/strong>/,
+  'Review must keep Figma’s third inline emphasis.')
+assert.match(page, /而是帮助用户尽快完成一次真实任务。因此后续设计将功能介绍进一步收敛，并把首次体验更直接地连接到 Canvas 等实际场景，让用户从「知道产品能做什么」更快进入「真正使用产品」。/,
+  'Review paragraph one must preserve the Figma copy verbatim.')
+assert.match(page, /那种完美的“理想”流程并非总是适用。需要做的是在不牺牲质量的前提下，以最快的速度完成工作。/,
+  'Review paragraph two must keep Figma’s curly quotes verbatim.')
+assert.match(page, /再通过真实使用持续验证；与此同时，一套好的交互模型也不应该依赖不断增加新的界面，而应该能够随着新的内容和场景自然扩展。/,
+  'Review paragraph three must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-review \.sp-section-text p \+ p\s*\{[^}]*margin-top:\s*26px/,
+  'Review must add its paragraph rhythm in scope, leaving the shared section rules untouched.')
+assert.match(styles, /\.sp-section-text p\s*\{[^}]*margin:\s*0/,
+  'The shared paragraph rule must stay unchanged for the existing sections.')
+
+assert.match(page, /import solvelyIp from '\.\.\/assets\/solvely-plugins\/solvely-ip\.webp'/,
+  'CTA mascot must load the optimised animated WebP, never the 13MB source GIF.')
+assert.match(page, /<section className="sp-cta">[\s\S]*<img src=\{solvelyIp\}/,
+  'CTA must render the Solvely mascot.')
+assert.match(page, /感谢阅读，如果你想了解更多，欢迎与我交流。/,
+  'CTA body must preserve the Figma copy verbatim.')
+assert.match(page, /同时也期待您点击下方按钮/,
+  'CTA body second line must preserve the Figma copy verbatim.')
+assert.match(page, /欢迎下载我们的插件/,
+  'CTA button label must preserve the Figma copy.')
+assert.match(page, /const PLUGIN_DOWNLOAD_URL =\s*\n?\s*'https:\/\/chromewebstore\.google\.com\/detail\/solvelyai-ai-homework-tut\/aedglnfjjccpifohekdeoogffomjcikm'/,
+  'CTA must point at the Chrome Web Store listing, with no locale or utm parameters.')
+assert.match(page, /<a\s+className="sp-cta-btn"[\s\S]*target="_blank"[\s\S]*rel="noopener noreferrer"[\s\S]*data-cursor="link"/,
+  'CTA button must open the store safely in a new tab and use the site’s custom-cursor hover affordance.')
+assert.match(styles, /\.sp-cta\s*\{[^}]*background:\s*#eef1f5[^}]*border-radius:\s*32px/,
+  'CTA must be Figma’s tinted rounded band.')
+assert.doesNotMatch(styles, /\.sp-cta\s*\{[^}]*border-top/,
+  'CTA must not keep the unused scaffolding’s divider rule.')
+assert.match(styles, /\.sp-cta-btn\s*\{[^}]*padding:\s*13px\s+21px[^}]*background:\s*#007aff[^}]*border-radius:\s*12px[^}]*text-decoration:\s*underline/,
+  'CTA button must match Figma’s 186×52 pill with underlined label.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

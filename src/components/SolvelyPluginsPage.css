@@ -988,19 +988,31 @@
   background: #f9fafb;
 }
 
+/* ==================== Review Section ==================== */
+
+/* Review reuses the shared section typography; only its paragraph rhythm is
+   scoped here, so the existing sections keep their current spacing. */
+.sp-review {
+  margin-bottom: 32px;
+}
+
+.sp-review .sp-section-text p + p {
+  margin-top: 26px;
+}
+
 /* ==================== CTA Section ==================== */
 
 .sp-cta {
   text-align: center;
-  margin-top: 160px;
-  padding-top: 80px;
-  border-top: 1px solid #e5e7eb;
+  padding: 24px 0;
+  background: #eef1f5;
+  border-radius: 32px;
 }
 
 .sp-cta-logo {
   width: 133px;
   height: 133px;
-  margin: 0 auto 32px;
+  margin: 0 auto 12px;
   display: block;
 }
 
@@ -1009,19 +1021,20 @@
   font-weight: 400;
   color: #374151;
   line-height: 1.65;
-  margin: 0 auto 32px;
-  max-width: 400px;
+  margin: 0 auto 12px;
+  max-width: 342px;
 }
 
 .sp-cta-btn {
   display: inline-block;
-  padding: 13px 32px;
+  padding: 13px 21px;
   background: #007aff;
   color: #ffffff;
   font-size: 16px;
   font-weight: 500;
+  line-height: 26px;
   border-radius: 12px;
-  text-decoration: none;
+  text-decoration: underline;
   transition: all 0.2s ease;
 }
 
@@ -1029,6 +1042,114 @@
   background: #0051d5;
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+}
+
+.sp-gmail-reply {
+  margin-bottom: 56px;
+}
+.sp-gmail-reply-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 525;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+.sp-gmail-reply-main,
+.sp-gmail-reply-flow {
+  position: absolute;
+  display: block;
+}
+.sp-gmail-reply-main {
+  left: 13.852%;
+  top: 8%;
+  width: 72.295%;
+  height: 92%;
+}
+.sp-gmail-reply-flow {
+  left: 47.049%;
+  top: 68.784%;
+  width: 5.41%;
+  height: 1.1%;
+  z-index: 2;
+  pointer-events: none;
+}
+.sp-gmail-reply-copy {
+  margin-top: 24px;
+}
+.sp-gmail-reply-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.sp-gmail-reply-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.sp-dialog-detail {
+  margin-bottom: 56px;
+}
+.sp-dialog-detail-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 580;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+.sp-dialog-detail-crop,
+.sp-dialog-detail-pdf,
+.sp-dialog-detail-summarize,
+.sp-dialog-detail-quiz {
+  position: absolute;
+  display: block;
+}
+.sp-dialog-detail-crop {
+  left: 3.852%;
+  top: 6.034%;
+  width: 22.377%;
+  height: 88.276%;
+}
+.sp-dialog-detail-pdf {
+  left: 27.049%;
+  top: 6.034%;
+  width: 22.459%;
+  height: 88.276%;
+}
+.sp-dialog-detail-summarize {
+  left: 50.328%;
+  top: 5.862%;
+  width: 22.459%;
+  height: 88.276%;
+}
+.sp-dialog-detail-quiz {
+  left: 73.607%;
+  top: 6.034%;
+  width: 22.459%;
+  height: 88.276%;
+}
+.sp-dialog-detail-copy {
+  margin-top: 24px;
+}
+.sp-dialog-detail-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.sp-dialog-detail-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 /* ==================== Responsive ==================== */
@@ -1142,6 +1263,14 @@
     margin-bottom: 80px;
   }
 
+  .sp-gmail-reply {
+    margin-bottom: 80px;
+  }
+
+  .sp-dialog-detail {
+    margin-bottom: 80px;
+  }
+
   .sp-onboarding-stage,
   .sp-canvas-entry-stage,
   .sp-task-first-stage {
@@ -1177,6 +1306,14 @@
   }
 
   .sp-selected-text-stage {
+    border-radius: 20px;
+  }
+
+  .sp-gmail-reply-stage {
+    border-radius: 20px;
+  }
+
+  .sp-dialog-detail-stage {
     border-radius: 20px;
   }
 
@@ -1218,6 +1355,14 @@
     margin-top: 16px;
   }
 
+  .sp-gmail-reply-copy {
+    margin-top: 16px;
+  }
+
+  .sp-dialog-detail-copy {
+    margin-top: 16px;
+  }
+
   .sp-onboarding-title,
   .sp-onboarding-copy p,
   .sp-canvas-entry-title,
@@ -1240,13 +1385,17 @@
   .sp-pdf-context-title,
   .sp-pdf-context-copy p,
   .sp-selected-text-title,
-  .sp-selected-text-copy p {
+  .sp-selected-text-copy p,
+  .sp-gmail-reply-title,
+  .sp-gmail-reply-copy p,
+  .sp-dialog-detail-title,
+  .sp-dialog-detail-copy p {
     font-size: 16px;
   }
 
   .sp-cta {
-    margin-top: 120px;
-    padding-top: 60px;
+    padding: 20px 0;
+    border-radius: 20px;
   }
 
   .sp-cta-logo {

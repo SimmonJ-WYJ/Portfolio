@@ -23,6 +23,11 @@ import youtubeSummaryDownArrow from '../assets/solvely-plugins/youtube-summary-d
 import pdfContextReader from '../assets/solvely-plugins/pdf-context-reader.png'
 import pdfContextSidebar from '../assets/solvely-plugins/pdf-context-sidebar.png'
 import pdfContextFlow from '../assets/solvely-plugins/pdf-context-flow.svg'
+import gmailReplyMain from '../assets/solvely-plugins/gmail-reply-main.png'
+import dialogDetailCrop from '../assets/solvely-plugins/dialog-detail-crop.png'
+import dialogDetailPdf from '../assets/solvely-plugins/dialog-detail-pdf.png'
+import dialogDetailSummarize from '../assets/solvely-plugins/dialog-detail-summarize.png'
+import dialogDetailQuiz from '../assets/solvely-plugins/dialog-detail-quiz.png'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -33,7 +38,16 @@ import firstUse from '../assets/solvely-plugins/用户首次进入核心功能�
 import seamlessLogin from '../assets/solvely-plugins/登录后无缝继续流程.mp4'
 import taskFirst from '../assets/solvely-plugins/嗅探一键解题.mp4'
 import commercial from '../assets/solvely-plugins/Commercial.mp4'
-import solvelyIpGif from '../assets/solvely-plugins/Solvely ip.gif'
+// Animated WebP re-encoded from the 13MB source GIF: same 84 frames at 40ms and
+// the same alpha, at the 400px the 133px mascot needs on a 3x display.
+import solvelyIp from '../assets/solvely-plugins/solvely-ip.webp'
+
+// Chrome Web Store listing. The author's link carried `hl=en-US` and a
+// `utm_source=ext_sidebar` tag copied from the extension's own sidebar; both are
+// dropped so the store follows the visitor's locale and traffic is not
+// misattributed to the extension.
+const PLUGIN_DOWNLOAD_URL =
+  'https://chromewebstore.google.com/detail/solvelyai-ai-homework-tut/aedglnfjjccpifohekdeoogffomjcikm'
 
 export default function SolvelyPluginsPage() {
   const firstUseVideoRef = useRef(null)
@@ -355,6 +369,77 @@ export default function SolvelyPluginsPage() {
             <h2 className="sp-selected-text-title">在用户当前网页位置直接提供帮助</h2>
             <p>对于普通网页，用户的需求往往来自某一段具体内容，因此我将操作入口直接放到选区附近。用户划选内容后即可调用解释、总结或提问，减少视线在正文与侧边栏之间反复移动，让交互尽可能贴近当前任务焦点。</p>
           </div>
+        </section>
+
+        {/* Gmail one-tap reply — Figma feature showcase */}
+        <section className="sp-gmail-reply">
+          <div className="sp-gmail-reply-stage">
+            <img
+              src={gmailReplyMain}
+              alt="Gmail thread with Solvely AI Reply summarising the sender’s intent and drafting a reply"
+              className="sp-gmail-reply-main"
+            />
+            {/* Connector between the intent card and the reply draft — Figma Vector 2719 */}
+            <svg
+              className="sp-gmail-reply-flow"
+              viewBox="0 0 66 5.7735"
+              preserveAspectRatio="none"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M66 2.88675L61 0V5.7735L66 2.88675ZM0 2.88677C0 4.35953 1.19391 5.55343 2.66667 5.55343C4.13943 5.55343 5.33333 4.35953 5.33333 2.88677C5.33333 1.41401 4.13943 0.220099 2.66667 0.220099C1.19391 0.220099 0 1.41401 0 2.88677ZM2.66667 2.88677L2.66667 3.38677L61.5 3.38675V2.88675V2.38675L2.66667 2.38677L2.66667 2.88677Z"
+                fill="#FF9292"
+              />
+            </svg>
+          </div>
+          <div className="sp-gmail-reply-copy">
+            <h2 className="sp-gmail-reply-title">Gmail 邮件一键回复，读懂上下文再起草</h2>
+            <p>在邮件场景中，插件读取当前邮件内容与对话上下文后生成回复草稿，用户可以编辑并确认后再写入邮件。</p>
+          </div>
+        </section>
+
+        {/* AI dialog-flow refinements — Figma feature showcase */}
+        <section className="sp-dialog-detail">
+          <div className="sp-dialog-detail-stage">
+            <img src={dialogDetailCrop} alt="Solvely sidebar solving a cropped screenshot" className="sp-dialog-detail-crop" />
+            <img src={dialogDetailPdf} alt="Solvely sidebar solving a question from a PDF" className="sp-dialog-detail-pdf" />
+            <img src={dialogDetailSummarize} alt="Solvely sidebar summarising a web page" className="sp-dialog-detail-summarize" />
+            <img src={dialogDetailQuiz} alt="Solvely sidebar generating a quiz" className="sp-dialog-detail-quiz" />
+          </div>
+          <div className="sp-dialog-detail-copy">
+            <h2 className="sp-dialog-detail-title">其他关于AI对话流的一些细节优化</h2>
+            <p>内容区进一步解决AI 结果应该如何被理解。我们围绕信息获取、过程理解和结果判断，重新组织不同类型的生成内容。</p>
+          </div>
+        </section>
+
+        {/* Project review — Figma closing section */}
+        <section className="sp-section sp-review">
+          <h2 className="sp-section-title">项目复盘</h2>
+          <div className="sp-section-text">
+            <p>反思：第一版上线后，我逐渐意识到，<strong>Onboarding 的目标并不是让用户完整了解产品</strong>，而是帮助用户尽快完成一次真实任务。因此后续设计将功能介绍进一步收敛，并把首次体验更直接地连接到 Canvas 等实际场景，让用户从「知道产品能做什么」更快进入「真正使用产品」。</p>
+            <p>此外，在<strong>初创公司中设计流程是灵活的</strong>。那种完美的“理想”流程并非总是适用。需要做的是在不牺牲质量的前提下，以最快的速度完成工作。</p>
+            <p>这个项目也让我重新理解了 0→1 产品设计：早期并不存在完整数据和确定答案，设计需要先围绕<strong>核心任务建立最短价值路径</strong>，再通过真实使用持续验证；与此同时，一套好的交互模型也不应该依赖不断增加新的界面，而应该能够随着新的内容和场景自然扩展。</p>
+          </div>
+        </section>
+
+        {/* Download CTA — Figma closing section */}
+        <section className="sp-cta">
+          <img src={solvelyIp} alt="Solvely 吉祥物" className="sp-cta-logo" />
+          <p className="sp-cta-text">
+            感谢阅读，如果你想了解更多，欢迎与我交流。
+            <br />
+            同时也期待您点击下方按钮
+          </p>
+          <a
+            className="sp-cta-btn"
+            href={PLUGIN_DOWNLOAD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="link"
+          >
+            欢迎下载我们的插件
+          </a>
         </section>
 
       </div>
