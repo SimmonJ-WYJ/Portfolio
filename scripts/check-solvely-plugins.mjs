@@ -169,4 +169,25 @@ assert.match(styles, /\.sp-more-scenarios-canvas img\s*\{[\s\S]*top:\s*-14\.32%[
 assert.match(styles, /\.sp-more-scenarios-pdf\s*\{[\s\S]*left:\s*52\.049%[\s\S]*top:\s*49\.85%[\s\S]*width:\s*45\.082%[\s\S]*height:\s*45\.659%/,
   'PDF panel must preserve Figma placement.')
 
+assert.match(page, /import youtubeSummaryMain from '\.\.\/assets\/solvely-plugins\/youtube-summary-main\.png'/,
+  'YouTube-summary showcase must import the Figma main page image.')
+assert.match(page, /import youtubeSummaryPrompt from '\.\.\/assets\/solvely-plugins\/youtube-summary-prompt\.png'/,
+  'YouTube-summary showcase must import the Figma summary-generation image.')
+assert.match(page, /import youtubeSummaryGenerated from '\.\.\/assets\/solvely-plugins\/youtube-summary-generated\.png'/,
+  'YouTube-summary showcase must import the Figma generated-summary image.')
+assert.match(page, /<section className="sp-youtube-summary">[\s\S]*src=\{youtubeSummaryMain\}[\s\S]*src=\{youtubeSummaryPrompt\}[\s\S]*src=\{youtubeSummaryGenerated\}/,
+  'YouTube-summary showcase must render all Figma static images.')
+assert.match(page, /YouTube 视频总结，不离开视频，也能快速理解内容/,
+  'YouTube-summary title must preserve the Figma copy.')
+assert.match(page, /在长视频学习场景中，用户最需要的是快速理解内容结构并定位重点。插件读取当前视频上下文后，在侧边栏直接生成摘要与关键节点，用户可以围绕当前视频继续提问，而无需离开播放页面重新整理信息。/,
+  'YouTube-summary body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-youtube-summary-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*525[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'YouTube-summary stage must preserve Figma’s 1220×525 canvas, color, and corner radius.')
+assert.match(styles, /\.sp-youtube-summary-main\s*\{[\s\S]*left:\s*3\.852%[\s\S]*top:\s*5\.714%[\s\S]*width:\s*71\.803%[\s\S]*height:\s*96\.571%[\s\S]*border-radius:\s*6px/,
+  'YouTube main panel must preserve Figma placement and crop frame.')
+assert.match(styles, /\.sp-youtube-summary-prompt\s*\{[\s\S]*left:\s*76\.967%[\s\S]*top:\s*5\.714%[\s\S]*width:\s*19\.18%[\s\S]*height:\s*25\.333%/,
+  'YouTube summary-generation panel must preserve Figma placement.')
+assert.match(styles, /\.sp-youtube-summary-generated\s*\{[\s\S]*left:\s*76\.967%[\s\S]*top:\s*34\.286%[\s\S]*width:\s*19\.262%[\s\S]*height:\s*65\.714%/,
+  'YouTube generated-summary panel must preserve Figma placement.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

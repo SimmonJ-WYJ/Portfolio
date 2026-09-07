@@ -15,6 +15,11 @@ import moreScenariosYoutube from '../assets/solvely-plugins/more-scenarios-youtu
 import moreScenariosGmail from '../assets/solvely-plugins/more-scenarios-gmail.png'
 import moreScenariosCanvas from '../assets/solvely-plugins/more-scenarios-canvas.png'
 import moreScenariosPdf from '../assets/solvely-plugins/more-scenarios-pdf.png'
+import youtubeSummaryMain from '../assets/solvely-plugins/youtube-summary-main.png'
+import youtubeSummaryPrompt from '../assets/solvely-plugins/youtube-summary-prompt.png'
+import youtubeSummaryGenerated from '../assets/solvely-plugins/youtube-summary-generated.png'
+import youtubeSummaryFlow from '../assets/solvely-plugins/youtube-summary-flow.svg'
+import youtubeSummaryDownArrow from '../assets/solvely-plugins/youtube-summary-down-arrow.svg'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -287,6 +292,23 @@ export default function SolvelyPluginsPage() {
           <div className="sp-more-scenarios-copy">
             <h2 className="sp-more-scenarios-title">从 Canvas 扩展到更多场景</h2>
             <p>Canvas 验证了一个关键方向：相比要求用户不断告诉 AI 自己在做什么，更有效的方式是让产品读取当前上下文，并围绕当前任务提供操作。因此后续扩展并不是简单增加功能，而是将同一套交互模型（识别当前内容 → 提供对应任务 → AI 读取上下文 → 原地返回结果 → 支持继续交互）复用到更多高频场景。</p>
+          </div>
+        </section>
+
+        {/* YouTube summary — Figma feature showcase */}
+        <section className="sp-youtube-summary">
+          <div className="sp-youtube-summary-stage">
+            <div className="sp-youtube-summary-main">
+              <img src={youtubeSummaryMain} alt="YouTube video with Solvely summary entry" />
+            </div>
+            <img src={youtubeSummaryPrompt} alt="Solvely generate video summary" className="sp-youtube-summary-prompt" />
+            <img src={youtubeSummaryGenerated} alt="Solvely generated video summary" className="sp-youtube-summary-generated" />
+            <img src={youtubeSummaryFlow} alt="" className="sp-youtube-summary-flow" />
+            <img src={youtubeSummaryDownArrow} alt="" className="sp-youtube-summary-down-arrow" />
+          </div>
+          <div className="sp-youtube-summary-copy">
+            <h2 className="sp-youtube-summary-title">YouTube 视频总结，不离开视频，也能快速理解内容</h2>
+            <p>在长视频学习场景中，用户最需要的是快速理解内容结构并定位重点。插件读取当前视频上下文后，在侧边栏直接生成摘要与关键节点，用户可以围绕当前视频继续提问，而无需离开播放页面重新整理信息。</p>
           </div>
         </section>
 
