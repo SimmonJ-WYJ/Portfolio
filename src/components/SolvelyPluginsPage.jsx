@@ -42,6 +42,7 @@ export default function SolvelyPluginsPage() {
   const screenshotSolveVideoRef = useRef(null)
   const coreProcessVideoRef = useRef(null)
   const commercialVideoRef = useRef(null)
+  const wordSelectVideoRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -53,6 +54,7 @@ export default function SolvelyPluginsPage() {
   useMediaVisibility(screenshotSolveVideoRef, { autoplay: true })
   useMediaVisibility(coreProcessVideoRef, { autoplay: true })
   useMediaVisibility(commercialVideoRef, { autoplay: true })
+  useMediaVisibility(wordSelectVideoRef, { autoplay: true })
 
   return (
     <div className="sp-page">
@@ -329,6 +331,29 @@ export default function SolvelyPluginsPage() {
           <div className="sp-pdf-context-copy">
             <h2 className="sp-pdf-context-title">让当前文档直接成为 AI 上下文</h2>
             <p>阅读 PDF 时，用户无需重新上传文件或解释自己正在阅读什么，当前文档会直接进入对话上下文，用户可以围绕文档进行总结、解释、解题和自由提问，让 AI 能力自然延续到长文档阅读场景。</p>
+          </div>
+        </section>
+
+        {/* Selected-text assistance — Figma feature showcase */}
+        <section className="sp-selected-text">
+          <div className="sp-selected-text-stage">
+            <div className="sp-selected-text-video-window">
+              <video
+                ref={wordSelectVideoRef}
+                src={wordSelect}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Solvely selected-text assistance flow"
+                className="sp-selected-text-video"
+              />
+            </div>
+          </div>
+          <div className="sp-selected-text-copy">
+            <h2 className="sp-selected-text-title">在用户当前网页位置直接提供帮助</h2>
+            <p>对于普通网页，用户的需求往往来自某一段具体内容，因此我将操作入口直接放到选区附近。用户划选内容后即可调用解释、总结或提问，减少视线在正文与侧边栏之间反复移动，让交互尽可能贴近当前任务焦点。</p>
           </div>
         </section>
 

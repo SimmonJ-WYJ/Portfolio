@@ -905,6 +905,58 @@
   line-height: 1.8;
 }
 
+/* ==================== Selected-text assistance ==================== */
+
+.sp-selected-text {
+  margin-bottom: 56px;
+}
+
+.sp-selected-text-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 525;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-selected-text-video-window {
+  position: absolute;
+  left: 16.885%;
+  top: 10.286%;
+  width: 66.23%;
+  height: 95.048%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.sp-selected-text-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-3.35%);
+}
+
+.sp-selected-text-copy {
+  margin-top: 24px;
+}
+
+.sp-selected-text-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.sp-selected-text-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -1086,6 +1138,10 @@
     margin-bottom: 80px;
   }
 
+  .sp-selected-text {
+    margin-bottom: 80px;
+  }
+
   .sp-onboarding-stage,
   .sp-canvas-entry-stage,
   .sp-task-first-stage {
@@ -1117,6 +1173,10 @@
   }
 
   .sp-pdf-context-stage {
+    border-radius: 20px;
+  }
+
+  .sp-selected-text-stage {
     border-radius: 20px;
   }
 
@@ -1154,6 +1214,10 @@
     margin-top: 16px;
   }
 
+  .sp-selected-text-copy {
+    margin-top: 16px;
+  }
+
   .sp-onboarding-title,
   .sp-onboarding-copy p,
   .sp-canvas-entry-title,
@@ -1174,7 +1238,9 @@
   .sp-youtube-summary-title,
   .sp-youtube-summary-copy p,
   .sp-pdf-context-title,
-  .sp-pdf-context-copy p {
+  .sp-pdf-context-copy p,
+  .sp-selected-text-title,
+  .sp-selected-text-copy p {
     font-size: 16px;
   }
 

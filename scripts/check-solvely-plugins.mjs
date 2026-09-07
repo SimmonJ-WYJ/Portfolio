@@ -211,4 +211,21 @@ assert.match(styles, /\.sp-pdf-context-sidebar\s*\{[\s\S]*left:\s*78\.443%[\s\S]
 assert.match(styles, /\.sp-pdf-context-flow\s*\{[\s\S]*left:\s*67\.951%[\s\S]*top:\s*8\.762%[\s\S]*width:\s*10\.492%[\s\S]*height:\s*33\.905%/,
   'PDF context flow arrow must preserve Figma placement.')
 
+assert.match(page, /const wordSelectVideoRef = useRef\(null\)/,
+  'Selected-text showcase must define a dedicated video ref.')
+assert.match(page, /useMediaVisibility\(wordSelectVideoRef, \{ autoplay: true \}\)/,
+  'Selected-text video must autoplay when it enters the viewport.')
+assert.match(page, /<section className="sp-selected-text">[\s\S]*ref=\{wordSelectVideoRef\}[\s\S]*src=\{wordSelect\}[\s\S]*autoPlay[\s\S]*muted[\s\S]*loop[\s\S]*playsInline[\s\S]*preload="metadata"/,
+  'Selected-text showcase must render the supplied MP4 as muted looping inline media.')
+assert.match(page, /在用户当前网页位置直接提供帮助/,
+  'Selected-text title must preserve the Figma copy.')
+assert.match(page, /对于普通网页，用户的需求往往来自某一段具体内容，因此我将操作入口直接放到选区附近。用户划选内容后即可调用解释、总结或提问，减少视线在正文与侧边栏之间反复移动，让交互尽可能贴近当前任务焦点。/,
+  'Selected-text body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-selected-text-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*525[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'Selected-text stage must preserve Figma’s 1220×525 canvas, color, and corner radius.')
+assert.match(styles, /\.sp-selected-text-video-window\s*\{[\s\S]*left:\s*16\.885%[\s\S]*top:\s*10\.286%[\s\S]*width:\s*66\.23%[\s\S]*height:\s*95\.048%[\s\S]*border-radius:\s*12px[\s\S]*overflow:\s*hidden/,
+  'Selected-text video window must preserve Figma placement and crop frame.')
+assert.match(styles, /\.sp-selected-text-video\s*\{[\s\S]*transform:\s*translateY\(-3\.35%\)/,
+  'Selected-text video must crop the source black header.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')
