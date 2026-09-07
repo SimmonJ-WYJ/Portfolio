@@ -142,4 +142,31 @@ assert.match(styles, /\.sp-commercial-timing-video-window\s*\{[\s\S]*left:\s*16\
 assert.match(styles, /\.sp-commercial-timing-video\s*\{[\s\S]*width:\s*100%[\s\S]*height:\s*auto[\s\S]*transform:\s*translateY\(-3\.35%\)/,
   'Commercial-timing video must retain its full width while cropping only the source black header.')
 
+assert.match(page, /import moreScenariosYoutube from '\.\.\/assets\/solvely-plugins\/more-scenarios-youtube\.png'/,
+  'More-scenarios showcase must import the Figma YouTube source image.')
+assert.match(page, /import moreScenariosGmail from '\.\.\/assets\/solvely-plugins\/more-scenarios-gmail\.png'/,
+  'More-scenarios showcase must import the Figma Gmail source image.')
+assert.match(page, /import moreScenariosCanvas from '\.\.\/assets\/solvely-plugins\/more-scenarios-canvas\.png'/,
+  'More-scenarios showcase must import the Figma Canvas source image.')
+assert.match(page, /import moreScenariosPdf from '\.\.\/assets\/solvely-plugins\/more-scenarios-pdf\.png'/,
+  'More-scenarios showcase must import the Figma PDF source image.')
+assert.match(page, /<section className="sp-more-scenarios">[\s\S]*src=\{moreScenariosYoutube\}[\s\S]*src=\{moreScenariosGmail\}[\s\S]*src=\{moreScenariosCanvas\}[\s\S]*src=\{moreScenariosPdf\}/,
+  'More-scenarios showcase must render all four Figma static panels.')
+assert.match(page, /从 Canvas 扩展到更多场景/,
+  'More-scenarios title must preserve the Figma copy.')
+assert.match(page, /Canvas 验证了一个关键方向：相比要求用户不断告诉 AI 自己在做什么，更有效的方式是让产品读取当前上下文，并围绕当前任务提供操作。因此后续扩展并不是简单增加功能，而是将同一套交互模型（识别当前内容 → 提供对应任务 → AI 读取上下文 → 原地返回结果 → 支持继续交互）复用到更多高频场景。/,
+  'More-scenarios body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-more-scenarios-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*668[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'More-scenarios stage must preserve Figma’s 1220×668 canvas, color, and corner radius.')
+assert.match(styles, /\.sp-more-scenarios-youtube\s*\{[\s\S]*left:\s*4\.426%[\s\S]*top:\s*0\.299%[\s\S]*width:\s*45%[\s\S]*height:\s*45\.659%/,
+  'YouTube panel must preserve Figma placement.')
+assert.match(styles, /\.sp-more-scenarios-gmail\s*\{[\s\S]*left:\s*52\.049%[\s\S]*top:\s*-0\.749%[\s\S]*width:\s*45\.082%[\s\S]*height:\s*46\.707%/,
+  'Gmail panel must preserve Figma placement.')
+assert.match(styles, /\.sp-more-scenarios-canvas\s*\{[\s\S]*left:\s*4\.426%[\s\S]*top:\s*48\.802%[\s\S]*width:\s*45%[\s\S]*height:\s*46\.707%[\s\S]*overflow:\s*hidden/,
+  'Canvas panel must retain its Figma frame and crop behavior.')
+assert.match(styles, /\.sp-more-scenarios-canvas img\s*\{[\s\S]*top:\s*-14\.32%[\s\S]*height:\s*114\.33%/,
+  'Canvas image must retain Figma’s upward crop.')
+assert.match(styles, /\.sp-more-scenarios-pdf\s*\{[\s\S]*left:\s*52\.049%[\s\S]*top:\s*49\.85%[\s\S]*width:\s*45\.082%[\s\S]*height:\s*45\.659%/,
+  'PDF panel must preserve Figma placement.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

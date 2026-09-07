@@ -11,6 +11,10 @@ import stableAnswer from '../assets/solvely-plugins/stable-structure-answer.png'
 import stableSummary from '../assets/solvely-plugins/stable-structure-summary.png'
 import stableFlowArrow from '../assets/solvely-plugins/stable-structure-flow.svg'
 import stableShortArrow from '../assets/solvely-plugins/stable-structure-short-arrow.svg'
+import moreScenariosYoutube from '../assets/solvely-plugins/more-scenarios-youtube.png'
+import moreScenariosGmail from '../assets/solvely-plugins/more-scenarios-gmail.png'
+import moreScenariosCanvas from '../assets/solvely-plugins/more-scenarios-canvas.png'
+import moreScenariosPdf from '../assets/solvely-plugins/more-scenarios-pdf.png'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -267,6 +271,22 @@ export default function SolvelyPluginsPage() {
           <div className="sp-commercial-timing-copy">
             <h2 className="sp-commercial-timing-title">先体验核心价值，再触发付费转化</h2>
             <p>首次体验阶段如果过早出现付费墙，会在用户还没有理解产品价值之前打断任务。因此我将商业化节点放在核心体验之后，让用户先真正完成解题、总结或追问，在持续需求形成后再进入订阅流程。</p>
+          </div>
+        </section>
+
+        {/* More scenarios — Figma feature showcase */}
+        <section className="sp-more-scenarios">
+          <div className="sp-more-scenarios-stage">
+            <img src={moreScenariosYoutube} alt="Solvely YouTube summary" className="sp-more-scenarios-panel sp-more-scenarios-youtube" />
+            <img src={moreScenariosGmail} alt="Solvely Gmail reply assistance" className="sp-more-scenarios-panel sp-more-scenarios-gmail" />
+            <div className="sp-more-scenarios-canvas">
+              <img src={moreScenariosCanvas} alt="Solvely Canvas text selection" />
+            </div>
+            <img src={moreScenariosPdf} alt="Solvely PDF assistance" className="sp-more-scenarios-panel sp-more-scenarios-pdf" />
+          </div>
+          <div className="sp-more-scenarios-copy">
+            <h2 className="sp-more-scenarios-title">从 Canvas 扩展到更多场景</h2>
+            <p>Canvas 验证了一个关键方向：相比要求用户不断告诉 AI 自己在做什么，更有效的方式是让产品读取当前上下文，并围绕当前任务提供操作。因此后续扩展并不是简单增加功能，而是将同一套交互模型（识别当前内容 → 提供对应任务 → AI 读取上下文 → 原地返回结果 → 支持继续交互）复用到更多高频场景。</p>
           </div>
         </section>
 

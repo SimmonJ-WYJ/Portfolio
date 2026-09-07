@@ -646,6 +646,87 @@
   line-height: 1.8;
 }
 
+/* ==================== More scenarios ==================== */
+
+.sp-more-scenarios {
+  margin-bottom: 56px;
+}
+
+.sp-more-scenarios-stage {
+  width: 100%;
+  aspect-ratio: 1220 / 668;
+  position: relative;
+  overflow: hidden;
+  background: #eef1f5;
+  border-radius: 32px;
+}
+
+.sp-more-scenarios-panel {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+}
+
+.sp-more-scenarios-youtube {
+  left: 4.426%;
+  top: 0.299%;
+  width: 45%;
+  height: 45.659%;
+}
+
+.sp-more-scenarios-gmail {
+  left: 52.049%;
+  top: -0.749%;
+  width: 45.082%;
+  height: 46.707%;
+}
+
+.sp-more-scenarios-canvas {
+  position: absolute;
+  left: 4.426%;
+  top: 48.802%;
+  width: 45%;
+  height: 46.707%;
+  overflow: hidden;
+}
+
+.sp-more-scenarios-canvas img {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: -14.32%;
+  width: 100%;
+  height: 114.33%;
+  max-width: none;
+}
+
+.sp-more-scenarios-pdf {
+  left: 52.049%;
+  top: 49.85%;
+  width: 45.082%;
+  height: 45.659%;
+}
+
+.sp-more-scenarios-copy {
+  margin-top: 24px;
+}
+
+.sp-more-scenarios-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.sp-more-scenarios-copy p {
+  margin: 0;
+  color: #57616e;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
 /* ==================== Video ==================== */
 
 .sp-video {
@@ -815,6 +896,10 @@
     margin-bottom: 80px;
   }
 
+  .sp-more-scenarios {
+    margin-bottom: 80px;
+  }
+
   .sp-onboarding-stage,
   .sp-canvas-entry-stage,
   .sp-task-first-stage {
@@ -834,6 +919,10 @@
   }
 
   .sp-commercial-timing-stage {
+    border-radius: 20px;
+  }
+
+  .sp-more-scenarios-stage {
     border-radius: 20px;
   }
 
@@ -859,6 +948,10 @@
     margin-top: 16px;
   }
 
+  .sp-more-scenarios-copy {
+    margin-top: 16px;
+  }
+
   .sp-onboarding-title,
   .sp-onboarding-copy p,
   .sp-canvas-entry-title,
@@ -873,7 +966,9 @@
   .sp-stable-structure-title,
   .sp-stable-structure-copy p,
   .sp-commercial-timing-title,
-  .sp-commercial-timing-copy p {
+  .sp-commercial-timing-copy p,
+  .sp-more-scenarios-title,
+  .sp-more-scenarios-copy p {
     font-size: 16px;
   }
 
