@@ -190,4 +190,25 @@ assert.match(styles, /\.sp-youtube-summary-prompt\s*\{[\s\S]*left:\s*76\.967%[\s
 assert.match(styles, /\.sp-youtube-summary-generated\s*\{[\s\S]*left:\s*76\.967%[\s\S]*top:\s*34\.286%[\s\S]*width:\s*19\.262%[\s\S]*height:\s*65\.714%/,
   'YouTube generated-summary panel must preserve Figma placement.')
 
+assert.match(page, /import pdfContextReader from '\.\.\/assets\/solvely-plugins\/pdf-context-reader\.png'/,
+  'PDF-context showcase must import the Figma PDF-reader image.')
+assert.match(page, /import pdfContextSidebar from '\.\.\/assets\/solvely-plugins\/pdf-context-sidebar\.png'/,
+  'PDF-context showcase must import the Figma context-sidebar image.')
+assert.match(page, /<section className="sp-pdf-context">[\s\S]*src=\{pdfContextReader\}[\s\S]*src=\{pdfContextFlow\}[\s\S]*src=\{pdfContextSidebar\}/,
+  'PDF-context showcase must render the reader, sidebar, and Figma flow arrow.')
+assert.match(page, /让当前文档直接成为 AI 上下文/,
+  'PDF-context title must preserve the Figma copy.')
+assert.match(page, /阅读 PDF 时，用户无需重新上传文件或解释自己正在阅读什么，当前文档会直接进入对话上下文，用户可以围绕文档进行总结、解释、解题和自由提问，让 AI 能力自然延续到长文档阅读场景。/,
+  'PDF-context body must preserve the Figma copy verbatim.')
+assert.match(styles, /\.sp-pdf-context-stage\s*\{[\s\S]*aspect-ratio:\s*1220\s*\/\s*525[\s\S]*background:\s*#eef1f5[\s\S]*border-radius:\s*32px/,
+  'PDF-context stage must preserve Figma’s 1220×525 canvas, color, and corner radius.')
+assert.match(styles, /\.sp-pdf-context-reader\s*\{[\s\S]*left:\s*4\.754%[\s\S]*top:\s*5\.714%[\s\S]*width:\s*72\.295%[\s\S]*height:\s*88\.762%[\s\S]*border-radius:\s*6px/,
+  'PDF reader must preserve Figma placement and crop frame.')
+assert.match(styles, /\.sp-pdf-context-reader img\s*\{[\s\S]*top:\s*-15\.11%[\s\S]*height:\s*122\.93%/,
+  'PDF reader image must preserve Figma’s upward crop.')
+assert.match(styles, /\.sp-pdf-context-sidebar\s*\{[\s\S]*left:\s*78\.443%[\s\S]*top:\s*5\.714%[\s\S]*width:\s*16\.803%[\s\S]*height:\s*88\.952%[\s\S]*border-radius:\s*6px/,
+  'PDF context sidebar must preserve Figma placement and crop frame.')
+assert.match(styles, /\.sp-pdf-context-flow\s*\{[\s\S]*left:\s*67\.951%[\s\S]*top:\s*8\.762%[\s\S]*width:\s*10\.492%[\s\S]*height:\s*33\.905%/,
+  'PDF context flow arrow must preserve Figma placement.')
+
 console.log('Solvely Plugins onboarding-video checks passed.')

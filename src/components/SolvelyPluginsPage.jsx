@@ -20,6 +20,9 @@ import youtubeSummaryPrompt from '../assets/solvely-plugins/youtube-summary-prom
 import youtubeSummaryGenerated from '../assets/solvely-plugins/youtube-summary-generated.png'
 import youtubeSummaryFlow from '../assets/solvely-plugins/youtube-summary-flow.svg'
 import youtubeSummaryDownArrow from '../assets/solvely-plugins/youtube-summary-down-arrow.svg'
+import pdfContextReader from '../assets/solvely-plugins/pdf-context-reader.png'
+import pdfContextSidebar from '../assets/solvely-plugins/pdf-context-sidebar.png'
+import pdfContextFlow from '../assets/solvely-plugins/pdf-context-flow.svg'
 
 // Import videos
 import coreProcess from '../assets/solvely-plugins/Core function process.mp4'
@@ -309,6 +312,23 @@ export default function SolvelyPluginsPage() {
           <div className="sp-youtube-summary-copy">
             <h2 className="sp-youtube-summary-title">YouTube 视频总结，不离开视频，也能快速理解内容</h2>
             <p>在长视频学习场景中，用户最需要的是快速理解内容结构并定位重点。插件读取当前视频上下文后，在侧边栏直接生成摘要与关键节点，用户可以围绕当前视频继续提问，而无需离开播放页面重新整理信息。</p>
+          </div>
+        </section>
+
+        {/* PDF context — Figma feature showcase */}
+        <section className="sp-pdf-context">
+          <div className="sp-pdf-context-stage">
+            <div className="sp-pdf-context-reader">
+              <img src={pdfContextReader} alt="PDF reader with Solvely actions" />
+            </div>
+            <img src={pdfContextFlow} alt="" className="sp-pdf-context-flow" />
+            <div className="sp-pdf-context-sidebar">
+              <img src={pdfContextSidebar} alt="Solvely PDF context sidebar" />
+            </div>
+          </div>
+          <div className="sp-pdf-context-copy">
+            <h2 className="sp-pdf-context-title">让当前文档直接成为 AI 上下文</h2>
+            <p>阅读 PDF 时，用户无需重新上传文件或解释自己正在阅读什么，当前文档会直接进入对话上下文，用户可以围绕文档进行总结、解释、解题和自由提问，让 AI 能力自然延续到长文档阅读场景。</p>
           </div>
         </section>
 
