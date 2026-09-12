@@ -47,6 +47,10 @@ const home = {
     footerCta: 'Work together',
     footerEmail: 'simmonjmax@163.com',
     footerRights: 'All rights reserved.',
+    contactEyebrow: 'Get in touch',
+    contactTitle: 'Let’s build something',
+    contactLabels: { email: 'Email', phone: 'Phone', social: 'Social' },
+    contactClose: 'Close',
   },
   zh: {
     heroTitleTop: 'Product',
@@ -82,6 +86,10 @@ const home = {
     footerCta: '合作联系',
     footerEmail: 'simmonjmax@163.com',
     footerRights: '保留所有权利。',
+    contactEyebrow: '联系我',
+    contactTitle: '一起做点什么',
+    contactLabels: { email: '邮箱', phone: '电话', social: '社交' },
+    contactClose: '关闭',
   },
 }
 
