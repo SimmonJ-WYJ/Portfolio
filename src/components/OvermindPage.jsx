@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useCopy } from '../i18n/LanguageContext.jsx'
-import LangToggle from './LangToggle.jsx'
 import './OvermindPage.css'
 
 // Design sections exported from Figma, ordered by filename (s01…s35).
@@ -32,7 +31,6 @@ export default function OvermindPage() {
 
   return (
     <main className="om">
-      <LangToggle variant="float" />
       <a href="/" className="case-back" data-cursor="link" data-cursor-label={c.home}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M19 12H5M11 18l-6-6 6-6" />

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useCopy } from '../i18n/LanguageContext.jsx'
 import { motion, useInView } from 'framer-motion'
 import './AsciProjects.css'
 
@@ -149,6 +150,8 @@ function LogoIcon({ type }) {
 }
 
 export default function AsciProjects() {
+  const t = useCopy('asci')
+  const heading = t.coreHeading || []
   const headerRef = useRef(null)
   const headerInView = useInView(headerRef, { once: true, margin: '-60px' })
 
@@ -164,30 +167,25 @@ export default function AsciProjects() {
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: EASE }}
         >
-          <span className="ap-badge">Core Features</span>
+          <span className="ap-badge">{t.coreBadge}</span>
           <h2 className="ap-heading">
-            <span>Designed for the depth of research, </span>
+            <span>{heading[0]}</span>
             <br />
-            <span>making every exploration </span>
-            <span className="ap-heading-muted">clearer and more efficient</span>
+            <span>{heading[1]}</span>
+            <span className="ap-heading-muted">{heading[2]}</span>
           </h2>
         </motion.div>
 
         <div className="ap-grid">
           {CASE_STUDIES.map((study, i) => (
-            <CaseCard key={study.id} study={study} index={i} />
+            <CaseCard key={study.id} study={{ ...study, ...(t.caseStudies?.[i] || {}) }} index={i} />
           ))}
         </div>
 
         <div className="ap-closing">
           <div className="ap-closing-text">
             <div className="ap-closing-plus">+</div>
-            <p className="ap-closing-copy">
-              ASCI is an AI platform built for the depth of research, helping
-              researchers integrate literature, data, and analysis workflows —
-              turning complex research tasks into a clearer, more efficient, and
-              more sustainable way of working.
-            </p>
+            <p className="ap-closing-copy">{t.closingText}</p>
           </div>
 
           <div className="ap-marquee-wrap">

@@ -1,184 +1,191 @@
-// Freeleaps freelance platform case study. The three discipline cards have
-// positional lists for icons/hours/pills. IMPACTS, COLOR_SWATCHES, and icon
-// grids stay in the component; the text lives here.
+// Freeleaps case study — /freeleaps
+//
+// English is the source language for this page: every en string below is the
+// author's original copy, moved verbatim out of FreeleapsPage.jsx and its
+// section components. The Chinese is a translation of it.
+//
+// Deliberately NOT in this file — kept identical in both languages inside the
+// components, because they depict the Freeleaps product itself rather than
+// narrate the design: the component-library mock UI (Submit / Cancel / Deploy…),
+// the testimonial cards and sign-up CTA on the page-display mockup, the type
+// specimen (Oak Sans, Light / Regular / Medium, the glyph string) and the colour
+// swatch names and hex values.
 export default {
   en: {
-    // Meta section (top of page)
-    client: 'Freeleaps',
-    role: 'Lead Product Designer',
-    timeline: '6 months (2023)',
-    scope: 'Full product design, UX research, design system',
+    back: 'Back',
 
-    // Three discipline cards (positioned by icon order in component)
+    metaDesc: 'Software development collaboration platform, adaptive design',
+    metaBrand: ['Freefission', 'UX / UI / Develop'],
+    metaYear: '2024',
+
     disciplines: [
-      {
-        title: 'UX Design',
-        hours: '48 hours',
-        pills: ['User Flow', 'Wireframing', 'Storyboard Creation'],
-      },
-      {
-        title: 'UI Design',
-        hours: '87 hours',
-        pills: ['Interface Design', 'Library', 'Clickable Prototype'],
-      },
-      {
-        title: 'Development',
-        hours: '160 hours',
-        pills: ['Frontend', 'Backend', 'Function Testing & Optimization'],
-      },
+      { title: 'UX Design', hours: '48 hours', pills: ['User Flow', 'Wireframing', 'Storyboard Creation'] },
+      { title: 'UI Design', hours: '87 hours', pills: ['Interface Design', 'Library', 'Clickable Prototype'] },
+      { title: 'Development', hours: '160 hours', pills: ['Frontend', 'Backend', 'Function Testing & Optimization'] },
     ],
 
-    // Impact stats (big numbers with context)
+    introLead: 'Freeleaps is a software platform that helps clients and freelancers finish projects faster and safer.',
+    projectFacts: [
+      'Project Name / Freeleaps',
+      'Industry / Platform',
+      'Platform Type / Web',
+      'Year / 2024',
+      'Tools / Figma, AIGC',
+    ],
+    overviewTitle: 'Project Overview',
+    overviewFacts: [
+      'Type / Software collaboration platform',
+      'Connects / Clients & Freelancers',
+      'Features / Posting · Matching · Tracking · Payments',
+      'Benefits / Secure developer income · Improve client efficiency',
+    ],
+
+    challengesTitle: 'The Challenges We Solve',
+    challengeCards: [
+      { pill: 'Over 90%', title: 'Freelancers', big: '90%', text: 'Struggle to find quality clients, often underpaid for workloads far beyond their expectations.' },
+      { pill: 'About 1/2', title: 'Clients', big: '1/2', text: 'Want access to top developers at fair prices to bring their technical visions to life.' },
+    ],
+
     impacts: [
-      {
-        title: 'Freelancers\' Income Growth',
-        text: 'Freelancers want transparent fees and fewer extra costs. Freeleaps\' "zero commission" policy maximizes earnings.',
-      },
-      {
-        title: 'Developers Get Accurate Matching',
-        text: 'Other platforms often struggle with poor matching. Freeleaps uses smart algorithms to greatly improve task matching efficiency.',
-      },
-      {
-        title: 'Clients Face Fewer Delays & Rework',
-        text: 'Miscommunication often causes delays or rework. Freeleaps offers efficient collaboration tools and real-time tracking to cut risks and mistakes.',
-      },
+      { title: 'Freelancers’ Income Growth', text: 'Freelancers want transparent fees and fewer extra costs. Freeleaps’ “zero commission” policy maximizes earnings.' },
+      { title: 'Developers Get Accurate Matching', text: 'Other platforms often struggle with poor matching. Freeleaps uses smart algorithms to greatly improve task matching efficiency.' },
+      { title: 'Clients Face Fewer Delays & Rework', text: 'Miscommunication often causes delays or rework. Freeleaps offers efficient collaboration tools and real-time tracking to cut risks and mistakes.' },
     ],
 
-    // Color section labels
-    colorBrandTitle: 'Brand Colors',
-    colorNeutralTitle: 'Neutral Ramp',
+    fontTitle: ['Font', 'Specification'],
+    fontTag: 'Clear / Readable',
+    fontCats: [['UX / UI Design'], ['Saas', 'System'], ['Design', 'System', 'Backstage']],
 
-    // Stats cards
-    stats: [
-      {
-        pill: 'User Research',
-        title: '127 interviews',
-        text: 'Conducted in-depth interviews with freelancers and clients to understand pain points in existing platforms.',
-        big: '127',
-      },
-      {
-        pill: 'Market Analysis',
-        title: '8 competitors mapped',
-        text: 'Analyzed strengths and weaknesses of major freelance platforms to identify differentiation opportunities.',
-        big: '8',
-      },
-      {
-        pill: 'Design Iterations',
-        title: '43 prototypes tested',
-        text: 'Rapid prototyping and user testing cycles to refine the core workflows and interaction patterns.',
-        big: '43',
-      },
+    colorsTitle: ['Colors', 'Specification'],
+    colorsTag: 'Branded / Harmony',
+
+    iconTitle: ['Icon', 'Specification'],
+    iconTag: 'Recognizable',
+
+    componentTitle: ['Component', 'Library'],
+    componentTag: 'Recognizable',
+
+    pageDisplayTitle: ['Page', 'Display'],
+    pageDisplayTag: 'Simple / Consistent',
+
+    contractTitle: 'Contract Page',
+    contractInfo: [
+      { title: 'Key Information', lines: ['Display core contract details, including publisher, contractor, and acceptance date.'] },
+      { title: 'Highlights', lines: ['❶ Detailed view on the right with clear information hierarchy.', '❷ Visualized milestone payments reduce communication costs.'] },
+    ],
+    issuesTitle: 'Issues Page',
+    issuesChartCaption: 'clearly show issue trends',
+    issuesInfo: [
+      { title: 'Design Features', lines: ['Data visualization: line charts clearly show issue trends.', 'Collaboration integration: issues can be linked to project group chat to improve communication efficiency.'] },
     ],
 
-    // Section headers
-    challengeTitle: 'The Challenge',
-    challengeText: 'Traditional freelance platforms suffer from high fees, poor matching, and fragmented communication. Our challenge was to create a platform that addresses these pain points while remaining sustainable.',
+    otherPagesTitle: ['Display On', 'Other Pages'],
+    otherPagesTag: 'Consistent / Efficient',
+    otherPagesCaption: 'Only display some pages',
 
-    designSystemTitle: 'Design System',
-    designSystemText: 'Built a comprehensive component library and design tokens to ensure consistency across the product.',
-
-    iconSystemTitle: '3D Icon System',
-    iconSystemText: 'Created a cohesive 3D icon language that brings warmth and personality to the interface.',
-
-    monoIconsTitle: 'Monochrome Icons',
-    duoIconsTitle: 'Duotone Icons',
-
-    // Alt text
     alts: {
-      hero: 'Freeleaps platform hero image',
-      challenge1: 'Challenge illustration 1',
-      challenge2: 'Challenge illustration 2',
-      viBrand: 'Visual identity and branding',
-      coreValue: 'Core value proposition',
-      endingOffice: 'Office scene',
-      endingPhone: 'Mobile app on phone',
-      icon3dFeatured: 'Featured 3D icon',
+      hero: 'Freeleaps product hero',
+      logo: 'Freeleaps',
+      challenge1: 'A freelancer overwhelmed at work',
+      challenge2: 'A client frustrated at work',
+      coreValue: 'Core Platform Value — Freeleaps connects Freelancers, Clients and Developers',
+      icon3d: 'Freeleaps 3D icon',
+      viBrand: 'Freeleaps brand identity mockup',
+      endingOffice: 'Freeleaps team at work',
+      endingPhone: 'Freeleaps mobile app',
+      pageMockup: 'Freeleaps public page',
+      contractPage: 'Contract page',
+      issuesPage: 'Issues page',
+      issuesChart: 'Issue trends chart',
     },
   },
+
   zh: {
-    client: 'Freeleaps',
-    role: '主设计师',
-    timeline: '6 个月（2023）',
-    scope: '全产品设计、用户研究、设计系统',
+    back: '返回',
+
+    metaDesc: '软件开发协作平台，自适应设计',
+    metaBrand: ['Freefission', 'UX / UI / 开发'],
+    metaYear: '2024',
 
     disciplines: [
-      {
-        title: 'UX 设计',
-        hours: '48 小时',
-        pills: ['用户流程', '线框图', '故事板'],
-      },
-      {
-        title: 'UI 设计',
-        hours: '87 小时',
-        pills: ['界面设计', '组件库', '可交互原型'],
-      },
-      {
-        title: '开发',
-        hours: '160 小时',
-        pills: ['前端', '后端', '功能测试与优化'],
-      },
+      { title: 'UX 设计', hours: '48 小时', pills: ['用户流程', '线框图', '故事板'] },
+      { title: 'UI 设计', hours: '87 小时', pills: ['界面设计', '组件库', '可交互原型'] },
+      { title: '开发', hours: '160 小时', pills: ['前端', '后端', '功能测试与优化'] },
+    ],
+
+    introLead: 'Freeleaps 是一个帮助客户与自由职业者更快、更安全地完成项目的软件平台。',
+    projectFacts: [
+      '项目名称 / Freeleaps',
+      '行业 / 平台',
+      '平台类型 / Web',
+      '年份 / 2024',
+      '工具 / Figma、AIGC',
+    ],
+    overviewTitle: '项目概览',
+    overviewFacts: [
+      '类型 / 软件协作平台',
+      '连接 / 客户与自由职业者',
+      '功能 / 发布 · 匹配 · 跟踪 · 支付',
+      '价值 / 保障开发者收入 · 提升客户效率',
+    ],
+
+    challengesTitle: '我们解决的问题',
+    challengeCards: [
+      { pill: '超过 90%', title: '自由职业者', big: '90%', text: '难以找到优质客户，工作量常远超预期却报酬偏低。' },
+      { pill: '约 1/2', title: '客户', big: '1/2', text: '希望以合理的价格找到顶尖开发者，把技术构想落地。' },
     ],
 
     impacts: [
-      {
-        title: '自由职业者收入增长',
-        text: '自由职业者希望费用透明、额外成本更少。Freeleaps 的"零佣金"政策最大化收益。',
-      },
-      {
-        title: '开发者获得精准匹配',
-        text: '其他平台常面临匹配不佳的问题。Freeleaps 使用智能算法大幅提升任务匹配效率。',
-      },
-      {
-        title: '客户减少延期与返工',
-        text: '沟通不畅常导致延期或返工。Freeleaps 提供高效协作工具和实时跟踪，降低风险和错误。',
-      },
+      { title: '自由职业者收入增长', text: '自由职业者希望费用透明、额外成本更少。Freeleaps 的“零佣金”政策最大化收益。' },
+      { title: '开发者获得精准匹配', text: '其他平台常面临匹配不佳的问题。Freeleaps 使用智能算法大幅提升任务匹配效率。' },
+      { title: '客户减少延期与返工', text: '沟通不畅常导致延期或返工。Freeleaps 提供高效协作工具和实时跟踪，降低风险和错误。' },
     ],
 
-    colorBrandTitle: '品牌色',
-    colorNeutralTitle: '中性色阶',
+    fontTitle: ['字体', '规范'],
+    fontTag: '清晰 / 易读',
+    fontCats: [['UX / UI 设计'], ['SaaS', '系统'], ['设计', '系统', '后台']],
 
-    stats: [
-      {
-        pill: '用户研究',
-        title: '127 次访谈',
-        text: '与自由职业者和客户进行深度访谈，了解现有平台的痛点。',
-        big: '127',
-      },
-      {
-        pill: '市场分析',
-        title: '8 个竞品分析',
-        text: '分析主要自由职业平台的优劣势，识别差异化机会。',
-        big: '8',
-      },
-      {
-        pill: '设计迭代',
-        title: '43 个原型测试',
-        text: '快速原型与用户测试循环，优化核心工作流程和交互模式。',
-        big: '43',
-      },
+    colorsTitle: ['色彩', '规范'],
+    colorsTag: '品牌感 / 和谐',
+
+    iconTitle: ['图标', '规范'],
+    iconTag: '易识别',
+
+    componentTitle: ['组件', '库'],
+    componentTag: '易识别',
+
+    pageDisplayTitle: ['页面', '展示'],
+    pageDisplayTag: '简洁 / 一致',
+
+    contractTitle: '合同页',
+    contractInfo: [
+      { title: '关键信息', lines: ['展示合同核心信息，包括发布方、承接方与验收日期。'] },
+      { title: '亮点', lines: ['❶ 右侧详情视图，信息层级清晰。', '❷ 里程碑付款可视化，降低沟通成本。'] },
+    ],
+    issuesTitle: '问题页',
+    issuesChartCaption: '清晰呈现问题趋势',
+    issuesInfo: [
+      { title: '设计特点', lines: ['数据可视化：折线图清晰呈现问题趋势。', '协作整合：问题可关联到项目群聊，提升沟通效率。'] },
     ],
 
-    challengeTitle: '挑战',
-    challengeText: '传统自由职业平台存在高费用、匹配差、沟通碎片化等问题。我们的挑战是创建一个既能解决这些痛点又可持续的平台。',
-
-    designSystemTitle: '设计系统',
-    designSystemText: '构建了全面的组件库和设计令牌，确保产品的一致性。',
-
-    iconSystemTitle: '3D 图标系统',
-    iconSystemText: '创建了统一的 3D 图标语言，为界面带来温暖和个性。',
-
-    monoIconsTitle: '单色图标',
-    duoIconsTitle: '双色图标',
+    otherPagesTitle: ['其他页面', '展示'],
+    otherPagesTag: '一致 / 高效',
+    otherPagesCaption: '仅展示部分页面',
 
     alts: {
-      hero: 'Freeleaps 平台首屏图',
-      challenge1: '挑战插图 1',
-      challenge2: '挑战插图 2',
-      viBrand: '视觉识别与品牌',
-      coreValue: '核心价值主张',
-      endingOffice: '办公场景',
-      endingPhone: '手机应用界面',
-      icon3dFeatured: '特色 3D 图标',
+      hero: 'Freeleaps 产品主图',
+      logo: 'Freeleaps',
+      challenge1: '不堪重负的自由职业者',
+      challenge2: '备受挫折的客户',
+      coreValue: '平台核心价值 —— Freeleaps 连接自由职业者、客户与开发者',
+      icon3d: 'Freeleaps 3D 图标',
+      viBrand: 'Freeleaps 品牌形象样机',
+      endingOffice: 'Freeleaps 团队工作场景',
+      endingPhone: 'Freeleaps 移动端应用',
+      pageMockup: 'Freeleaps 公开页面',
+      contractPage: '合同页',
+      issuesPage: '问题页',
+      issuesChart: '问题趋势图',
     },
   },
 }

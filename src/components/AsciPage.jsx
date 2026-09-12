@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from 'react'
+import { useCopy } from '../i18n/LanguageContext.jsx'
 import { useMotionValue } from 'framer-motion'
 
 // WebGL shader stack (bundles a full renderer) loads on demand.
@@ -14,20 +15,23 @@ import './AsciPage.css'
 const SCR = { left: 0.1540, top: 0.1492, width: 0.6927, height: 0.5331 }
 const STORY_VIDEO_SRC =
   'https://stream.mux.com/01yW6GoUz01OTXk5w1Rt1MHkJWlCGIwj46SUONJZ4DJUE.m3u8'
-const STORY_TEXT =
-  'Research today is often fragmented across disconnected tools, inconsistent workflows, and difficult-to-verify processes. Researchers spend valuable time managing information instead of advancing ideas, while evidence, analysis, and conclusions become increasingly separated from one another. ASCI brings every stage of the research process into a single connected environment, making knowledge easier to discover, methods easier to standardize, and results easier to reproduce.'
 
-const PARALLAX_MEDIA = [
-  { src: '/asci/parallax-1.mp4', alt: 'ASCI parallax clip 1' }, // center — video
-  { src: '/asci/parallax-2.png', alt: 'ASCI parallax image 2' },
-  { src: '/asci/parallax-3.png', alt: 'ASCI parallax image 3' },
-  { src: '/asci/parallax-4.png', alt: 'ASCI parallax image 4' },
-  { src: '/asci/parallax-5.png', alt: 'ASCI parallax image 5' },
-  { src: '/asci/parallax-6.png', alt: 'ASCI parallax image 6' },
-  { src: '/asci/parallax-7.png', alt: 'ASCI parallax image 7' },
+// Alt text is supplied per language from copy.asci.alts.parallaxN.
+const PARALLAX_SRCS = [
+  '/asci/parallax-1.mp4', // center — video
+  '/asci/parallax-2.png',
+  '/asci/parallax-3.png',
+  '/asci/parallax-4.png',
+  '/asci/parallax-5.png',
+  '/asci/parallax-6.png',
+  '/asci/parallax-7.png',
 ]
 
 export default function AsciPage() {
+  const t = useCopy('asci')
+  const nav = t.productNav || {}
+  const alts = t.alts || {}
+  const parallaxMedia = PARALLAX_SRCS.map((src, i) => ({ src, alt: alts[`parallax${i + 1}`] }))
   const heroRef = useRef(null)
   const deviceRef = useRef(null)
   const storyRef = useRef(null)
@@ -197,14 +201,14 @@ export default function AsciPage() {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M19 12H5M11 18l-6-6 6-6" />
         </svg>
-        <span>Back</span>
+        <span>{t.back}</span>
       </a>
 
       {/* One continuous scene: the camera starts inside the display and pulls back. */}
       <section className="asci-hero" ref={heroRef}>
         <div className="asci-hero-sticky">
           <div className="asci-device" ref={deviceRef}>
-          <img className="asci-imac" src={imacScene} alt="ASCI 在 iMac 上的展示" loading="eager" decoding="async" fetchpriority="high" />
+          <img className="asci-imac" src={imacScene} alt={alts.imac} loading="eager" decoding="async" fetchpriority="high" />
             <div className="asci-device-screen">
               <div className="asci-hero-bg" aria-hidden="true">
                 <Suspense fallback={null}>
@@ -215,25 +219,23 @@ export default function AsciPage() {
                 <nav className="asci-product-nav" aria-label="ASCI product navigation">
                   <img className="asci-product-logo" src={asciLogo} alt="ASCI" />
                   <div className="asci-product-links">
-                    <span>Core Features</span>
-                    <span>Data Ownership</span>
-                    <span>Agent Fleet</span>
-                    <span>Pain Points</span>
-                    <span>FAQ</span>
+                    <span>{nav.coreFeatures}</span>
+                    <span>{nav.dataOwnership}</span>
+                    <span>{nav.agentFleet}</span>
+                    <span>{nav.painPoints}</span>
+                    <span>{nav.faq}</span>
                   </div>
                   <button className="asci-product-download" type="button">
-                    <span>Download</span>
+                    <span>{t.heroDownload}</span>
                   </button>
                 </nav>
                 <div className="asci-hero-inner">
                   <div className="asci-hero-brand" aria-label="ASCI">
-                    <span>ASCI · Agent Research Workspace</span>
+                    <span>{t.heroBrand}</span>
                   </div>
-                  <h1 className="asci-hero-title">
-                    Multi-agent collaboration, taking you from literature search to a finished review.
-                  </h1>
+                  <h1 className="asci-hero-title">{t.heroTitle}</h1>
                   <button className="asci-hero-download" type="button">
-                    <span>Download</span>
+                    <span>{t.heroDownload}</span>
                   </button>
                 </div>
               </div>
@@ -257,7 +259,7 @@ export default function AsciPage() {
             <div className="asci-story-scrim" aria-hidden="true" />
             <div className="asci-story-copy">
               <ScrollReveal
-                text={STORY_TEXT}
+                text={t.storyText}
                 progress={brightenMV}
                 baseOpacity={0.1}
                 blurStrength={8}
@@ -273,7 +275,7 @@ export default function AsciPage() {
       <AsciProjects />
 
       {/* Fourth screen: scroll-driven zoom parallax (center video + image tiles). */}
-      <ZoomParallax media={PARALLAX_MEDIA} />
+      <ZoomParallax media={parallaxMedia} />
 
     </main>
   )

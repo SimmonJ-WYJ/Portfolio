@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import './SolvelyPluginsPage.css'
 import { useMediaVisibility } from './useMediaVisibility.js'
+import { useCopy } from '../i18n/LanguageContext.jsx'
+import Rich from '../i18n/Rich.jsx'
 
 // Import hero image
 import heroImage from '../assets/solvely-plugins/feature-hero.png'
@@ -50,6 +52,8 @@ const PLUGIN_DOWNLOAD_URL =
   'https://chromewebstore.google.com/detail/solvelyai-ai-homework-tut/aedglnfjjccpifohekdeoogffomjcikm'
 
 export default function SolvelyPluginsPage() {
+  const t = useCopy('solvelyPlugins')
+  const alts = t.alts || {}
   const firstUseVideoRef = useRef(null)
   const canvasEntryVideoRef = useRef(null)
   const taskFirstVideoRef = useRef(null)
@@ -72,10 +76,16 @@ export default function SolvelyPluginsPage() {
 
   return (
     <div className="sp-page">
+      <a href="/" className="case-back" data-cursor="link" data-cursor-label="Home">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M19 12H5M11 18l-6-6 6-6" />
+        </svg>
+        <span>{t.back}</span>
+      </a>
       {/* Hero Section - Only the laptop image */}
       <section className="sp-hero">
         <div className="sp-hero-content">
-          <img src={heroImage} alt="Solvely Browser Extension" className="sp-hero-img" />
+          <img src={heroImage} alt={alts.hero} className="sp-hero-img" />
         </div>
       </section>
 
@@ -85,56 +95,48 @@ export default function SolvelyPluginsPage() {
         {/* Project Meta - Outside hero, on white background */}
         <div className="sp-meta">
           <div className="sp-meta-group">
-            <div className="sp-meta-label">角色</div>
-            <div className="sp-meta-value"><strong>产品设计师</strong></div>
+            <div className="sp-meta-label">{t.metaRoleLabel}</div>
+            <div className="sp-meta-value"><strong>{t.metaRoleValue}</strong></div>
           </div>
           <div className="sp-meta-group">
-            <div className="sp-meta-label">平台</div>
-            <div className="sp-meta-value"><strong>浏览器插件端</strong></div>
+            <div className="sp-meta-label">{t.metaPlatformLabel}</div>
+            <div className="sp-meta-value"><strong>{t.metaPlatformValue}</strong></div>
           </div>
         </div>
 
         {/* Title and Introduction */}
         <section className="sp-intro">
-          <h1 className="sp-title">Solvely 浏览器插件：从0到1构建AI学习助手</h1>
+          <h1 className="sp-title">{t.title}</h1>
 
           <div className="sp-intro-text">
-            <p>在插件小组中，我负责 Solvely 浏览器插件从 0 到 1 的产品设计。我们希望将 Solvely 从一个独立的 AI 工具，转变为能够直接进入用户学习场景的 AI 学习助手。</p>
-            <p>核心目标不是增加更多功能，而是让 AI 能够识别用户正在浏览的内容，并在不打断学习流程的情况下，直接提供解题、总结、解释与追问能力。</p>
-            <p>我负责从核心使用路径、Onboarding、Canvas 场景、AI 结果结构到跨场景扩展的完整体验设计。</p>
+            {(t.intro || []).map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
           {/* Results Card */}
           <div className="sp-results">
             <div className="sp-results-header">
-              <span className="sp-results-title">成果</span>
-              <img src={targetIcon} alt="Target" className="sp-results-icon" />
+              <span className="sp-results-title">{t.resultsTitle}</span>
+              <img src={targetIcon} alt={alts.target} className="sp-results-icon" />
             </div>
             <ul className="sp-results-list">
-              <li>在北美大学中拥有<strong>300K+ 活跃用户</strong></li>
-              <li>Chrome 网上应用店评分 <strong>[4.6] 分</strong>，反馈包括"节省了很多时间"和"感觉像有一个私人导师"</li>
-              <li>自动场景检测<strong>消除了</strong>在<strong>学习内容</strong>和 <strong>AI 工具之间</strong>手动切换的需求</li>
-              <li>无缝集成到学生现有的学习流程中，覆盖 <strong>Canvas、YouTube 和阅读材料</strong></li>
-              <li>广泛用于<strong>课程理解、作业帮助和研究</strong>——让 AI 帮助变得毫不费力</li>
-              <li>高参与度，学生在每次学习时使用插件次数<strong>超过3次以上</strong></li>
+              {(t.results || []).map((r, i) => <li key={i}><Rich text={r} /></li>)}
             </ul>
           </div>
         </section>
 
         {/* Problem Statement */}
         <section className="sp-section">
-          <h2 className="sp-section-title">问题陈述</h2>
+          <h2 className="sp-section-title">{t.problemTitle}</h2>
           <div className="sp-section-text">
-            <p>学生的学习内容分散在 Canvas、在线题库、YouTube、PDF 和网页中。当用户遇到问题时，往往需要复制内容、切换到独立 AI 工具、重新补充上下文，再返回原页面继续学习。频繁切换不仅打断学习节奏，也让 AI 无法理解用户当前正在学习的具体内容，导致回答泛化且偏离实际问题。</p>
+            <p>{t.problemBody}</p>
           </div>
         </section>
 
         {/* Solution */}
         <section className="sp-section">
-          <h2 className="sp-section-title">我们的解决方案</h2>
+          <h2 className="sp-section-title">{t.solutionTitle}</h2>
           <div className="sp-section-text">
-            <p>我们将 Solvely 从独立的 Web 工具转化为能够理解当前页面的浏览器学习助手。插件自动识别页面来源与内容，并明确展示 AI 正在读取的上下文，再根据 <strong>Canvas</strong>、<strong>YouTube</strong>、<strong>Gmail</strong> 或 <strong>PDF</strong> 等场景提供对应操作。用户可以在当前页面直接完成解题、总结或提问，结果以答案、要点与分步解析进行组织，并保留上下文支持继续追问。整个过程无需反复切换页面或重新描述问题，使"<strong>识别内容—发起任务—理解结果—继续追问</strong>"在同一学习场景中完成。</p>
-            <p>因此，这次设计的核心并不是增加更多 AI 功能，而是缩短学生从<strong>"看到学习内容"</strong>到<strong>"获得 AI 帮助"</strong>的路径，并让这套体验能够自然融入不同学习场景。</p>
+            {(t.solution || []).map((p, i) => <p key={i}><Rich text={p} /></p>)}
           </div>
         </section>
 
@@ -151,13 +153,13 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely first-use onboarding flow"
+                aria-label={alts.videoOnboarding}
               />
             </div>
           </div>
           <div className="sp-onboarding-copy">
-            <h2 className="sp-onboarding-title">核心功能引导</h2>
-            <p>用户第一次接触插件时，并不熟悉产品入口和操作方式。首次体验的目标不是一次介绍所有功能，而是帮助用户完成安装、打开插件，并顺利进入第一次核心操作让用户尽快建立产品认知。我们将首次路径设计为：安装插件 → 打开侧边栏 → 进入 Onboarding → 理解核心操作 → 准备完成。第一次任务将安装、打开插件和首次引导连接成一条连续路径，减少用户安装完成后不知道下一步该做什么的问题</p>
+            <h2 className="sp-onboarding-title">{t.onboardingTitle}</h2>
+            <p>{t.onboardingBody}</p>
           </div>
         </section>
 
@@ -174,13 +176,13 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely Canvas entry flow"
+                aria-label={alts.videoCanvasEntry}
               />
             </div>
           </div>
           <div className="sp-canvas-entry-copy">
-            <h2 className="sp-canvas-entry-title">将首次体验自然带入真实学习场景</h2>
-            <p>页面嗅探功能会识别用户已经访问过的 Canvas 页面，并在 Onboarding 最后一步生成快捷入口。插件通过嗅探功能自动识别课程环境，一键链接Canvas学习平台，让用户从功能演示自然进入真实任务。</p>
+            <h2 className="sp-canvas-entry-title">{t.canvasEntryTitle}</h2>
+            <p>{t.canvasEntryBody}</p>
           </div>
         </section>
 
@@ -197,13 +199,13 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely task-first Canvas quiz flow"
+                aria-label={alts.videoTaskFirst}
               />
             </div>
           </div>
           <div className="sp-task-first-copy">
-            <h2 className="sp-task-first-title">让操作跟随用户任务，而不是让用户适应 AI</h2>
-            <p>当用户进入 Canvas quiz 后，我基于当前页面上下文直接提供任务入口，避免用户再经历打开插件、选择功能、输入 Prompt 的额外步骤；同时将逐题重复提交整合为一次连续的批量处理，并通过侧边栏保留原始题目上下文，减少页面切换和重复操作，让 AI 更自然地成为当前任务的一部分。</p>
+            <h2 className="sp-task-first-title">{t.taskFirstTitle}</h2>
+            <p>{t.taskFirstBody}</p>
           </div>
         </section>
 
@@ -220,13 +222,13 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely screenshot solve flow"
+                aria-label={alts.videoScreenshotSolve}
               />
             </div>
           </div>
           <div className="sp-screenshot-solve-copy">
-            <h2 className="sp-screenshot-solve-title">灵活处理临时问题</h2>
-            <p>除了结构化的 Canvas Quiz，用户也经常只需要解决页面中的某一道题。因此保留了更加灵活的截图解题方式：用户只需框选当前内容，即可直接在侧边栏获得答案，让非结构化问题也能保持低成本的操作路径。</p>
+            <h2 className="sp-screenshot-solve-title">{t.screenshotSolveTitle}</h2>
+            <p>{t.screenshotSolveBody}</p>
           </div>
         </section>
 
@@ -243,34 +245,34 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely answer understanding flow"
+                aria-label={alts.videoCoreProcess}
               />
             </div>
           </div>
           <div className="sp-core-process-copy">
-            <h2 className="sp-core-process-title">从答案到题目理解和追问</h2>
-            <p>学习任务中，用户得到答案后往往还需要确认结果、理解过程或进一步追问。因此我没有把结果设计成一次性的输出，而是围绕「结果 → 解释 → 继续探索」组织后续交互，让用户可以在当前上下文中继续完成整个学习过程。</p>
-            <h3>快速获得核心结果</h3>
-            <p>优先展示当前任务最重要的信息，让用户第一时间确认结果。</p>
-            <h3>比较结果并继续追问</h3>
-            <p>用户可以直接围绕当前题目继续提问或切换模型比较结果，不需要重新提交内容与建立上下文。</p>
-            <h3>进一步理解过程</h3>
-            <p>需要深入理解时，再展开 Explanation 与详细分析，避免所有信息同时出现造成阅读负担。</p>
+            <h2 className="sp-core-process-title">{t.coreProcessTitle}</h2>
+            <p>{t.coreProcessBody}</p>
+            {(t.coreProcessSteps || []).map((st, i) => (
+              <Fragment key={i}>
+                <h3>{st.title}</h3>
+                <p>{st.body}</p>
+              </Fragment>
+            ))}
           </div>
         </section>
 
         {/* Stable information structure — Figma feature showcase */}
         <section className="sp-stable-structure">
           <div className="sp-stable-structure-stage">
-            <img src={stableEntry} alt="Solvely entry actions" className="sp-stable-structure-panel sp-stable-structure-entry" />
-            <img src={stableAnswer} alt="Solvely answer and explanation" className="sp-stable-structure-panel sp-stable-structure-answer" />
-            <img src={stableSummary} alt="Solvely summary result" className="sp-stable-structure-panel sp-stable-structure-summary" />
+            <img src={stableEntry} alt={alts.stableEntry} className="sp-stable-structure-panel sp-stable-structure-entry" />
+            <img src={stableAnswer} alt={alts.stableAnswer} className="sp-stable-structure-panel sp-stable-structure-answer" />
+            <img src={stableSummary} alt={alts.stableSummary} className="sp-stable-structure-panel sp-stable-structure-summary" />
             <img src={stableFlowArrow} alt="" className="sp-stable-structure-flow-arrow" />
             <img src={stableShortArrow} alt="" className="sp-stable-structure-short-arrow" />
           </div>
           <div className="sp-stable-structure-copy">
-            <h2 className="sp-stable-structure-title">建立稳定的信息结构</h2>
-            <p>随着功能和场景不断增加，我将插件保持为稳定的三层结构：顶部承载全局控制，中间根据当前页面动态呈现任务和 AI 结果，底部保持输入与持续交互。这样无论用户处在 Canvas、YouTube 还是 PDF 中，内容虽然变化，但核心操作位置与信息层级始终一致。</p>
+            <h2 className="sp-stable-structure-title">{t.stableStructureTitle}</h2>
+            <p>{t.stableStructureBody}</p>
           </div>
         </section>
 
@@ -287,30 +289,30 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely commercial conversion flow"
+                aria-label={alts.videoCommercial}
                 className="sp-commercial-timing-video"
               />
             </div>
           </div>
           <div className="sp-commercial-timing-copy">
-            <h2 className="sp-commercial-timing-title">先体验核心价值，再触发付费转化</h2>
-            <p>首次体验阶段如果过早出现付费墙，会在用户还没有理解产品价值之前打断任务。因此我将商业化节点放在核心体验之后，让用户先真正完成解题、总结或追问，在持续需求形成后再进入订阅流程。</p>
+            <h2 className="sp-commercial-timing-title">{t.commercialTimingTitle}</h2>
+            <p>{t.commercialTimingBody}</p>
           </div>
         </section>
 
         {/* More scenarios — Figma feature showcase */}
         <section className="sp-more-scenarios">
           <div className="sp-more-scenarios-stage">
-            <img src={moreScenariosYoutube} alt="Solvely YouTube summary" className="sp-more-scenarios-panel sp-more-scenarios-youtube" />
-            <img src={moreScenariosGmail} alt="Solvely Gmail reply assistance" className="sp-more-scenarios-panel sp-more-scenarios-gmail" />
+            <img src={moreScenariosYoutube} alt={alts.moreYoutube} className="sp-more-scenarios-panel sp-more-scenarios-youtube" />
+            <img src={moreScenariosGmail} alt={alts.moreGmail} className="sp-more-scenarios-panel sp-more-scenarios-gmail" />
             <div className="sp-more-scenarios-canvas">
-              <img src={moreScenariosCanvas} alt="Solvely Canvas text selection" />
+              <img src={moreScenariosCanvas} alt={alts.moreCanvas} />
             </div>
-            <img src={moreScenariosPdf} alt="Solvely PDF assistance" className="sp-more-scenarios-panel sp-more-scenarios-pdf" />
+            <img src={moreScenariosPdf} alt={alts.morePdf} className="sp-more-scenarios-panel sp-more-scenarios-pdf" />
           </div>
           <div className="sp-more-scenarios-copy">
-            <h2 className="sp-more-scenarios-title">从 Canvas 扩展到更多场景</h2>
-            <p>Canvas 验证了一个关键方向：相比要求用户不断告诉 AI 自己在做什么，更有效的方式是让产品读取当前上下文，并围绕当前任务提供操作。因此后续扩展并不是简单增加功能，而是将同一套交互模型（识别当前内容 → 提供对应任务 → AI 读取上下文 → 原地返回结果 → 支持继续交互）复用到更多高频场景。</p>
+            <h2 className="sp-more-scenarios-title">{t.moreScenariosTitle}</h2>
+            <p>{t.moreScenariosBody}</p>
           </div>
         </section>
 
@@ -318,16 +320,16 @@ export default function SolvelyPluginsPage() {
         <section className="sp-youtube-summary">
           <div className="sp-youtube-summary-stage">
             <div className="sp-youtube-summary-main">
-              <img src={youtubeSummaryMain} alt="YouTube video with Solvely summary entry" />
+              <img src={youtubeSummaryMain} alt={alts.youtubeMain} />
             </div>
-            <img src={youtubeSummaryPrompt} alt="Solvely generate video summary" className="sp-youtube-summary-prompt" />
-            <img src={youtubeSummaryGenerated} alt="Solvely generated video summary" className="sp-youtube-summary-generated" />
+            <img src={youtubeSummaryPrompt} alt={alts.youtubePrompt} className="sp-youtube-summary-prompt" />
+            <img src={youtubeSummaryGenerated} alt={alts.youtubeGenerated} className="sp-youtube-summary-generated" />
             <img src={youtubeSummaryFlow} alt="" className="sp-youtube-summary-flow" />
             <img src={youtubeSummaryDownArrow} alt="" className="sp-youtube-summary-down-arrow" />
           </div>
           <div className="sp-youtube-summary-copy">
-            <h2 className="sp-youtube-summary-title">YouTube 视频总结，不离开视频，也能快速理解内容</h2>
-            <p>在长视频学习场景中，用户最需要的是快速理解内容结构并定位重点。插件读取当前视频上下文后，在侧边栏直接生成摘要与关键节点，用户可以围绕当前视频继续提问，而无需离开播放页面重新整理信息。</p>
+            <h2 className="sp-youtube-summary-title">{t.youtubeSummaryTitle}</h2>
+            <p>{t.youtubeSummaryBody}</p>
           </div>
         </section>
 
@@ -335,16 +337,16 @@ export default function SolvelyPluginsPage() {
         <section className="sp-pdf-context">
           <div className="sp-pdf-context-stage">
             <div className="sp-pdf-context-reader">
-              <img src={pdfContextReader} alt="PDF reader with Solvely actions" />
+              <img src={pdfContextReader} alt={alts.pdfReader} />
             </div>
             <img src={pdfContextFlow} alt="" className="sp-pdf-context-flow" />
             <div className="sp-pdf-context-sidebar">
-              <img src={pdfContextSidebar} alt="Solvely PDF context sidebar" />
+              <img src={pdfContextSidebar} alt={alts.pdfSidebar} />
             </div>
           </div>
           <div className="sp-pdf-context-copy">
-            <h2 className="sp-pdf-context-title">让当前文档直接成为 AI 上下文</h2>
-            <p>阅读 PDF 时，用户无需重新上传文件或解释自己正在阅读什么，当前文档会直接进入对话上下文，用户可以围绕文档进行总结、解释、解题和自由提问，让 AI 能力自然延续到长文档阅读场景。</p>
+            <h2 className="sp-pdf-context-title">{t.pdfContextTitle}</h2>
+            <p>{t.pdfContextBody}</p>
           </div>
         </section>
 
@@ -360,14 +362,14 @@ export default function SolvelyPluginsPage() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Solvely selected-text assistance flow"
+                aria-label={alts.videoSelectedText}
                 className="sp-selected-text-video"
               />
             </div>
           </div>
           <div className="sp-selected-text-copy">
-            <h2 className="sp-selected-text-title">在用户当前网页位置直接提供帮助</h2>
-            <p>对于普通网页，用户的需求往往来自某一段具体内容，因此我将操作入口直接放到选区附近。用户划选内容后即可调用解释、总结或提问，减少视线在正文与侧边栏之间反复移动，让交互尽可能贴近当前任务焦点。</p>
+            <h2 className="sp-selected-text-title">{t.selectedTextTitle}</h2>
+            <p>{t.selectedTextBody}</p>
           </div>
         </section>
 
@@ -376,7 +378,7 @@ export default function SolvelyPluginsPage() {
           <div className="sp-gmail-reply-stage">
             <img
               src={gmailReplyMain}
-              alt="Gmail thread with Solvely AI Reply summarising the sender’s intent and drafting a reply"
+              alt={alts.gmailMain}
               className="sp-gmail-reply-main"
             />
             {/* Connector between the intent card and the reply draft — Figma Vector 2719 */}
@@ -394,42 +396,40 @@ export default function SolvelyPluginsPage() {
             </svg>
           </div>
           <div className="sp-gmail-reply-copy">
-            <h2 className="sp-gmail-reply-title">Gmail 邮件一键回复，读懂上下文再起草</h2>
-            <p>在邮件场景中，插件读取当前邮件内容与对话上下文后生成回复草稿，用户可以编辑并确认后再写入邮件。</p>
+            <h2 className="sp-gmail-reply-title">{t.gmailReplyTitle}</h2>
+            <p>{t.gmailReplyBody}</p>
           </div>
         </section>
 
         {/* AI dialog-flow refinements — Figma feature showcase */}
         <section className="sp-dialog-detail">
           <div className="sp-dialog-detail-stage">
-            <img src={dialogDetailCrop} alt="Solvely sidebar solving a cropped screenshot" className="sp-dialog-detail-crop" />
-            <img src={dialogDetailPdf} alt="Solvely sidebar solving a question from a PDF" className="sp-dialog-detail-pdf" />
-            <img src={dialogDetailSummarize} alt="Solvely sidebar summarising a web page" className="sp-dialog-detail-summarize" />
-            <img src={dialogDetailQuiz} alt="Solvely sidebar generating a quiz" className="sp-dialog-detail-quiz" />
+            <img src={dialogDetailCrop} alt={alts.dialogCrop} className="sp-dialog-detail-crop" />
+            <img src={dialogDetailPdf} alt={alts.dialogPdf} className="sp-dialog-detail-pdf" />
+            <img src={dialogDetailSummarize} alt={alts.dialogSummarize} className="sp-dialog-detail-summarize" />
+            <img src={dialogDetailQuiz} alt={alts.dialogQuiz} className="sp-dialog-detail-quiz" />
           </div>
           <div className="sp-dialog-detail-copy">
-            <h2 className="sp-dialog-detail-title">其他关于AI对话流的一些细节优化</h2>
-            <p>内容区进一步解决AI 结果应该如何被理解。我们围绕信息获取、过程理解和结果判断，重新组织不同类型的生成内容。</p>
+            <h2 className="sp-dialog-detail-title">{t.dialogDetailTitle}</h2>
+            <p>{t.dialogDetailBody}</p>
           </div>
         </section>
 
         {/* Project review — Figma closing section */}
         <section className="sp-section sp-review">
-          <h2 className="sp-section-title">项目复盘</h2>
+          <h2 className="sp-section-title">{t.reviewTitle}</h2>
           <div className="sp-section-text">
-            <p>反思：第一版上线后，我逐渐意识到，<strong>Onboarding 的目标并不是让用户完整了解产品</strong>，而是帮助用户尽快完成一次真实任务。因此后续设计将功能介绍进一步收敛，并把首次体验更直接地连接到 Canvas 等实际场景，让用户从「知道产品能做什么」更快进入「真正使用产品」。</p>
-            <p>此外，在<strong>初创公司中设计流程是灵活的</strong>。那种完美的“理想”流程并非总是适用。需要做的是在不牺牲质量的前提下，以最快的速度完成工作。</p>
-            <p>这个项目也让我重新理解了 0→1 产品设计：早期并不存在完整数据和确定答案，设计需要先围绕<strong>核心任务建立最短价值路径</strong>，再通过真实使用持续验证；与此同时，一套好的交互模型也不应该依赖不断增加新的界面，而应该能够随着新的内容和场景自然扩展。</p>
+            {(t.review || []).map((p, i) => <p key={i}><Rich text={p} /></p>)}
           </div>
         </section>
 
         {/* Download CTA — Figma closing section */}
         <section className="sp-cta">
-          <img src={solvelyIp} alt="Solvely 吉祥物" className="sp-cta-logo" />
+          <img src={solvelyIp} alt={alts.mascot} className="sp-cta-logo" />
           <p className="sp-cta-text">
-            感谢阅读，如果你想了解更多，欢迎与我交流。
-            <br />
-            同时也期待您点击下方按钮
+            {(t.ctaBody || []).map((line, i) => (
+              <Fragment key={i}>{i > 0 && <br />}{line}</Fragment>
+            ))}
           </p>
           <a
             className="sp-cta-btn"
@@ -438,7 +438,7 @@ export default function SolvelyPluginsPage() {
             rel="noopener noreferrer"
             data-cursor="link"
           >
-            欢迎下载我们的插件
+            {t.ctaButton}
           </a>
         </section>
 

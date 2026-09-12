@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
+import { useCopy } from '../i18n/LanguageContext.jsx'
 import './SolvelyPage.css'
 import { useMediaVisibility } from './useMediaVisibility.js'
-import LangToggle from './LangToggle.jsx'
 import heroImg from '../assets/solvely/hero.jpg'
 import icHomework from '../assets/solvely/icons/homework.svg'
 import icQuiz from '../assets/solvely/icons/quiz.svg'
@@ -69,62 +69,56 @@ const IcPdf = (
 )
 
 // pain-point quotes: parts marked gray render muted (#848484), rest dark
-const PAIN_QUOTES = [
-  {
-    align: 'left', avatar: avJane, name: 'Jane Cooper', role: 'High School Student',
-    parts: [
-      { t: '“When I run into a tough question,', gray: true },
-      { t: ' I have to switch tabs to search for the answer ', gray: false },
-      { t: '— it totally breaks my study flow.”', gray: true },
-    ],
-  },
-  {
-    align: 'right', avatar: avKevin, name: 'Kevin', role: 'College Student',
-    parts: [
-      { t: '“While researching, I keep jumping between pages just to understand one concept', gray: false },
-      { t: ' — it’s tiring and inefficient.”', gray: true },
-    ],
-  },
-  {
-    align: 'left', avatar: avEmma, name: 'Emma', role: 'International Student',
-    parts: [
-      { t: '“', gray: false },
-      { t: 'Reading English materials is hard. ', gray: true },
-      { t: 'I’m constantly copying and pasting into translators, and it makes learning feel fragmented.”', gray: false },
-    ],
-  },
+// Names, roles and quote text are supplied per language from copy.solvely.painQuotes.
+const PAIN_LAYOUT = [
+  { align: 'left', avatar: avJane },
+  { align: 'right', avatar: avKevin },
+  { align: 'left', avatar: avEmma },
 ]
 
 // process timeline pills (positioned as % of the 1220×666 chart box)
-const FLOW_PILLS = [
-  { label: 'Data Analysis', solid: false, left: '16%', top: '43%', width: '18%' },
-  { label: 'User Insight', solid: true, left: '20%', top: '56%', width: '17%' },
-  { label: 'UX Design', solid: true, left: '47%', top: '43%', width: '14%' },
-  { label: 'Dify Validation', solid: false, left: '45%', top: '56%', width: '20%' },
-  { label: 'Design Output', solid: true, left: '66%', top: '43%', width: '18%' },
-  { label: 'Dev Handoff', solid: false, left: '68%', top: '56%', width: '16%' },
+// Labels are supplied per language from copy.solvely.flowPills.
+const FLOW_PILL_LAYOUT = [
+  { solid: false, left: '16%', top: '43%', width: '18%' },
+  { solid: true, left: '20%', top: '56%', width: '17%' },
+  { solid: true, left: '47%', top: '43%', width: '14%' },
+  { solid: false, left: '45%', top: '56%', width: '20%' },
+  { solid: true, left: '66%', top: '43%', width: '18%' },
+  { solid: false, left: '68%', top: '56%', width: '16%' },
 ]
 
-const WRITER_FEATURES = [
-  { side: 'left-media', img: wAutocomplete, title: 'AI Autocomplete', body: "Starting from a blank page, smart autocomplete helps you overcome writer's block and effortlessly enhances your writing process." },
-  { side: 'right-media', img: wLibrary, title: 'In-text Citations', body: 'Create accurate citations in APA, MLA, Harvard, Chicago, or IEEE style.' },
-  { side: 'left-media', img: wRewrite, title: 'Paraphrase and Rewrite', body: 'Solvely allows you to rewrite a paragraph with just one click. Our editing feature is designed to be lightweight and intelligent, helping you save time.' },
+// Title and body are supplied per language from copy.solvely.writerFeatures.
+const WRITER_FEATURE_LAYOUT = [
+  { side: 'left-media', img: wAutocomplete },
+  { side: 'right-media', img: wLibrary },
+  { side: 'left-media', img: wRewrite },
 ]
 
-const MORE_FEATURES = [
-  { num: '01', title: 'Quiz Maker', text: 'Turn your learning materials or goals into auto-graded quizzes with instant feedback, ideal for test preparation.', img: p5Quiz, rev: false },
-  { num: '02', title: 'Essay Writer', text: 'Create fully developed essays with real citations.', img: p5Essay, rev: true },
-  { num: '03', title: 'AI Note', text: 'Transcribe class audio into structured notes, with AI-powered Q&A based on your content.', img: p5Note, rev: false },
+// Title and text are supplied per language from copy.solvely.moreFeatures.
+const MORE_FEATURE_LAYOUT = [
+  { num: '01', img: p5Quiz, rev: false },
+  { num: '02', img: p5Essay, rev: true },
+  { num: '03', img: p5Note, rev: false },
 ]
 
-const FEATURES = [
-  { icon: icHomework, border: 'rgba(20,132,255,0.16)', title: 'Homework Help', text: 'Accurately solve any homework problem, from K-12 to graduate level' },
-  { icon: icQuiz, border: 'rgba(253,131,35,0.16)', title: 'Quiz Maker', text: 'Transform text into a helpful and fully customized online quiz in just a few minutes' },
-  { icon: icEssay, border: 'rgba(0,175,0,0.16)', title: 'Essay Writer', text: 'Works with you to create well-researched essays and overcome writer’s block' },
-  { icon: icNote, border: 'rgba(135,101,255,0.16)', title: 'AI Note Taker', text: 'Transcribe class audio into structured notes, with AI-powered Q&A based on your content' },
+// Title and text are supplied per language from copy.solvely.features.
+const FEATURE_LAYOUT = [
+  { icon: icHomework, border: 'rgba(20,132,255,0.16)' },
+  { icon: icQuiz, border: 'rgba(253,131,35,0.16)' },
+  { icon: icEssay, border: 'rgba(0,175,0,0.16)' },
+  { icon: icNote, border: 'rgba(135,101,255,0.16)' },
 ]
 
 export default function SolvelyPage() {
+  const t = useCopy('solvely')
+  const alts = t.alts || {}
+  const merge = (layout, copy) => layout.map((row, i) => ({ ...row, ...(copy?.[i] || {}) }))
+  const FEATURES = merge(FEATURE_LAYOUT, t.features)
+  const FLOW_PILLS = FLOW_PILL_LAYOUT.map((row, i) => ({ ...row, label: t.flowPills?.[i] }))
+  const PAIN_QUOTES = merge(PAIN_LAYOUT, t.painQuotes)
+  const MORE_FEATURES = merge(MORE_FEATURE_LAYOUT, t.moreFeatures)
+  const WRITER_FEATURES = merge(WRITER_FEATURE_LAYOUT, t.writerFeatures)
+  const lines = (arr) => (arr || []).map((l, i) => <Fragment key={i}>{i > 0 && <br />}{l}</Fragment>)
   const extensionVideoRef = useRef(null)
   const onboardingVideoRef = useRef(null)
   useMediaVisibility(extensionVideoRef, { autoplay: true })
@@ -205,25 +199,24 @@ export default function SolvelyPage() {
 
   return (
     <main className="sv">
-      <LangToggle variant="float" />
       <a href="/" className="case-back" data-cursor="link" data-cursor-label="Home">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M19 12H5M11 18l-6-6 6-6" />
         </svg>
-        <span>Back</span>
+        <span>{t.back}</span>
       </a>
 
       <section className="sv-hero">
-        <img src={heroImg} alt="Solvely — take a picture and get instant homework help" loading="eager" decoding="async" fetchpriority="high" />
+        <img src={heroImg} alt={alts.hero} loading="eager" decoding="async" fetchpriority="high" />
       </section>
 
       <section className="sv-intro">
-        <span className="sv-year">2025</span>
+        <span className="sv-year">{t.year}</span>
         <div className="sv-intro-inner">
           <p className="sv-quote">
-            <span className="sv-q">“</span>Solvely is an all-in-one AI study platform,{' '}
-            <span className="sv-muted">offering everything from homework explanations to AI-powered note-taking and YouTube summaries,</span>{' '}
-            every feature you need.”
+            <span className="sv-q">“</span>{t.heroQuote?.lead}{' '}
+            <span className="sv-muted">{t.heroQuote?.muted}</span>{' '}
+            {t.heroQuote?.tail}”
           </p>
           <div className="sv-features">
             {FEATURES.map((f) => (
@@ -239,31 +232,24 @@ export default function SolvelyPage() {
 
           <div className="sv-meta">
             <div className="sv-meta-grid sv-meta-head">
-              <span>Overview</span>
-              <span>Project</span>
+              <span>{t.metaOverview}</span>
+              <span>{t.metaProject}</span>
             </div>
             <div className="sv-meta-line" />
             <div className="sv-meta-grid sv-meta-body">
-              <p>The platform enhances study efficiency through personalized AI tools, automatically summarized materials, and real-time Q&amp;A. It adapts to each student’s learning pace, making studying more interactive, efficient, and enjoyable.</p>
-              <p>
-                Project / Solvely<br />
-                Category / AI Study Platform, EdTech<br />
-                Location / San Francisco, US<br />
-                Date / 2025
-              </p>
+              <p>{t.overviewBody}</p>
+              <p>{lines(t.metaFacts)}</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="sv-flow container">
-        <h2 className="sv-flow-title">How I work</h2>
-        <p className="sv-flow-intro">I read the data, shape the UX around it, validate the flow in Dify, then ship the spec to development.</p>
+        <h2 className="sv-flow-title">{t.flowTitle}</h2>
+        <p className="sv-flow-intro">{t.flowIntro}</p>
         <div className="sv-flow-box">
           <div className="sv-flow-heads">
-            <span>Data</span>
-            <span>Design</span>
-            <span>Delivery</span>
+            {(t.flowStages || []).map((st) => <span key={st}>{st}</span>)}
           </div>
           <div className="sv-flow-lines">
             {Array.from({ length: 7 }).map((_, i) => <span key={i} className="sv-flow-line" />)}
@@ -281,7 +267,7 @@ export default function SolvelyPage() {
       </section>
 
       <section className="sv-pain container">
-        <h2 className="sv-pain-title">User Pain Points</h2>
+        <h2 className="sv-pain-title">{t.painTitle}</h2>
         <div className="sv-pain-quotes">
           {PAIN_QUOTES.map((q) => (
             <div className={q.align === 'right' ? 'sv-pain-q sv-pain-q--right' : 'sv-pain-q sv-pain-q--left'} key={q.name}>
@@ -298,18 +284,18 @@ export default function SolvelyPage() {
 
       <section className="sv-logic">
         <div className="sv-logic-inner">
-          <h2 className="sv-logic-title">Logic Flow Design</h2>
-          <p className="sv-logic-body">While analyzing the existing workflow, I found a large number of if/else conditions. The system uses different prompts to identify user inputs, and the backend then generates the appropriate essay format. I structured the design around this workflow to <span className="sv-logic-hl">define the process and interface more clearly.</span></p>
-          <img className="sv-logic-flow" src={logicFlow} alt="Logic flow diagram — if/else conditions mapping inputs to essay outputs" loading="lazy" decoding="async" />
+          <h2 className="sv-logic-title">{t.logicTitle}</h2>
+          <p className="sv-logic-body">{t.logicBody}<span className="sv-logic-hl">{t.logicHighlight}</span></p>
+          <img className="sv-logic-flow" src={logicFlow} alt={alts.logicFlow} loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="sv-solution container">
         <div className="sv-sol-head">
-          <h2 className="sv-sol-title">Solvely Extension</h2>
+          <h2 className="sv-sol-title">{t.extensionTitle}</h2>
           <p className="sv-sol-body">
-            The Solvely browser extension is your smart learning companion, available wherever you study online.<br />
-            <b>It helps you stay focused</b> — no more switching tabs or losing momentum.
+            {t.extensionBody}<br />
+            <b>{t.extensionTagline}</b>{t.extensionTail}
           </p>
         </div>
         <div className="sv-sol-shots">
@@ -322,27 +308,26 @@ export default function SolvelyPage() {
             loop
             playsInline
             preload="metadata"
-            aria-label="Solvely extension — select your question area"
+            aria-label={alts.extensionVideo}
           />
         </div>
       </section>
 
       <section className="sv-onb">
         <div className="sv-onb-inner">
-          <h2 className="sv-onb-title">Onboarding Iteration Design</h2>
+          <h2 className="sv-onb-title">{t.onboardingTitle}</h2>
           <div className="sv-onb-block">
-            <h3>Problem Identification</h3>
+            <h3>{t.onboardingProblemTitle}</h3>
             <ul>
-              <li>Over 60% of new users skipped the onboarding process.</li>
-              <li>Core feature visibility was low, with an average click rate below 25%.</li>
+              {(t.onboardingProblems || []).map((x, i) => <li key={i}>{x}</li>)}
             </ul>
           </div>
 
           <div className="sv-onb-step">
-            <img className="sv-onb-mock" src={onbInstalled} alt="Onboarding — before" loading="lazy" decoding="async" />
+            <img className="sv-onb-mock" src={onbInstalled} alt={alts.onboardingBefore} loading="lazy" decoding="async" />
             <div className="sv-onb-note">
-              <span className="sv-onb-pill">←&nbsp;Before</span>
-              <p>The onboarding uses animation effects, but it fails to motivate users to complete the entire onboarding flow.</p>
+              <span className="sv-onb-pill">←&nbsp;{t.onboardingBefore}</span>
+              <p>{t.onboardingBeforeText}</p>
             </div>
           </div>
           <div className="sv-onb-arrow" aria-hidden="true">▼</div>
@@ -356,34 +341,32 @@ export default function SolvelyPage() {
               loop
               playsInline
               preload="metadata"
-              aria-label="Onboarding interaction demo"
+              aria-label={alts.onboardingVideo}
             />
             <div className="sv-onb-note">
-              <span className="sv-onb-pill sv-onb-pill--blue">←&nbsp;After</span>
-              <p>We adopted an interactive onboarding approach after conducting multiple rounds of feasibility testing with the frontend team, effectively reducing implementation costs.</p>
+              <span className="sv-onb-pill sv-onb-pill--blue">←&nbsp;{t.onboardingAfter}</span>
+              <p>{t.onboardingAfterText}</p>
             </div>
           </div>
 
           <div className="sv-onb-block sv-onb-block--strategy">
-            <h3>Iteration Strategy</h3>
+            <h3>{t.onboardingStrategyTitle}</h3>
             <ul>
-              <li>Introduced interactive onboarding with click prompts and real-time feedback.</li>
-              <li>Used visual focus and subtle animations to highlight key actions.</li>
-              <li>Redesigned onboarding into step-by-step guidance to sustain user engagement.</li>
+              {(t.onboardingStrategies || []).map((x, i) => <li key={i}>{x}</li>)}
             </ul>
           </div>
 
           <div className="sv-results">
-            <h2 className="sv-results-title">Results &amp; Validation</h2>
+            <h2 className="sv-results-title">{t.resultsTitle}</h2>
             <div className="sv-bubbles">
               <span className="sv-bub sv-bub--1">↑68%</span>
               <span className="sv-bub sv-bub--2">↑30%</span>
               <span className="sv-bub sv-bub--3">↑22%</span>
             </div>
             <div className="sv-legend">
-              <div className="sv-leg"><span className="sv-dot sv-dot--1" />Core feature click-through<b>68%<i>↑</i></b></div>
-              <div className="sv-leg"><span className="sv-dot sv-dot--2" />Next-day user retention improved<b>30%<i>↑</i></b></div>
-              <div className="sv-leg"><span className="sv-dot sv-dot--3" />Development efficiency increased<b>22%<i>↑</i></b></div>
+              <div className="sv-leg"><span className="sv-dot sv-dot--1" />{t.resultsLegend?.[0]}<b>68%<i>↑</i></b></div>
+              <div className="sv-leg"><span className="sv-dot sv-dot--2" />{t.resultsLegend?.[1]}<b>30%<i>↑</i></b></div>
+              <div className="sv-leg"><span className="sv-dot sv-dot--3" />{t.resultsLegend?.[2]}<b>22%<i>↑</i></b></div>
             </div>
           </div>
         </div>
@@ -393,15 +376,12 @@ export default function SolvelyPage() {
         <div className="sv-source-inner">
         <div className="sv-source-text">
           <p className="sv-muted">
-            The input feature accepts content from multiple sources — web pages, PDFs, and text.<br />
-            The system automatically detects the content type and generates the most relevant learning actions, such as:
+            {lines(t.sourceIntro)}
           </p>
           <ul className="sv-source-list">
-            <li>Extracting questions from web pages and generating quizzes</li>
-            <li>Summarizing long articles automatically</li>
-            <li>Recognizing academic content from PDFs and creating questions</li>
+            {(t.sourceCapabilities || []).map((x, i) => <li key={i}>{x}</li>)}
           </ul>
-          <p>Users can complete the entire learning process in one click without manual setup.</p>
+          <p>{t.sourceOutcome}</p>
         </div>
         <div className="sv-cards">
           <div className="sv-cards-col">
@@ -442,24 +422,22 @@ export default function SolvelyPage() {
       </section>
 
       <section className="sv-member container">
-        <h2 className="sv-member-title">Member Page</h2>
+        <h2 className="sv-member-title">{t.memberTitle}</h2>
         <div className="sv-member-panel">
-          <img className="sv-member-phone" src={memberPhone} alt="Solvely membership paywall" loading="lazy" decoding="async" />
+          <img className="sv-member-phone" src={memberPhone} alt={alts.memberPaywall} loading="lazy" decoding="async" />
           <div className="sv-member-text">
             <div className="sv-mb-block">
-              <span className="sv-mb-label">Background</span>
-              <p>Users lost interest in the membership page after generating multiple answers, leading to a low conversion rate.</p>
+              <span className="sv-mb-label">{t.memberBackgroundLabel}</span>
+              <p>{t.memberBackground}</p>
             </div>
             <div className="sv-mb-block">
-              <span className="sv-mb-label">Solution</span>
+              <span className="sv-mb-label">{t.memberSolutionLabel}</span>
               <ul>
-                <li>Triggered membership popup after 5+ generations.</li>
-                <li>Used Gaussian blur to highlight the paywall.</li>
-                <li>Added a blurred preview to encourage curiosity and clicks.</li>
+                {(t.memberSolutions || []).map((x, i) => <li key={i}>{x}</li>)}
               </ul>
             </div>
             <div className="sv-member-stat">
-              <span className="sv-mb-ctr">Click-through rate<br />increased from 5.6% → 7.1%</span>
+              <span className="sv-mb-ctr">{lines(t.memberCtr)}</span>
               <span className="sv-mb-pct">27%<i>↑</i></span>
             </div>
           </div>
@@ -474,13 +452,13 @@ export default function SolvelyPage() {
           <p className="sv-bff-body1"><span className="sv-bff-hl">Stuck on a problem?</span> Snap a picture or type it in—no judgment here—and let Solvely break it down step by step so you can fully understand it.</p>
         </div>
         <div className="sv-bff-main">
-          <img className="sv-bff-camera" src={bffCamera} alt="Solvely capture" loading="lazy" decoding="async" />
+          <img className="sv-bff-camera" src={bffCamera} alt={alts.bffCapture} loading="lazy" decoding="async" />
           <div className="sv-bff-right">
             <p className="sv-bff-body2">Perfect for any level, from Baby Math 101 to those advanced courses you pretend don’t exist. Ditch the stress, level up your grades, and get more time for, well... everything else.</p>
             <div className="sv-bff-sols">
-              <img src={bffThinking} alt="Solvely thinking" loading="lazy" decoding="async" />
-              <img src={bffAnswer} alt="Solvely answer" loading="lazy" decoding="async" />
-              <img src={bffAnswer3} alt="Solvely answers" loading="lazy" decoding="async" />
+              <img src={bffThinking} alt={alts.bffThinking} loading="lazy" decoding="async" />
+              <img src={bffAnswer} alt={alts.bffAnswer} loading="lazy" decoding="async" />
+              <img src={bffAnswer3} alt={alts.bffAnswers} loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -506,19 +484,19 @@ export default function SolvelyPage() {
       <section className="sv-adapts container">
         <h2 className="sv-adapts-title">Adapts to Your Own<br /><span>Study Schedule</span></h2>
         <div className="sv-adapts-card">
-          <img className="sv-adapts-shot" src={adaptsShot} alt="Solvely — light and dark mode AI homework helper" loading="lazy" decoding="async" />
+          <img className="sv-adapts-shot" src={adaptsShot} alt={alts.adapts} loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="sv-writer">
-        <img className="sv-writer-laptop" src={wLaptop} alt="Solvely Writer in a laptop" loading="lazy" decoding="async" />
+        <img className="sv-writer-laptop" src={wLaptop} alt={alts.writerLaptop} loading="lazy" decoding="async" />
         <div className="sv-writer-inner">
           <div className="sv-writer-head">
-            <h2 className="sv-writer-title">Writer</h2>
-            <p className="sv-writer-sub">Providing writing support<br />for university students across the world</p>
-            <p className="sv-writer-body">By analyzing the AI workflow and prompt logic, users can simply input a title and format to generate high-quality, professional essays. The workflow and interaction design were refined to ensure a smooth and intuitive writing experience.</p>
+            <h2 className="sv-writer-title">{t.writerTitle}</h2>
+            <p className="sv-writer-sub">{lines(t.writerSub)}</p>
+            <p className="sv-writer-body">{t.writerBody}</p>
           </div>
-          <img className="sv-writer-toolbar" src={wToolbar} alt="Writer editor toolbar" loading="lazy" decoding="async" />
+          <img className="sv-writer-toolbar" src={wToolbar} alt={alts.writerToolbar} loading="lazy" decoding="async" />
           <div className="sv-writer-timeline">
             {WRITER_FEATURES.map((f) => (
               <div className={`sv-wt-row sv-wt-row--${f.side}`} key={f.title}>
@@ -534,7 +512,7 @@ export default function SolvelyPage() {
           <img
             className="sv-writer-collage"
             src={logicCollage}
-            alt="Solvely Writer workflow screens"
+            alt={alts.writerScreens}
             loading="lazy"
             decoding="async"
           />
@@ -545,33 +523,32 @@ export default function SolvelyPage() {
         <div className="sv-ainote-stage">
           <img className="sv-ainote-scene" src={aiScene} alt="" loading="lazy" decoding="async" />
           <div className="sv-ainote-head">
-            <h2 className="sv-ainote-title">AI Note</h2>
-            <p className="sv-ainote-sub">Best AI Note Taker for Students</p>
-            <p className="sv-ainote-body">From recording and transcription to intelligent summarization and insight generation, every lecture and piece of course content is transformed into concise, structured, and easy-to-read notes, enabling you to quickly review key concepts, organize information effortlessly, strengthen long-term retention, and study more effectively with the support of AI-powered learning assistance.</p>
+            <h2 className="sv-ainote-title">{t.aiNoteTitle}</h2>
+            <p className="sv-ainote-sub">{t.aiNoteSub}</p>
+            <p className="sv-ainote-body">{t.aiNoteBody}</p>
           </div>
-          <img className="sv-ainote-window" src={aiWindow} alt="Generate AI notes from your live lectures" loading="lazy" decoding="async" />
+          <img className="sv-ainote-window" src={aiWindow} alt={alts.lecture} loading="lazy" decoding="async" />
         </div>
       </section>
 
       <section className="sv-lecture">
-        <img className="sv-lecture-img" src={lecturePhones} alt="Your AI Lecture Assistant — mobile app screens" loading="lazy" decoding="async" />
+        <img className="sv-lecture-img" src={lecturePhones} alt={alts.lectureMobile} loading="lazy" decoding="async" />
       </section>
 
       <section className="sv-quiz container">
         <div className="sv-quiz-head">
-          <h2 className="sv-quiz-title">AI Quiz Generator</h2>
-          <p className="sv-quiz-sub">Personalized learning made easy with an AI quiz generator.</p>
-          <p className="sv-quiz-body">Use Solvely AI to transform text into a comprehensive quiz in seconds, complete with answers and explanations.</p>
+          <h2 className="sv-quiz-title">{t.quizTitle}</h2>
+          <p className="sv-quiz-sub">{t.quizSub}</p>
+          <p className="sv-quiz-body">{t.quizBody}</p>
         </div>
-        <img className="sv-quiz-decks" src={quizDecks} alt="Solvely quiz decks and study modes" loading="lazy" decoding="async" />
+        <img className="sv-quiz-decks" src={quizDecks} alt={alts.quizDecks} loading="lazy" decoding="async" />
         <div className="sv-quiz-vibe">
-          <img className="sv-qv-phone" src={qvPhone} alt="Pick your quiz vibe" loading="lazy" decoding="async" />
+          <img className="sv-qv-phone" src={qvPhone} alt={alts.quizVibe} loading="lazy" decoding="async" />
           <div className="sv-qv-text">
-            <h3>Quiz Vibe Selector</h3>
-            <p>Goal: Make quiz setup more engaging and intuitive.<br />Design Logic:</p>
+            <h3>{t.quizVibeTitle}</h3>
+            <p>{t.quizVibeGoal}<br />{t.quizVibeLogicLabel}</p>
             <ul>
-              <li>Use expressive characters and colors to represent difficulty levels — from CHILL (easy) to SAVAGE SOLVI (hard).</li>
-              <li>Match each vibe with a clear quiz length (5–20 questions).</li>
+              {(t.quizVibeLogic || []).map((x, i) => <li key={i}>{x}</li>)}
             </ul>
           </div>
           <div className="sv-qv-cards">
@@ -583,12 +560,12 @@ export default function SolvelyPage() {
       </section>
 
       <section className="sv-spec">
-        <img className="sv-spec-img" src={specFont} alt="Font Specification — Website Typography" loading="lazy" decoding="async" />
-        <img className="sv-spec-img" src={specColor} alt="Color Specification" loading="lazy" decoding="async" />
+        <img className="sv-spec-img" src={specFont} alt={alts.specFont} loading="lazy" decoding="async" />
+        <img className="sv-spec-img" src={specColor} alt={alts.specColor} loading="lazy" decoding="async" />
       </section>
 
       <section className="sv-comments container">
-        <h2 className="sv-comments-title">Real Comments from<br /><span>Students and Parents</span></h2>
+        <h2 className="sv-comments-title">{t.commentsTitle?.[0]}<br /><span>{t.commentsTitle?.[1]}</span></h2>
         <div className="sv-wall">
           <div className="wc">
             <div className="wr wr--s">

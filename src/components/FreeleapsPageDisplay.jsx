@@ -1,4 +1,6 @@
 import './FreeleapsPageDisplay.css'
+import { Fragment } from 'react'
+import { useCopy } from '../i18n/LanguageContext.jsx'
 import mockup from '../assets/freeleaps/pagedisplay/mockup.png'
 import cta3d from '../assets/freeleaps/pagedisplay/cta-3d.png'
 import avatarAlice from '../assets/freeleaps/pagedisplay/avatar-alice.png'
@@ -34,6 +36,9 @@ function Testimonial({ variant, avatar, name, role, quote, metricLabel, metricVa
 }
 
 export default function PageDisplay() {
+  const t = useCopy('freeleaps')
+  const alts = t.alts || {}
+  const lines = (arr) => (arr || []).map((l, i) => <Fragment key={i}>{i > 0 && <br />}{l}</Fragment>)
   return (
     <div className="pd-inner">
       <span className="pd-scroll" aria-hidden="true">
@@ -41,12 +46,12 @@ export default function PageDisplay() {
       </span>
 
       <div className="fl-font-head pd-head">
-        <h2 className="fl-font-title">Page<br />Display</h2>
-        <span className="fl-font-tag">Simple / Consistent</span>
+        <h2 className="fl-font-title">{lines(t.pageDisplayTitle)}</h2>
+        <span className="fl-font-tag">{t.pageDisplayTag}</span>
       </div>
 
       <div className="pd-stage">
-        <img className="pd-mockup" src={mockup} alt="Freeleaps public page" loading="lazy" decoding="async" />
+        <img className="pd-mockup" src={mockup} alt={alts.pageMockup} loading="lazy" decoding="async" />
         <div className="pd-roles" aria-hidden="true">
           <img src={rolePatent} alt="" loading="lazy" decoding="async" />
           <img src={roleRecruiter} alt="" loading="lazy" decoding="async" />

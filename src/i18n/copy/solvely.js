@@ -1,540 +1,342 @@
-// Solvely AI case study. Product name stays "Solvely AI" in both languages.
-// PAIN_QUOTES, FLOW_PILLS, WRITER_FEATURES, MORE_FEATURES, FEATURES, and
-// VIBE_CARDS are positional arrays — icons/images/avatars stay in the component.
+// Solvely AI case study — /solvely
+//
+// English is the source language for this page: every en string below is the
+// author's original copy, moved verbatim out of SolvelyPage.jsx. The Chinese is
+// a translation of it.
+//
+// Deliberately NOT in this file — kept identical in both languages inside the
+// component, because they depict the product itself rather than narrate the
+// design: the sidebar mockups (Generate quiz / Summarize cards, the Grok
+// article and TechCrunch link, the geometry question), the product's own
+// landing-page blocks ("Your AI Study BFF", "More Than Just Problem-Solving",
+// "Adapts to Your Own Study Schedule"), and the real user comments quoted
+// verbatim from the store.
 export default {
   en: {
-    // Hero section - Sagar-style tagline and impact
-    heroTagline: 'AI-Powered Learning Assistant',
-    heroSubtitle: 'Bringing instant homework help to 2M+ students through a lightweight browser extension',
-    heroMetrics: [
-      { value: '2M+', label: 'Active Users' },
-      { value: '4.8★', label: 'App Store Rating' },
-      { value: '156%', label: 'Sign-up Growth' },
+    back: 'Back',
+    year: '2025',
+
+    heroQuote: {
+      lead: 'Solvely is an all-in-one AI study platform,',
+      muted: 'offering everything from homework explanations to AI-powered note-taking and YouTube summaries,',
+      tail: 'every feature you need.',
+    },
+    features: [
+      { title: 'Homework Help', text: 'Accurately solve any homework problem, from K-12 to graduate level' },
+      { title: 'Quiz Maker', text: 'Transform text into a helpful and fully customized online quiz in just a few minutes' },
+      { title: 'Essay Writer', text: 'Works with you to create well-researched essays and overcome writer’s block' },
+      { title: 'AI Note Taker', text: 'Transcribe class audio into structured notes, with AI-powered Q&A based on your content' },
     ],
 
-    // Hero meta
-    client: 'Solvely AI',
-    role: 'Lead Product Designer',
-    timeline: '2023 - 2024',
-    team: '3 Designers, 8 Engineers, 2 PMs',
+    metaOverview: 'Overview',
+    metaProject: 'Project',
+    overviewBody:
+      'The platform enhances study efficiency through personalized AI tools, automatically summarized materials, and real-time Q&A. It adapts to each student’s learning pace, making studying more interactive, efficient, and enjoyable.',
+    metaFacts: ['Project / Solvely', 'Category / AI Study Platform, EdTech', 'Location / San Francisco, US', 'Date / 2025'],
 
-    // Pain point quotes (aligned with avatars in component)
+    flowTitle: 'How I work',
+    flowIntro: 'I read the data, shape the UX around it, validate the flow in Dify, then ship the spec to development.',
+    flowStages: ['Data', 'Design', 'Delivery'],
+    flowPills: ['Data Analysis', 'User Insight', 'UX Design', 'Dify Validation', 'Design Output', 'Dev Handoff'],
+
+    painTitle: 'User Pain Points',
     painQuotes: [
-      { name: 'Jane Cooper', role: 'High School Student' },
-      { name: 'Kevin', role: 'College Student' },
-      { name: 'Emma', role: 'International Student' },
+      {
+        name: 'Jane Cooper', role: 'High School Student',
+        parts: [
+          { t: '“When I run into a tough question,', gray: true },
+          { t: ' I have to switch tabs to search for the answer ', gray: false },
+          { t: '— it totally breaks my study flow.”', gray: true },
+        ],
+      },
+      {
+        name: 'Kevin', role: 'College Student',
+        parts: [
+          { t: '“While researching, I keep jumping between pages just to understand one concept', gray: false },
+          { t: ' — it’s tiring and inefficient.”', gray: true },
+        ],
+      },
+      {
+        name: 'Emma', role: 'International Student',
+        parts: [
+          { t: '“', gray: false },
+          { t: 'Reading English materials is hard. ', gray: true },
+          { t: 'I’m constantly copying and pasting into translators, and it makes learning feel fragmented.”', gray: false },
+        ],
+      },
     ],
 
-    // Overview section - Challenge/Solution/Impact
-    overviewTitle: 'Project Overview',
-    challenge: {
-      title: 'The Challenge',
-      text: 'Students waste 40% of their study time context-switching between learning platforms and search engines. This fragmented experience hurts retention and increases cognitive load. Through 47 user interviews and analysis of 10K+ support tickets, we identified the core friction points in the student learning journey.',
-    },
-    solution: {
-      title: 'The Solution',
-      text: 'A Chrome extension that brings AI assistance directly into the learning flow — no tab switching, no copy-paste. Select any text on any website, get instant explanations powered by GPT-4. We made AI help feel like magic, not work.',
-    },
-    impact: {
-      title: 'The Impact',
-      metrics: [
-        { icon: '✓', text: '156% increase in trial sign-ups' },
-        { icon: '✓', text: '2M+ active users in 8 months' },
-        { icon: '✓', text: '4.8/5 rating with 12K+ reviews' },
-        { icon: '✓', text: '67% reduction in support tickets' },
-      ],
-    },
-
-    painTitle: 'Understanding the Pain Points',
-
-    // Logic & Design
-    logicTitle: 'Design Logic',
-    logicBody: 'While analyzing the existing workflow, I found a large number of if/else conditions. The system uses different prompts to identify user inputs, and the backend then generates the appropriate essay format. I structured the design around this workflow to define the process and interface more clearly.',
+    logicTitle: 'Logic Flow Design',
+    logicBody:
+      'While analyzing the existing workflow, I found a large number of if/else conditions. The system uses different prompts to identify user inputs, and the backend then generates the appropriate essay format. I structured the design around this workflow to ',
     logicHighlight: 'define the process and interface more clearly.',
 
-    // Solution section - Extension
-    solutionExtensionTitle: 'Solvely Extension',
-    solutionExtensionBody: 'The Solvely browser extension is your smart learning companion, available wherever you study online.',
-    solutionExtensionBold: 'It helps you stay focused — no more switching tabs or losing momentum.',
+    extensionTitle: 'Solvely Extension',
+    extensionBody: 'The Solvely browser extension is your smart learning companion, available wherever you study online.',
+    extensionTagline: 'It helps you stay focused',
+    extensionTail: ' — no more switching tabs or losing momentum.',
 
-    painTitle: 'Understanding the Pain Points',
-
-    // Four feature cards (aligned with icons in component)
-    features: [
-      {
-        title: 'Homework Help',
-        text: 'Instant solutions for any problem — from K-12 to graduate level. Snap, ask, learn.',
-      },
-      {
-        title: 'Quiz Maker',
-        text: 'Turn any material into practice tests in 30 seconds. Auto-graded, fully customized.',
-      },
-      {
-        title: 'Essay Writer',
-        text: 'From rough draft to polished essay — with real citations. Beat writer\'s block.',
-      },
-      {
-        title: 'AI Note Taker',
-        text: 'Record lectures, get structured notes. Ask questions about your own content.',
-      },
+    onboardingTitle: 'Onboarding Iteration Design',
+    onboardingProblemTitle: 'Problem Identification',
+    onboardingProblems: [
+      'Over 60% of new users skipped the onboarding process.',
+      'Core feature visibility was low, with an average click rate below 25%.',
     ],
-
-    solutionTitle: 'The Solution: Browser Extension',
-    solutionText: 'A lightweight Chrome extension that brings AI assistance directly into your learning workflow, without tab switching or context loss.',
-
-    commentsTitle: 'What Users Are Saying',
-
-    onboardingTitle: 'Seamless Onboarding',
-    onboardingSteps: [
-      { label: 'Install', text: 'One-click installation from Chrome Web Store' },
-      { label: 'Activate', text: 'Pin the extension and grant permissions' },
-      { label: 'Start Learning', text: 'Select text anywhere to get instant help' },
+    onboardingBefore: 'Before',
+    onboardingBeforeText: 'The onboarding uses animation effects, but it fails to motivate users to complete the entire onboarding flow.',
+    onboardingAfter: 'After',
+    onboardingAfterText:
+      'We adopted an interactive onboarding approach after conducting multiple rounds of feasibility testing with the frontend team, effectively reducing implementation costs.',
+    onboardingStrategyTitle: 'Iteration Strategy',
+    onboardingStrategies: [
+      'Introduced interactive onboarding with click prompts and real-time feedback.',
+      'Used visual focus and subtle animations to highlight key actions.',
+      'Redesigned onboarding into step-by-step guidance to sustain user engagement.',
     ],
+    resultsTitle: 'Results & Validation',
+    resultsLegend: ['Core feature click-through', 'Next-day user retention improved', 'Development efficiency increased'],
 
-    resultsTitle: 'Impact & Results',
-
-    bffTitle: 'Your Best Friend Forever',
-    bffText: 'Solvely learns your style and adapts to your needs, becoming more helpful over time.',
-
-    sourceTitle: 'Trusted Sources',
-    sourceText: 'Every answer is backed by verified academic sources and citations.',
-
-    memberTitle: 'Premium Membership',
-    memberText: 'Unlock unlimited questions, priority support, and advanced features.',
-
-    moreTitle: 'More Features',
-    moreFeatures: [
-      {
-        num: '01',
-        title: 'Quiz Maker',
-        text: 'Turn study materials into auto-graded quizzes. Instant feedback, ideal for test prep.',
-      },
-      {
-        num: '02',
-        title: 'Essay Writer',
-        text: 'Well-researched essays with real citations — from outline to final draft.',
-      },
-      {
-        num: '03',
-        title: 'AI Note Taker',
-        text: 'Transcribe lectures into organized notes. Ask questions, get answers from your content.',
-      },
+    sourceIntro: [
+      'The input feature accepts content from multiple sources — web pages, PDFs, and text.',
+      'The system automatically detects the content type and generates the most relevant learning actions, such as:',
     ],
+    sourceCapabilities: [
+      'Extracting questions from web pages and generating quizzes',
+      'Summarizing long articles automatically',
+      'Recognizing academic content from PDFs and creating questions',
+    ],
+    sourceOutcome: 'Users can complete the entire learning process in one click without manual setup.',
 
-    adaptsTitle: 'Adapts to You',
-    adaptsLight: 'Light Mode',
-    adaptsDark: 'Dark Mode',
+    memberTitle: 'Member Page',
+    memberBackgroundLabel: 'Background',
+    memberBackground: 'Users lost interest in the membership page after generating multiple answers, leading to a low conversion rate.',
+    memberSolutionLabel: 'Solution',
+    memberSolutions: [
+      'Triggered membership popup after 5+ generations.',
+      'Used Gaussian blur to highlight the paywall.',
+      'Added a blurred preview to encourage curiosity and clicks.',
+    ],
+    memberCtr: ['Click-through rate', 'increased from 5.6% → 7.1%'],
 
-    logicTitle: 'Design Logic',
-    logicBody: 'Every interaction is designed to minimize friction and maximize learning momentum. From the floating widget to the results panel, each component serves a clear purpose in the student\'s workflow.',
-
-    writerTitle: 'AI Writing Suite',
+    writerTitle: 'Writer',
+    writerSub: ['Providing writing support', 'for university students across the world'],
+    writerBody:
+      'By analyzing the AI workflow and prompt logic, users can simply input a title and format to generate high-quality, professional essays. The workflow and interaction design were refined to ensure a smooth and intuitive writing experience.',
     writerFeatures: [
-      {
-        title: 'AI Autocomplete',
-        body: 'Overcome writer\'s block with smart suggestions. Start typing, AI completes your thought.',
-      },
-      {
-        title: 'Citation Generator',
-        body: 'APA, MLA, Harvard, Chicago, IEEE — accurate citations in one click.',
-      },
-      {
-        title: 'Instant Rewrite',
-        body: 'Transform rough paragraphs into polished prose. One click, zero effort.',
-      },
+      { title: 'AI Autocomplete', body: "Starting from a blank page, smart autocomplete helps you overcome writer's block and effortlessly enhances your writing process." },
+      { title: 'In-text Citations', body: 'Create accurate citations in APA, MLA, Harvard, Chicago, or IEEE style.' },
+      { title: 'Paraphrase and Rewrite', body: 'Solvely allows you to rewrite a paragraph with just one click. Our editing feature is designed to be lightweight and intelligent, helping you save time.' },
     ],
 
-    ainoteTitle: 'AI Note Taker',
-    ainoteText: 'Record lectures, meetings, or study sessions. Solvely transcribes and structures your notes automatically.',
+    aiNoteTitle: 'AI Note',
+    aiNoteSub: 'Best AI Note Taker for Students',
+    aiNoteBody:
+      'From recording and transcription to intelligent summarization and insight generation, every lecture and piece of course content is transformed into concise, structured, and easy-to-read notes, enabling you to quickly review key concepts, organize information effortlessly, strengthen long-term retention, and study more effectively with the support of AI-powered learning assistance.',
 
-    lectureTitle: 'Lecture Mode',
-    lectureText: 'Optimized for long-form content, with timestamps and speaker detection.',
-
-    quizTitle: 'Smart Quiz Generator',
-    quizText: 'Turn any material into practice questions.',
-    quizVibes: 'Choose Your Vibe',
-
-    // Design principles
-    principlesTitle: 'Design Principles',
-    principles: [
-      {
-        number: '01',
-        title: 'Zero-friction access',
-        text: 'AI help should feel like magic, not work. No app switching, no copy-paste.',
-      },
-      {
-        number: '02',
-        title: 'Contextual intelligence',
-        text: 'Answers tailored to what the student is reading, not generic responses.',
-      },
-      {
-        number: '03',
-        title: 'Progressive disclosure',
-        text: 'Show features as students need them. Avoid overwhelming with options.',
-      },
+    quizTitle: 'AI Quiz Generator',
+    quizSub: 'Personalized learning made easy with an AI quiz generator.',
+    quizBody: 'Use Solvely AI to transform text into a comprehensive quiz in seconds, complete with answers and explanations.',
+    quizVibeTitle: 'Quiz Vibe Selector',
+    quizVibeGoal: 'Goal: Make quiz setup more engaging and intuitive.',
+    quizVibeLogicLabel: 'Design Logic:',
+    quizVibeLogic: [
+      'Use expressive characters and colors to represent difficulty levels — from CHILL (easy) to SAVAGE SOLVI (hard).',
+      'Match each vibe with a clear quiz length (5–20 questions).',
     ],
 
-    // Results & validation
-    resultsTitle: 'Measurable Impact',
-    resultMetrics: [
-      {
-        icon: '📈',
-        category: 'User Growth',
-        value: '+190%',
-        detail: '2M → 5.8M active users',
-      },
-      {
-        icon: '💰',
-        category: 'Revenue',
-        value: '+186%',
-        detail: '$420K → $1.2M MRR',
-      },
-      {
-        icon: '⭐',
-        category: 'Satisfaction',
-        value: '4.8/5',
-        detail: '4.2 → 4.8 App Store rating',
-      },
-      {
-        icon: '⏱️',
-        category: 'Efficiency',
-        value: '-61%',
-        detail: '28min → 11min avg. session',
-      },
+    moreFeatures: [
+      { title: 'Quiz Maker', text: 'Turn your learning materials or goals into auto-graded quizzes with instant feedback, ideal for test preparation.' },
+      { title: 'Essay Writer', text: 'Create fully developed essays with real citations.' },
+      { title: 'AI Note', text: 'Transcribe class audio into structured notes, with AI-powered Q&A based on your content.' },
     ],
 
-    businessImpactTitle: 'Business Impact',
-    businessImpact: [
-      'Reduced customer acquisition cost by 34%',
-      'Increased premium conversion rate from 6% to 14%',
-      'Featured on App Store "Top Educational Apps"',
-      'Reduced support ticket volume by 67%',
-    ],
+    commentsTitle: ['Real Comments from', 'Students and Parents'],
 
-    // Key learnings
-    learningsTitle: 'Key Learnings',
-    learnings: [
-      {
-        number: '01',
-        title: 'Speed matters more than perfection',
-        text: 'We launched the MVP in 4 weeks. User feedback guided 80% of subsequent features. Waiting for "perfect" would have cost us the market window.',
-      },
-      {
-        number: '02',
-        title: 'AI needs guardrails',
-        text: 'Initial version had hallucination issues affecting trust. We implemented citation verification that increased accuracy from 76% to 94%.',
-      },
-      {
-        number: '03',
-        title: 'Students need privacy',
-        text: 'Anonymous mode was our #1 requested feature. Students feared judgment for asking "basic" questions. Privacy drove adoption.',
-      },
-    ],
-
-    nextStepsTitle: 'What\'s Next',
-    nextSteps: [
-      'Expanding to mobile apps (iOS/Android)',
-      'Multilingual support for international students',
-      'Integration with popular LMS platforms (Canvas, Blackboard)',
-      'Voice input for hands-free learning',
-    ],
-
-    // Alt text for images
     alts: {
-      hero: 'Solvely AI product showcase',
-      painKevin: 'Student Kevin testimonial',
-      painEmma: 'Student Emma testimonial',
-      painJane: 'Student Jane testimonial',
-      sampleQ: 'Sample question interface',
-      tcIcon: 'Trust and credibility icon',
-      extensionInstalled: 'Extension installed notification',
-      p5Quiz: 'Quiz maker interface',
-      p5Essay: 'Essay writer interface',
-      p5Note: 'AI note taker interface',
-      adaptsDarklight: 'Dark and light mode comparison',
-      logicFlow: 'User flow diagram',
-      logicCollage: 'Design system collage',
-      writerLaptop: 'Writer interface on laptop',
-      writerToolbar: 'Writing toolbar',
-      writerAutocomplete: 'AI autocomplete demo',
-      writerLibrary: 'Citation library',
-      writerRewrite: 'Rewrite feature',
-      ainoteScene: 'AI note taker scene',
-      ainoteWindow: 'Note taker window',
-      lecturePhones: 'Lecture mode on mobile',
-      quizDecks: 'Quiz card decks',
-      specFont: 'Typography specification',
-      specColor: 'Color specification',
+      hero: 'Solvely — take a picture and get instant homework help',
+      logicFlow: 'Logic flow diagram — if/else conditions mapping inputs to essay outputs',
+      extensionVideo: 'Solvely extension — select your question area',
+      onboardingBefore: 'Onboarding — before',
+      onboardingVideo: 'Onboarding interaction demo',
+      memberPaywall: 'Solvely membership paywall',
+      bffCapture: 'Solvely capture',
+      bffThinking: 'Solvely thinking',
+      bffAnswer: 'Solvely answer',
+      bffAnswers: 'Solvely answers',
+      adapts: 'Solvely — light and dark mode AI homework helper',
+      writerLaptop: 'Solvely Writer in a laptop',
+      writerToolbar: 'Writer editor toolbar',
+      writerScreens: 'Solvely Writer workflow screens',
+      lecture: 'Generate AI notes from your live lectures',
+      lectureMobile: 'Your AI Lecture Assistant — mobile app screens',
+      quizDecks: 'Solvely quiz decks and study modes',
+      quizVibe: 'Pick your quiz vibe',
+      specFont: 'Font Specification — Website Typography',
+      specColor: 'Color Specification',
     },
   },
+
   zh: {
-    // Hero section - Sagar-style tagline and impact
-    heroTagline: 'AI 学习助手',
-    heroSubtitle: '通过轻量级浏览器插件，为 200 万+学生提供即时作业帮助',
-    heroMetrics: [
-      { value: '200万+', label: '活跃用户' },
-      { value: '4.8★', label: 'App Store 评分' },
-      { value: '156%', label: '注册增长' },
-    ],
+    back: '返回',
+    year: '2025',
 
-    // Hero meta
-    client: 'Solvely AI',
-    role: '主设计师',
-    timeline: '2023 - 2024',
-    team: '3 名设计师，8 名工程师，2 名产品经理',
-
-    // Overview section - Challenge/Solution/Impact
-    overviewTitle: '项目概览',
-    challenge: {
-      title: '挑战',
-      text: '学生将 40% 的学习时间浪费在学习平台和搜索引擎之间的切换上。这种碎片化的体验损害了记忆留存，增加了认知负担。通过 47 次用户访谈和对 10,000+ 支持工单的分析，我们识别出学生学习旅程中的核心摩擦点。',
+    heroQuote: {
+      lead: 'Solvely 是一个一站式 AI 学习平台，',
+      muted: '从作业讲解、AI 笔记到 YouTube 视频总结，',
+      tail: '你需要的功能都在这里。',
     },
-    solution: {
-      title: '解决方案',
-      text: '一个 Chrome 扩展，将 AI 辅助直接融入学习流程 — 无需切换标签页，无需复制粘贴。在任何网站上选中任何文本，即可获得由 GPT-4 驱动的即时解释。我们让 AI 帮助感觉像魔法，而非额外的工作。',
-    },
-    impact: {
-      title: '影响',
-      metrics: [
-        { icon: '✓', text: '试用注册量增长 156%' },
-        { icon: '✓', text: '8 个月内达到 200 万+活跃用户' },
-        { icon: '✓', text: '4.8/5 评分，12,000+ 评价' },
-        { icon: '✓', text: '支持工单减少 67%' },
-      ],
-    },
-
-    // Hero meta
-    client: 'Solvely AI',
-    role: '主设计师',
-    timeline: '2023 - 2024',
-    team: '3 名设计师，8 名工程师，2 名产品经理',
-
-    // Intro section - optimized
-    introYear: '2025',
-    introQuote: 'Solvely 将 AI 学习辅助直接融入你的工作流程 — 无需切换应用，保持学习动力。',
-    introQuoteMuted: '从即时作业帮助到 AI 笔记和论文写作，学习更聪明所需的一切。',
-
-    // Meta section - project details
-    metaOverviewTitle: '概览',
-    metaProjectTitle: '项目',
-    metaOverview: '该平台通过个性化 AI 工具、自动总结的材料和实时问答来提升学习效率。它适应每个学生的学习节奏，让学习更具互动性、更高效、更愉快。',
-    metaProject: [
-      '项目 / Solvely',
-      '类别 / AI 学习平台，教育科技',
-      '地点 / 美国旧金山',
-      '日期 / 2025',
-    ],
-
-    // Flow section - how I work
-    flowTitle: '我的工作方式',
-    flowIntro: '我阅读数据，围绕它塑造 UX，在 Dify 中验证流程，然后将规格交付给开发团队。',
-
-    painTitle: '理解痛点',
-
     features: [
+      { title: '作业辅导', text: '精准解答从 K-12 到研究生阶段的任何作业题' },
+      { title: '测验生成', text: '几分钟内把文本变成一份实用且完全可定制的在线测验' },
+      { title: '论文写作', text: '与你协作完成有据可查的论文，突破写作瓶颈' },
+      { title: 'AI 笔记', text: '把课堂录音转写成结构化笔记，并基于你的内容进行 AI 问答' },
+    ],
+
+    metaOverview: '概览',
+    metaProject: '项目',
+    overviewBody:
+      '平台通过个性化 AI 工具、自动整理的学习资料和实时问答提升学习效率，并适配每位学生的学习节奏，让学习更互动、更高效、也更有乐趣。',
+    metaFacts: ['项目 / Solvely', '类别 / AI 学习平台，教育科技', '地点 / 美国旧金山', '日期 / 2025'],
+
+    flowTitle: '我的工作方式',
+    flowIntro: '我从数据出发，围绕数据塑造体验，在 Dify 中验证流程，再把设计规范交付开发。',
+    flowStages: ['数据', '设计', '交付'],
+    flowPills: ['数据分析', '用户洞察', 'UX 设计', 'Dify 验证', '设计产出', '开发交接'],
+
+    painTitle: '用户痛点',
+    painQuotes: [
       {
-        title: '作业帮助',
-        text: '即时解答任何问题 — 从 K-12 到研究生阶段。拍照、提问、学习。',
+        name: 'Jane Cooper', role: '高中生',
+        parts: [
+          { t: '“遇到难题的时候，', gray: true },
+          { t: '我得切到别的标签页去搜答案', gray: false },
+          { t: '——学习状态一下就断了。”', gray: true },
+        ],
       },
       {
-        title: '测验生成器',
-        text: '30 秒将任何材料转化为练习测试。自动评分，完全定制。',
+        name: 'Kevin', role: '大学生',
+        parts: [
+          { t: '“做研究时，为了弄懂一个概念我要在好几个页面之间来回跳', gray: false },
+          { t: '——又累又低效。”', gray: true },
+        ],
       },
       {
-        title: '论文写作',
-        text: '从草稿到精致论文 — 带真实引用。克服写作障碍。',
-      },
-      {
-        title: 'AI 笔记助手',
-        text: '录制讲座，获得结构化笔记。对你自己的内容提问。',
+        name: 'Emma', role: '留学生',
+        parts: [
+          { t: '“', gray: false },
+          { t: '读英文材料很吃力。', gray: true },
+          { t: '我一直在往翻译工具里复制粘贴，学习变得支离破碎。”', gray: false },
+        ],
       },
     ],
 
-    solutionTitle: '解决方案：浏览器扩展',
-    solutionText: '一款轻量级 Chrome 扩展，将 AI 辅助直接融入学习工作流程，无需切换标签页或丢失上下文。',
+    logicTitle: '逻辑流程设计',
+    logicBody:
+      '在分析现有工作流时，我发现了大量 if/else 条件判断。系统用不同的 prompt 识别用户输入，后端再生成对应的论文格式。我围绕这条工作流来组织设计，',
+    logicHighlight: '让流程和界面定义得更清晰。',
 
-    commentsTitle: '用户评价',
+    extensionTitle: 'Solvely 浏览器插件',
+    extensionBody: 'Solvely 浏览器插件是你的智能学习伙伴，无论在哪里在线学习都随时可用。',
+    extensionTagline: '帮你保持专注',
+    extensionTail: '——不再切换标签页，也不再丢失节奏。',
 
-    onboardingTitle: '无缝上手',
-    onboardingSteps: [
-      { label: '安装', text: '从 Chrome 网上应用店一键安装' },
-      { label: '激活', text: '固定扩展并授予权限' },
-      { label: '开始学习', text: '在任何地方选中文本即可获得即时帮助' },
+    onboardingTitle: 'Onboarding 迭代设计',
+    onboardingProblemTitle: '问题识别',
+    onboardingProblems: [
+      '超过 60% 的新用户跳过了引导流程。',
+      '核心功能曝光度低，平均点击率不足 25%。',
     ],
-
-    resultsTitle: '影响与成果',
-
-    bffTitle: '你的好朋友',
-    bffText: 'Solvely 学习你的风格并适应你的需求，随着时间推移变得更加有用。',
-
-    sourceTitle: '可信来源',
-    sourceText: '每个答案都有经过验证的学术来源和引用支持。',
-
-    memberTitle: '高级会员',
-    memberText: '解锁无限问题、优先支持和高级功能。',
-
-    moreTitle: '更多功能',
-    moreFeatures: [
-      {
-        num: '01',
-        title: '测验生成器',
-        text: '将学习材料转化为自动评分测验。即时反馈，非常适合备考。',
-      },
-      {
-        num: '02',
-        title: '论文写作',
-        text: '有充分研究支持、带真实引用的论文 — 从大纲到最终稿。',
-      },
-      {
-        num: '03',
-        title: 'AI 笔记助手',
-        text: '将讲座转录为有序笔记。提问，从你的内容中获得答案。',
-      },
+    onboardingBefore: '改版前',
+    onboardingBeforeText: '引导使用了动画效果，却没能推动用户走完整个引导流程。',
+    onboardingAfter: '改版后',
+    onboardingAfterText:
+      '在与前端团队进行多轮可行性测试后，我们采用了可交互的引导方式，有效降低了实现成本。',
+    onboardingStrategyTitle: '迭代策略',
+    onboardingStrategies: [
+      '引入带点击提示和实时反馈的交互式引导。',
+      '用视觉焦点和轻量动效突出关键操作。',
+      '把引导重新设计为分步指引，维持用户投入。',
     ],
+    resultsTitle: '结果与验证',
+    resultsLegend: ['核心功能点击率', '次日留存提升', '开发效率提升'],
 
-    adaptsTitle: '适应你',
-    adaptsLight: '浅色模式',
-    adaptsDark: '深色模式',
+    sourceIntro: [
+      '输入功能支持多种来源的内容——网页、PDF 和文本。',
+      '系统会自动识别内容类型，并生成最相关的学习操作，例如：',
+    ],
+    sourceCapabilities: [
+      '从网页中提取题目并生成测验',
+      '自动总结长文章',
+      '识别 PDF 中的学术内容并出题',
+    ],
+    sourceOutcome: '用户无需手动配置，一键即可完成整个学习流程。',
 
-    logicTitle: '设计逻辑',
-    logicBody: '每个交互都旨在最小化摩擦、最大化学习动力。从浮动小部件到结果面板，每个组件在学生的工作流程中都有明确的目的。',
+    memberTitle: '会员页',
+    memberBackgroundLabel: '背景',
+    memberBackground: '用户在多次生成答案后对会员页失去兴趣，导致转化率偏低。',
+    memberSolutionLabel: '方案',
+    memberSolutions: [
+      '在生成 5 次以上后触发会员弹窗。',
+      '用高斯模糊突出付费墙。',
+      '增加模糊预览，激发好奇心与点击。',
+    ],
+    memberCtr: ['点击率', '从 5.6% 提升至 7.1%'],
 
-    writerTitle: 'AI 写作套件',
+    writerTitle: 'Writer',
+    writerSub: ['为全球大学生', '提供写作支持'],
+    writerBody:
+      '通过分析 AI 工作流和 prompt 逻辑，用户只需输入标题和格式，就能生成高质量的专业论文。工作流与交互设计经过打磨，确保写作体验流畅直观。',
     writerFeatures: [
-      {
-        title: 'AI 自动补全',
-        body: '用智能建议克服写作障碍。开始打字，AI 完成你的想法。',
-      },
-      {
-        title: '引用生成器',
-        body: 'APA、MLA、Harvard、Chicago、IEEE — 一键生成准确引用。',
-      },
-      {
-        title: '即时重写',
-        body: '将粗糙的段落转化为精致的文字。一键完成，零工作量。',
-      },
+      { title: 'AI 自动补全', body: '从一页空白开始，智能补全帮你突破写作瓶颈，轻松推进写作过程。' },
+      { title: '文内引用', body: '按 APA、MLA、Harvard、Chicago 或 IEEE 格式生成准确的引用。' },
+      { title: '改写与重述', body: 'Solvely 让你一键改写一个段落。编辑功能被设计得轻量而智能，帮你节省时间。' },
     ],
 
-    ainoteTitle: 'AI 笔记助手',
-    ainoteText: '记录讲座、会议或学习会话。Solvely 自动转录并结构化你的笔记。',
+    aiNoteTitle: 'AI 笔记',
+    aiNoteSub: '最适合学生的 AI 笔记工具',
+    aiNoteBody:
+      '从录音、转写到智能总结与洞察生成，每一堂课、每一份课程内容都被转化为简洁、结构化、易读的笔记，让你快速回顾核心概念、轻松整理信息、强化长期记忆，并在 AI 学习助手的支持下更高效地学习。',
 
-    lectureTitle: '讲座模式',
-    lectureText: '针对长篇内容优化，带有时间戳和说话人检测。',
-
-    quizTitle: '智能测验生成器',
-    quizText: '将任何材料转化为练习题。',
-    quizVibes: '选择你的风格',
-
-    // Design principles
-    principlesTitle: '设计原则',
-    principles: [
-      {
-        number: '01',
-        title: '零摩擦访问',
-        text: 'AI 帮助应该像魔法一样，而不是额外的工作。无需切换应用，无需复制粘贴。',
-      },
-      {
-        number: '02',
-        title: '上下文智能',
-        text: '根据学生正在阅读的内容定制答案，而不是通用回复。',
-      },
-      {
-        number: '03',
-        title: '渐进式展示',
-        text: '在学生需要时显示功能。避免用过多选项让人不知所措。',
-      },
+    quizTitle: 'AI 测验生成器',
+    quizSub: '用 AI 测验生成器，让个性化学习变得简单。',
+    quizBody: '用 Solvely AI 在几秒内把文本变成一份完整的测验，附带答案和解析。',
+    quizVibeTitle: '测验风格选择器',
+    quizVibeGoal: '目标：让测验设置更有趣、更直观。',
+    quizVibeLogicLabel: '设计逻辑：',
+    quizVibeLogic: [
+      '用富有表现力的角色和色彩表示难度等级——从 CHILL（简单）到 SAVAGE SOLVI（困难）。',
+      '为每种风格匹配明确的题量（5–20 题）。',
     ],
 
-    // Results & validation
-    resultsTitle: '可衡量的影响',
-    resultMetrics: [
-      {
-        icon: '📈',
-        category: '用户增长',
-        value: '+190%',
-        detail: '200 万 → 580 万活跃用户',
-      },
-      {
-        icon: '💰',
-        category: '收入',
-        value: '+186%',
-        detail: '$42 万 → $120 万 MRR',
-      },
-      {
-        icon: '⭐',
-        category: '满意度',
-        value: '4.8/5',
-        detail: '4.2 → 4.8 App Store 评分',
-      },
-      {
-        icon: '⏱️',
-        category: '效率',
-        value: '-61%',
-        detail: '28 分钟 → 11 分钟平均会话',
-      },
+    moreFeatures: [
+      { title: '测验生成', text: '把学习资料或目标变成自动批改、即时反馈的测验，是备考的理想工具。' },
+      { title: '论文写作', text: '生成结构完整、引用真实的论文。' },
+      { title: 'AI 笔记', text: '把课堂录音转写成结构化笔记，并基于你的内容进行 AI 问答。' },
     ],
 
-    businessImpactTitle: '商业影响',
-    businessImpact: [
-      '客户获取成本降低 34%',
-      '高级转化率从 6% 提升至 14%',
-      '入选 App Store "顶级教育应用"',
-      '支持工单量减少 67%',
-    ],
-
-    // Key learnings
-    learningsTitle: '关键收获',
-    learnings: [
-      {
-        number: '01',
-        title: '速度比完美更重要',
-        text: '我们在 4 周内推出了 MVP。用户反馈指导了后续 80% 的功能。等待"完美"会让我们失去市场窗口。',
-      },
-      {
-        number: '02',
-        title: 'AI 需要护栏',
-        text: '初始版本存在幻觉问题，影响信任。我们实施了引用验证，将准确性从 76% 提升到 94%。',
-      },
-      {
-        number: '03',
-        title: '学生需要隐私',
-        text: '匿名模式是我们第一大需求功能。学生害怕因为问"基础"问题而被评判。隐私驱动了采用率。',
-      },
-    ],
-
-    nextStepsTitle: '下一步',
-    nextSteps: [
-      '扩展到移动应用（iOS/Android）',
-      '为国际学生提供多语言支持',
-      '集成主流 LMS 平台（Canvas、Blackboard）',
-      '语音输入实现免手操作学习',
-    ],
+    commentsTitle: ['来自学生和家长的', '真实评价'],
 
     alts: {
-      hero: 'Solvely AI 产品展示',
-      painKevin: '学生 Kevin 评价',
-      painEmma: '学生 Emma 评价',
-      painJane: '学生 Jane 评价',
-      sampleQ: '示例问题界面',
-      tcIcon: '信任与可信度图标',
-      extensionInstalled: '扩展安装通知',
-      p5Quiz: '测验生成器界面',
-      p5Essay: '论文写作界面',
-      p5Note: 'AI 笔记助手界面',
-      adaptsDarklight: '深色和浅色模式对比',
-      logicFlow: '用户流程图',
-      logicCollage: '设计系统拼贴',
-      writerLaptop: '笔记本上的写作界面',
-      writerToolbar: '写作工具栏',
-      writerAutocomplete: 'AI 自动补全演示',
-      writerLibrary: '引用库',
-      writerRewrite: '重写功能',
-      ainoteScene: 'AI 笔记助手场景',
-      ainoteWindow: '笔记助手窗口',
-      lecturePhones: '手机讲座模式',
-      quizDecks: '测验卡组',
-      specFont: '字体规范',
-      specColor: '颜色规范',
+      hero: 'Solvely —— 拍张照片，即刻获得作业帮助',
+      logicFlow: '逻辑流程图 —— if/else 条件把输入映射到论文输出',
+      extensionVideo: 'Solvely 插件 —— 框选你的题目区域',
+      onboardingBefore: '引导流程 —— 改版前',
+      onboardingVideo: '引导交互演示',
+      memberPaywall: 'Solvely 会员付费墙',
+      bffCapture: 'Solvely 拍照',
+      bffThinking: 'Solvely 思考中',
+      bffAnswer: 'Solvely 答案',
+      bffAnswers: 'Solvely 答案列表',
+      adapts: 'Solvely —— 浅色与深色模式的 AI 作业助手',
+      writerLaptop: '笔记本电脑上的 Solvely Writer',
+      writerToolbar: 'Writer 编辑器工具栏',
+      writerScreens: 'Solvely Writer 工作流界面',
+      lecture: '从现场课堂生成 AI 笔记',
+      lectureMobile: '你的 AI 课堂助手 —— 移动端界面',
+      quizDecks: 'Solvely 测验卡组与学习模式',
+      quizVibe: '选择你的测验风格',
+      specFont: '字体规范 —— 网站排版',
+      specColor: '色彩规范',
     },
   },
 }
