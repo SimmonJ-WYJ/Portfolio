@@ -1,48 +1,53 @@
-/* centered overlay hosting the ProfileCard */
-.profile-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 8000;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background: rgba(10, 9, 7, 0.72);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+/* Text-only contact sheet in a centred overlay */
+.contact-overlay {
+  position: fixed; inset: 0; z-index: 8000;
+  display: grid; place-items: center; padding: 24px;
+  background: rgba(0, 0, 0, 0.78);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 
-.profile-overlay-inner {
-  position: relative;
+.contact-sheet {
+  position: relative; width: min(760px, 100%);
+  padding: clamp(36px, 5vw, 64px) clamp(28px, 5vw, 64px) clamp(32px, 4vw, 52px);
+  background: #0b0b0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px;
+  color: #fff;
 }
 
-.profile-glow {
-  position: absolute;
-  inset: -60px;
-  z-index: 5;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(150, 200, 255, 0.8) 24%,
-    rgba(125, 190, 255, 0.4) 46%,
-    transparent 70%
-  );
-  filter: blur(36px);
-  mix-blend-mode: screen;
+.contact-close {
+  position: absolute; top: 18px; right: 22px;
+  background: none; border: none; color: rgba(255, 255, 255, 0.55);
+  font-size: 30px; line-height: 1; cursor: pointer; transition: color 0.2s;
+}
+.contact-close:hover { color: #fff; }
+
+.contact-eyebrow {
+  margin: 0 0 14px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.profile-overlay-close {
-  position: absolute;
-  top: -42px;
-  right: 0;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 30px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 10;
-  transition: color 0.2s;
+.contact-title {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(34px, 4.6vw, 60px); line-height: 1.04; letter-spacing: -0.025em;
 }
-.profile-overlay-close:hover { color: #fff; }
+
+.contact-rows { margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.contact-row {
+  display: grid; grid-template-columns: 96px 1fr; align-items: baseline; gap: 20px;
+  padding: 18px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.contact-row dt { margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.5); }
+.contact-row dd { margin: 0; font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.01em; }
+.contact-row a {
+  color: #fff; text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease);
+}
+.contact-row a:hover { background-size: 100% 1px; }
+.contact-row span { color: rgba(255, 255, 255, 0.86); }
+
+
+@media (max-width: 560px) {
+  .contact-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+}
