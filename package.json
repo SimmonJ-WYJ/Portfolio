@@ -8,6 +8,7 @@
     "build": "vite build",
     "check:bundle": "npm run build && node scripts/check-bundle.mjs",
     "check:solvely-plugins": "node scripts/check-solvely-plugins.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

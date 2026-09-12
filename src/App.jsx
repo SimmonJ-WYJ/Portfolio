@@ -1,9 +1,9 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import heroFigure from './assets/hero/figure.webp'
+import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
-import heroPortrait from './assets/hero/portrait.webp'
-import studyPluginCover from './assets/study-plugin/hero.png'
 import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
 import LangToggle from './components/LangToggle.jsx'
@@ -37,7 +37,6 @@ import { useLenis } from './components/useLenis.js'
 
 const FreeleapsPage = lazy(() => import('./components/FreeleapsPage.jsx'))
 const SolvelyPage = lazy(() => import('./components/SolvelyPage.jsx'))
-const StudyPluginPage = lazy(() => import('./components/StudyPluginPage.jsx'))
 const SolvelyPluginsPage = lazy(() => import('./components/SolvelyPluginsPage.jsx'))
 const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
 const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
@@ -46,7 +45,6 @@ const OvermindPage = lazy(() => import('./components/OvermindPage.jsx'))
 const HomeContent = lazy(() => import('./components/HomeContent.jsx'))
 
 const detailRoutes = {
-  '/study-plugin': StudyPluginPage,
   '/freeleaps': FreeleapsPage,
   '/solvely': SolvelyPage,
   '/solvely-plugins': SolvelyPluginsPage,
@@ -64,7 +62,6 @@ const coverModules = import.meta.glob('./assets/covers/*.{png,jpg,jpeg,webp,avif
 // Per-project metadata, keyed by the cover filename slug. Product names stay in
 // their original form in both languages; descriptions come from src/i18n/copy.
 const PROJECT_META = {
-  StudyPlugin: { title: 'Study Plugin', link: '/study-plugin' },
   ASCI: { title: 'ASCI', link: '/asci' },
   Freeleaps: { title: 'Freeleaps', link: '/freeleaps' },
   Solvely: { title: 'Solvely AI', link: '/solvely' },
@@ -75,13 +72,13 @@ const PROJECT_META = {
   数云: { title: '数云 Shuyun' },
 }
 const coverItems = Object.keys(coverModules)
-  .sort((a, b) => Number(b.includes('StudyPlugin')) - Number(a.includes('StudyPlugin')) || a.localeCompare(b))
+  .sort((a, b) => Number(b.includes('solvely-plugins')) - Number(a.includes('solvely-plugins')) || a.localeCompare(b))
   .map((k) => {
     const slug = k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
     const meta = PROJECT_META[slug] || {}
     return {
-      src: slug === 'StudyPlugin' ? studyPluginCover : coverModules[k],
-      fit: slug === 'StudyPlugin' ? 'contain' : 'cover',
+      src: coverModules[k],
+      fit: 'cover',
       slug,
       title: meta.title || slug,
       link: meta.link || '#work',
@@ -256,35 +253,45 @@ function MenuOverlay({ open, onClose }) {
 
 /* ---------- Hero ---------- */
 function Hero({ ready }) {
+  const reduceMotion = useReducedMotion()
   const t = useCopy('home')
+  const rise = (delay) => ({
+    initial: { opacity: 0, y: 28 },
+    animate: ready ? { opacity: 1, y: 0 } : {},
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay },
+  })
   return (
-    <section className="hero hero-pd" id="top">
-      <div className="pd-inner">
-        <div className="pd-left">
-          <motion.h1
-            className="pd-title"
-            initial={{ opacity: 0, y: 50 }}
-            animate={ready ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          >
-            {t.heroTitleTop}<br />{t.heroTitleBottom}
-          </motion.h1>
-          <motion.p
-            className="pd-copy"
-            initial={{ opacity: 0, y: 40 }}
-            animate={ready ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
-          >
-            {t.heroCopy}
+    <section className="hero hero-card-wrap" id="top">
+      {/* Inset rounded card, after the Superpower hero: an atmospheric image
+          fills the frame, copy sits left-centre, a stat strip anchors the foot. */}
+      <div className="hero-card">
+        <img className="hero-figure" src={heroFigure} alt="" aria-hidden="true" loading="eager" decoding="async" fetchpriority="high" />
+
+        <div className="hero-content">
+          <motion.p className="hero-eyebrow" {...rise(0.15)}>
+            {t.heroEyebrow}
           </motion.p>
+          <motion.h1 className="hero-title" {...rise(0.25)}>
+            {t.heroTitleTop}
+            <br />
+            {reduceMotion || !(t.heroTitleWords?.length > 1)
+              ? t.heroTitleBottom
+              : <AnimatedTextCycle words={t.heroTitleWords} interval={2600} />}
+          </motion.h1>
+          <motion.p className="hero-lede" {...rise(0.35)}>{t.heroLede}</motion.p>
+          <motion.div className="hero-ctas" {...rise(0.45)}>
+            <a href="#work" className="hero-btn hero-btn--solid" data-cursor="link">{t.heroCta}</a>
+            <a href="#contact" className="hero-btn hero-btn--ghost" data-cursor="link">{t.heroCta2}</a>
+          </motion.div>
         </div>
-        <motion.div
-          className="pd-right"
-          initial={{ opacity: 0, y: 60 }}
-          animate={ready ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-        >
-          <img src={heroPortrait} alt={t.heroPortraitAlt} loading="eager" decoding="async" fetchpriority="high" />
+
+        <motion.div className="hero-stats" {...rise(0.6)}>
+          {(t.heroStats || []).map((st, i) => (
+            <div className="hero-stat" key={i}>
+              <span className="hero-stat-label">{st.label}</span>
+              <span className="hero-stat-value">{st.value}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

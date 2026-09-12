@@ -8,12 +8,19 @@ const home = {
   en: {
     heroTitleTop: 'Product',
     heroTitleBottom: 'designer',
+    heroTitleWords: ['designer', 'manager', 'builder'],
     heroCopy: 'I believe great design isn\'t about creating interfaces—it\'s about solving the right problems. Every design decision should begin with understanding users, be validated by data, and ultimately create value for both people and the business.',
-    heroEyebrow: 'PRODUCT DESIGNER',
+    heroEyebrow: "I'm SimmonJ",
     heroName: 'SIMMON',
     heroLede:
       'A product designer who builds from strategy to launch — turning complex systems into interfaces people understand.',
     heroCta: 'See selected work',
+    heroCta2: 'Get in touch',
+    heroStats: [
+      { label: 'Approach', value: 'End-to-end, strategy to launch' },
+      { label: 'Focus', value: 'AI-native products' },
+      { label: 'Method', value: 'Data-driven, user-centered' },
+    ],
     heroScroll: 'SCROLL',
     manifestoLabel: 'Studio manifesto',
     manifestoKeywords: [
@@ -44,11 +51,18 @@ const home = {
   zh: {
     heroTitleTop: 'Product',
     heroTitleBottom: 'designer',
+    heroTitleWords: ['designer', 'manager', 'builder'],
     heroCopy: '我相信优秀的设计不在于创建界面，而在于解决正确的问题。每个设计决策都应该从理解用户开始，通过数据验证，最终为用户和企业创造价值。',
-    heroEyebrow: '产品设计师',
+    heroEyebrow: '我是 SimmonJ',
     heroName: 'SIMMON',
     heroLede: '一名从策略到上线全程参与的产品设计师，把复杂系统变成人人看得懂的界面。',
     heroCta: '查看精选作品',
+    heroCta2: '联系我',
+    heroStats: [
+      { label: '方式', value: '端到端，从策略到上线' },
+      { label: '方向', value: 'AI 原生产品' },
+      { label: '方法', value: '数据驱动，以用户为中心' },
+    ],
     heroScroll: '向下滚动',
     manifestoLabel: '设计理念',
     manifestoKeywords: ['产品思维', 'AI 原生', '数据驱动', '端到端', '以用户为中心', '可扩展'],

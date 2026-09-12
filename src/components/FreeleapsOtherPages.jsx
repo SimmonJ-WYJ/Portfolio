@@ -1,4 +1,6 @@
 import './FreeleapsOtherPages.css'
+import { Fragment } from 'react'
+import { useCopy } from '../i18n/LanguageContext.jsx'
 import l1 from '../assets/freeleaps/otherpages/l1.png'
 import l2 from '../assets/freeleaps/otherpages/l2.png'
 import l3 from '../assets/freeleaps/otherpages/l3.png'
@@ -12,11 +14,13 @@ const LEFT = [l1, l2, l3, l4, l5]
 const RIGHT = [r1, r2, r3]
 
 export default function OtherPages() {
+  const t = useCopy('freeleaps')
+  const lines = (arr) => (arr || []).map((l, i) => <Fragment key={i}>{i > 0 && <br />}{l}</Fragment>)
   return (
     <div className="op-inner">
       <div className="fl-font-head">
-        <h2 className="fl-font-title">Display On<br />Other Pages</h2>
-        <span className="fl-font-tag">Consistent / Efficient</span>
+        <h2 className="fl-font-title">{lines(t.otherPagesTitle)}</h2>
+        <span className="fl-font-tag">{t.otherPagesTag}</span>
       </div>
 
       <div className="op-grid">
@@ -32,7 +36,7 @@ export default function OtherPages() {
         </div>
       </div>
 
-      <p className="op-caption">Only display some pages</p>
+      <p className="op-caption">{t.otherPagesCaption}</p>
     </div>
   )
 }
