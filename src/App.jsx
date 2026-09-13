@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import heroFigure from './assets/hero/figure.webp'
+import { useMediaVisibility } from './components/useMediaVisibility.js'
+import heroLoop from './assets/hero/hero-loop.mp4'
+import heroPoster from './assets/hero/hero-poster.webp'
 import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
@@ -254,6 +256,8 @@ function MenuOverlay({ open, onClose }) {
 /* ---------- Hero ---------- */
 function Hero({ ready }) {
   const reduceMotion = useReducedMotion()
+  const heroVideoRef = useRef(null)
+  useMediaVisibility(heroVideoRef, { autoplay: !reduceMotion })
   const t = useCopy('home')
   const rise = (delay) => ({
     initial: { opacity: 0, y: 28 },
@@ -265,7 +269,25 @@ function Hero({ ready }) {
       {/* Inset rounded card, after the Superpower hero: an atmospheric image
           fills the frame, copy sits left-centre, a stat strip anchors the foot. */}
       <div className="hero-card">
-        <img className="hero-figure" src={heroFigure} alt="" aria-hidden="true" loading="eager" decoding="async" fetchpriority="high" />
+        {/* Full-bleed loop behind the copy; a left scrim keeps the text legible
+            when the particle burst sweeps across. Reduced-motion users get the poster. */}
+        {reduceMotion ? (
+          <img className="hero-media" src={heroPoster} alt="" aria-hidden="true" loading="eager" decoding="async" fetchpriority="high" />
+        ) : (
+          <video
+            ref={heroVideoRef}
+            className="hero-media"
+            src={heroLoop}
+            poster={heroPoster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          />
+        )}
+        <div className="hero-scrim" aria-hidden="true" />
 
         <div className="hero-content">
           <motion.p className="hero-eyebrow" {...rise(0.15)}>
