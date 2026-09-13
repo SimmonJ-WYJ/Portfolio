@@ -257,7 +257,28 @@ function MenuOverlay({ open, onClose }) {
 function Hero({ ready }) {
   const reduceMotion = useReducedMotion()
   const heroVideoRef = useRef(null)
-  useMediaVisibility(heroVideoRef, { autoplay: !reduceMotion })
+  // Play once and hold on the 7s frame. Once held, any later play() — from a
+  // tab switch or the browser resuming media — is caught and paused again.
+  useEffect(() => {
+    const v = heroVideoRef.current
+    if (!v || reduceMotion) return undefined
+    const HOLD_AT = 7
+    let held = false
+    const onTime = () => {
+      if (held || v.currentTime < HOLD_AT) return
+      held = true
+      v.pause()
+      v.currentTime = HOLD_AT
+    }
+    const onPlay = () => { if (held) v.pause() }
+    v.addEventListener('timeupdate', onTime)
+    v.addEventListener('play', onPlay)
+    v.play().catch(() => {})
+    return () => {
+      v.removeEventListener('timeupdate', onTime)
+      v.removeEventListener('play', onPlay)
+    }
+  }, [reduceMotion])
   const t = useCopy('home')
   const rise = (delay) => ({
     initial: { opacity: 0, y: 28 },
@@ -279,9 +300,7 @@ function Hero({ ready }) {
             className="hero-media"
             src={heroLoop}
             poster={heroPoster}
-            autoPlay
             muted
-            loop
             playsInline
             preload="auto"
             aria-hidden="true"
