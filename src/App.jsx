@@ -257,28 +257,35 @@ function MenuOverlay({ open, onClose }) {
 function Hero({ ready }) {
   const reduceMotion = useReducedMotion()
   const heroVideoRef = useRef(null)
-  // Play once and hold on the 7s frame. Once held, any later play() — from a
-  // tab switch or the browser resuming media — is caught and paused again.
+  // Start 3s after the loader finishes, play once, and hold on the 7s frame.
+  // Once held, any later play() — from a tab switch or the browser resuming
+  // media — is caught and paused again. Before the start, the poster shows.
   useEffect(() => {
     const v = heroVideoRef.current
-    if (!v || reduceMotion) return undefined
+    if (!v || reduceMotion || !ready) return undefined
+    const START_DELAY = 3000
     const HOLD_AT = 7
     let held = false
+    let started = false
     const onTime = () => {
       if (held || v.currentTime < HOLD_AT) return
       held = true
       v.pause()
       v.currentTime = HOLD_AT
     }
-    const onPlay = () => { if (held) v.pause() }
+    const onPlay = () => { if (held || !started) v.pause() }
     v.addEventListener('timeupdate', onTime)
     v.addEventListener('play', onPlay)
-    v.play().catch(() => {})
+    const timer = setTimeout(() => {
+      started = true
+      v.play().catch(() => {})
+    }, START_DELAY)
     return () => {
+      clearTimeout(timer)
       v.removeEventListener('timeupdate', onTime)
       v.removeEventListener('play', onPlay)
     }
-  }, [reduceMotion])
+  }, [reduceMotion, ready])
   const t = useCopy('home')
   const rise = (delay) => ({
     initial: { opacity: 0, y: 28 },
