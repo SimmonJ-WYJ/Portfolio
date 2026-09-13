@@ -116,14 +116,14 @@ section { position: relative; }
   display: flex; flex-direction: column; justify-content: center;
   padding: clamp(40px, 6vw, 96px) clamp(28px, 5vw, 72px);
 }
-/* Backlit profile on a true-black plate; `screen` lets that black fall away
-   into the card so no cut-out (and no cut-out edge) is needed. */
-.hero-figure {
-  position: absolute; z-index: 1; pointer-events: none; user-select: none;
-  right: -6%; bottom: 0; height: 100%; width: auto; max-width: 58%; object-fit: cover; object-position: right bottom;
-  mix-blend-mode: screen;
-  mask-image: linear-gradient(to right, transparent 0%, #000 22%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+/* Full-bleed hero loop, covering the card; the copy sits over its dark left half. */
+.hero-media {
+  position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 72% 50%; pointer-events: none; user-select: none;
+}
+.hero-scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 34%, rgba(0,0,0,0.12) 60%, rgba(0,0,0,0) 78%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 620px; }
 .hero-eyebrow {
@@ -155,8 +155,9 @@ section { position: relative; }
 .hero-stat-value { font-size: 14px; color: rgba(255,255,255,0.6); }
 
 @media (max-width: 860px) {
+  .hero-media { object-position: 78% 50%; }
+  .hero-scrim { background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.85) 100%); }
   .hero-card { padding: 80px 22px 140px; min-height: calc(100svh - 84px); }
-  .hero-figure { right: -8%; height: 62%; max-width: 80%; }
   .hero-title { font-size: clamp(36px, 10vw, 56px); }
   .hero-stats { left: 22px; right: 22px; bottom: 22px; gap: 14px 0; }
   .hero-stat { padding: 0 14px; }
