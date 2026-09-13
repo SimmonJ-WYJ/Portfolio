@@ -257,14 +257,14 @@ function MenuOverlay({ open, onClose }) {
 function Hero({ ready }) {
   const reduceMotion = useReducedMotion()
   const heroVideoRef = useRef(null)
-  // Start 2s after the loader finishes from the poster's own frame (2s), play
+  // Start 0.5s after the loader finishes from the poster's own frame (2s), play
   // once, and hold on the 7s frame.
   // Once held, any later play() — from a tab switch or the browser resuming
   // media — is caught and paused again. Before the start, the poster shows.
   useEffect(() => {
     const v = heroVideoRef.current
     if (!v || reduceMotion || !ready) return undefined
-    const START_DELAY = 2000
+    const START_DELAY = 500
     const POSTER_AT = 2    // the poster is this frame; seek here so play continues from it
     const HOLD_AT = 7
     let held = false
