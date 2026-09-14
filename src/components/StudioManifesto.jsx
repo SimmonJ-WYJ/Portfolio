@@ -158,7 +158,7 @@ export default function StudioManifesto({ covers = [] }) {
   fadeRefs.current.length = 0
 
   return (
-    <section className="studio-manifesto" ref={sectionRef} aria-label={t.capLabel}>
+    <section className="studio-manifesto" id="about" ref={sectionRef} aria-label={t.capLabel}>
       <div className="sm-stage">
         {/* floating project tiles */}
         <div className="sm-tiles" aria-hidden="true">
