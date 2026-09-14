@@ -95,23 +95,25 @@
 }
 .sm-line + .sm-line { margin-top: 0.55em; }
 
-.sm-kw-row { margin: 14px 0 0; line-height: 1.2; }
+.sm-kw-row { margin: 14px 0 0; line-height: 1.04; }
 
+/* Inline keyword: a layout placeholder only — the stack span flies in its
+   place (static fallback shows it as-is). Metrics match the stack so the
+   height ratio equals the font-size ratio. */
 .sm-keyword {
   display: inline-block;
+  visibility: hidden;
   color: var(--ink);
   font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
   font-weight: 600;
   font-size: clamp(16px, 1.3vw, 20px);
-  letter-spacing: -0.01em;
-  transform-origin: center center;
-  position: relative;
-  z-index: 3;
+  line-height: 1.04;
+  letter-spacing: 0;
 }
 
-/* ---------- target stack ---------- */
-/* Hidden while it is only the FLIP measurement target; shown 1:1 (crisp, no
-   transform) once the inline keywords have landed on it. */
+/* ---------- the flying stack ---------- */
+/* Laid out at its final size and position; each span carries a scroll-driven
+   transform from its placeholder (scaled down) to identity (crisp). */
 .sm-stack {
   position: absolute;
   inset: 0;
@@ -121,19 +123,19 @@
   align-items: center;
   justify-content: center;
   gap: 0.06em;
-  visibility: hidden;
   pointer-events: none;
 }
-.sm-stack--live { visibility: visible; }
 
 .sm-stack span {
   font-family: 'Schibsted Grotesk', 'Inter', -apple-system, sans-serif;
   font-weight: 600;
   font-size: clamp(34px, 6vw, 92px);
   line-height: 1.04;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--ink);
+  transform-origin: center center;
+  will-change: transform;
 }
 
 /* ---------- floating project tiles ---------- */
@@ -184,6 +186,7 @@
     padding: clamp(72px, 12vw, 120px) 0;
   }
   .sm-tiles, .sm-stack, .sm-glass, .sm-glass-defs { display: none; }
+  .sm-keyword { visibility: visible; }
   .sm-grid { grid-template-columns: 1fr; gap: 36px; }
   .sm-line { font-size: 15px; }
   .sm-keyword { font-size: 18px; }
