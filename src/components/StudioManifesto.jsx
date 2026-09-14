@@ -40,6 +40,7 @@ export default function StudioManifesto({ covers = [] }) {
   const tiles = covers.slice(0, TILE_POS.length).map((c, i) => ({ ...c, pos: TILE_POS[i] }))
   const sectionRef = useRef(null)
   const glassRef = useRef(null) // full-stage liquid-glass layer between tiles and copy
+  const stackRef = useRef(null) // the real stack, shown 1:1 once the flight lands
   const keywordRefs = useRef([]) // inline keyword nodes, indexed by block
   const stackRefs = useRef([]) // hidden target stack nodes, indexed by block
   const fadeRefs = useRef([]) // every non-keyword copy node, in reading order
@@ -83,7 +84,8 @@ export default function StudioManifesto({ covers = [] }) {
 
     const reset = () => {
       fadeRefs.current.forEach((node) => { if (node) node.style.opacity = '' })
-      keywordRefs.current.forEach((kw) => { if (kw) kw.style.transform = '' })
+      keywordRefs.current.forEach((kw) => { if (kw) { kw.style.transform = ''; kw.style.opacity = '' } })
+      stackRef.current?.classList.remove('sm-stack--live')
       tileRefs.current.forEach((tile) => { if (tile) { tile.style.transform = ''; tile.style.opacity = '' } })
       glassRef.current?.style.removeProperty('--sm-glass-a')
     }
@@ -112,13 +114,18 @@ export default function StudioManifesto({ covers = [] }) {
       })
 
       // Keywords migrate + scale into the centred stack.
+      // Once landed, the scaled-up inline nodes (rasterised at their small
+      // size, so soft) hand over to the real stack rendered 1:1 — crisp.
       const m = smooth(clamp((p - 0.46) / 0.4))
+      const landed = m >= 0.999
       keywordRefs.current.forEach((kw, ki) => {
         const d = deltas.current[ki]
         if (!kw || !d) return
         const s = 1 + (d.scale - 1) * m
         kw.style.transform = `translate(${d.dx * m}px, ${d.dy * m}px) scale(${s})`
+        kw.style.opacity = landed ? '0' : ''
       })
+      stackRef.current?.classList.toggle('sm-stack--live', landed)
 
       // Project tiles drift upward (parallax) and fade at the extremes.
       tileRefs.current.forEach((tile) => {
@@ -208,7 +215,7 @@ export default function StudioManifesto({ covers = [] }) {
         </div>
 
         {/* hidden target stack (measured for FLIP) */}
-        <div className="sm-stack" aria-hidden="true">
+        <div className="sm-stack" aria-hidden="true" ref={stackRef}>
           {KEYWORDS.map((w, ki) => (
             <span key={w} ref={(n) => (stackRefs.current[ki] = n)}>
               {w}
