@@ -17,7 +17,6 @@
 
 /* ---------- copy: title + five capability blocks ---------- */
 .sm-copy {
-  --sm-panel-a: 1;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -25,17 +24,34 @@
   padding: 0 5vw;
   box-sizing: border-box;
 }
-/* Frosted panel: its alpha is scroll-driven (see StudioManifesto.jsx). */
-.sm-copy::before {
+
+/* ---------- liquid glass ground ---------- */
+/* The whole stage between the tiles and the copy. Its alpha is scroll-driven
+   (--sm-glass-a, see StudioManifesto.jsx): translucent glass on the way in,
+   solid once pinned, thinner again under the final keyword stack. The SVG
+   displacement filter refracts the tiles like liquid glass; browsers without
+   url() backdrop filters keep the plain frosted fallback. */
+.sm-glass-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sm-glass {
+  --sm-glass-a: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0) 62%, rgba(255, 255, 255, 0.4) 100%),
+    rgba(255, 255, 255, var(--sm-glass-a));
+  -webkit-backdrop-filter: blur(10px) saturate(1.4) brightness(1.04);
+  backdrop-filter: blur(10px) saturate(1.4) brightness(1.04);
+  backdrop-filter: url(#sm-liquid) saturate(1.4) brightness(1.04);
+}
+/* specular edge: a hairline highlight along the top of the glass */
+.sm-glass::after {
   content: '';
   position: absolute;
-  z-index: -1;
-  inset: -40px 2vw;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, var(--sm-panel-a));
-  -webkit-backdrop-filter: blur(18px) saturate(1.1);
-  backdrop-filter: blur(18px) saturate(1.1);
-  pointer-events: none;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 3%);
+  opacity: calc(1 - var(--sm-glass-a));
 }
 
 .sm-head { margin-bottom: clamp(24px, 3.5vh, 44px); }
@@ -160,7 +176,7 @@
     overflow: visible;
     padding: clamp(72px, 12vw, 120px) 0;
   }
-  .sm-tiles, .sm-stack, .sm-copy::before { display: none; }
+  .sm-tiles, .sm-stack, .sm-glass, .sm-glass-defs { display: none; }
   .sm-grid { grid-template-columns: 1fr; gap: 36px; }
   .sm-line { font-size: 15px; }
   .sm-keyword { font-size: 18px; }

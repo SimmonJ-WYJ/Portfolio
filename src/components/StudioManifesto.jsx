@@ -35,7 +35,7 @@ export default function StudioManifesto({ covers = [] }) {
   const KEYWORDS = BLOCKS.map((b) => b.keyword)
   const tiles = covers.slice(0, TILE_POS.length).map((c, i) => ({ ...c, pos: TILE_POS[i] }))
   const sectionRef = useRef(null)
-  const copyRef = useRef(null) // the frosted panel behind the copy
+  const glassRef = useRef(null) // full-stage liquid-glass layer between tiles and copy
   const keywordRefs = useRef([]) // inline keyword nodes, indexed by block
   const stackRefs = useRef([]) // hidden target stack nodes, indexed by block
   const fadeRefs = useRef([]) // every non-keyword copy node, in reading order
@@ -81,7 +81,7 @@ export default function StudioManifesto({ covers = [] }) {
       fadeRefs.current.forEach((node) => { if (node) node.style.opacity = '' })
       keywordRefs.current.forEach((kw) => { if (kw) kw.style.transform = '' })
       tileRefs.current.forEach((tile) => { if (tile) { tile.style.transform = ''; tile.style.opacity = '' } })
-      copyRef.current?.style.removeProperty('--sm-panel-a')
+      glassRef.current?.style.removeProperty('--sm-glass-a')
     }
 
     const render = () => {
@@ -92,13 +92,13 @@ export default function StudioManifesto({ covers = [] }) {
       const total = section.offsetHeight - vh
       const p = total > 0 ? clamp(-top / total) : 0
 
-      // Frosted panel behind the copy: translucent (blurring the tiles) while
-      // the section slides in, fully opaque once it is pinned and every line is
-      // on screen, then dissolving again with the copy so the stack sits over
-      // the tiles.
+      // Liquid-glass ground: the whole stage is translucent glass (refracting
+      // the tiles) while the section slides in, turns solid once it is pinned
+      // and every line is on screen, then thins again with the copy so the
+      // keyword stack ends up on glass over the tiles.
       const entry = smooth(clamp(1 - top / vh))
       const exit = smooth(clamp((p - 0.12) / 0.4))
-      copyRef.current?.style.setProperty('--sm-panel-a', String((0.55 + 0.45 * entry) * (1 - exit)))
+      glassRef.current?.style.setProperty('--sm-glass-a', String((0.5 + 0.5 * entry) * (1 - 0.7 * exit)))
 
       // Copy dissolves, staggered top→bottom.
       const N = fadeRefs.current.length
@@ -173,7 +173,18 @@ export default function StudioManifesto({ covers = [] }) {
         </div>
 
         {/* copy — keyed by language so ref arrays rebuild cleanly */}
-        <div className="sm-copy" key={lang} data-lang={lang} ref={copyRef}>
+        {/* liquid glass: SVG displacement warps the tiles behind, a sheen sits on top */}
+        <svg className="sm-glass-defs" aria-hidden="true" focusable="false">
+          <filter id="sm-liquid" x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.006 0.01" numOctaves="2" seed="7" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="3" result="soft" />
+            <feDisplacementMap in="SourceGraphic" in2="soft" scale="36" xChannelSelector="R" yChannelSelector="G" result="warp" />
+            <feGaussianBlur in="warp" stdDeviation="1.5" />
+          </filter>
+        </svg>
+        <div className="sm-glass" ref={glassRef} aria-hidden="true" />
+
+        <div className="sm-copy" key={lang} data-lang={lang}>
           <header className="sm-head">
             <p className="sm-label" ref={fadeRef()}>{t.capLabel}</p>
             <h2 className="sm-title" ref={fadeRef()}>{t.capTitle}</h2>
