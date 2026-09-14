@@ -1,12 +1,16 @@
-import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useCopy, useLang } from '../i18n/LanguageContext.jsx'
-import { buildTokens } from './manifestoTokens.js'
 import './StudioManifesto.css'
 
-// Replica of svz.io's second-screen scroll interaction:
-// a justified paragraph (sentence case, keywords set in caps) whose connective
-// words dissolve on scroll, while the five capability keywords migrate (FLIP
-// translate + scale) into a centered vertical stack. Project tiles float behind.
+// About / Core Capabilities — after svz.io's second-screen scroll interaction.
+// A sticky stage shows the section title and five short capability blocks,
+// each closing on its keyword. On scroll the copy dissolves (staggered top →
+// bottom) while the five keywords migrate (FLIP translate + scale) into a
+// centred vertical stack. Project tiles drift upward behind it.
+//
+// Static fallback (reduced motion, or narrow screens where the stage cannot
+// stay sticky): the stage lays out in flow and nothing animates — the keywords
+// simply read as the bold close of each block.
 
 // Floating tiles: alternating left / right sides, evenly spaced vertically
 // (wide gaps so they stay separated while drifting). Speeds kept close to 1
@@ -19,28 +23,27 @@ const TILE_POS = [
   { left: '2vw', top: '162vh', w: '30vw', speed: 1.0 },
 ]
 
+const STATIC_QUERY = '(prefers-reduced-motion: reduce), (max-width: 860px)'
+
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v))
 const smooth = (v) => v * v * (3 - 2 * v)
 
 export default function StudioManifesto({ covers = [] }) {
   const { lang } = useLang()
   const t = useCopy('home')
-  const KEYWORDS = t.manifestoKeywords
-  const TOKENS = useMemo(() => buildTokens(t.manifesto, KEYWORDS), [t.manifesto, KEYWORDS])
+  const BLOCKS = t.capabilities || []
+  const KEYWORDS = BLOCKS.map((b) => b.keyword)
   const tiles = covers.slice(0, TILE_POS.length).map((c, i) => ({ ...c, pos: TILE_POS[i] }))
   const sectionRef = useRef(null)
-  const stageRef = useRef(null)
-  const keywordRefs = useRef([]) // paragraph keyword nodes, indexed by ki
-  const stackRefs = useRef([]) // hidden target stack nodes, indexed by ki
-  const wordRefs = useRef([]) // non-keyword (white) nodes
+  const keywordRefs = useRef([]) // inline keyword nodes, indexed by block
+  const stackRefs = useRef([]) // hidden target stack nodes, indexed by block
+  const fadeRefs = useRef([]) // every non-keyword copy node, in reading order
   const tileRefs = useRef([])
   const deltas = useRef([]) // {dx, dy, scale} per keyword
 
-  // Measure FLIP deltas from each paragraph keyword to its stacked target.
-  // Re-runs on language change: the paragraph is re-tokenized, so both the node
-  // count and every measured delta change.
+  // Measure FLIP deltas from each inline keyword to its stacked target.
+  // Re-runs on language change: the copy re-renders, so every delta changes.
   useLayoutEffect(() => {
-    wordRefs.current.length = TOKENS.length
     deltas.current = []
     const measure = () => {
       keywordRefs.current.forEach((kw, ki) => {
@@ -64,32 +67,38 @@ export default function StudioManifesto({ covers = [] }) {
       clearTimeout(timer)
       window.removeEventListener('resize', measure)
     }
-  }, [TOKENS])
+  }, [lang, BLOCKS])
 
   // Scroll-linked choreography.
   useEffect(() => {
     const section = sectionRef.current
-    if (!section) return
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!section) return undefined
+    const staticMode = window.matchMedia(STATIC_QUERY)
     let raf = 0
+
+    const reset = () => {
+      fadeRefs.current.forEach((node) => { if (node) node.style.opacity = '' })
+      keywordRefs.current.forEach((kw) => { if (kw) kw.style.transform = '' })
+      tileRefs.current.forEach((tile) => { if (tile) { tile.style.transform = ''; tile.style.opacity = '' } })
+    }
 
     const render = () => {
       raf = 0
+      if (staticMode.matches) { reset(); return }
       const vh = window.innerHeight
       const total = section.offsetHeight - vh
-      const p = reduced ? 1 : total > 0 ? clamp(-section.getBoundingClientRect().top / total) : 0
+      const p = total > 0 ? clamp(-section.getBoundingClientRect().top / total) : 0
 
-      // White connective words dissolve, staggered top→bottom.
-      const N = TOKENS.length
-      wordRefs.current.forEach((node) => {
+      // Copy dissolves, staggered top→bottom.
+      const N = fadeRefs.current.length
+      fadeRefs.current.forEach((node, j) => {
         if (!node) return
-        const j = Number(node.dataset.j)
         const start = 0.1 + (j / N) * 0.34
         const fade = smooth(clamp((p - start) / 0.14))
         node.style.opacity = String(1 - fade)
       })
 
-      // Red keywords migrate + scale into the centered stack.
+      // Keywords migrate + scale into the centred stack.
       const m = smooth(clamp((p - 0.46) / 0.4))
       keywordRefs.current.forEach((kw, ki) => {
         const d = deltas.current[ki]
@@ -103,7 +112,7 @@ export default function StudioManifesto({ covers = [] }) {
         if (!tile) return
         const speed = Number(tile.dataset.speed)
         tile.style.transform = `translate3d(0, ${-p * vh * 1.5 * speed}px, 0)`
-        tile.style.opacity = String(clamp(Math.min(p / 0.12, (1 - p) / 0.12)) * 0.9 + 0.1)
+        tile.style.opacity = String(clamp(Math.min(p / 0.12, (1 - p) / 0.12)) * 0.6 + 0.1)
       })
     }
 
@@ -112,70 +121,70 @@ export default function StudioManifesto({ covers = [] }) {
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
+    staticMode.addEventListener?.('change', onScroll)
     render()
     return () => {
       if (raf) cancelAnimationFrame(raf)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      staticMode.removeEventListener?.('change', onScroll)
     }
-  }, [TOKENS])
+  }, [lang, BLOCKS])
 
-  let wordCounter = -1
+  let fadeCounter = -1
+  const fadeRef = () => {
+    fadeCounter += 1
+    const j = fadeCounter
+    return (n) => { fadeRefs.current[j] = n }
+  }
+  fadeRefs.current.length = 0
 
   return (
-    <section className="studio-manifesto" ref={sectionRef} aria-label={t.manifestoLabel}>
-      <div className="sm-stage" ref={stageRef}>
+    <section className="studio-manifesto" ref={sectionRef} aria-label={t.capLabel}>
+      <div className="sm-stage">
         {/* floating project tiles */}
         <div className="sm-tiles" aria-hidden="true">
-          {tiles.map((t, i) => (
+          {tiles.map((tile, i) => (
             <div
               key={i}
               ref={(n) => (tileRefs.current[i] = n)}
-              data-speed={t.pos.speed}
+              data-speed={tile.pos.speed}
               className="sm-tile"
               style={{
-                top: t.pos.top,
-                width: t.pos.w,
-                ...(t.pos.left ? { left: t.pos.left } : { right: t.pos.right }),
+                top: tile.pos.top,
+                width: tile.pos.w,
+                ...(tile.pos.left ? { left: tile.pos.left } : { right: tile.pos.right }),
               }}
             >
-              <img className="sm-tile-img" src={t.src} alt="" loading="lazy" />
+              <img className="sm-tile-img" src={tile.src} alt="" loading="lazy" />
             </div>
           ))}
         </div>
 
-        {/* manifesto paragraph — keyed by language so ref arrays rebuild cleanly */}
-        <p className="sm-para" key={lang} data-lang={lang}>
-          {TOKENS.map((tok, i) => {
-            if (tok.isKeyword) {
-              const suffix = tok.text.slice(tok.core.length) // trailing punctuation
-              wordCounter += 1
-              const sj = wordCounter
-              return (
-                <span key={i}>
-                  <span className="sm-keyword" ref={(n) => (keywordRefs.current[tok.ki] = n)}>
-                    {tok.core}
+        {/* copy — keyed by language so ref arrays rebuild cleanly */}
+        <div className="sm-copy" key={lang} data-lang={lang}>
+          <header className="sm-head">
+            <p className="sm-label" ref={fadeRef()}>{t.capLabel}</p>
+            <h2 className="sm-title" ref={fadeRef()}>{t.capTitle}</h2>
+          </header>
+          <div className="sm-grid">
+            {BLOCKS.map((block, ki) => (
+              <div className="sm-block" key={ki}>
+                {block.lines.map((line, i) => (
+                  <p className="sm-line" key={i} ref={fadeRef()}>{line}</p>
+                ))}
+                <p className="sm-kw-row">
+                  <span className="sm-keyword" ref={(n) => (keywordRefs.current[ki] = n)}>
+                    {block.keyword}
                   </span>
-                  {suffix && (
-                    <span className="sm-word" data-j={sj} ref={(n) => (wordRefs.current[sj] = n)}>
-                      {suffix}
-                    </span>
-                  )}{' '}
-                </span>
-              )
-            }
-            wordCounter += 1
-            const j = wordCounter
-            return (
-              <span key={i} className="sm-word" data-j={j} ref={(n) => (wordRefs.current[j] = n)}>
-                {tok.text}{' '}
-              </span>
-            )
-          })}
-        </p>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* hidden target stack (measured for FLIP) */}
-        <div className="sm-stack" aria-hidden="true" data-lang={lang}>
+        <div className="sm-stack" aria-hidden="true">
           {KEYWORDS.map((w, ki) => (
             <span key={w} ref={(n) => (stackRefs.current[ki] = n)}>
               {w}

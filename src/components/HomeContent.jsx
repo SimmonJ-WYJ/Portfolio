@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import ContactCard from './ContactCard.jsx'
-import HomeIntro from './HomeIntro.jsx'
 import { HorizontalShowcase } from './HorizontalShowcase.jsx'
 import LogoCloud from './LogoCloud.jsx'
 import StudioManifesto from './StudioManifesto.jsx'
@@ -29,6 +28,7 @@ function Footer({ logoItems }) {
       <ContactCard open={contact} onClose={() => setContact(false)} />
       <div className="container">
         <div className="footer-intro reveal">
+          <h3 className="footer-intro-title">{t.contactHeadline}</h3>
           {(t.contactBody || []).map((line, i) => (
             <p key={i}><Rich text={line} /></p>
           ))}
@@ -51,7 +51,6 @@ function Footer({ logoItems }) {
         <WavePath className="footer-art-wave" />
         <div className="footer-art-text">
           <p className="footer-art-label">{t.footerLabel}</p>
-          <p className="footer-art-desc">{t.contactHeadline}</p>
         </div>
       </div>
       <div className="footer-logos">
@@ -64,7 +63,6 @@ function Footer({ logoItems }) {
 export default function HomeContent({ coverItems, logoItems }) {
   return (
     <div className="after-hero">
-      <HomeIntro />
       <StudioManifesto covers={coverItems} />
       <Work coverItems={coverItems} />
       <Footer logoItems={logoItems} />

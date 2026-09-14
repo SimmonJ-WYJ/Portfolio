@@ -301,8 +301,8 @@ function Hero({ ready }) {
   })
   return (
     <section className="hero hero-card-wrap" id="top">
-      {/* Inset rounded card, after the Superpower hero: an atmospheric image
-          fills the frame, copy sits left-centre, a stat strip anchors the foot. */}
+      {/* Inset rounded card, after the Superpower hero: an atmospheric loop
+          fills the frame and the copy sits left-centre. */}
       <div className="hero-card">
         {/* Full-bleed loop behind the copy; a left scrim keeps the text legible
             when the particle burst sweeps across. Reduced-motion users get the poster. */}
@@ -334,18 +334,8 @@ function Hero({ ready }) {
           </motion.div>
           <motion.div className="hero-ctas" {...rise(0.45)}>
             <a href="#work" className="hero-btn hero-btn--solid" data-cursor="link">{t.heroCta}</a>
-            <a href="#contact" className="hero-btn hero-btn--ghost" data-cursor="link">{t.heroCta2}</a>
           </motion.div>
         </div>
-
-        <motion.div className="hero-stats" {...rise(0.6)}>
-          {(t.heroStats || []).map((st, i) => (
-            <div className="hero-stat" key={i}>
-              <span className="hero-stat-figure">{st.figure}</span>
-              <span className="hero-stat-caption">{st.caption}</span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   )

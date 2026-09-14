@@ -48,7 +48,6 @@ const WIRED = [
   'FreeleapsPage.jsx',
   'AsciPage.jsx',
   'HomeContent.jsx',
-  'HomeIntro.jsx',
   'StudioManifesto.jsx',
 ]
 for (const name of WIRED) {

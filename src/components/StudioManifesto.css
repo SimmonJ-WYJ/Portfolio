@@ -15,33 +15,68 @@
   justify-content: center;
 }
 
-/* ---------- manifesto paragraph ---------- */
-.sm-para {
+/* ---------- copy: title + five capability blocks ---------- */
+.sm-copy {
   position: relative;
   z-index: 2;
-  margin: 0;
-  max-width: 1180px;
-  padding: 0 6vw;
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-weight: 300;
-  font-size: clamp(17px, 2.3vw, 36px);
-  line-height: 1.16;
-  letter-spacing: -0.01em;
-  text-align: justify;
+  width: 100%;
+  max-width: 1360px;
+  padding: 0 5vw;
+  box-sizing: border-box;
 }
 
-.sm-word {
-  font-weight: 300;
+.sm-head { margin-bottom: clamp(24px, 3.5vh, 44px); }
+
+.sm-label {
+  margin: 0 0 14px;
+  font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sm-title {
+  margin: 0;
+  max-width: 22em;
+  font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 2.9vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.sm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vh, 44px) clamp(28px, 3.5vw, 56px);
+}
+
+.sm-block { display: flex; flex-direction: column; }
+
+.sm-line {
+  margin: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
   will-change: opacity;
 }
+.sm-line + .sm-line { margin-top: 0.55em; }
+
+.sm-kw-row { margin: 14px 0 0; line-height: 1.2; }
 
 .sm-keyword {
   display: inline-block;
   color: #ffffff;
   font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
   font-weight: 600;
+  font-size: clamp(16px, 1.3vw, 20px);
+  letter-spacing: 0.02em;
   transform-origin: center center;
   will-change: transform;
+  position: relative;
   z-index: 3;
 }
 
@@ -92,33 +127,29 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.5);
+  filter: brightness(0.35);
 }
 
-.sm-tile-label {
-  position: absolute;
-  left: 10px;
-  top: 8px;
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  mix-blend-mode: difference;
+/* Short viewports: keep the whole narrative inside the sticky stage. */
+@media (max-height: 820px) and (min-width: 861px) {
+  .sm-head { margin-bottom: 20px; }
+  .sm-title { font-size: clamp(24px, 2.4vw, 36px); }
+  .sm-line { font-size: 13px; line-height: 1.45; }
+  .sm-grid { row-gap: 22px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .studio-manifesto {
-    height: auto;
-  }
+/* Static fallback: the stage lays out in flow and nothing animates. */
+@media (prefers-reduced-motion: reduce), (max-width: 860px) {
+  .studio-manifesto { height: auto; }
   .sm-stage {
     position: relative;
     height: auto;
-    min-height: 100vh;
-    padding: 12vh 0;
+    min-height: 0;
+    overflow: visible;
+    padding: clamp(72px, 12vw, 120px) 0;
   }
-  .sm-tiles {
-    display: none;
-  }
+  .sm-tiles, .sm-stack { display: none; }
+  .sm-grid { grid-template-columns: 1fr; gap: 36px; }
+  .sm-line { font-size: 15px; }
+  .sm-keyword { font-size: 18px; }
 }
