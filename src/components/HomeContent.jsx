@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import ContactCard from './ContactCard.jsx'
 import { HorizontalShowcase } from './HorizontalShowcase.jsx'
-import LogoCloud from './LogoCloud.jsx'
 import StudioManifesto from './StudioManifesto.jsx'
 import WavePath from './WavePath.jsx'
 import { cases } from '../data.js'
@@ -19,7 +18,7 @@ function Work({ coverItems }) {
   )
 }
 
-function Footer({ logoItems }) {
+function Footer() {
   const [contact, setContact] = useState(false)
   const t = useCopy('home')
   const c = useCopy('common')
@@ -53,19 +52,16 @@ function Footer({ logoItems }) {
           </div>
         </div>
       </div>
-      <div className="footer-logos">
-        <LogoCloud items={logoItems} />
-      </div>
     </footer>
   )
 }
 
-export default function HomeContent({ coverItems, logoItems }) {
+export default function HomeContent({ coverItems }) {
   return (
     <div className="after-hero">
       <StudioManifesto covers={coverItems} />
       <Work coverItems={coverItems} />
-      <Footer logoItems={logoItems} />
+      <Footer />
     </div>
   )
 }

@@ -10,30 +10,6 @@ import RouteFallback from './components/RouteFallback.jsx'
 import LangToggle from './components/LangToggle.jsx'
 import { useCopy } from './i18n/LanguageContext.jsx'
 import Rich from './i18n/Rich.jsx'
-import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
-import logoSupabase from './assets/logos/supabase_wordmark_light.svg'
-import logoOpenai from './assets/logos/openai_wordmark_light.svg'
-import logoTurso from './assets/logos/turso-wordmark-light.svg'
-import logoVercel from './assets/logos/vercel_wordmark.svg'
-import logoGithub from './assets/logos/github_wordmark_light.svg'
-import logoClaude from './assets/logos/claude-ai-wordmark-icon_light.svg'
-import logoClerk from './assets/logos/clerk-wordmark-light.svg'
-import logoFigma from './assets/logos/figma.svg'
-import logoGodaddy from './assets/logos/godaddy.svg'
-
-// Brand logos for the footer carousel (self-hosted from svgl.app — placeholder set).
-const LOGO_ITEMS = [
-  { src: logoFigma, alt: 'Figma', name: 'Figma' },
-  { src: logoGodaddy, alt: 'GoDaddy' },
-  { src: logoNvidia, alt: 'Nvidia' },
-  { src: logoSupabase, alt: 'Supabase' },
-  { src: logoOpenai, alt: 'OpenAI' },
-  { src: logoTurso, alt: 'Turso' },
-  { src: logoVercel, alt: 'Vercel' },
-  { src: logoGithub, alt: 'GitHub' },
-  { src: logoClaude, alt: 'Claude' },
-  { src: logoClerk, alt: 'Clerk' },
-]
 import { TextHoverEffect } from './components/TextHoverEffect.jsx'
 import { useLenis } from './components/useLenis.js'
 
@@ -482,7 +458,7 @@ export default function App() {
       <main>
         <Hero ready={loaded} />
         <Suspense fallback={<div className="home-content-fallback" aria-hidden="true" />}>
-          <HomeContent coverItems={coverItems} logoItems={LOGO_ITEMS} />
+          <HomeContent coverItems={coverItems} />
         </Suspense>
       </main>
 
