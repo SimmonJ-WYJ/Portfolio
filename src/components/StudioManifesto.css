@@ -1,8 +1,8 @@
 .studio-manifesto {
   position: relative;
   height: 300vh;
-  background: #000000;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 .sm-stage {
@@ -33,7 +33,7 @@
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-faint);
 }
 
 .sm-title {
@@ -60,7 +60,7 @@
   font-family: 'Inter', -apple-system, sans-serif;
   font-size: clamp(13px, 1.05vw, 16px);
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--ink-soft);
   will-change: opacity;
 }
 .sm-line + .sm-line { margin-top: 0.55em; }
@@ -69,7 +69,7 @@
 
 .sm-keyword {
   display: inline-block;
-  color: #ffffff;
+  color: var(--ink);
   font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
   font-weight: 600;
   font-size: clamp(16px, 1.3vw, 20px);
@@ -100,7 +100,7 @@
   line-height: 1.04;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--ink);
 }
 
 /* ---------- floating project tiles ---------- */
@@ -117,7 +117,7 @@
   border-radius: 2px;
   overflow: hidden;
   will-change: transform, opacity;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 24px 60px rgba(22, 20, 15, 0.18);
 }
 
 .sm-tile-img {
@@ -127,7 +127,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.35);
 }
 
 /* Short viewports: keep the whole narrative inside the sticky stage. */

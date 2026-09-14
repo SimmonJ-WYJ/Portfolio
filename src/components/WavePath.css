@@ -21,7 +21,7 @@
 }
 .footer-art-wave {
   width: 100%;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(22, 20, 15, 0.4);
   margin-bottom: 40px;
 }
 .footer-art-text {
@@ -34,13 +34,13 @@
   flex-shrink: 0;
   margin-top: 8px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-faint);
 }
 .footer-art-desc {
   width: 75%;
   font-size: clamp(15px, 1.25vw, 19px);
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-soft);
 }
 .footer-art-desc p { margin: 0; }
 .footer-art-title {
@@ -50,7 +50,7 @@
   font-size: clamp(22px, 2.2vw, 34px);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--ink);
   text-wrap: balance;
 }
 .footer-art-line + .footer-art-line { margin-top: 0.5em !important; }

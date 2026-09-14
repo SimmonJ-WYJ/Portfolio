@@ -112,7 +112,7 @@ export default function StudioManifesto({ covers = [] }) {
         if (!tile) return
         const speed = Number(tile.dataset.speed)
         tile.style.transform = `translate3d(0, ${-p * vh * 1.5 * speed}px, 0)`
-        tile.style.opacity = String(clamp(Math.min(p / 0.12, (1 - p) / 0.12)) * 0.6 + 0.1)
+        tile.style.opacity = String(clamp(Math.min(p / 0.12, (1 - p) / 0.12)) * 0.4 + 0.06)
       })
     }
 
