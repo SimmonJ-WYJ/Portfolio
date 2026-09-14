@@ -38,10 +38,22 @@
 }
 .footer-art-desc {
   width: 75%;
-  font-size: clamp(15px, 1.55vw, 22px);
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
 }
+.footer-art-desc p { margin: 0; }
+.footer-art-title {
+  margin: 0 0 14px !important;
+  font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-wrap: balance;
+}
+.footer-art-line + .footer-art-line { margin-top: 0.5em !important; }
 @media (max-width: 640px) {
   .footer-art-text { flex-direction: column; gap: 8px; }
   .footer-art-desc { width: 100%; }

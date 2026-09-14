@@ -27,12 +27,6 @@ function Footer({ logoItems }) {
     <footer className="footer" id="contact">
       <ContactCard open={contact} onClose={() => setContact(false)} />
       <div className="container">
-        <div className="footer-intro reveal">
-          <h3 className="footer-intro-title">{t.contactHeadline}</h3>
-          {(t.contactBody || []).map((line, i) => (
-            <p key={i}><Rich text={line} /></p>
-          ))}
-        </div>
         <h2 className="cta-big reveal">
           <a
             href="#contact"
@@ -51,6 +45,12 @@ function Footer({ logoItems }) {
         <WavePath className="footer-art-wave" />
         <div className="footer-art-text">
           <p className="footer-art-label">{t.footerLabel}</p>
+          <div className="footer-art-desc">
+            <p className="footer-art-title">{t.contactHeadline}</p>
+            {(t.contactBody || []).map((line, i) => (
+              <p key={i} className="footer-art-line"><Rich text={line} /></p>
+            ))}
+          </div>
         </div>
       </div>
       <div className="footer-logos">
