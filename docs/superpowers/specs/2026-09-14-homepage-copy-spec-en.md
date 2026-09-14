@@ -39,8 +39,7 @@ Recommended order:
 3. About / How I Work
 4. Core Capabilities Scroll Section
 5. Selected Work
-6. Philosophy
-7. Contact
+6. Contact
 
 ---
 
@@ -286,36 +285,6 @@ This homepage update does not modify this section, including:
 - Interaction and motion
 
 Use the current live implementation as-is.
-
----
-
-# 9. PHILOSOPHY
-
-## Headline
-
-# I don’t care much about how many screens I make.
-
-# I care about what gets better because of them.
-
----
-
-## Copy
-
-Sometimes the answer is redesigning a flow.
-
-Sometimes it’s removing a step.
-
-Sometimes it means changing the feature entirely.
-
-And with AI products, sometimes the best design decision is:
-
-**don’t build it yet.**
-
-Good product design isn’t just about executing requirements.
-
-It’s about figuring out:
-
-**what is actually worth building.**
 
 ---
 

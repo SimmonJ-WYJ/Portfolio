@@ -38,9 +38,8 @@ for (const lang of ['en', 'zh']) {
     assert.ok(!t.manifesto.includes(banned), `${lang}: "${banned}" removed from the manifesto.`)
   }
 
-  // Philosophy + contact
-  assert.equal(t.philosophyTitle.length, 2, `${lang}: two-line philosophy headline.`)
-  assert.ok(t.philosophyLines.filter((l) => l.includes('**')).length >= 2, `${lang}: two bold philosophy beats.`)
+  // Contact (the Philosophy section was dropped)
+  assert.ok(!('philosophyTitle' in t), `${lang}: no Philosophy copy.`)
   assert.ok(t.contactHeadline && Array.isArray(t.contactBody), `${lang}: contact headline + body.`)
   assert.equal(t.footerLabel, 'AI Product Design · 0 → 1 · UX · Shanghai', `${lang}: footer label per spec.`)
   assert.ok(!('footerDesc' in t), `${lang}: footerDesc template copy removed.`)

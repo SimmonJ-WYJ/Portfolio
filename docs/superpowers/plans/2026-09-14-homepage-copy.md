@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 把 `docs/superpowers/specs/2026-09-14-homepage-copy-spec-{en,zh}.md` 的首页文案与信息架构落到线上首页：Hero → Numbers → How I Work → Core Capabilities → Selected Work（不动）→ Philosophy → Contact。
+**Goal:** 把 `docs/superpowers/specs/2026-09-14-homepage-copy-spec-{en,zh}.md` 的首页文案与信息架构落到线上首页：Hero → Numbers → How I Work → Core Capabilities → Selected Work（不动）→ Contact。
 
-**Architecture:** 所有文案集中在 `src/i18n/copy/home.js`（en / zh 各自成文，不逐字互译）。Hero 与 Numbers 沿用 `App.jsx` 的 `Hero`；Core Capabilities 沿用 `StudioManifesto`（关键词分词器抽到 `manifestoTokens.js`，支持 `0 → 1`）；How I Work 与 Philosophy 为两个新的纯文案小节 `HomeIntro.jsx` / `Philosophy.jsx`；Contact 复用 `Footer`。
+**Architecture:** 所有文案集中在 `src/i18n/copy/home.js`（en / zh 各自成文，不逐字互译）。Hero 与 Numbers 沿用 `App.jsx` 的 `Hero`；Core Capabilities 沿用 `StudioManifesto`（关键词分词器抽到 `manifestoTokens.js`，支持 `0 → 1`）；How I Work 为新的纯文案小节 `HomeIntro.jsx`（Philosophy 板块已决定不做）；Contact 复用 `Footer`。
 
 **Tech Stack:** React、CSS、Vite、Node 断言检查。
 
@@ -25,7 +25,7 @@
 - Modify: `package.json`（`check:home`）
 
 - [ ] **Step 1: 断言五个关键词在 en / zh 的 manifesto 里都能被分词器各命中一次（含 `0 → 1`）。**
-- [ ] **Step 2: 断言 Hero、Numbers、How I Work、Philosophy、Contact 的关键文案存在且不含旧的空话关键词。**
+- [ ] **Step 2: 断言 Hero、Numbers、How I Work、Contact 的关键文案存在且不含旧的空话关键词。**
 - [ ] **Step 3: 运行 `npm run check:home`，确认失败。**
 
 ### Task 2: 分词器与文案
@@ -46,13 +46,13 @@
 - [ ] **Step 1: 标题改为一句话（去掉轮换），支持多段 lede 与 `**加粗**`。**
 - [ ] **Step 2: 数字条改为 4 组「数字 + 说明」。**
 
-### Task 4: How I Work、Philosophy、Contact
+### Task 4: How I Work、Contact
 
 **Files:**
-- Create: `src/components/HomeIntro.jsx`、`src/components/Philosophy.jsx`、`src/components/HomeSections.css`
+- Create: `src/components/HomeIntro.jsx`、`src/components/HomeSections.css`
 - Modify: `src/components/HomeContent.jsx`
 
-- [ ] **Step 1: 两个新小节接入 `HomeContent`。**
+- [ ] **Step 1: How I Work 小节接入 `HomeContent`。**
 - [ ] **Step 2: Footer 换成 Contact 文案与页脚标签。**
 
 ### Task 5: 验证

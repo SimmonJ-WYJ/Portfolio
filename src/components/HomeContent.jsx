@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import ContactCard from './ContactCard.jsx'
 import HomeIntro from './HomeIntro.jsx'
-import Philosophy from './Philosophy.jsx'
 import { HorizontalShowcase } from './HorizontalShowcase.jsx'
 import LogoCloud from './LogoCloud.jsx'
 import StudioManifesto from './StudioManifesto.jsx'
@@ -68,7 +67,6 @@ export default function HomeContent({ coverItems, logoItems }) {
       <HomeIntro />
       <StudioManifesto covers={coverItems} />
       <Work coverItems={coverItems} />
-      <Philosophy />
       <Footer logoItems={logoItems} />
     </div>
   )

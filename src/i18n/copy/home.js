@@ -7,7 +7,7 @@
 // verbatim in it — the tokenizer (manifestoTokens.js) splits on spaces, marks
 // the first occurrence of each keyword and migrates it into the final stack.
 // The zh paragraph is therefore authored with spaces between phrases.
-// `**bold**` is allowed in heroLede / howLines / philosophyLines / contactBody.
+// `**bold**` is allowed in heroLede / howLines / contactBody.
 const home = {
   en: {
     heroEyebrow: 'AI PRODUCT DESIGNER · 8 YEARS OF EXPERIENCE',
@@ -59,22 +59,6 @@ const home = {
     reelLabel: 'Selected work',
     reelTitle: 'SELECTED WORK',
     reelHint: 'Drag or scroll to explore',
-
-    philosophyLabel: 'Philosophy',
-    philosophyTitle: [
-      'I don’t care much about how many screens I make.',
-      'I care about what gets better because of them.',
-    ],
-    philosophyLines: [
-      'Sometimes the answer is redesigning a flow.',
-      'Sometimes it’s removing a step.',
-      'Sometimes it means changing the feature entirely.',
-      'And with AI products, sometimes the best design decision is:',
-      '**don’t build it yet.**',
-      'Good product design isn’t just about executing requirements.',
-      'It’s about figuring out:',
-      '**what is actually worth building.**',
-    ],
 
     contactHeadline: 'If you think we might be a good fit, feel free to reach out.',
     contactBody: [
@@ -136,19 +120,6 @@ const home = {
     reelLabel: '精选作品',
     reelTitle: '精选作品',
     reelHint: '拖动或滚动浏览',
-
-    philosophyLabel: '产品观',
-    philosophyTitle: ['我不太在意做了多少页面。', '我更在意最后解决了什么问题。'],
-    philosophyLines: [
-      '有时候答案是重新设计一个流程。',
-      '有时候是删掉一个步骤。',
-      '有时候是重新定义整个功能。',
-      '对于 AI 产品，有时候最重要的设计决定甚至是：',
-      '**现在先不要做。**',
-      '因为好的产品设计，不只是把需求做出来。',
-      '而是判断：',
-      '**什么才真正值得被做出来。**',
-    ],
 
     contactHeadline: '如果你觉得我们可能适合合作，欢迎联系。',
     contactBody: ['我对 AI、复杂产品、0 → 1 和新的产品交互方式一直很感兴趣。', '如果你也正在解决一个不那么简单的问题，'],
