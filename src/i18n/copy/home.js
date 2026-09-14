@@ -70,7 +70,7 @@ const home = {
       'I’d like to keep working on AI, complex products, and 0→1 challenges — and join a team that cares deeply about product quality, user experience, and long-term impact.',
     ],
     footerTitle: 'GET IN TOUCH',
-    footerLabel: 'AI Product Design · 0 → 1 · UX · Shanghai',
+    footerLabel: 'What I’m looking for',
     footerCta: 'Work together',
     footerEmail: 'simmonjmax@163.com',
     footerRights: 'All rights reserved.',
@@ -90,7 +90,7 @@ const home = {
     heroCta: 'View my work ↓',
     heroScroll: '向下滚动',
 
-    capLabel: 'ABOUT / CORE CAPABILITIES',
+    capLabel: '关于我 / 核心能力',
     capTitle: '我更关注问题是如何被定义和解决的。',
     capabilities: [
       {
@@ -142,7 +142,7 @@ const home = {
       '我希望继续参与 AI、复杂产品和 0→1 产品的设计与落地，也期待加入一个重视产品质量、用户体验和长期价值的团队。',
     ],
     footerTitle: 'GET IN TOUCH',
-    footerLabel: 'AI Product Design · 0 → 1 · UX · Shanghai',
+    footerLabel: '求职期望',
     footerCta: '合作联系',
     footerEmail: 'simmonjmax@163.com',
     footerRights: '保留所有权利。',
