@@ -5,7 +5,6 @@ import heroPoster from './assets/hero/hero-poster.webp'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
-import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
 import LangToggle from './components/LangToggle.jsx'
 import { useCopy } from './i18n/LanguageContext.jsx'
@@ -62,13 +61,6 @@ const coverItems = Object.keys(coverModules)
       link: meta.link || '#work',
     }
   })
-
-// Full-screen flowing-menu entries. Images reuse the project covers for the marquee.
-const MENU_SECTIONS = [
-  { link: '#top', key: 'hero', image: coverItems[0]?.src },
-  { link: '#work', key: 'work', image: coverItems[1]?.src },
-  { link: '#contact', key: 'contact', image: coverItems[3]?.src },
-]
 
 /* ---------- Scroll reveal (IntersectionObserver) ---------- */
 function useReveal(route) {
@@ -135,97 +127,58 @@ function Magnetic({ children, strength = 0.35, className = '', ...rest }) {
 }
 
 /* ---------- Nav ---------- */
-function Nav({ onMenu }) {
-  const c = useCopy('common')
-  return (
-    <nav className="nav">
-      <a href="#top" className="brand" data-cursor="link" data-cursor-label={c.home} aria-label={c.home}>
-        <img src="/logo.png" alt={c.logoAlt} className="brand-logo" />
-      </a>
-      <div className="nav-actions">
-        <LangToggle variant="nav" />
-        <button className="menu-btn" data-cursor="link" onClick={onMenu} aria-label={c.openMenu}>
-          {c.menu}
-          <span className="bars"><span /><span /></span>
-        </button>
-      </div>
-    </nav>
-  )
+// Two floating glass capsules: the mark + name on the left, section links and
+// the language switch on the right. The nav is fixed over both the dark hero
+// and the light sections below, so it tints itself by what is underneath:
+// dark glass while the hero is under it, light glass once `.after-hero` has
+// scrolled up past it.
+function useNavTone() {
+  const [tone, setTone] = useState('dark')
+  useEffect(() => {
+    let raf = 0
+    const check = () => {
+      raf = 0
+      const after = document.querySelector('.after-hero')
+      if (!after) return
+      setTone(after.getBoundingClientRect().top < 44 ? 'light' : 'dark')
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    check()
+    return () => {
+      if (raf) cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+  return tone
 }
 
-/* ---------- Full-screen flowing menu ---------- */
-function MenuOverlay({ open, onClose }) {
+function Nav() {
   const c = useCopy('common')
-  const menuItems = MENU_SECTIONS.map((section) => ({
-    link: section.link,
-    image: section.image,
-    text: c.menuItems?.[section.key] || section.key,
-  }))
-
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e) => { if (e.key === 'Escape') onClose() }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose])
-
-  const handleMenuItemClick = (event) => {
-    const href = event.currentTarget.getAttribute('href')
-    if (!href?.startsWith('#')) {
-      onClose()
-      return
-    }
-
-    event.preventDefault()
-    event.stopPropagation()
-    onClose()
-
-    // Wait for the overlay's scroll lock to be removed before starting the
-    // smooth movement to the selected homepage section.
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        const target = document.querySelector(href)
-        if (!target) return
-        let top = 0
-        if (href !== '#top') {
-          let element = target
-          while (element) {
-            top += element.offsetTop
-            element = element.offsetParent
-          }
-        }
-        window.scrollTo({ top, behavior: 'smooth' })
-      })
-    })
-  }
-
+  const tone = useNavTone()
+  const links = [
+    { href: '#work', label: c.nav?.work },
+    { href: '#about', label: c.nav?.about },
+    { href: '#contact', label: c.nav?.contact },
+  ]
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          className="menu-overlay"
-          initial={{ clipPath: 'circle(0% at 100% 0%)' }}
-          animate={{ clipPath: 'circle(150% at 100% 0%)' }}
-          exit={{ clipPath: 'circle(0% at 100% 0%)' }}
-          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-          // close when any menu link is clicked (anchor scroll is handled by Lenis)
-          onClick={(e) => { if (e.target.closest('a')) onClose() }}
-        >
-          <FlowingMenu
-            items={menuItems}
-            speed={15}
-            bgColor="#0a0a0f"
-            textColor="#ffffff"
-            marqueeBgColor="#ffffff"
-            marqueeTextColor="#0a0a0f"
-            borderColor="rgba(255,255,255,0.18)"
-            onItemClick={handleMenuItemClick}
-            closeLabel={c.close}
-            onClose={onClose}
-          />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <nav className="nav" data-tone={tone}>
+      <a href="#top" className="nav-capsule nav-brand" data-cursor="link" data-cursor-label={c.home} aria-label={c.home}>
+        <span className="nav-mark"><img src="/logo.png" alt={c.logoAlt} /></span>
+        <span className="nav-name">SimmonJ</span>
+      </a>
+      <div className="nav-capsule nav-actions">
+        <div className="nav-links">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} data-cursor="link">{l.label}</a>
+          ))}
+        </div>
+        <span className="nav-sep" aria-hidden="true" />
+        <LangToggle variant="nav" />
+      </div>
+    </nav>
   )
 }
 
@@ -378,7 +331,6 @@ function Reel({ open, onClose }) {
 export default function App() {
   const [loaded, setLoaded] = useState(false)
   const [reel, setReel] = useState(false)
-  const [menu, setMenu] = useState(false)
   const [route, setRoute] = useState(() => (typeof window !== 'undefined' ? window.location.pathname : '/'))
 
   useLenis(loaded || route !== '/', route)
@@ -395,8 +347,8 @@ export default function App() {
   }, [route])
 
   useEffect(() => {
-    document.body.classList.toggle('no-scroll', (!loaded && route === '/') || reel || menu)
-  }, [loaded, route, reel, menu])
+    document.body.classList.toggle('no-scroll', (!loaded && route === '/') || reel)
+  }, [loaded, route, reel])
 
   // lightweight client routing for internal "/..." links + browser back/forward
   useEffect(() => {
@@ -454,7 +406,7 @@ export default function App() {
       <Cursor />
       {!loaded && <Loader onDone={() => setLoaded(true)} />}
 
-      <Nav onMenu={() => setMenu(true)} />
+      <Nav />
       <main>
         <Hero ready={loaded} />
         <Suspense fallback={<div className="home-content-fallback" aria-hidden="true" />}>
@@ -463,7 +415,6 @@ export default function App() {
       </main>
 
       <Reel open={reel} onClose={() => setReel(false)} />
-      <MenuOverlay open={menu} onClose={() => setMenu(false)} />
     </>
   )
 }

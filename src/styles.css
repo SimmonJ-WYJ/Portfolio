@@ -79,20 +79,59 @@ section { position: relative; }
 .eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 
 /* ---------- Nav ---------- */
+/* Two liquid-glass capsules pinned to the top. `data-tone` (set from scroll
+   position) flips the palette: dark glass over the hero, light glass over
+   the sections below. The same material as the capabilities stage. */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 22px var(--pad); mix-blend-mode: difference; color: #fff;
+  padding: 20px var(--pad);
+  --nav-fg: #ffffff;
+  --nav-dim: rgba(255, 255, 255, 0.72);
+  --nav-glass: rgba(20, 20, 24, 0.55);
+  --nav-border: rgba(255, 255, 255, 0.14);
+  --nav-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --nav-seg-bg: rgba(255, 255, 255, 0.10);
+  --nav-seg-active-bg: #ffffff;
+  --nav-seg-active-fg: #16140f;
+  color: var(--nav-fg);
 }
-.nav .brand { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.01em; display: inline-flex; align-items: center; }
-.nav .brand-logo { height: 42px; width: 42px; object-fit: contain; display: block; }
-.nav-actions { display: flex; align-items: center; gap: 28px; }
-.nav-actions a { font-family: var(--font-display); font-size: 15px; font-weight: 500; position: relative; }
-.nav-actions a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
-.nav-actions a:hover::after { transform: scaleX(1); transform-origin: left; }
-.menu-btn { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-size: 15px; font-weight: 500; }
-.menu-btn .bars { display: inline-flex; flex-direction: column; gap: 4px; }
-.menu-btn .bars span { width: 22px; height: 2px; background: currentColor; transition: transform .3s; }
+.nav[data-tone="light"] {
+  --nav-fg: #16140f;
+  --nav-dim: #4a473f;
+  --nav-glass: rgba(255, 255, 255, 0.72);
+  --nav-border: rgba(22, 20, 15, 0.10);
+  --nav-shadow: 0 8px 30px rgba(22, 20, 15, 0.08);
+  --nav-seg-bg: rgba(22, 20, 15, 0.06);
+  --nav-seg-active-bg: #16140f;
+  --nav-seg-active-fg: #ffffff;
+}
+.nav-capsule {
+  display: flex; align-items: center; height: 48px; border-radius: 999px;
+  background: var(--nav-glass); border: 1px solid var(--nav-border); box-shadow: var(--nav-shadow);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  transition: background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease), box-shadow .35s var(--ease);
+}
+.nav-brand { gap: 12px; padding: 0 16px 0 6px; font-family: var(--font-display); }
+.nav-mark { width: 36px; height: 36px; border-radius: 999px; overflow: hidden; background: #0b0b0d; display: block; flex: none; }
+.nav-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nav-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--nav-fg); }
+.nav-actions { gap: 18px; padding: 0 6px 0 22px; }
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-links a { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--nav-dim); padding: 6px 2px; position: relative; transition: color .25s var(--ease); }
+.nav-links a:hover { color: var(--nav-fg); }
+.nav-links a::after { content: ''; position: absolute; left: 2px; right: 2px; bottom: 2px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-sep { width: 1px; height: 16px; background: var(--nav-dim); opacity: 0.35; }
+
+@media (max-width: 640px) {
+  .nav { padding: 12px 12px; }
+  .nav-name { display: none; }
+  .nav-brand { padding: 0 6px; }
+  .nav-actions { gap: 12px; padding: 0 5px 0 14px; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 13px; }
+}
 
 /* ---------- Hero ---------- */
 .hero { height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(32px, 5vw, 64px); position: sticky; top: 0; z-index: 0; overflow: hidden; background: #0a0a0f; }
@@ -316,7 +355,6 @@ section { position: relative; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .svc-row { grid-template-columns: 1fr; }
   .svc-row .svc-d { display: none; }
-  .nav-actions a:not(.menu-btn) { display: none; }
 }
 @media (max-width: 540px) {
   .stats-grid { grid-template-columns: 1fr; }

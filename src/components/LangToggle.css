@@ -37,10 +37,24 @@
 }
 
 /* ---------- nav variant (homepage) ---------- */
+/* Segmented pill inside the nav's right capsule; tones come from .nav vars. */
 .lang-toggle--nav {
-  /* sits left of the Menu button inside .nav-actions */
-  font-size: 15px;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--nav-seg-bg);
+  font-size: 12px;
 }
+.lang-toggle--nav .lang-toggle-opt {
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--nav-dim);
+  opacity: 1;
+  transition: background 0.25s var(--ease, ease), color 0.25s var(--ease, ease);
+}
+.lang-toggle--nav .lang-toggle-opt:hover { color: var(--nav-fg); }
+.lang-toggle--nav .lang-toggle-opt.is-active { background: var(--nav-seg-active-bg); color: var(--nav-seg-active-fg); }
+.lang-toggle--nav .lang-toggle-sep { display: none; }
 
 /* ---------- float variant (project detail pages) ---------- */
 .lang-toggle--float {

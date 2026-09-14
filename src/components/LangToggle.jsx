@@ -1,9 +1,11 @@
 import { LANGS, useLang } from '../i18n/LanguageContext.jsx'
+import './LangToggle.css'
 
 const LABELS = { en: 'EN', zh: '中文' }
 const ARIA = { en: 'Switch language', zh: '切换语言' }
 
-// Two-state language switch. `variant="nav"` sits inline in the homepage nav;
+// Two-state language switch. `variant="nav"` is the segmented pill inside the
+// homepage nav capsule;
 // `variant="float"` pins itself top-right on project detail pages, which have
 // no shared nav of their own.
 export default function LangToggle({ variant = 'nav' }) {
@@ -19,7 +21,7 @@ export default function LangToggle({ variant = 'nav' }) {
         <button
           key={code}
           type="button"
-          className={`lang-toggle__btn${code === lang ? ' is-active' : ''}`}
+          className={`lang-toggle-opt${code === lang ? ' is-active' : ''}`}
           aria-pressed={code === lang}
           data-cursor="link"
           onClick={() => setLang(code)}
