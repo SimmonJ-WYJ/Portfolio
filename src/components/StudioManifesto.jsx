@@ -6,7 +6,11 @@ import './StudioManifesto.css'
 // A sticky stage shows the section title and five short capability blocks,
 // each closing on its keyword. On scroll the copy dissolves (staggered top →
 // bottom) while the five keywords migrate (FLIP translate + scale) into a
-// centred vertical stack. Project tiles drift upward behind it.
+// centred vertical stack. Project tiles drift upward behind the copy.
+//
+// The stage has no ground of its own: a liquid-glass layer sits under the
+// tiles and copy, starting 30% translucent so the pinned hero shows through
+// it, and going solid as the section scrolls up into place.
 //
 // Static fallback (reduced motion, or narrow screens where the stage cannot
 // stay sticky): the stage lays out in flow and nothing animates — the keywords
@@ -92,13 +96,11 @@ export default function StudioManifesto({ covers = [] }) {
       const total = section.offsetHeight - vh
       const p = total > 0 ? clamp(-top / total) : 0
 
-      // Liquid-glass ground: the whole stage is translucent glass (refracting
-      // the tiles) while the section slides in, turns solid once it is pinned
-      // and every line is on screen, then thins again with the copy so the
-      // keyword stack ends up on glass over the tiles.
+      // Liquid-glass ground: the stage starts as 30% glass over the pinned
+      // hero (which shows through, refracted) and turns solid as the section
+      // slides up to its pinned position, where every line is on screen.
       const entry = smooth(clamp(1 - top / vh))
-      const exit = smooth(clamp((p - 0.12) / 0.4))
-      glassRef.current?.style.setProperty('--sm-glass-a', String((0.5 + 0.5 * entry) * (1 - 0.7 * exit)))
+      glassRef.current?.style.setProperty('--sm-glass-a', String(0.3 + 0.7 * entry))
 
       // Copy dissolves, staggered top→bottom.
       const N = fadeRefs.current.length
@@ -123,7 +125,7 @@ export default function StudioManifesto({ covers = [] }) {
         if (!tile) return
         const speed = Number(tile.dataset.speed)
         tile.style.transform = `translate3d(0, ${-p * vh * 1.5 * speed}px, 0)`
-        tile.style.opacity = String(clamp((1 - p) / 0.12) * 0.5 + 0.05)
+        tile.style.opacity = String(clamp(Math.min(p / 0.12, (1 - p) / 0.12)) * 0.55 + 0.05)
       })
     }
 

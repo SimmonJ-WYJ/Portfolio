@@ -1,7 +1,8 @@
 .studio-manifesto {
   position: relative;
   height: 300vh;
-  background: var(--bg);
+  /* no ground: the hero pinned beneath shows through the glass layer */
+  background: transparent;
   color: var(--ink);
 }
 
@@ -139,6 +140,9 @@
   z-index: 1;
   pointer-events: none;
 }
+/* tiles float above the glass, under the copy */
+.sm-tiles { z-index: 2; }
+.sm-copy { z-index: 3; }
 
 .sm-tile {
   position: absolute;
@@ -168,7 +172,7 @@
 
 /* Static fallback: the stage lays out in flow and nothing animates. */
 @media (prefers-reduced-motion: reduce), (max-width: 860px) {
-  .studio-manifesto { height: auto; }
+  .studio-manifesto { height: auto; background: var(--bg); }
   .sm-stage {
     position: relative;
     height: auto;

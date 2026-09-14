@@ -100,7 +100,7 @@ section { position: relative; }
 /* ---------- Hero — product designer ---------- */
 
 /* Sections below scroll up and cover the pinned hero for a smooth overlap */
-.after-hero { position: relative; z-index: 1; background: var(--bg); }
+.after-hero { position: relative; z-index: 1; } /* each section paints its own ground; the capabilities stage is glass over the pinned hero */
 
 
 /* ---------- Hero: inset card ---------- */
