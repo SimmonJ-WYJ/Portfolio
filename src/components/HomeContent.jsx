@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import ContactCard from './ContactCard.jsx'
+import HomeIntro from './HomeIntro.jsx'
+import Philosophy from './Philosophy.jsx'
 import { HorizontalShowcase } from './HorizontalShowcase.jsx'
 import LogoCloud from './LogoCloud.jsx'
 import StudioManifesto from './StudioManifesto.jsx'
 import WavePath from './WavePath.jsx'
 import { cases } from '../data.js'
 import { useCopy } from '../i18n/LanguageContext.jsx'
+import Rich from '../i18n/Rich.jsx'
 
 function Work({ coverItems }) {
   const t = useCopy('home')
@@ -26,6 +29,11 @@ function Footer({ logoItems }) {
     <footer className="footer" id="contact">
       <ContactCard open={contact} onClose={() => setContact(false)} />
       <div className="container">
+        <div className="footer-intro reveal">
+          {(t.contactBody || []).map((line, i) => (
+            <p key={i}><Rich text={line} /></p>
+          ))}
+        </div>
         <h2 className="cta-big reveal">
           <a
             href="#contact"
@@ -44,9 +52,7 @@ function Footer({ logoItems }) {
         <WavePath className="footer-art-wave" />
         <div className="footer-art-text">
           <p className="footer-art-label">{t.footerLabel}</p>
-          <p className="footer-art-desc">
-            {t.footerDesc}
-          </p>
+          <p className="footer-art-desc">{t.contactHeadline}</p>
         </div>
       </div>
       <div className="footer-logos">
@@ -59,8 +65,10 @@ function Footer({ logoItems }) {
 export default function HomeContent({ coverItems, logoItems }) {
   return (
     <div className="after-hero">
+      <HomeIntro />
       <StudioManifesto covers={coverItems} />
       <Work coverItems={coverItems} />
+      <Philosophy />
       <Footer logoItems={logoItems} />
     </div>
   )

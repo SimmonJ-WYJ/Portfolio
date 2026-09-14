@@ -47,6 +47,10 @@ const WIRED = [
   'SolvelyPage.jsx',
   'FreeleapsPage.jsx',
   'AsciPage.jsx',
+  'HomeContent.jsx',
+  'HomeIntro.jsx',
+  'Philosophy.jsx',
+  'StudioManifesto.jsx',
 ]
 for (const name of WIRED) {
   const src = await readFile(new URL(`../src/components/${name}`, import.meta.url), 'utf8')

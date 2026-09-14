@@ -1,36 +1,12 @@
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useCopy, useLang } from '../i18n/LanguageContext.jsx'
+import { buildTokens } from './manifestoTokens.js'
 import './StudioManifesto.css'
 
 // Replica of svz.io's second-screen scroll interaction:
-// a justified manifesto paragraph whose white connective words dissolve on
-// scroll, while the red service keywords migrate (FLIP translate + scale) into
-// a centered vertical stack. Labeled project tiles float upward behind it.
-
-// Tokenize: greedily mark the first occurrence of each keyword.
-// Phrase keywords (e.g. "PRODUCT THINKING") span several words and stay one node.
-// The Chinese paragraph is authored with spaces between phrases so it tokenizes
-// through the same path; `core` therefore keeps CJK codepoints as well as latin.
-function buildTokens(paragraph, keywords) {
-  const core = (s) => s.replace(/[^A-Za-z一-鿿-]/g, '').toUpperCase()
-  const words = paragraph.split(' ')
-  const used = new Set()
-  const tokens = []
-  for (let i = 0; i < words.length; i += 1) {
-    const ki = keywords.findIndex(
-      (kw, k) => !used.has(k) && kw.split(' ').every((part, j) => core(words[i + j] || '') === part),
-    )
-    if (ki !== -1) {
-      const parts = keywords[ki].split(' ')
-      used.add(ki)
-      tokens.push({ text: words.slice(i, i + parts.length).join(' '), core: keywords[ki], isKeyword: true, ki })
-      i += parts.length - 1
-    } else {
-      tokens.push({ text: words[i], core: core(words[i]), isKeyword: false, ki: -1 })
-    }
-  }
-  return tokens
-}
+// a justified paragraph (sentence case, keywords set in caps) whose connective
+// words dissolve on scroll, while the five capability keywords migrate (FLIP
+// translate + scale) into a centered vertical stack. Project tiles float behind.
 
 // Floating tiles: alternating left / right sides, evenly spaced vertically
 // (wide gaps so they stay separated while drifting). Speeds kept close to 1

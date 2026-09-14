@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 're
 import { useMediaVisibility } from './components/useMediaVisibility.js'
 import heroLoop from './assets/hero/hero-loop.mp4'
 import heroPoster from './assets/hero/hero-poster.webp'
-import AnimatedTextCycle from './components/AnimatedTextCycle.jsx'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Cursor from './components/Cursor.jsx'
 import Loader from './components/Loader.jsx'
@@ -10,6 +9,7 @@ import FlowingMenu from './components/FlowingMenu.jsx'
 import RouteFallback from './components/RouteFallback.jsx'
 import LangToggle from './components/LangToggle.jsx'
 import { useCopy } from './i18n/LanguageContext.jsx'
+import Rich from './i18n/Rich.jsx'
 import logoNvidia from './assets/logos/nvidia-wordmark-light.svg'
 import logoSupabase from './assets/logos/supabase_wordmark_light.svg'
 import logoOpenai from './assets/logos/openai_wordmark_light.svg'
@@ -326,14 +326,12 @@ function Hero({ ready }) {
           <motion.p className="hero-eyebrow" {...rise(0.15)}>
             {t.heroEyebrow}
           </motion.p>
-          <motion.h1 className="hero-title" {...rise(0.25)}>
-            {t.heroTitleTop}
-            <br />
-            {reduceMotion || !(t.heroTitleWords?.length > 1)
-              ? t.heroTitleBottom
-              : <AnimatedTextCycle words={t.heroTitleWords} interval={2600} />}
-          </motion.h1>
-          <motion.p className="hero-lede" {...rise(0.35)}>{t.heroLede}</motion.p>
+          <motion.h1 className="hero-title" {...rise(0.25)}>{t.heroTitle}</motion.h1>
+          <motion.div className="hero-lede" {...rise(0.35)}>
+            {(t.heroLede || []).map((line, i) => (
+              <p key={i}><Rich text={line} /></p>
+            ))}
+          </motion.div>
           <motion.div className="hero-ctas" {...rise(0.45)}>
             <a href="#work" className="hero-btn hero-btn--solid" data-cursor="link">{t.heroCta}</a>
             <a href="#contact" className="hero-btn hero-btn--ghost" data-cursor="link">{t.heroCta2}</a>
@@ -343,8 +341,8 @@ function Hero({ ready }) {
         <motion.div className="hero-stats" {...rise(0.6)}>
           {(t.heroStats || []).map((st, i) => (
             <div className="hero-stat" key={i}>
-              <span className="hero-stat-label">{st.label}</span>
-              <span className="hero-stat-value">{st.value}</span>
+              <span className="hero-stat-figure">{st.figure}</span>
+              <span className="hero-stat-caption">{st.caption}</span>
             </div>
           ))}
         </motion.div>

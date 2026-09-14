@@ -1,93 +1,164 @@
-// Homepage copy: hero, manifesto, reel and footer.
+// Homepage copy — v1.0, per docs/superpowers/specs/2026-09-14-homepage-copy-spec-{en,zh}.md
 //
-// manifesto: authored in UPPERCASE for en (the section renders as-is) and with
-// spaces between phrases for zh so the shared tokenizer can split it. Every
-// entry in manifestoKeywords must appear verbatim in the paragraph — the
-// tokenizer marks the first occurrence of each and migrates it into the stack.
+// en and zh are each written in their own voice; they carry the same meaning
+// but are not word-for-word translations of each other.
+//
+// manifesto: one paragraph. Every entry in manifestoKeywords must appear
+// verbatim in it — the tokenizer (manifestoTokens.js) splits on spaces, marks
+// the first occurrence of each keyword and migrates it into the final stack.
+// The zh paragraph is therefore authored with spaces between phrases.
+// `**bold**` is allowed in heroLede / howLines / philosophyLines / contactBody.
 const home = {
   en: {
-    heroTitleTop: 'Product',
-    heroTitleBottom: 'designer',
-    heroTitleWords: ['designer', 'manager', 'builder'],
-    heroCopy: 'I believe great design isn\'t about creating interfaces—it\'s about solving the right problems. Every design decision should begin with understanding users, be validated by data, and ultimately create value for both people and the business.',
-    heroEyebrow: "I'm SimmonJ",
-    heroName: 'SIMMON',
-    heroLede:
-      'A product designer who builds from strategy to launch — turning complex systems into interfaces people understand.',
-    heroCta: 'See selected work',
+    heroEyebrow: 'AI PRODUCT DESIGNER · 8 YEARS OF EXPERIENCE',
+    heroTitle: 'I turn complex AI capabilities into products people can actually use.',
+    heroLede: [
+      'I’m Simmon, a product designer with 8 years of experience.',
+      'In recent years, I’ve been focused on AI products across research, education, and writing — helping take products from early ideas to shipped experiences.',
+      'I care about more than how an interface looks.',
+      'I care about **why we’re building it, and whether people will actually use it.**',
+    ],
+    heroCta: 'View my work ↓',
     heroCta2: 'Get in touch',
     heroStats: [
-      { label: 'Approach', value: 'End-to-end, strategy to launch' },
-      { label: 'Focus', value: 'AI-native products' },
-      { label: 'Method', value: 'Data-driven, user-centered' },
+      { figure: '8 years', caption: 'Product design experience' },
+      { figure: '3+ AI products', caption: 'Designed and shipped from 0 → 1' },
+      { figure: '30% → 60%', caption: 'Onboarding completion' },
+      { figure: '300 → 800', caption: 'DAU after product improvements' },
     ],
     heroScroll: 'SCROLL',
-    manifestoLabel: 'Studio manifesto',
-    manifestoKeywords: [
-      'PRODUCT THINKING',
-      'AI-NATIVE',
-      'DATA-DRIVEN',
-      'END-TO-END',
-      'USER-CENTERED',
-      'SCALABLE',
+
+    howLabel: 'How I work',
+    howTitle: 'I usually don’t start with the interface.',
+    howLines: [
+      'Before opening Figma, I want to understand what’s actually going wrong.',
+      'Where are people dropping off?',
+      'Why does the current flow feel difficult?',
+      'Is it an interaction problem, a product problem, or is the AI simply not capable enough yet?',
+      'I use user feedback, product analytics, and funnels to find those problems.',
+      'For AI features, I often prototype the workflow first to see whether the model can actually complete the task before turning it into a product experience.',
+      'Once the idea works, I move into interaction, interface, and implementation.',
+      '**Understand → Test → Design → Ship → Learn.**',
+      'That’s how I approach product design today.',
     ],
+
+    manifestoLabel: 'Core capabilities',
+    manifestoKeywords: ['PRODUCT THINKING', 'AI-NATIVE', 'DATA-DRIVEN', '0 → 1', 'END-TO-END'],
     manifesto:
-      "I'M SIMMON — A PRODUCT DESIGNER WITH 8 YEARS OF EXPERIENCE BUILDING PRODUCTS FROM STRATEGY TO LAUNCH. " +
-      "I BELIEVE GREAT DESIGN ISN'T ABOUT CREATING BEAUTIFUL INTERFACES — IT'S ABOUT SOLVING THE RIGHT PROBLEMS. " +
-      'EVERY PROJECT STAYS USER-CENTERED: UNDERSTANDING PEOPLE, DEFINING THE PRODUCT DIRECTION, AND VALIDATING IDEAS BEFORE A SINGLE SCREEN IS DESIGNED. ' +
-      'MY APPROACH COMBINES PRODUCT THINKING, DATA-DRIVEN DECISION MAKING, AI-NATIVE WORKFLOWS, AND END-TO-END DESIGN EXECUTION. ' +
-      'FROM INFORMATION ARCHITECTURE AND INTERACTION DESIGN TO POLISHED INTERFACES AND DEVELOPER COLLABORATION, I TRANSFORM COMPLEX SYSTEMS INTO INTUITIVE EXPERIENCES — SIMPLE TO USE, SCALABLE TO GROW, AND MEANINGFUL FOR BOTH USERS AND BUSINESSES. ' +
-      "TO ME, DESIGN DOESN'T END AT LAUNCH. THE BEST PRODUCTS ARE SHAPED THROUGH CONTINUOUS LEARNING, ITERATION, AND MEASURABLE OUTCOMES.",
+      'I start by understanding the product — what people are trying to do, where they get stuck, and whether we’re solving the right problem. ' +
+      'That’s PRODUCT THINKING. ' +
+      'With AI products, I often prototype the workflow before designing the interface, testing what the model can actually do. ' +
+      'That’s how I work AI-NATIVE. ' +
+      'I use user behavior, funnels, and product metrics to find problems and validate whether changes actually work. ' +
+      'I prefer being DATA-DRIVEN over relying on assumptions. ' +
+      'Most of my recent work has started while the product was still taking shape. ' +
+      'I’m comfortable going from an early idea to the first real product — 0 → 1. ' +
+      'And I stay involved from product definition and interaction design through interface, prototyping, engineering collaboration, and iteration. ' +
+      'That’s END-TO-END.',
+
     reelLabel: 'Selected work',
     reelTitle: 'SELECTED WORK',
     reelHint: 'Drag or scroll to explore',
-    footerTitle: "LET'S BUILD SOMETHING",
-    footerLabel: 'Creative Approach',
-    footerDesc: 'Exploring the space between creativity and technology. Creating thoughtful experiences through design, AI, and modern digital craftsmanship.',
+
+    philosophyLabel: 'Philosophy',
+    philosophyTitle: [
+      'I don’t care much about how many screens I make.',
+      'I care about what gets better because of them.',
+    ],
+    philosophyLines: [
+      'Sometimes the answer is redesigning a flow.',
+      'Sometimes it’s removing a step.',
+      'Sometimes it means changing the feature entirely.',
+      'And with AI products, sometimes the best design decision is:',
+      '**don’t build it yet.**',
+      'Good product design isn’t just about executing requirements.',
+      'It’s about figuring out:',
+      '**what is actually worth building.**',
+    ],
+
+    contactHeadline: 'If you think we might be a good fit, feel free to reach out.',
+    contactBody: [
+      'I’m always interested in AI, complex products, 0 → 1 challenges, and new ways people interact with technology.',
+      'If you’re working on a problem that isn’t obvious,',
+    ],
+    footerTitle: 'LET’S TALK',
+    footerLabel: 'AI Product Design · 0 → 1 · UX · Shanghai',
     footerCta: 'Work together',
     footerEmail: 'simmonjmax@163.com',
     footerRights: 'All rights reserved.',
     contactEyebrow: 'Get in touch',
-    contactTitle: 'Let’s build something',
+    contactTitle: 'Let’s talk',
     contactLabels: { email: 'Email', phone: 'Phone', social: 'Social' },
     contactClose: 'Close',
   },
   zh: {
-    heroTitleTop: 'Product',
-    heroTitleBottom: 'designer',
-    heroTitleWords: ['designer', 'manager', 'builder'],
-    heroCopy: '我相信优秀的设计不在于创建界面，而在于解决正确的问题。每个设计决策都应该从理解用户开始，通过数据验证，最终为用户和企业创造价值。',
-    heroEyebrow: '我是 SimmonJ',
-    heroName: 'SIMMON',
-    heroLede: '一名从策略到上线全程参与的产品设计师，把复杂系统变成人人看得懂的界面。',
-    heroCta: '查看精选作品',
+    heroEyebrow: 'AI 产品设计师 · 8 年产品设计经验',
+    heroTitle: '我把复杂的 AI 能力，变成真正好用的产品。',
+    heroLede: [
+      '我是 Simmon，一名拥有 8 年经验的产品设计师。',
+      '这几年我主要专注于 AI 产品，参与并主导过 AI 科研、AI 教育、AI 写作等产品从 0 到 1 的设计。',
+      '我不只关心界面长什么样，更关心一件事：',
+      '**这个功能为什么要做，以及用户到底会不会用。**',
+    ],
+    heroCta: '查看我的作品 ↓',
     heroCta2: '联系我',
     heroStats: [
-      { label: '方式', value: '端到端，从策略到上线' },
-      { label: '方向', value: 'AI 原生产品' },
-      { label: '方法', value: '数据驱动，以用户为中心' },
+      { figure: '8 年', caption: '产品设计经验' },
+      { figure: '3+ 款 AI 产品', caption: '从 0 到 1 参与设计与落地' },
+      { figure: '30% → 60%', caption: '新用户引导完成率' },
+      { figure: '300 → 800', caption: '产品改版后的 DAU' },
     ],
     heroScroll: '向下滚动',
-    manifestoLabel: '设计理念',
-    manifestoKeywords: ['产品思维', 'AI 原生', '数据驱动', '端到端', '以用户为中心', '可扩展'],
+
+    howLabel: '工作方式',
+    howTitle: '我通常不会从画界面开始。',
+    howLines: [
+      '在打开 Figma 之前，我会先弄清楚问题到底发生在哪里。',
+      '用户在哪一步离开？',
+      '现有流程为什么不好用？',
+      '这是交互问题、产品问题，还是 AI 本身的能力还没有达到预期？',
+      '我会结合用户反馈、埋点和漏斗数据定位问题。',
+      '对于 AI 功能，我也会先搭建简单的 AI Workflow 或 Prototype，验证模型能不能真正完成这个任务，再决定产品应该怎么设计。',
+      '验证之后，才进入交互、界面和最终落地。',
+      '**找到问题 → 验证方向 → 设计体验 → 推动上线 → 再看数据。**',
+      '这是我现在做产品设计最常用的方式。',
+    ],
+
+    manifestoLabel: '核心能力',
+    manifestoKeywords: ['产品思维', 'AI 原生', '数据驱动', '0 → 1', '全链路落地'],
     manifesto:
-      '我是 SIMMON， 一名拥有 八年经验 的产品设计师， 从策略到上线 完整地构建产品。 ' +
-      '我相信 优秀的设计 不在于 做出好看的界面， 而在于 解决正确的问题。 ' +
-      '每个项目都 以用户为中心： 先理解真实的人， 定义产品方向， 在画下第一个界面之前 验证想法。 ' +
-      '我的方法 融合了 产品思维、 数据驱动 的决策、 AI 原生 的工作流， 以及 端到端 的设计执行。 ' +
-      '从信息架构、 交互设计， 到精细的界面 与研发协作， 我把复杂系统 转化为直觉式的体验—— 用起来简单， 可扩展 地成长， 对用户和业务 都真正有价值。 ' +
-      '对我来说， 设计不会在上线时结束。 最好的产品 来自持续的学习、 迭代 与可衡量的结果。',
+      '我会先理解产品本身： 用户到底想完成什么、 问题发生在哪里， 以及我们是不是 真的在解决正确的问题。 这是我的 产品思维。 ' +
+      '做 AI 产品时， 我经常会在设计界面之前 先把 AI Workflow 跑通， 看看模型到底能不能 完成这个任务。 这是我理解的 AI 原生。 ' +
+      '我也会通过用户行为、 漏斗和产品数据 发现问题， 并继续验证 设计是否真的有效， 而不是只凭感觉判断。 这是 数据驱动。 ' +
+      '最近几年， 我参与的很多项目 都是在产品 还没有完全成型的时候 开始的。 我习惯从一个模糊的想法开始， 一直做到第一个 真正能被用户使用的产品—— 0 → 1。 ' +
+      '从产品定义、 交互、 界面、 Prototype， 到研发协作 和上线后的持续迭代， 我通常都会参与其中。 这是我的 全链路落地 能力。',
+
     reelLabel: '精选作品',
     reelTitle: '精选作品',
     reelHint: '拖动或滚动浏览',
-    footerTitle: '一起做点东西',
-    footerLabel: '创意方法',
-    footerDesc: '探索创意与技术的交汇。通过设计、AI 和现代数字工艺创造深思熟虑的体验。',
+
+    philosophyLabel: '产品观',
+    philosophyTitle: ['我不太在意做了多少页面。', '我更在意最后解决了什么问题。'],
+    philosophyLines: [
+      '有时候答案是重新设计一个流程。',
+      '有时候是删掉一个步骤。',
+      '有时候是重新定义整个功能。',
+      '对于 AI 产品，有时候最重要的设计决定甚至是：',
+      '**现在先不要做。**',
+      '因为好的产品设计，不只是把需求做出来。',
+      '而是判断：',
+      '**什么才真正值得被做出来。**',
+    ],
+
+    contactHeadline: '如果你觉得我们可能适合合作，欢迎联系。',
+    contactBody: ['我对 AI、复杂产品、0 → 1 和新的产品交互方式一直很感兴趣。', '如果你也正在解决一个不那么简单的问题，'],
+    footerTitle: 'LET’S TALK',
+    footerLabel: 'AI Product Design · 0 → 1 · UX · Shanghai',
     footerCta: '合作联系',
     footerEmail: 'simmonjmax@163.com',
     footerRights: '保留所有权利。',
     contactEyebrow: '联系我',
-    contactTitle: '一起做点什么',
+    contactTitle: 'Let’s talk',
     contactLabels: { email: '邮箱', phone: '电话', social: '社交' },
     contactClose: '关闭',
   },
