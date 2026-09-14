@@ -17,12 +17,25 @@
 
 /* ---------- copy: title + five capability blocks ---------- */
 .sm-copy {
+  --sm-panel-a: 1;
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 1360px;
   padding: 0 5vw;
   box-sizing: border-box;
+}
+/* Frosted panel: its alpha is scroll-driven (see StudioManifesto.jsx). */
+.sm-copy::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -40px 2vw;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, var(--sm-panel-a));
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+  pointer-events: none;
 }
 
 .sm-head { margin-bottom: clamp(24px, 3.5vh, 44px); }
@@ -147,7 +160,7 @@
     overflow: visible;
     padding: clamp(72px, 12vw, 120px) 0;
   }
-  .sm-tiles, .sm-stack { display: none; }
+  .sm-tiles, .sm-stack, .sm-copy::before { display: none; }
   .sm-grid { grid-template-columns: 1fr; gap: 36px; }
   .sm-line { font-size: 15px; }
   .sm-keyword { font-size: 18px; }

@@ -35,6 +35,7 @@ export default function StudioManifesto({ covers = [] }) {
   const KEYWORDS = BLOCKS.map((b) => b.keyword)
   const tiles = covers.slice(0, TILE_POS.length).map((c, i) => ({ ...c, pos: TILE_POS[i] }))
   const sectionRef = useRef(null)
+  const copyRef = useRef(null) // the frosted panel behind the copy
   const keywordRefs = useRef([]) // inline keyword nodes, indexed by block
   const stackRefs = useRef([]) // hidden target stack nodes, indexed by block
   const fadeRefs = useRef([]) // every non-keyword copy node, in reading order
@@ -80,14 +81,24 @@ export default function StudioManifesto({ covers = [] }) {
       fadeRefs.current.forEach((node) => { if (node) node.style.opacity = '' })
       keywordRefs.current.forEach((kw) => { if (kw) kw.style.transform = '' })
       tileRefs.current.forEach((tile) => { if (tile) { tile.style.transform = ''; tile.style.opacity = '' } })
+      copyRef.current?.style.removeProperty('--sm-panel-a')
     }
 
     const render = () => {
       raf = 0
       if (staticMode.matches) { reset(); return }
       const vh = window.innerHeight
+      const top = section.getBoundingClientRect().top
       const total = section.offsetHeight - vh
-      const p = total > 0 ? clamp(-section.getBoundingClientRect().top / total) : 0
+      const p = total > 0 ? clamp(-top / total) : 0
+
+      // Frosted panel behind the copy: translucent (blurring the tiles) while
+      // the section slides in, fully opaque once it is pinned and every line is
+      // on screen, then dissolving again with the copy so the stack sits over
+      // the tiles.
+      const entry = smooth(clamp(1 - top / vh))
+      const exit = smooth(clamp((p - 0.12) / 0.4))
+      copyRef.current?.style.setProperty('--sm-panel-a', String((0.55 + 0.45 * entry) * (1 - exit)))
 
       // Copy dissolves, staggered top→bottom.
       const N = fadeRefs.current.length
@@ -112,7 +123,7 @@ export default function StudioManifesto({ covers = [] }) {
         if (!tile) return
         const speed = Number(tile.dataset.speed)
         tile.style.transform = `translate3d(0, ${-p * vh * 1.5 * speed}px, 0)`
-        tile.style.opacity = String(clamp(Math.min(p / 0.12, (1 - p) / 0.12)) * 0.4 + 0.06)
+        tile.style.opacity = String(clamp((1 - p) / 0.12) * 0.5 + 0.05)
       })
     }
 
@@ -162,7 +173,7 @@ export default function StudioManifesto({ covers = [] }) {
         </div>
 
         {/* copy — keyed by language so ref arrays rebuild cleanly */}
-        <div className="sm-copy" key={lang} data-lang={lang}>
+        <div className="sm-copy" key={lang} data-lang={lang} ref={copyRef}>
           <header className="sm-head">
             <p className="sm-label" ref={fadeRef()}>{t.capLabel}</p>
             <h2 className="sm-title" ref={fadeRef()}>{t.capTitle}</h2>
