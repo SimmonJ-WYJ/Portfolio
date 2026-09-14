@@ -1,8 +1,9 @@
 .studio-manifesto {
   position: relative;
   height: 300vh;
-  background: #000000;
-  color: #ffffff;
+  /* no ground: the hero pinned beneath shows through the glass layer */
+  background: transparent;
+  color: var(--ink);
 }
 
 .sm-stage {
@@ -15,58 +16,126 @@
   justify-content: center;
 }
 
-/* ---------- manifesto paragraph ---------- */
-.sm-para {
+/* ---------- copy: title + five capability blocks ---------- */
+.sm-copy {
   position: relative;
   z-index: 2;
-  margin: 0;
-  max-width: 1180px;
-  padding: 0 6vw;
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-weight: 300;
-  font-size: clamp(17px, 2.3vw, 36px);
-  line-height: 1.16;
-  letter-spacing: -0.01em;
-  text-align: justify;
-  text-transform: uppercase;
+  width: 100%;
+  max-width: 1360px;
+  padding: 0 5vw;
+  box-sizing: border-box;
 }
 
-.sm-word {
-  font-weight: 300;
+/* ---------- liquid glass ground ---------- */
+/* The whole stage between the tiles and the copy. Its alpha is scroll-driven
+   (--sm-glass-a, see StudioManifesto.jsx): translucent glass on the way in,
+   solid once pinned, thinner again under the final keyword stack. The SVG
+   displacement filter refracts the tiles like liquid glass; browsers without
+   url() backdrop filters keep the plain frosted fallback. */
+.sm-glass-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sm-glass {
+  --sm-glass-a: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0) 62%, rgba(255, 255, 255, 0.4) 100%),
+    rgba(255, 255, 255, var(--sm-glass-a));
+  -webkit-backdrop-filter: blur(10px) saturate(1.4) brightness(1.04);
+  backdrop-filter: blur(10px) saturate(1.4) brightness(1.04);
+  backdrop-filter: url(#sm-liquid) saturate(1.4) brightness(1.04);
+}
+/* specular edge: a hairline highlight along the top of the glass */
+.sm-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 3%);
+  opacity: calc(1 - var(--sm-glass-a));
+}
+
+.sm-head { margin-bottom: clamp(24px, 3.5vh, 44px); }
+
+.sm-label {
+  margin: 0 0 14px;
+  font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+
+.sm-title {
+  margin: 0;
+  max-width: 22em;
+  font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 2.9vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.sm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vh, 44px) clamp(28px, 3.5vw, 56px);
+}
+
+.sm-block { display: flex; flex-direction: column; }
+
+.sm-line {
+  margin: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.5;
+  color: var(--ink-soft);
   will-change: opacity;
 }
+.sm-line + .sm-line { margin-top: 0.55em; }
 
+.sm-kw-row { margin: 14px 0 0; line-height: 1.04; }
+
+/* Inline keyword: a layout placeholder only — the stack span flies in its
+   place (static fallback shows it as-is). Metrics match the stack so the
+   height ratio equals the font-size ratio. */
 .sm-keyword {
   display: inline-block;
-  color: #ffffff;
+  visibility: hidden;
+  color: var(--ink);
   font-family: 'Schibsted Grotesk', 'Inter', sans-serif;
   font-weight: 600;
-  transform-origin: center center;
-  will-change: transform;
-  z-index: 3;
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.04;
+  letter-spacing: 0;
 }
 
-/* ---------- hidden target stack (FLIP measurement) ---------- */
+/* ---------- the flying stack ---------- */
+/* Laid out at its final size and position; each span carries a scroll-driven
+   transform from its placeholder (scaled down) to identity (crisp). */
 .sm-stack {
   position: absolute;
   inset: 0;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.06em;
-  visibility: hidden;
   pointer-events: none;
 }
 
 .sm-stack span {
   font-family: 'Schibsted Grotesk', 'Inter', -apple-system, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(34px, 6vw, 92px);
   line-height: 1.04;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--ink);
+  transform-origin: center center;
+  will-change: transform;
 }
 
 /* ---------- floating project tiles ---------- */
@@ -76,6 +145,9 @@
   z-index: 1;
   pointer-events: none;
 }
+/* tiles float above the glass, under the copy */
+.sm-tiles { z-index: 2; }
+.sm-copy { z-index: 3; }
 
 .sm-tile {
   position: absolute;
@@ -83,7 +155,7 @@
   border-radius: 2px;
   overflow: hidden;
   will-change: transform, opacity;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 24px 60px rgba(22, 20, 15, 0.18);
 }
 
 .sm-tile-img {
@@ -93,33 +165,29 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.5);
 }
 
-.sm-tile-label {
-  position: absolute;
-  left: 10px;
-  top: 8px;
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  mix-blend-mode: difference;
+/* Short viewports: keep the whole narrative inside the sticky stage. */
+@media (max-height: 820px) and (min-width: 861px) {
+  .sm-head { margin-bottom: 20px; }
+  .sm-title { font-size: clamp(24px, 2.4vw, 36px); }
+  .sm-line { font-size: 13px; line-height: 1.45; }
+  .sm-grid { row-gap: 22px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .studio-manifesto {
-    height: auto;
-  }
+/* Static fallback: the stage lays out in flow and nothing animates. */
+@media (prefers-reduced-motion: reduce), (max-width: 860px) {
+  .studio-manifesto { height: auto; background: var(--bg); }
   .sm-stage {
     position: relative;
     height: auto;
-    min-height: 100vh;
-    padding: 12vh 0;
+    min-height: 0;
+    overflow: visible;
+    padding: clamp(72px, 12vw, 120px) 0;
   }
-  .sm-tiles {
-    display: none;
-  }
+  .sm-tiles, .sm-stack, .sm-glass, .sm-glass-defs { display: none; }
+  .sm-keyword { visibility: visible; }
+  .sm-grid { grid-template-columns: 1fr; gap: 36px; }
+  .sm-line { font-size: 15px; }
+  .sm-keyword { font-size: 18px; }
 }

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import ContactCard from './ContactCard.jsx'
 import { HorizontalShowcase } from './HorizontalShowcase.jsx'
-import LogoCloud from './LogoCloud.jsx'
 import StudioManifesto from './StudioManifesto.jsx'
 import WavePath from './WavePath.jsx'
 import { cases } from '../data.js'
 import { useCopy } from '../i18n/LanguageContext.jsx'
+import Rich from '../i18n/Rich.jsx'
 
 function Work({ coverItems }) {
   const t = useCopy('home')
@@ -18,7 +18,7 @@ function Work({ coverItems }) {
   )
 }
 
-function Footer({ logoItems }) {
+function Footer() {
   const [contact, setContact] = useState(false)
   const t = useCopy('home')
   const c = useCopy('common')
@@ -44,24 +44,24 @@ function Footer({ logoItems }) {
         <WavePath className="footer-art-wave" />
         <div className="footer-art-text">
           <p className="footer-art-label">{t.footerLabel}</p>
-          <p className="footer-art-desc">
-            {t.footerDesc}
-          </p>
+          <div className="footer-art-desc">
+            <p className="footer-art-title">{t.contactHeadline}</p>
+            {(t.contactBody || []).map((line, i) => (
+              <p key={i} className="footer-art-line"><Rich text={line} /></p>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="footer-logos">
-        <LogoCloud items={logoItems} />
       </div>
     </footer>
   )
 }
 
-export default function HomeContent({ coverItems, logoItems }) {
+export default function HomeContent({ coverItems }) {
   return (
     <div className="after-hero">
       <StudioManifesto covers={coverItems} />
       <Work coverItems={coverItems} />
-      <Footer logoItems={logoItems} />
+      <Footer />
     </div>
   )
 }

@@ -1,12 +1,7 @@
 .hs {
   position: relative;
-  /* dark theme — scoped variable overrides flip text/lines/button to suit black */
-  background: #000000;
-  color: #ffffff;
-  --ink: #ffffff;
-  --bg: #000000;
-  --ink-soft: rgba(255, 255, 255, 0.6);
-  --line: rgba(255, 255, 255, 0.16);
+  background: var(--bg);
+  color: var(--ink);
 }
 .hs-sticky { position: sticky; top: 0; height: 100vh; box-sizing: border-box; overflow: hidden; display: flex; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .hs-track { display: flex; align-items: center; gap: clamp(28px, 4vw, 72px); padding: 0 var(--pad); will-change: transform; }
@@ -26,7 +21,7 @@
   background: var(--ink); color: var(--bg); padding: 13px 24px; border-radius: 999px;
   font-family: var(--font-display); font-weight: 600; font-size: 15px; transition: background .25s;
 }
-.hs-btn:hover { background: rgba(255, 255, 255, 0.82); }
+.hs-btn:hover { background: rgba(22, 20, 15, 0.82); }
 .hs-arrow { transition: transform .3s; }
 .hs-btn:hover .hs-arrow { transform: translateX(4px); }
 
@@ -37,7 +32,7 @@
 .hs-card { flex: 0 0 auto; display: flex; flex-direction: column; will-change: transform; }
 .hs-card-media {
   position: relative; height: 56vh; aspect-ratio: 658 / 492;
-  border-radius: 6px; overflow: hidden; background: #0f0f12; display: block;
+  border-radius: 6px; overflow: hidden; background: var(--bg-2); display: block;
 }
 .hs-card-media img, .hs-card-fill { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(0.22,1,0.36,1); }
 .hs-card-media--contain { background: #eef1f5; }
