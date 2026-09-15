@@ -173,6 +173,17 @@ function Nav() {
   ]
   return (
     <nav className="nav" data-tone={tone}>
+      {/* Liquid glass for the capsules: a small displacement map refracts
+          whatever scrolls beneath. Browsers without url() backdrop filters
+          keep the frosted fallback declared in the CSS. */}
+      <svg className="nav-glass-defs" aria-hidden="true" focusable="false">
+        <filter id="nav-liquid" x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02 0.03" numOctaves="2" seed="3" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="1.5" result="soft" />
+          <feDisplacementMap in="SourceGraphic" in2="soft" scale="14" xChannelSelector="R" yChannelSelector="G" result="warp" />
+          <feGaussianBlur in="warp" stdDeviation="3" />
+        </filter>
+      </svg>
       <a href="#top" className="nav-capsule nav-brand" data-cursor="link" data-cursor-label={c.home} aria-label={c.home}>
         <span className="nav-mark"><img src="/logo.png" alt={c.logoAlt} /></span>
         <span className="nav-name">SimmonJ</span>
