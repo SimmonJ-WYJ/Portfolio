@@ -172,7 +172,7 @@ export default {
     ],
 
     alts: {
-      hero: 'Cargo-space loading screen: truck load rate, rack tiers and the available-parcel list',
+      hero: 'Laptop showing the cargo-space loading screen: truck load rate, rack tiers and the available-parcel list',
       dashboard: 'Dashboard: overview, late arrivals, daily plan, available trucks, abnormal temperatures',
       parcel: 'Parcel list with cell annotations',
       parcelHover: 'Parcel list with grouped columns and a hovered row',
@@ -354,7 +354,7 @@ export default {
     ],
 
     alts: {
-      hero: '货仓装车页面：车辆装载率、货架分层与可用包裹列表',
+      hero: '笔记本上的货仓装车页面：车辆装载率、货架分层与可用包裹列表',
       dashboard: '数据看板：总览、延迟抵达、日常计划、可用卡车、异常温度',
       parcel: '包裹列表与单元格标注',
       parcelHover: '包裹列表：分组列与悬停高亮行',

@@ -24,8 +24,8 @@
 
 /* ---------- Hero ---------- */
 .mt-hero { width: 100%; background: var(--mt-stage); padding: 80px 0 0; }
-.mt-hero-content { max-width: 1220px; margin: 0 auto; padding: 0 0 72px; display: flex; justify-content: center; }
-.mt-hero-img { display: block; width: 100%; max-width: 953px; height: auto; }
+.mt-hero-content { max-width: 1640px; margin: 0 auto; padding: 0 110px; }
+.mt-hero-img { display: block; width: 100%; height: auto; margin: 0 auto; }
 
 /* ---------- Main column ---------- */
 .mt-main { max-width: 1220px; margin: 0 auto; padding: 62px 0 120px; }
@@ -248,7 +248,7 @@
 
 /* ==================== Responsive ==================== */
 @media (max-width: 1320px) {
-  .mt-hero-content, .mt-main { padding-left: 60px; padding-right: 60px; }
+  .mt-main { padding-left: 60px; padding-right: 60px; }
 }
 
 @media (max-width: 1024px) {
@@ -265,8 +265,7 @@
 }
 
 @media (max-width: 768px) {
-  .mt-hero { padding: 84px 0 0; }
-  .mt-hero-content { padding: 0 20px 40px; }
+  .mt-hero { padding: 60px 0 0; }
   .mt-main { padding: 48px 20px 80px; }
   .mt-meta { flex-wrap: wrap; gap: 24px 40px; margin-bottom: 40px; }
   .mt-title { font-size: 32px; }

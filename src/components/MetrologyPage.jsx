@@ -4,7 +4,7 @@ import { useCopy } from '../i18n/LanguageContext.jsx'
 import Rich from '../i18n/Rich.jsx'
 
 // Hero illustration + product screens
-import heroLoading from '../assets/metrology/hero-loading.webp'
+import heroLaptop from '../assets/metrology/hero-laptop.webp'
 import uiDashboard from '../assets/metrology/ui-dashboard.jpg'
 import uiParcel from '../assets/metrology/ui-parcel.jpg'
 import uiParcelHover from '../assets/metrology/ui-parcel-hover.jpg'
@@ -99,10 +99,10 @@ export default function MetrologyPage() {
         <span>{t.back}</span>
       </a>
 
-      {/* Hero — the framed loading screen, centred on the grey band */}
+      {/* Hero — laptop mockup on the grey band, deck cut by the band's edge (same as Solvely Plugins) */}
       <section className="mt-hero">
         <div className="mt-hero-content">
-          <img className="mt-hero-img" src={heroLoading} alt={alts.hero} loading="eager" decoding="async" fetchpriority="high" />
+          <img className="mt-hero-img" src={heroLaptop} alt={alts.hero} loading="eager" decoding="async" fetchpriority="high" />
         </div>
       </section>
 
