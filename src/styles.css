@@ -100,7 +100,7 @@ section { position: relative; }
 .nav[data-tone="light"] {
   --nav-fg: #16140f;
   --nav-dim: #4a473f;
-  --nav-glass: rgba(255, 255, 255, 0.72);
+  --nav-glass: rgba(255, 255, 255, 0.55);
   --nav-border: rgba(22, 20, 15, 0.10);
   --nav-shadow: 0 8px 30px rgba(22, 20, 15, 0.08);
   --nav-seg-bg: rgba(22, 20, 15, 0.06);
