@@ -19,6 +19,7 @@ const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
 const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
 const AsciPage = lazy(() => import('./components/AsciPage.jsx'))
 const OvermindPage = lazy(() => import('./components/OvermindPage.jsx'))
+const MetrologyPage = lazy(() => import('./components/MetrologyPage.jsx'))
 const HomeContent = lazy(() => import('./components/HomeContent.jsx'))
 
 const detailRoutes = {
@@ -29,6 +30,7 @@ const detailRoutes = {
   '/windpop': WindpopPage,
   '/asci': AsciPage,
   '/overmind': OvermindPage,
+  '/metrology': MetrologyPage,
 }
 
 // Project cover images (used as the showcase cards).
@@ -37,7 +39,8 @@ const coverModules = import.meta.glob('./assets/covers/*.{png,jpg,jpeg,webp,avif
   import: 'default',
 })
 // Per-project metadata, keyed by the cover filename slug. Product names stay in
-// their original form in both languages; descriptions come from src/i18n/copy.
+// their original form in both languages; a project without a product name
+// carries a `titleZh` for the Chinese view. Descriptions come from src/i18n/copy.
 const PROJECT_META = {
   ASCI: { title: 'ASCI', link: '/asci' },
   Freeleaps: { title: 'Freeleaps', link: '/freeleaps' },
@@ -46,18 +49,23 @@ const PROJECT_META = {
   Wawawriter: { title: 'Wawa Writer', link: '/wawawriter' },
   Windpop: { title: 'Windpop', link: '/windpop' },
   overmind: { title: 'OVERMIND', link: '/overmind' },
-  数云: { title: '数云 Shuyun' },
+  metrology: { title: 'Metrology Platform', titleZh: '安全生产计量管理平台', link: '/metrology' },
 }
+// Showcase order, left to right. A cover whose slug is not listed goes last.
+const COVER_ORDER = ['solvely-plugins', 'Solvely', 'ASCI', 'Wawawriter', 'metrology', 'overmind', 'Freeleaps', 'Windpop']
+const coverSlug = (k) => k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
+const coverRank = (k) => { const i = COVER_ORDER.indexOf(coverSlug(k)); return i === -1 ? COVER_ORDER.length : i }
 const coverItems = Object.keys(coverModules)
-  .sort((a, b) => Number(b.includes('solvely-plugins')) - Number(a.includes('solvely-plugins')) || a.localeCompare(b))
+  .sort((a, b) => coverRank(a) - coverRank(b) || a.localeCompare(b))
   .map((k) => {
-    const slug = k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
+    const slug = coverSlug(k)
     const meta = PROJECT_META[slug] || {}
     return {
       src: coverModules[k],
       fit: 'cover',
       slug,
       title: meta.title || slug,
+      titleZh: meta.titleZh,
       link: meta.link || '#work',
     }
   })

@@ -4,16 +4,21 @@ import { HorizontalShowcase } from './HorizontalShowcase.jsx'
 import StudioManifesto from './StudioManifesto.jsx'
 import WavePath from './WavePath.jsx'
 import { cases } from '../data.js'
-import { useCopy } from '../i18n/LanguageContext.jsx'
+import { useCopy, useLang } from '../i18n/LanguageContext.jsx'
 import Rich from '../i18n/Rich.jsx'
 
 function Work({ coverItems }) {
   const t = useCopy('home')
+  const { lang } = useLang()
+  // Product names stay as-is; a cover with a `titleZh` swaps it in for 中文.
+  const items = (coverItems.length ? coverItems : cases).map((item) => (
+    lang === 'zh' && item.titleZh ? { ...item, title: item.titleZh } : item
+  ))
   return (
     <HorizontalShowcase
       title={t.reelTitle}
       subtitle={t.reelHint}
-      items={coverItems.length ? coverItems : cases}
+      items={items}
     />
   )
 }
