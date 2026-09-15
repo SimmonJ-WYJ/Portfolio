@@ -7,6 +7,7 @@ import solvelyPlugins from './solvelyPlugins.js'
 import wawawriter from './wawawriter.js'
 import windpop from './windpop.js'
 import overmind from './overmind.js'
+import metrology from './metrology.js'
 
 // One module per page. Each exports { en: {...}, zh: {...} } with matching keys.
-export default { common, home, asci, freeleaps, solvely, solvelyPlugins, wawawriter, windpop, overmind }
+export default { common, home, asci, freeleaps, solvely, solvelyPlugins, wawawriter, windpop, overmind, metrology }

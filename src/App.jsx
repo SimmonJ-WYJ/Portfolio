@@ -19,6 +19,7 @@ const WawawriterPage = lazy(() => import('./components/WawawriterPage.jsx'))
 const WindpopPage = lazy(() => import('./components/WindpopPage.jsx'))
 const AsciPage = lazy(() => import('./components/AsciPage.jsx'))
 const OvermindPage = lazy(() => import('./components/OvermindPage.jsx'))
+const MetrologyPage = lazy(() => import('./components/MetrologyPage.jsx'))
 const HomeContent = lazy(() => import('./components/HomeContent.jsx'))
 
 const detailRoutes = {
@@ -29,6 +30,7 @@ const detailRoutes = {
   '/windpop': WindpopPage,
   '/asci': AsciPage,
   '/overmind': OvermindPage,
+  '/metrology': MetrologyPage,
 }
 
 // Project cover images (used as the showcase cards).
@@ -46,6 +48,7 @@ const PROJECT_META = {
   Wawawriter: { title: 'Wawa Writer', link: '/wawawriter' },
   Windpop: { title: 'Windpop', link: '/windpop' },
   overmind: { title: 'OVERMIND', link: '/overmind' },
+  metrology: { title: '安全生产计量管理平台', link: '/metrology' },
   数云: { title: '数云 Shuyun' },
 }
 const coverItems = Object.keys(coverModules)
