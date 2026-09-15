@@ -8,9 +8,6 @@ export default {
   en: {
     back: 'Back',
 
-    heroKicker: 'Production Safety Metrology Platform',
-    heroTitle: 'METROLOGY SECURITY SYSTEM DESIGN',
-    heroSub: 'Design notes from a standard production-process project',
 
     metaRoleLabel: 'Role',
     metaRoleValue: 'Product Designer',
@@ -175,7 +172,7 @@ export default {
     ],
 
     alts: {
-      hero: 'Metrology platform — 3D illustration of the dashboard, a truck scale and reference weights',
+      hero: 'Cargo-space loading screen: truck load rate, rack tiers and the available-parcel list',
       dashboard: 'Dashboard: overview, late arrivals, daily plan, available trucks, abnormal temperatures',
       parcel: 'Parcel list with cell annotations',
       parcelHover: 'Parcel list with grouped columns and a hovered row',
@@ -193,9 +190,6 @@ export default {
   zh: {
     back: '返回',
 
-    heroKicker: '安全生产计量管理平台',
-    heroTitle: 'METROLOGY SECURITY SYSTEM DESIGN',
-    heroSub: '标准生产流程项目设计整理',
 
     metaRoleLabel: '角色',
     metaRoleValue: '产品设计师',
@@ -360,7 +354,7 @@ export default {
     ],
 
     alts: {
-      hero: '计量管理平台——看板、汽车衡与砝码的 3D 示意图',
+      hero: '货仓装车页面：车辆装载率、货架分层与可用包裹列表',
       dashboard: '数据看板：总览、延迟抵达、日常计划、可用卡车、异常温度',
       parcel: '包裹列表与单元格标注',
       parcelHover: '包裹列表：分组列与悬停高亮行',

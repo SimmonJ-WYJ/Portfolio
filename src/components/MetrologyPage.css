@@ -24,17 +24,8 @@
 
 /* ---------- Hero ---------- */
 .mt-hero { width: 100%; background: var(--mt-stage); padding: 80px 0 0; }
-.mt-hero-content {
-  max-width: 1220px; margin: 0 auto; padding: 0 0 72px;
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center;
-}
-.mt-hero-copy { display: flex; flex-direction: column; gap: 20px; }
-.mt-hero-kicker { display: flex; align-items: center; gap: 12px; font-size: 20px; color: var(--mt-body); }
-.mt-hero-mark { width: 36px; height: 36px; border-radius: 8px; background: var(--mt-blue); display: inline-flex; align-items: center; justify-content: center; flex: none; }
-.mt-hero-title { margin: 0; max-width: 560px; font-size: 56px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--mt-ink); }
-.mt-hero-sub { margin: 8px 0 0; font-size: 16px; color: var(--mt-muted); }
-.mt-hero-art { display: flex; align-items: center; justify-content: flex-end; }
-.mt-hero-art img { display: block; width: 100%; max-width: 640px; height: auto; }
+.mt-hero-content { max-width: 1220px; margin: 0 auto; padding: 0 0 72px; display: flex; justify-content: center; }
+.mt-hero-img { display: block; width: 100%; max-width: 953px; height: auto; }
 
 /* ---------- Main column ---------- */
 .mt-main { max-width: 1220px; margin: 0 auto; padding: 62px 0 120px; }
@@ -262,8 +253,6 @@
 
 @media (max-width: 1024px) {
   .mt-hero-content, .mt-main { padding-left: 40px; padding-right: 40px; }
-  .mt-hero-title { font-size: 44px; }
-  .mt-hero-art img { max-width: 520px; }
   .mt-photos--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mt-photos--cellar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .mt-split--shot-left, .mt-split--shot-right { grid-template-columns: 1fr; }
@@ -276,11 +265,8 @@
 }
 
 @media (max-width: 768px) {
-  .mt-hero { padding: 96px 0 0; }
-  .mt-hero-content { grid-template-columns: 1fr; gap: 32px; padding: 0 20px 48px; }
-  .mt-hero-title { font-size: 34px; max-width: none; }
-  .mt-hero-kicker { font-size: 17px; }
-  .mt-hero-art { justify-content: center; }
+  .mt-hero { padding: 84px 0 0; }
+  .mt-hero-content { padding: 0 20px 40px; }
   .mt-main { padding: 48px 20px 80px; }
   .mt-meta { flex-wrap: wrap; gap: 24px 40px; margin-bottom: 40px; }
   .mt-title { font-size: 32px; }
@@ -317,7 +303,6 @@
 }
 
 @media (max-width: 480px) {
-  .mt-hero-title { font-size: 30px; }
   .mt-photos--4 { grid-template-columns: 1fr; }
   .mt-photo-quad { grid-template-columns: repeat(2, minmax(0, 1fr)); height: auto; }
   .mt-photo-quad img { height: 120px; }

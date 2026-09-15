@@ -4,7 +4,7 @@ import { useCopy } from '../i18n/LanguageContext.jsx'
 import Rich from '../i18n/Rich.jsx'
 
 // Hero illustration + product screens
-import heroPlatform from '../assets/metrology/hero-platform.webp'
+import heroLoading from '../assets/metrology/hero-loading.webp'
 import uiDashboard from '../assets/metrology/ui-dashboard.jpg'
 import uiParcel from '../assets/metrology/ui-parcel.jpg'
 import uiParcelHover from '../assets/metrology/ui-parcel-hover.jpg'
@@ -99,24 +99,10 @@ export default function MetrologyPage() {
         <span>{t.back}</span>
       </a>
 
-      {/* Hero */}
+      {/* Hero — the framed loading screen, centred on the grey band */}
       <section className="mt-hero">
         <div className="mt-hero-content">
-          <div className="mt-hero-copy">
-            <div className="mt-hero-kicker">
-              <span className="mt-hero-mark" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 3v18M4 7h16M6 7l-3 7a3 3 0 0 0 6 0L6 7zM18 7l-3 7a3 3 0 0 0 6 0l-3-7z" />
-                </svg>
-              </span>
-              <span>{t.heroKicker}</span>
-            </div>
-            <h1 className="mt-hero-title">{t.heroTitle}</h1>
-            <p className="mt-hero-sub">{t.heroSub}</p>
-          </div>
-          <div className="mt-hero-art">
-            <img src={heroPlatform} alt={alts.hero} loading="eager" decoding="async" fetchpriority="high" />
-          </div>
+          <img className="mt-hero-img" src={heroLoading} alt={alts.hero} loading="eager" decoding="async" fetchpriority="high" />
         </div>
       </section>
 
