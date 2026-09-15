@@ -30,10 +30,9 @@
 
 /* Project Meta */
 .sp-meta {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 136px;
-  max-width: 369px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 136px;
   margin-bottom: 62px;
 }
 
@@ -55,6 +54,7 @@
   font-weight: 400;
   color: #111827;
   line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* ==================== Main Content ==================== */
@@ -1191,8 +1191,7 @@
   }
 
   .sp-meta {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 24px 40px;
   }
 
   .sp-main {
