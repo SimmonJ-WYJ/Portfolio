@@ -82,6 +82,7 @@ section { position: relative; }
 /* Two liquid-glass capsules pinned to the top. `data-tone` (set from scroll
    position) flips the palette: dark glass over the hero, light glass over
    the sections below. The same material as the capabilities stage. */
+.nav-glass-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
@@ -108,8 +109,14 @@ section { position: relative; }
 }
 .nav-capsule {
   display: flex; align-items: center; height: 48px; border-radius: 999px;
-  background: var(--nav-glass); border: 1px solid var(--nav-border); box-shadow: var(--nav-shadow);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  background:
+    linear-gradient(118deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.14) 100%),
+    var(--nav-glass);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow), inset 0 1px 0 rgba(255,255,255,0.35);
+  /* liquid glass: refraction via the SVG filter in Nav; frosted fallback first */
+  -webkit-backdrop-filter: blur(12px) saturate(1.5) brightness(1.04); backdrop-filter: blur(12px) saturate(1.5) brightness(1.04);
+  backdrop-filter: url(#nav-liquid) saturate(1.5) brightness(1.04);
   transition: background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease), box-shadow .35s var(--ease);
 }
 .nav-brand { gap: 12px; padding: 0 16px 0 6px; font-family: var(--font-display); }
