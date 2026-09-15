@@ -49,12 +49,15 @@ const PROJECT_META = {
   Windpop: { title: 'Windpop', link: '/windpop' },
   overmind: { title: 'OVERMIND', link: '/overmind' },
   metrology: { title: '安全生产计量管理平台', link: '/metrology' },
-  数云: { title: '数云 Shuyun' },
 }
+// Showcase order, left to right. A cover whose slug is not listed goes last.
+const COVER_ORDER = ['solvely-plugins', 'Solvely', 'metrology', 'ASCI', 'Wawawriter', 'overmind', 'Freeleaps', 'Windpop']
+const coverSlug = (k) => k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
+const coverRank = (k) => { const i = COVER_ORDER.indexOf(coverSlug(k)); return i === -1 ? COVER_ORDER.length : i }
 const coverItems = Object.keys(coverModules)
-  .sort((a, b) => Number(b.includes('solvely-plugins')) - Number(a.includes('solvely-plugins')) || a.localeCompare(b))
+  .sort((a, b) => coverRank(a) - coverRank(b) || a.localeCompare(b))
   .map((k) => {
-    const slug = k.split('/').pop().replace(/\.[^.]+$/, '').replace(/[\d_]+$/, '')
+    const slug = coverSlug(k)
     const meta = PROJECT_META[slug] || {}
     return {
       src: coverModules[k],
