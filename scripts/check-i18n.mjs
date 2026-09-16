@@ -48,6 +48,7 @@ const WIRED = [
   'FreeleapsPage.jsx',
   'AsciPage.jsx',
   'MetrologyPage.jsx',
+  'WawawriterPage.jsx',
   'HomeContent.jsx',
   'StudioManifesto.jsx',
 ]
