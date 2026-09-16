@@ -6,10 +6,8 @@ const wawawriter = {
   en: {
     back: 'Back',
     meta: [
-      { label: 'Industry', value: 'Multimodal AI product' },
-      { label: 'Service', value: 'UI/UX design & build' },
-      { label: 'Team', value: 'Designer + PM + engineering' },
-      { label: 'Timeline', value: '2 weeks' },
+      { label: 'Role', value: 'Product Designer' },
+      { label: 'Platform', value: 'Web' },
     ],
     title: 'Wawa Writer',
     lede: 'Continuation, book breakdown, expansion and rewriting for creators — with generation quality you can rely on.',
@@ -126,10 +124,8 @@ const wawawriter = {
   zh: {
     back: '返回',
     meta: [
-      { label: '行业', value: '多模态AI产品' },
-      { label: '服务', value: 'UI/UX 设计/开发' },
-      { label: '团队配置', value: '设计师+产品+开发' },
-      { label: '时间周期', value: '2 周' },
+      { label: '角色', value: '产品设计师' },
+      { label: '平台', value: 'Web 端' },
     ],
     title: '蛙蛙写作',
     lede: '为创作者提供续写、拆书、扩写、改写等服务，保证文章的生成质量',

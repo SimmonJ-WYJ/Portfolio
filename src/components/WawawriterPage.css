@@ -34,7 +34,7 @@
 /* ---------- Main column ---------- */
 .ww-main { max-width: 1220px; margin: 0 auto; padding: 62px 0 120px; }
 
-.ww-meta { display: flex; flex-wrap: wrap; gap: 24px 96px; margin-bottom: 62px; }
+.ww-meta { display: flex; flex-wrap: wrap; gap: 24px 136px; margin-bottom: 62px; }
 .ww-meta-group { display: flex; flex-direction: column; gap: 8px; }
 .ww-meta-label { font-size: 14px; color: var(--ww-muted); line-height: 1.5; }
 .ww-meta-value { font-size: 16px; font-weight: 600; color: var(--ww-ink); line-height: 1.5; white-space: nowrap; }
