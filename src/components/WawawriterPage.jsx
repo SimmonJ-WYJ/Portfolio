@@ -119,6 +119,8 @@ export default function WawawriterPage() {
           <div className="ww-intro-text">
             <p>{t.lede}</p>
             <p className="ww-headline"><Rich text={t.headline} /></p>
+            <p className="ww-text">{t.introProblem}</p>
+            <p className="ww-text">{t.introChanges}</p>
             <div className="ww-tags">
               {(t.tags || []).map((tag) => (
                 <span className="ww-tag" key={tag}>
